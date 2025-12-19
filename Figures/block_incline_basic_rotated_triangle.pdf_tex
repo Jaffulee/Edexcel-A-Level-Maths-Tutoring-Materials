@@ -1,0 +1,69 @@
+%% Creator: Inkscape 1.4.2 (f4327f4, 2025-05-13), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'block_incline_basic_rotated_triangle.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{340.15747833bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.74999998)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{block_incline_basic_rotated_triangle.pdf}}%
+    \put(0.77573584,0.49712599){\color[rgb]{0,0,0}\rotatebox{-28.061405}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$Fr$\end{tabular}}}}}%
+    \put(0.43072809,0.29522044){\color[rgb]{0,0,0}\rotatebox{-28.061405}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$mg$\end{tabular}}}}}%
+    \put(0.53642027,0.5762907){\color[rgb]{0,0,0}\rotatebox{-28.061405}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$m = 15kg$\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{block_incline_basic_rotated_triangle.pdf}}%
+    \put(0.26163186,0.37890873){\color[rgb]{0,0,0}\rotatebox{-28.061405}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi$\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{block_incline_basic_rotated_triangle.pdf}}%
+    \put(0.3947101,0.52294913){\color[rgb]{0.71764706,0.00392157,1}\rotatebox{-28.0614}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi$\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{block_incline_basic_rotated_triangle.pdf}}%
+    \put(0.42879181,0.45234707){\color[rgb]{0,0,0}\transparent{0.18996403}\rotatebox{-28.061405}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\theta$\end{tabular}}}}}%
+    \put(0.84678877,0.20158762){\color[rgb]{0.85098039,0.14901961,0.14901961}\rotatebox{0.01394222}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l} \end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{block_incline_basic_rotated_triangle.pdf}}%
+  \end{picture}%
+\endgroup%

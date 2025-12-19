@@ -1,0 +1,75 @@
+%% Creator: Inkscape 1.4.2 (f4327f4, 2025-05-13), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'block_incline_rope_annotated.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{340.15747833bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.74999998)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{block_incline_rope_annotated.pdf}}%
+    \put(0.6573721,0.61749388){\color[rgb]{0,0,0}\rotatebox{-0.00836654}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T = 25N$\end{tabular}}}}}%
+    \put(0.37373182,0.183799){\color[rgb]{0,0,0}\rotatebox{-0.00836654}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$mg$\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{block_incline_rope_annotated.pdf}}%
+    \put(0.24533246,0.18545215){\color[rgb]{0,0,0}\rotatebox{-0.00836654}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$20^\circ$\end{tabular}}}}}%
+    \put(0.53229617,0.19275038){\color[rgb]{0,0,0}\rotatebox{-0.00836654}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$20^\circ$\end{tabular}}}}}%
+    \put(0.47173912,0.23023302){\color[rgb]{0,0,0}\rotatebox{-0.00836654}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$70^\circ$\end{tabular}}}}}%
+    \put(0.24391735,0.34539172){\color[rgb]{0,0,0}\rotatebox{-0.00836654}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$20^\circ$\end{tabular}}}}}%
+    \put(0.35724584,0.27584019){\color[rgb]{0,0,0}\rotatebox{-0.00836654}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$70^\circ$\end{tabular}}}}}%
+    \put(0.41990897,0.50211717){\color[rgb]{0,0,0}\rotatebox{-0.00836654}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$60^\circ$\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{block_incline_rope_annotated.pdf}}%
+    \put(0.58446688,0.53268378){\color[rgb]{0,0,0}\rotatebox{-0.00836654}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$30^\circ$\end{tabular}}}}}%
+    \put(0.95860258,0.32661316){\color[rgb]{0.85098039,0.14901961,0.14901961}\rotatebox{28.06698}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l} \end{tabular}}}}}%
+    \put(0.34064882,0.59756679){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R$\end{tabular}}}}%
+    \put(0.66376426,0.49487118){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$F$\end{tabular}}}}%
+    \put(0.16726247,0.28456586){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$F_{max}$\end{tabular}}}}%
+    \put(0.52223345,0.29152762){\color[rgb]{0,0,0}\transparent{0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$mg\sin(70)$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{block_incline_rope_annotated.pdf}}%
+  \end{picture}%
+\endgroup%

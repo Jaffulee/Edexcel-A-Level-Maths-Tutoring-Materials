@@ -1,0 +1,3982 @@
+	%% This is file `elsarticle-template-1-num.tex',
+%%
+%% Copyright 2009 Elsevier Ltd
+%%
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+
+\documentclass[a4paper]{article}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+%% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+%% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
+
+%% The graphicx package provides the includegraphics command.
+\usepackage{graphicx}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{cancel}
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ mathrsfs }
+\usepackage{ dsfont }
+\usepackage{tikz-cd}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{float}
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers after \end{frontmatter}.
+\usepackage{lineno}
+\usepackage{hyperref}
+\usepackage{enumitem}
+%% natbib.sty is loaded by default. However, natbib options can be
+%% provided with \biboptions{...} command. Following options are
+%% valid:
+
+%%   round  -  round parentheses are used (default)
+%%   square -  square brackets are used   [option]
+%%   curly  -  curly braces are used      {option}
+%%   angle  -  angle brackets are used    <option>
+%%   semicolon  -  multiple citations separated by semi-colon
+%%   colon  - same as semicolon, an earlier confusion
+%%   comma  -  separated by comma
+%%   numbers-  selects numerical citations
+%%   super  -  numerical citations as superscripts
+%%   sort   -  sorts multiple citations according to order in ref. list
+%%   sort&compress   -  like sort, but also compresses numerical citations
+%%   compress - compresses without sorting
+%%
+%% \biboptions{comma,round}
+
+% \biboptions{}
+
+\newtheorem{name}{Printed output}
+\newtheorem{mydef}{Definition}
+\newtheoremstyle{break}% name
+  {}%         Space above, empty = `usual value'
+  {}%         Space below
+  {}%         Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries}% Thm head font
+  {.}%        Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
+
+\theoremstyle{plain} %italics
+\newtheorem{question}{Question}
+
+\newtheorem{theorem}{Theorem}[section]
+%\numberwithin{theorem}{subsection}
+
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+%\numberwithin{lemma}{subsection}
+
+\newtheorem{corollary}[theorem]{Corollary}
+%\numberwithin{corollary}{subsection}
+
+\newtheorem{proposition}[theorem]{Proposition}
+%\numberwithin{proposition}{subsection}
+
+\theoremstyle{definition} %non italics
+
+\newtheorem{definition}[theorem]{Definition}
+%\numberwithin{definition}{subsection}
+
+\newtheorem*{note*}{Note}
+
+\newtheorem*{claim}{Claim}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem{example}{Example}
+% \numberwithin{example}{subsection}
+
+\newtheorem*{solution}{Solution}
+
+\newtheorem{exercise}{Exercise}
+
+\numberwithin{equation}{subsection}
+
+\newcommand{\incfig}[2][1]{%   % #1 = scale (default 1), #2 = filename
+    \def\svgwidth{#1\columnwidth}%
+    \import{./Figures/}{#2.pdf_tex}%
+}
+\newcommand{\hodge}{{*}}
+\newcommand{\tang}{\operatorname{\textbf{\textup{t}}}}
+\newcommand{\norm}{\operatorname{\textbf{\textup{n}}}}
+%mathbb short cut
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bP}{\mathbb{bP}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+
+\usepackage{comment}
+%bm short cut
+\newcommand{\bmv}{\bm{v}}
+\newcommand{\bmu}{\bm{u}}
+\newcommand{\bmw}{\bm{w}}
+\newcommand{\bmx}{\bm{x}}
+
+%mathcal shortcut
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cJ}{\mathcal{J}}
+
+%mathfraktur shortcut
+\newcommand{\frp}{\mathfrak{p}}
+\newcommand{\frq}{\mathfrak{q}}
+\newcommand{\frm}{\mathfrak{m}}
+\newcommand{\frP}{\mathfrak{P}}
+
+%mathscr shortcut
+\newcommand{\msF}{\mathscr{F}}
+\newcommand{\msA}{\mathscr{A}}
+\newcommand{\msM}{\mathscr{M}}
+\newcommand{\msE}{\mathscr{E}}
+\newcommand{\msU}{\mathscr{U}}
+\newcommand{\msB}{\mathscr{B}}
+\newcommand{\msD}{\mathscr{D}}
+\newcommand{\msL}{\mathscr{L}}
+\newcommand{\msS}{\mathscr{S}}
+\newcommand{\msG}{\mathscr{G}}
+\newcommand{\msT}{\mathscr{T}}
+\newcommand{\msC}{\mathscr{C}}
+\newcommand{\msH}{\mathscr{H}}
+\newcommand{\msO}{\mathscr{O}}
+\newcommand{\msJ}{\mathscr{J}}
+\newcommand{\msP}{\mathscr{P}}
+
+
+%set notation shortcut
+\newcommand{\vect}[1]{\underline{\textbf{#1}}}
+\newcommand{\llangle}{\left\langle}
+\newcommand{\rrangle}{\right\rangle}
+\newcommand{\llbrace}{\left\lbrace}
+\newcommand{\rrbrace}{\right\rbrace}
+\newcommand{\setof}[1]{\left\lbrace #1 \right\rbrace}
+
+
+\newcommand{\cFA}{\cF(\cA)}
+\newcommand{\sigmaA}{\sigma(\cA)}
+\newcommand{\del}[2]{\frac{\partial #1}{\partial #2}}
+
+
+\newcommand{\innerproductb}[2]{\llangle\bm{#1},\bm{#2}\rrangle}
+\newcommand{\innerproduct}[2]{\llangle{#1},{#2}\rrangle}
+
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\Span}{\operatorname{Span}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\sh}{\operatorname{sh}}
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Mor}{\operatorname{Mor}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\res}{\operatorname{res}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand*{\sheafhom}{\mathcal{H}\kern -.5pt \it{ om}}
+\newcommand*{\sheafspec}{\mathcal{S}\kern -.5pt \it{ pec}}
+\newcommand*{\sheafproj}{{\mathcal{P}\kern -.5pt \it{ roj}}}
+\newcommand{\Div}{\operatorname{div}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Qcoh}{\operatorname{Qcoh}}
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\Op}{\operatorname{Op}}
+\newcommand{\WF}{\operatorname{WF}}
+\newcommand{\Char}{\operatorname{Char}}
+\newcommand{\Ell}{\operatorname{Ell}}
+\newcommand{\RE}{\operatorname{Re}}
+\newcommand{\IM}{\operatorname{Im}}
+\newcommand{\cosec}{\operatorname{cosec}}
+
+\setlength{\parindent}{0pt}    % no indentation
+\setlength{\parskip}{1em}      % add vertical space between paragraphs
+
+\begin{document}
+
+%% Title, authors and addresses
+
+\title{\textbf{A-Level Maths Supplementary Materials}}
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for the associated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for the associated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for the associated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%%
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \address{Address\fnref{label3}}
+%% \fntext[label3]{}
+
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{<author name>}
+%% \address[label1]{<address>}
+%% \address[label2]{<address>}
+
+\author{\textbf{Jeffrey Thompson}}
+\maketitle
+\begin{abstract}
+These notes accompany my A-level mathematics tutoring and are designed to support students in developing clear, structured mathematical thinking. They are informed by common difficulties raised during tutoring sessions and focus on building confidence through worked examples and guided practice.
+
+The worked solutions emphasise method selection and reasoning, rather than calculation alone. Students are encouraged to attempt each example before consulting the solutions, using the table of contents to navigate the document via internal hyperlinks.
+
+I am a mathematics graduate with a Master of Advanced Study (Part III) in Pure Mathematics from the University of Cambridge, and I work professionally in data engineering and analytics. Alongside tutoring, I focus on explaining complex ideas clearly and accessibly.
+
+If you spot any errors or have questions, feel free to get in touch:
+\begin{itemize}
+  \item Website: \url{https://jaffulee.github.io/Jaffulee/}
+  \item GitHub: \url{https://github.com/Jaffulee}
+  \item LinkedIn: \url{https://www.linkedin.com/in/jeffrey-brian-thompson/}
+\end{itemize}
+
+\end{abstract}
+\tableofcontents
+
+\newpage
+\section{Functions}
+\subsection{Compositions and Inverses}
+\subsubsection{Compositions}
+\begin{definition} \label{def:f-composition}
+If $f$ and $g$ are two functions, we can define a new function $fg$ by 
+\[ fg(x) = f(g(x)) \]
+Note that this relies on $f$ being defined at the point $g(x)$. If $f$ has a \emph{singularity} at a point $a$ (as in $f(a)$ divides by zero somewhere in the calculation) then if there is an $x$ such that $g(x) = a$, $fg(x) = f(a)$, which would not be allowed.
+\end{definition}
+
+We can think of this similar to bracket rules - you do the ``innermost'' one first, and work outwards. 
+In the case of Definition \ref{def:f-composition} we compute $g(x)$ first, and then $f(x)$
+
+This can keep going! If we have three functions $f$, $g$, $h$, then $fgh(x) = f(g(h(x)))$, and we evaluate the functions inside-out ($h$ acts on $x$ first, then $g$, then $f$).
+\subsubsection{Compositions Examples and Exercises}
+\begin{example} \label{ex:simple-composition}
+    Let $f$ be a function defined by 
+    \[ f(x) = \frac{2x + 1}{5}\]
+    Find $ff(x)$, and write your answer in the form
+    \[ff(x) = \frac{ax + b}{25}\]
+    Where $a,b$ are numbers.
+\end{example}
+\begin{solution}
+    First write:
+    \[ f(x) = \frac{2x + 1}{5}\]
+    So 
+    \[ ff(x) = f(f(x)) = \frac{2\textcolor{red}{f(x)} + 1}{5}\]
+    Substituting $f(x)$ into this equation gives 
+    \[ ff(x) =  \frac{2\frac{2x + 1}{5} + 1}{5}\]
+    Here we have a fraction with fractions in it. Fractions are annoying, so we want to reduce the number of fractions. Notice that if we times the inner fraction by $5$, it would remove the fraction. 
+    We can use the fact that any number times $1$ is itself to multiply the fraction by $5/5$:
+    \begin{align*}
+        ff(x) &=  \frac{5}{5} \times \frac{2\frac{2x + 1}{5} + 1}{5} & \tag*{(substitute in $f(x)$)}\\
+            &= \frac{2\times \cancel{5} \times \frac{2x + 1}{\cancel{5}} +5}{5 \times 5} & \tag*{(expand top and bottom)}\\
+            &= \frac{4x + 2 + 5}{25} \\
+            &= \frac{4x + 7}{25}
+    \end{align*}
+
+    Now set 
+    \[ \frac{4x + 7}{25} = \frac{ax + b}{25}\]
+    Which finishes the question, finding $a = 4$, $b = 7$.
+    \qed
+\end{solution}
+
+
+
+\begin{example} \label{ex:simple-composition2}
+    Let $f$ be a function defined by 
+    \[ f(x) = \frac{2x + 1}{4x}\]
+    Where $x \neq 0$. \emph{This is required to not divide by $0$.}
+
+    Find $ff(x)$, and write your answer in the most simplified form of
+    \[ff(x) = \frac{ax + b}{cx + d}\]
+    Where $a,b,c,d$ are numbers. Make sure to state where $ff(x)$ is defined (what can $x$ not be).
+\end{example}
+\begin{solution}
+    First write (whenever $x\neq 0$):
+   \[ f(x) = \frac{2x + 1}{4x}\]
+    So 
+    \[ ff(x) = f(f(x)) = \frac{2\textcolor{red}{f(x)} + 1}{4\textcolor{red}{f(x)}}\]
+    Substituting $f(x)$ into this equation gives 
+    \[ ff(x) =  \frac{2\frac{2x + 1}{4x}\ + 1}{4 \frac{2x + 1}{4x}}\]
+    Here we have a fraction with fractions in it. Fractions are annoying, so we want to reduce the number of fractions. Notice that if we times the inner fractions by 
+    $4x$, it would remove the fraction. 
+    We can use the fact that any number times $1$ is itself to multiply the fraction by $4x/4x$, which is allowed because $x\neq 0$:
+    \begin{align*}
+        ff(x) &=  \frac{4x}{4x} \times \frac{2\frac{2x + 1}{4x}\ + 1}{4 \frac{2x + 1}{4x}} & \tag*{(substitute in $f(x)$)}\\
+            &= \frac{2\times \cancel{4x} \times \frac{2x + 1}{\cancel{4x}} + 4x}{4 \times \cancel{4x} \times \frac{2x + 1}{\cancel{4x}}} & \tag*{(expand top and bottom)}\\
+            &= \frac{4x + 2 + 4x}{8x + 4} \\
+            &= \frac{8x + 2}{8x + 4} \\
+            &= \frac{2}{2} \times \frac{4x + 1}{4x + 2} & \tag*{(factorise top and bottom)}\\
+            &= \frac{4x + 1}{4x + 2}
+    \end{align*}
+
+    Since we cannot simplify the equation any further, we now set 
+    \[ \frac{4x + 1}{4x + 2} = \frac{ax + b}{cx + d}\]
+    Which finds $a = c = 4$, $b = 1$, $d = 2$ by comparison.
+    $ff(x)$ cannot divide by zero, so we know  $4x+2 \neq 0$, and get that therefore  
+    $x \neq - \frac{1}{2} $. But remember $f$ itself requires $x \neq 0$, so $x$ cannot be $0$ or $-\frac{1}{2}$.
+    Which finishes the question.
+    \qed 
+\end{solution}
+
+\begin{example} \label{ex:simple-composition-different-functions}
+    Let $f$ and $g$ be functions defined by 
+    \[ f(x) = \sin (x) + \cos (3x) \]
+    \[g(x) = \frac{x +1}{3}\]
+
+    Find $fg(x)$, simplifying your answer.
+\end{example}
+\begin{solution}
+    First write:
+    \[ f(x) = \sin (x) + \cos (3x) \]
+    \[g(x) = \frac{x +1}{3}\]
+    So 
+    \[ fg(x) = f(g(x)) = \sin (\textcolor{red}{g(x)}) + \cos (3\textcolor{red}{g(x)})\]
+    Substituting $g(x)$ into this equation gives 
+    \begin{align*} fg(x) &=  \sin \left(\frac{x +1}{3}\right) + \cos \left(3\times\frac{x +1}{3}\right) \\&= \sin \left(\frac{x +1}{3}\right) + \cos (x +1)
+    \end{align*}
+    Which finishes the question.
+    \qed
+\end{solution}
+\begin{exercise} \label{ex:composition-three-functions}
+    \emph{Try it yourself!}
+    
+    Let $f$, $g$, $h$, be functions defined by 
+    \[ f(x) = \frac{1}{2}x^2\]
+    \[g(x) = \sin(x) - \cos(x)\]
+    \[h(x) = \cos(x) + \sin(x)\]
+
+    Show that \[ fg(x) + fh(x) = 1\] 
+    Hint: you may use (or recall) without proof that $\sin(x)^2 + \cos(x)^2 = 1$.
+\end{exercise}
+\begin{solution}
+    We will approach this question by calculating $fg$ and $fh$ separately, and then plugging them in.
+    First write:
+    \[ f(x) = \frac{1}{2}x^2\]
+    \[g(x) = \sin(x) - \cos(x)\]
+    \[h(x) = \cos(x) + \sin(x)\]
+    So 
+    \[ fg(x) = f(g(x)) =\frac{1}{2}\textcolor{red}{g(x)}^2\]
+    Substituting $g(x)$ into this equation gives 
+    \[ fg(x) = \frac{1}{2}(\sin(x) - \cos(x))^2 \]
+
+    Similarly, 
+    \[ fh(x) = f(h(x)) = \frac{1}{2}\textcolor{red}{h(x)}^2 \]
+    Subsituting $h(x)$ into this equation gives
+    \[ fh(x) = \frac{1}{2}(\cos(x) + \sin(x))^2 \]
+
+    Then we can calculate:
+    \begin{align*}
+        fg(x) + fh(x) &= \frac{1}{2}(\sin(x) - \cos(x))^2 +  \frac{1}{2}(\cos(x) + \sin(x))^2 & \tag{plugging in the equations}\\
+        &= \frac{1}{2}\left((\sin(x) - \cos(x))^2 + (\cos(x) + \sin(x))^2\right) & \tag{factoring}\\
+        &= \frac{1}{2}\left( \sin(x)^2 - \cancel{2\sin(x)\cos(x)} + \cos(x)^2  + \cos(x)^2 + \cancel{2\sin(x)\cos(x)} + \sin(x)^2 \right) & \tag{expanding} \\
+        &= \frac{1}{\cancel{2}} \times \cancel{2} (\sin(x)^2 + \cos(x)^2) & \tag{factoring} \\
+        &= \sin(x)^2 + \cos(x)^2 \\
+        &= 1 \tag{trig rules (the hint)}
+    \end{align*}
+    Which finishes the question.
+    \qed
+\end{solution}
+
+\subsubsection{Inverses} \label{sec:function-inverse}
+\begin{definition} \label{def:f-inverse}
+    If $f$ is a function, we define the inverse of $f$, denoted $f^{-1}$ by the following equation:
+    \[ ff^{-1}(x) = x \]
+    Or equivalently, 
+    \[ f^{-1}f(x) = x \]
+    The most common way to solve for $f^{-1}$ is by: 
+    \begin{enumerate} 
+        \item Write $y = f(x)$
+        \item Rearrange so that we have $x$ in terms of $y$
+        \item Swap $x$ and $y$ to find $f^{-1}(x)$
+    \end{enumerate}
+    You can show that this satisfies the definition of the inverse of $f$. 
+    Intuitively, Step 2 above finds ``what do you need to do to $y$ to find $x$''? This is because we are writing $x$ as a bunch of operations 
+    applied to $y$, but $y$ was chosen to be $f(x)$ in step $1$, therefore it must ``undo'' the operations we did in Step 1. This argument can be 
+    made rigorous.
+\end{definition}
+Here we have used the notation for function composition in Definition \ref{def:f-composition}.
+
+\subsubsection{Inverses Examples and Exercises}
+\begin{example} \label{ex:simple-inverse}
+    Example \ref{ex:simple-composition} continued.
+
+    Let $f$ be a function defined by 
+    \[ f(x) = \frac{2x + 1}{5}\]
+
+    Find $f^{-1}(x)$, and write your answer in the form
+    \[f^{-1}(x) = \frac{ax + b}{2}\]
+    Where $a,b$ are numbers.
+
+
+\end{example}
+\begin{solution}
+    First write 
+    \[y = \frac{2x + 1}{5}\]
+
+    Then rearrange for $x$:
+    \begin{align*}
+        5y &= 2x+1 \tag{multiply by 5}\\
+        5y -1 &= 2x \tag{minus 1}\\
+        x &= \frac{5y - 1}{2} \tag{divide by 2}
+    \end{align*}
+    Therefore,
+    \[ f^{-1}(x) = \frac{5x - 1}{2}\]
+    And setting it equal to $\frac{ax + b}{2}$, we find that $a = 5$ and $b = -1$ by comparison.
+    \qed
+\end{solution}
+
+\begin{example} \label{ex:simple-inverse-verification}
+    Example \ref{ex:simple-inverse} continued.
+
+    Let $f$ and $g$ be functions defined by 
+    \[ f(x) = \frac{2x + 1}{5}\]
+    \[ g(x) = \frac{5x - 1}{2}\]
+    By computing $fg(x)$, verify that $g$ is the inverse function of $f$, verifying the calculation in the previous question.
+
+\end{example}
+\begin{solution}
+    First write 
+    \[ f(x) = \frac{2x + 1}{5}\]
+    \[ g(x) = \frac{5x - 1}{2}\]
+
+    Then calculate
+    \begin{align*}
+        f(g(x)) &= \frac{2\textcolor{red}{g(x)} + 1}{5} \\
+         &= \frac{\cancel{2}\frac{5x - 1}{\cancel{2}} + 1}{5} \\
+         &= \frac{5x \cancel{- 1 + 1}}{5}  \\
+         &= \frac{\cancel{5}x}{\cancel{5}} \\
+         &= x
+    \end{align*}
+    Therefore, $fg(x) = x$, which verifies $g$ is the inverse function of $f$.
+    \qed
+\end{solution}
+
+
+
+\begin{example} \label{ex:simple-inverse2}
+    Example \ref{ex:simple-composition2} continued.
+
+    Let $f$ be a function defined by 
+    \[ f(x) = \frac{2x + 1}{4x}\]
+    Where $x \neq 0$. \emph{This is required to not divide by $0$.}
+
+    Find $f^{-1}(x)$, and write your answer in the form of
+    \[f^{-1}(x) = \frac{1}{ax + b}\]
+    Where $a,b$ are numbers. Make sure to state where $f^{-1}(x)$ is defined (what can $x$ not be).
+
+
+\end{example}
+\begin{solution}
+    Let $x \neq 0$. First write 
+    \[y = \frac{2x + 1}{4x}\]
+
+    Then rearrange for $x$:
+    \begin{align*}
+        4xy &= 2x+1 \tag{multiply by $4x$}\\
+        4xy -2x &= 1 \tag{minus $2x$ to get $x$ on one side}\\
+        x(4y - 2) &= 1 \tag{factorise $x$}\\
+        x &= \frac{1}{4y-2} \tag{divide by $4y - 2$}
+    \end{align*}
+    Therefore, 
+    \[ f^{-1}(x) = \frac{1}{4x-2}\]
+    And setting it equal to $\frac{1}{ax + b}$, we find that $a = 4$ and $b = -2$ by comparison.
+    This function is valid (not dividing by zero) whenever $4x- 2 \neq 0$, therefore it is valid whenever $x \neq \frac{1}{2}$.
+    \qed
+\end{solution}
+
+\begin{exercise} \label{ex:simple-inverse-verification2}
+    Example \ref{ex:simple-inverse2} continued.
+    \emph{Try it yourself!}
+
+    Let $f$ and $g$ be functions defined by 
+    \[ f(x) = \frac{2x + 1}{4x}, \; x \neq 0\]
+    \[ g(x) = \frac{1}{4x-2}, \; x \neq \frac{1}{2}\]
+    By computing $fg(x)$, verify that $g$ is the inverse function of $f$, verifying the calculation in the previous question.
+\end{exercise}
+\begin{solution}
+    First write 
+    \[ f(x) = \frac{2x + 1}{4x}\]
+    \[ g(x) = \frac{1}{4x-2} = \frac{1}{2} \times \frac{1}{2x-1}\]
+
+    Then set $x \neq  \frac{1}{2}$ and calculate
+    \begin{align*}
+        f(g(x)) &= \frac{2\textcolor{red}{g(x)} + 1}{4\textcolor{red}{g(x)}} \\
+         &= \frac{\cancel{2}\times\frac{1}{\cancel{2}}\times\frac{1}{2x-1} + 1}{4 \times \frac{1}{2} \times \frac{1}{2x-1}} \\
+         &= \frac{\frac{1}{2x-1} + 1}{2 \times \frac{1}{2x-1}}  
+    \end{align*}
+
+    Now we use my favourite trick of getting-rid-of-the-annoying-fractions-by-multiplying-by-the-inner-denominator, which is allowed because $x \neq  \frac{1}{2}$:
+    \begin{align*}
+        f(g(x)) &= \frac{2x-1}{2x-1} \times \frac{\frac{1}{2x-1} + 1}{2 \times \frac{1}{2x-1}}  \tag{multiply by $1$}\\
+         &= \frac{\cancel{(2x-1)} \times \frac{1}{\cancel{2x-1}} +2x - 1}{2 \times \cancel{(2x -1) } \times \frac{1}{\cancel{2x-1}}}  \tag{simplify fractions} \\ 
+         &= \frac{\cancel{1} + 2x - \cancel{1}}{2} \\
+         &= \frac{2x}{2} \\
+         &= x
+    \end{align*}
+    Therefore, $fg(x) = x$, which verifies $g$ is the inverse function of $f$.
+    \qed
+\end{solution}
+
+\subsection{Additional Exercises}
+
+\begin{exercise}
+    The function $f$ is defined by 
+    \[f(x) = \frac{4x + 3}{x-2}, \;\;\;\;x \neq 2\]
+\begin{enumerate}
+    \item Find $f^{-1}$
+    \item Show that 
+    \[ff(x) = \frac{ax + b}{cx + d}\]
+    where $a$, $b$, $c$, $d$ are integers to be found.
+\end{enumerate}
+
+The point $P$ $(3,15)$ lies on the curve with equation $y = f(x)$.
+\begin{enumerate}
+\setcounter{enumi}{2}
+    \item Find the point to which $P$ is mapped when $y = f(x)$ is transformed to the curve with equation $y = 2f(3x)+8$.
+    \item (Bonus) Verify $f^{-1}$ in the first part satisfies $ff^{-1}(x) = x$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+
+
+    \begin{enumerate}
+        \item
+        Find $f^{-1}$
+
+        First write $y = f(x)$, where $x \neq 2$ i.e.
+        \[ y = \frac{4x + 3}{x-2} \]
+
+        Now rearrange for $x$, getting rid of any fractions.
+        \begin{align*}
+            y &= \frac{4x + 3}{x-2} \\
+             y(x-2) &= 4x + 3 \tag{multiply by $(x-2)$} \\
+             xy - 2y &= 4x + 3 \tag{expand} \\
+             xy - 4x &= 2y+3 \tag{collect $x$ terms to one side} \\
+             x(y-4) &= 2y + 3 \tag{factorise LHS} \\
+             x &= \frac{2y+3}{y-4} \tag{assuming $y \neq 4$}
+        \end{align*}
+        Hence, whenever $x \neq 4$, 
+        \[ f^{-1}(x) = \frac{2x+3}{x-4}\]
+        \item 
+        Show  
+        \[ff(x) = \frac{ax + b}{cx + d}\]
+
+        Then calculate 
+        \begin{align*}
+            ff(x) &= f(\textcolor{red}{f(x)}) \\
+             &= \frac{4\textcolor{red}{f(x)} + 3}{\textcolor{red}{f(x)}-2}  \tag{insert $f(x)$ wherever $x$ is}\\
+             &=  \frac{4\times \textcolor{red}{\frac{4x + 3}{x-2}} + 3}{\textcolor{red}{\frac{4x + 3}{x-2}}-2} \tag{substitute $f(x)$}\\
+             &= \frac{x-2}{x-2} \times \frac{4\times \textcolor{red}{\frac{4x + 3}{x-2}} + 3}{\textcolor{red}{\frac{4x + 3}{x-2}}-2} \tag{multiply by $1$ to remove the $x-2$ denominators}\\
+             &= \frac{(x-2) (4\times \textcolor{red}{\frac{4x + 3}{x-2}} + 3)}{(x-2)(\textcolor{red}{\frac{4x + 3}{x-2}}-2)} \tag{multiply fractions} \\
+             &= \frac{4(4x + 3) + 3(x-2)}{4x + 3 - 2(x-2)} \tag{expand multiplication} \\
+             &= \frac{16x + 12 + 3x - 6}{4x + 3 - 2x + 4} \tag{expand multiplication} \\
+             &= \frac{19x + 6}{2x + 7} \tag{collect like terms}
+        \end{align*}
+        This is valid whenever $2x+7 \neq 0$, which is when $x \neq -\frac{7}{2}$
+
+        Hence we have found
+        \[ ff(x) = \frac{19x + 6}{2x + 7} \;\;\;\; x \neq 2, \; x \neq -\frac{7}{2}\]
+
+        \item 
+        We will reword the question slightly. Define $g$ by 
+        \[g(x) = 2f(3x) + 8\]
+        Find $g(3)$.
+
+        First calculate $f(\textcolor{red}{3x})$.
+        \[ f(\textcolor{red}{3x}) = \frac{4\times \textcolor{red}{3x} + 3}{\textcolor{red}{3x}-2} = \frac{12x + 3}{3x-2}\]
+        
+        Therefore 
+
+        \begin{align*}
+            g(x) &= 2\textcolor{red}{f(3x)} + 8 \\
+             &= 2\textcolor{red}{ \frac{12x + 3}{3x-2}} + 8 \tag{substitute $f(3x)$} \\
+             &=  \frac{24x + 6}{3x - 2} + 8 \tag{multiply fractions, noting $2 = \frac{2}{1}$}
+        \end{align*}
+
+        Then we can substitute $3$ into the above equation:
+
+        \begin{align*}
+            g(3) &= \frac{24 \times 3 + 6}{3 \times 3 - 2} + 8 \\
+             &= \frac{78}{7} + 8 \\
+             &= \frac{78 + 56}{7} \\
+             &= \frac{134}{7}
+        \end{align*}
+
+        Therefore the point $P$ is mapped to $(3, g(3))$ which is the point $(3,\frac{134}{7})$.
+
+        \item Show $ff^{-1}(x) = x$.
+        This is an exercise in function composition, and we will follow the same style of approach as in e.g. Example \ref{ex:simple-composition-different-functions}.
+
+        First write 
+        \[ ff^{-1}(x) =  f(\textcolor{red}{f^{-1}(x)})\]
+        Remember that 
+        \[ f(x) = \frac{4x + 3}{x-2} \]
+        And that we found 
+        \[ f^{-1}(x) = \frac{2x+3}{x-4}\]
+        Therefore 
+        \begin{align*}
+            f(\textcolor{red}{f^{-1}(x)}) &= \frac{4\textcolor{red}{f^{-1}(x)} + 3 }{\textcolor{red}{f^{-1}(x)} - 2} \\
+                &= \frac{4\textcolor{red}{\frac{2x+3}{x-4}} + 3 }{\textcolor{red}{\frac{2x+3}{x-4}} - 2} \\ 
+                &= \frac{x-4}{x-4} \times \frac{4\times \frac{2x+3}{x-4} + 3 }{\frac{2x+3}{x-4} - 2} \tag{multiply by $1$ to remove nested fractions} \\
+                &= \frac{(x-4)\left(4\times \frac{2x+3}{x-4} + 3 \right)}{(x-4 )\left(\frac{2x+3}{x-4} - 2\right)} \tag{multiply fractions} \\
+                &= \frac{4(3 + 2x) + 3(x-4)}{3+2x - 2(x-4)} \tag{expand} \\
+                &= \frac{12 + 8x + 3x - 12}{3 + 2x - 2x + 8} \tag{expand more} \\
+                &= \frac{11x}{11} \tag{collect terms}\\
+                &= x
+        \end{align*}
+        As required, therefore $ff^{-1}(x) = x$.
+    \end{enumerate}
+    \qed
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+\newpage 
+\section{Components of Forces or Vectors} \label{sec:components-of-forces-or-vectors}
+
+It is useful to revisit what $\sin$ and $\cos$ are.
+
+Let's draw a circle with radius $r$ on an $x$, $y$ axis, and label a point $\vec{a} = \begin{bmatrix} a \\ b \end{bmatrix}$ on the circle. 
+Note that the equation for a circle of radius $r$ is $x^2 + y^2 = r^2$.
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.75]{Circle}
+    \caption{A labelled circle}
+    \label{fig:circle}
+\end{figure}
+
+Then $a = r \cos \theta$ and $b = r \sin \theta$ -- you might remember this from GCSE via SOH-CAH-TOA. 
+If we interpret $r$ as the magnitude of a force pointed in the direction of $\vec{a}$, we can interpret this setup as ``$a$ is the component of the force in the $x$ direction, and $b$ is the component of the force in the $y$ direction.''
+
+\textbf{We always consider our force as the hypotenuse of the triangle when using these trigonometry rules.} From Pythagoras, we get that $r^2 = a^2 + b^2$, which is the same as our circle equation!
+
+And because we can write $a$ and $b$ in terms of the magnitude $r$ and the angle $\theta$, we can write:
+\[ 
+\vec{a} = \begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix}
+    r \cos \theta \\ 
+    r \sin \theta
+\end{bmatrix}
+\]
+Which explains what we mean when we talk about components -- given the angle and magnitude of a force from an axis, we can figure out how much of that force is in the direction of each axis.
+
+In other words, if you are a $2$-dimensional person standing at the origin $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, 
+and a force of magnitude $r$ is pushing you in the direction of $\vec{a}$ (i.e. at an angle of $\theta$ from the $x$-axis), 
+we can write that the amount the force is pushing you to the right (the $x$-direction) is $r \cos \theta$ and the amount the force is pushing you up (the $y$-direction) is $r \sin \theta$.
+
+
+\newpage
+\begin{figure}[ht]
+    \centering
+    \incfig[0.75]{force_circle}
+    \caption{A labelled circle interpreted as forces}
+    \label{fig:circle-as-force}
+\end{figure}
+
+Now what happens when we have a physics problem which involve inclines? Well, depending on which direction we care about, we can turn our head and think about it like the circles above!
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{block_incline_basic}
+    \caption{A block on an incline}
+    \label{fig:block-incline-basic}
+\end{figure}
+
+In this type of question where a force (e.g. friction $Fr$) is pointing up or down the slope, and another force (e.g. due to gravity) is pointing in another direction, 
+we often care about the direction of the plane that the block is on. We can ``turn our head'' like this:
+
+\newpage
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{block_incline_basic_rotated}
+    \caption{A block on an incline, with your head turned}
+    \label{fig:block-incline-basic-rotated}
+\end{figure}
+
+Then to find, for example, the amount of force in the direction of going down the inclined plane, we apply our knowledge of $\sin$ or $\cos$ to this problem! 
+Remembering to \textbf{make the force itself the hypotenuse}, we can draw our triangle:
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{block_incline_basic_triangle}
+    \caption{A block on an incline, with a triangle}
+    \label{fig:block-incline-basic-triangle}
+\end{figure}
+
+The force in the direction of going down the slope would therefore be:
+
+\[ F = \textcolor{red}{mg \cos \theta} - Fr\]
+
+We took away $Fr$ because it is going in the opposite direction to down the slope.
+
+But here we conveniently have $\theta$! If we were only given $\phi$, the angle of the incline, we need to do some geometry.
+
+\newpage
+\begin{exercise}
+Show using geometry that, in the slope problem above, $\theta = \frac{\pi}{2} - \phi$ in radians ($90$ degrees minus $\phi$). Hint: look at the diagram below. Why have I labelled the purple $\phi$ there?
+\end{exercise}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{block_incline_basic_rotated_triangle}
+    \caption{A block on an incline, with a triangle, with your head turned}
+    \label{fig:block-incline-basic-rotated-triangle}
+\end{figure}
+
+Now using the above and $\sin$ and $\cos$ rules, we know that:
+
+\begin{align*}
+    \cos(\theta) &= \cos(\frac{\pi}{2} - \phi) \\
+     &= \cos(\phi - \frac{\pi}{2} ) \\
+     &= \sin(\phi)
+\end{align*}
+
+This gives us an alternative formula (actually, three alternative formulae), which is secretly the same formula for the amount of force pointing down the slope in terms of the incline of the slope $\phi$:
+
+\[ F = mg \sin (\phi) - Fr\]
+
+But despite using $\sin$ here, we got to this point by using all of our component ideas by drawing the triangle!
+
+\textbf{The point is: figure out the direction you care about draw the triangle you want, and then use $\sin$ or $\cos$ depending on where your force is pointing, and the direction of the force is always considered the hypotenuse when using trig rules.}
+
+
+\subsection{Additional Exercises}
+\begin{exercise}
+    \begin{figure}[ht]
+    \centering
+    \incfig[0.5]{block_incline_rope}
+    \caption{A block on an incline, pulled by a rope}
+    \label{fig:block-incline-rope}
+    \end{figure}
+    A small box of mass $3$ kg moves on a rough plane which is inclined 
+    at an angle of $20^\circ$ to the horizontal. The box is pulled up a line 
+    of greatest slope of the plane using a rope which is attached 
+    to the box. The rope makes an angle of $30^\circ$ with the plane, as shown in figure \ref{fig:block-incline-rope}. 
+    The rope lies in the vertical plane which contains a line of greatest slope of the plane. 
+    The coefficient of friction between the box and the plane is $0.2$. The tension in the rope is $25$ N.
+
+    The box is modelled as a particle, the rope is modelled as a light inextensible string and 
+    air resistance is ignored.
+
+    Using the model, find the acceleration of the box.
+\end{exercise}
+
+\begin{solution}
+    
+First write the relevant equations: $F = ma$, $F_{max} = \mu R$. 
+Then draw a diagram with the forces labelled, and with the triangles drawn using geometric rules 
+as in Figure \ref{fig:block-incline-rope-annotated}.
+\begin{figure}[ht]
+    \centering
+    \incfig[0.75]{block_incline_rope_annotated}
+    \caption{A block on an incline, pulled by a rope, annotated}
+    \label{fig:block-incline-rope-annotated}
+\end{figure}
+
+There are four forces:
+\begin{enumerate}
+    \item Friction $F_{max}$, pointing down the slope.
+    \item Gravity, pointing downwards.
+    \item Tension $T$, pointing in the direction of the rope being pulled. 
+    \item The resultant normal force $R$ from the plane the block is on, causing it to not sink into the plane.
+\end{enumerate}
+
+To find the acceleration up the slope, we need the total force going up the slope.
+
+For this, we find the components of each of the forces using the labelled diagram and the appropriate use of $\sin$ and $\cos$, 
+e.g. via SOH-CAH-TOA.
+
+Reminder: the original force direction is always considered the hypotenuse.
+
+To find $R$, we need all forces that act in the direction of perpendicular to the slope. We can then find $R$ by writing 
+down the necessary equation that all the forces in that direction must sum to zero -- the block is in equilibrium in the direction 
+of the normal to the plane. We have some component of tension $T$ from the rope 
+pointing in that direction, gravity is pointing down, away from $R$, 
+giving gravity a negative sign.
+\[ R + T(\nwarrow) - F_{gravity}(\searrow)  = 0 \]
+And therefore
+\[ R = F_{gravity}(\searrow) - T(\nwarrow)\]
+Let's first find the component of the resultant force of gravity pointing in the direction perpendicular to the slope:
+\[ F_{gravity}(\searrow) = mg \sin (70^\circ)\]
+Now find the component of tension pointing in the direction perpendicular to the slope 
+\[ T(\nwarrow) = 25 \cos(60^\circ)\]
+
+Then 
+\[R = mg \sin (70^\circ)  - 25 \cos(60^\circ) \]
+
+So 
+\[F_{max} = 0.2 R = 0.2  (mg \sin (70^\circ)  - 25 \cos(60^\circ) )\]
+
+Now we have found the friction force, we need to also find the remaining two forces which contribute in the direction of the slope, 
+gravity and tension.
+
+For gravity, we can find it's component going up the slope via 
+\[F_{gravity}(\swarrow) = mg\cos(70^\circ)\]
+
+Note this is pointing down the slope because the arrow is closer to being down the slope (acute angle) than going up the slope (obtuse angle).
+
+For tension, we can again find it's component going up the slope via 
+
+\[T(\nearrow) = 25 \cos (30^\circ)\]
+
+Then, cobining it all together, we can find the total force up the slope is:
+
+\begin{align*}
+ F &= T(\nearrow) &-& F_{gravity}(\swarrow) &-& F_{max} \\
+ &= 25 \cos (30^\circ) &-&  mg\cos(70^\circ) &-&  0.2  (mg \sin (70^\circ)  - 25 \cos(60^\circ))
+ \end{align*}
+
+ We take away forces going in the opposite direction because they act against our ``positive'' direction, up the slope.
+
+Then we can compute acceleration by rearranging $F = ma$ to $a = F/m$, which gives us that the acceleration of 
+the block up the slope is 
+\[a = \frac{25 \cos (30^\circ) -  mg\cos(70^\circ) -  0.2  (mg \sin (70^\circ)  - 25 \cos(60^\circ))}{m} \; ms^{-2}\]
+
+If you are confused about the correct signs of each of them, look at the force diagram again. We want to take the tension direction up the slope 
+as positive, and the gravity and friction directions to work against the rope down the slope as negative.
+\qed
+\end{solution}
+
+\subsection{Friction and $R$}
+Friction is found via the formula $F_{max} = \mu R$ where $F_{max}$ is the magnitude of force friction applies opposing the movement of the object
+(the direction it is acting in the most), 
+$\mu$ is the coefficient of friction, and $R$ is the normal reaction force due to the block being in equilibrium in the direction normal to the plane, 
+i.e. the force pointing perpendicular to the surface the block is on which is preventing the block from sinking into the ground. For example, see Figure \ref{fig:block-incline-rope-annotated}.
+
+You can reason your way to $R$ needing to exist by considering the following. When any object is in equilibrium in a direction (not moving or in constant speed), the forces applied to it 
+in that direction must overall become zero. If you had a block on a horizontally flat plane with gravity being the only force on the block, we would have the force downwards 
+not be balanced by upward force, resulting in it accelerating downwards due to $F = ma$. Explicitly, $a = F/m$, and because in this thought experiment we have only one force (gravity) acting downwards 
+and a non-zero mass, $a$ must be a positive number. Therefore, if our block is not falling through the plane, there \emph{must} be an additional force being applied to it so that $F = 0$ in the direction 
+perpendicular to the plane.
+
+In fact, most physics problems can be reduced to just looking at the equation $F=ma$ in a smart way, using that the forces in certain directions must be $0$, etc.
+
+To find $R$, we calculate the magnitude of force in that direction the same way we always calculate forces in a direction: we find each force 
+that is acting on the object, and find the component of each force in the same direction of $R$ via trigonometry, where we are considering the direction of $R$ to be our positive direction.
+We then use the fact that the block is not falling through the plane to know that $F=0$ in the direction perpendicular to the plane. Then we can rearrange the resulting equation for $R$.
+
+Note that this construction will always result in $R$ being equal the components of all the forces pointed in it's opposite direction.
+
+Note also that most of the time we compute $R$ to calculate $F_{max}$. If a question does not include friction, we often do not need to compute $R$.
+
+In summary, \textbf{$R$ is the additional force which acts on the block to prevent it from sinking into the plane it is on, and can be calculated because therefore $F=0$ in the perpendicular direction to the plane.}
+
+A keen-eyed reader would notice this is mostly an application of Newton's Third Law.
+
+Let's see some examples for calculating $R$, independently from the context of friction.
+
+\begin{example}
+    A $5kg$ block is on a $20^\circ$ degree inclined plane, and an angry man does not want the block to slide onto his property. To counteract this, he blows on the block 
+    with a force of $10N$  
+    at an angle of $30^\circ$ to the inclined plane, above the inclined plane, in an attempt to blow the block away.
+
+    What is the magnitude of $R$, the normal reaction force to the inclined plane? 
+
+    \begin{figure}[ht]
+        \centering
+        \incfig[0.75]{block-on-plane-man}
+        \caption{A block on an incline, being blown away by an angry man}
+        \label{fig:block-on-plane-man}
+    \end{figure}
+\end{example}
+
+\begin{solution}
+    First draw a diagram with the forces labelled, and with the triangles drawn using geometric rules, Figure \ref{fig:block-on-plane-man-annotated}.
+
+        \begin{figure}[ht]
+        \centering
+        \incfig[0.75]{block-on-plane-man-annotated}
+        \caption{A block on an incline, being blown away by an angry man, annotated}
+        \label{fig:block-on-plane-man-annotated}
+    \end{figure}
+    There are three forces:
+    \begin{enumerate}
+        \item The man blowing, pointing in the direction of $30^\circ$ to the slope. We will call this force $B$.
+        \item Gravity, pointing downwards.
+        \item The normal reaction force $R$ of the plane on the block, preventing the block from falling through the plane.
+        \item (Ignored) Friction, which we are ignoring in our calculation of $R$, and it was not mentioned in this question anyway!
+    \end{enumerate}
+
+    To find $R$, we need to find the component of each force going in the direction of $R$, and then use the fact that $F=0$ in the direction perpendicular to the plane since 
+    the block is not falling through the plane. We are taking the direction of $R$ to be our positive direction. 
+    This means that since the man blowing and gravity are both more away from $R$ than toward it, we are going to take care to include negative signs.
+
+    \[ R -F_{gravity}(\swarrow) - B(\swarrow) = 0\]
+
+    Therefore 
+
+    \[ R = F_{gravity}(\swarrow) + B(\swarrow) \]
+
+    Using our labelled force diagram, we can calculate:
+    \begin{align*}
+    F_{gravity}(\swarrow) &=  5g \cos 20^\circ \\
+    B(\swarrow) &= 10 \sin 30^\circ 
+    \end{align*}
+
+    Therefore, $R = 5g \cos 20^\circ + 10 \sin 30^\circ $.
+    \qed
+\end{solution}
+
+\begin{example}
+    A $5kg$ block is on a $20^\circ$ degree inclined plane, and an angrier mole-man does not want the block near his property. To counteract this, he blows on the block 
+    with a force of $10N$  
+    at an angle of $30^\circ$ to the inclined plane, below the inclined plane (he is a mole-man that can blow through the ground), in an attempt to blow the block away.
+
+    What is the magnitude of $R$, the normal reaction force to the inclined plane? 
+
+    \begin{figure}[ht]
+        \centering
+        \incfig[0.75]{block-on-plane-moleman}
+        \caption{A block on an incline, being blown away by an angry mole-man}
+        \label{fig:block-on-plane-moleman}
+    \end{figure}
+\end{example}
+
+\begin{solution}
+    First draw a diagram with the forces labelled, and with the triangles drawn using geometric rules, Figure \ref{fig:block-on-plane-moleman-annotated}.
+
+        \begin{figure}[ht]
+        \centering
+        \incfig[0.75]{block-on-plane-moleman-annotated}
+        \caption{A block on an incline, being blown away by an angry mole-man, annotated}
+        \label{fig:block-on-plane-moleman-annotated}
+    \end{figure}
+    There are three forces:
+    \begin{enumerate}
+        \item The mole-man blowing, pointing in the direction of $30^\circ$ to the slope from below. We will call this force $B$.
+        \item Gravity, pointing downwards.
+        \item The normal reaction force $R$ of the plane on the block, preventing the block from falling through the plane.
+        \item (Ignored) Friction, which we are ignoring in our calculation of $R$, and it was not mentioned in this question anyway!
+    \end{enumerate}
+    To find $R$, we need to find the component of each force going in the direction of $R$, and then use the fact that $F=0$ in the direction perpendicular to the plane since 
+    the block is not falling through the plane. We are taking the direction of $R$ to be our positive direction. 
+    This means that since gravity is both more away from $R$ than towards it, and since the mole-man blowing is more in the direction of $R$ than away from it, we are going to take care to include negative signs where appropriate.
+
+    \[ R -F_{gravity}(\swarrow) + B(\nearrow) = 0\]
+
+    Therefore 
+
+    \[R = F_{gravity}(\swarrow) - B(\nearrow)\]
+
+    Using our labelled force diagram, we can calculate:
+    \begin{align*}
+    F_{gravity}(\swarrow) &=  5g \cos 20^\circ \\
+    B(\nearrow) &= 10 \sin 30^\circ 
+    \end{align*}
+
+    Therefore, $R = 5g \cos 20^\circ - 10 \sin 30^\circ $.
+    \qed
+\end{solution}
+
+
+\begin{example}
+    A $10kg$ block is on a rough flat plane, and a force $P$ is applied to the block at an angle of $45^\circ$ to the plane. The coefficient of friction is $0.1$. 
+    Given that the block is accelerating along the plane at a rate of $0.3ms^{-2}$ and moving in the direction of acceleration, What is $P$?
+\end{example}
+\begin{solution}
+    First draw a diagram with the forces labelled, and with the triangles drawn using geometric rules, Figure \ref{fig:block-on-plane-unknown-force}.
+
+    \begin{figure}[ht]
+    \centering
+    \incfig[0.75]{block-on-plane-unknown-force}
+    \caption{A block on a plane, with an unknown force}
+    \label{fig:block-on-plane-unknown-force}
+    \end{figure}
+
+    Write the relevant equations $F=ma$ and $F_{max} = \mu R$.
+
+    There are four forces:
+    \begin{enumerate}
+        \item The unknown force $P$, at an angle of $45\circ$ to the horizontal.
+        \item Gravity, pointing downwards.
+        \item The normal reaction force $R$ of the plane on the block, preventing the block from falling through the plane.
+        \item Friction, pointing away from the direction of movement.    
+    \end{enumerate}
+
+    We will calculate the force $F$ in the direction of the block moving (to the right in our diagram).
+
+    \[F = P(\rightarrow) - F_{max}\]
+
+
+    To find $R$, we need to find the component of each force going in the direction of $R$, and then use the fact that $F=0$ in the direction perpendicular to the plane since 
+    the block is not falling through the plane. We are taking the direction of $R$ to be our positive direction. 
+    This means that since gravity is both more away from $R$ than towards it, and since $P$ is more in the direction of $R$ than away from it, we are going to take care to include negative signs where appropriate.
+
+    \[ R -F_{gravity} + P(\uparrow) = 0\]
+
+    Therefore 
+
+    \[R = F_{gravity} - P(\uparrow)\]
+
+    Using our labelled force diagram, we can calculate:
+    \begin{align*}
+    F_{gravity} &=  10g \\
+    P(\uparrow) &= P\sin 45^\circ 
+    \end{align*}
+
+    Therefore,  because gravity is pointing more away from $R$ than towards it, and we have chosen $R$ to be our positive direction,
+    \[R = 10g - P\sin 45^\circ  \]
+    
+    Hence, using $F_{max} = \mu R$, we have found that 
+
+    \[ F_{max} = 0.1 (10g - P\sin 45^\circ )\]
+
+    Then, use the fact that 
+
+    \[P(\rightarrow) = P \cos 45^\circ\]
+
+    Which lets us write
+    
+    \[ F = P \cos 45^\circ - 0.1 (10g - P\sin 45^\circ )\]
+
+    Using that $a = 0.3$, and that $a = F/m$, we have that 
+
+    \[ 0.3 = \frac{P \cos 45^\circ - 0.1 (10g - P\sin 45^\circ )}{10}\]
+
+    \begin{align*}
+        0.3 &= -\frac{1}{10}g + \frac{P}{10}\cos45^\circ + \frac{P}{100} \sin 45^\circ \tag{expanding} \\
+        &= -\frac{1}{10}g + P(\frac{1}{10}\cos45^\circ + \frac{1}{100} \sin 45^\circ) \tag{collecting $P$ terms}
+    \end{align*}
+
+    We can rearrange for $P$ 
+
+    \begin{align*}
+        0.3 + \frac{1}{10}g &=  P(\frac{1}{10}\cos45^\circ + \frac{1}{100} \sin 45^\circ)  \\
+        \frac{0.3 + \frac{1}{10}g }{\frac{1}{10}\cos45^\circ + \frac{1}{100} \sin 45^\circ} &= P
+    \end{align*}
+    
+    and calculate that $P = 16.5$, rounded to $1$ decimal place.
+    \qed
+\end{solution}
+
+\subsection{Moments}
+Moment about a point is \emph{Perpendicular Force} times \emph{Perpendicular Distance} to the point, and acts rotationally to the point, in the orientation that the perpendicular force is pointing towards. 
+You can choose which point to look at as your base point (or pivot)! If you are careful the maths will always work out.
+
+\[ \text{Moment of force} = \text{Perpendicular force}\times \text{Distance from the base point}\] 
+
+\emph{As with all force questions, you need to account for all of the forces!}
+
+Why would you choose one point as your base point over another? Looking at the equation, we have that any forces at the point itself gives zero contribution to the moment of force at that point. This is 
+because the distance is $0$, and the right-hand side of the equation cancels. This can be used to cancel unknown forces, or to remove a point that has many forces acting on it from giving us a headache.
+
+As with other force equations, you \emph{choose} which direction is your positive direction. Except with moments, you choose which \emph{orientation} your positive direction is -- clockwise or anticlockwise -- around your base point or pivot. See Figure \ref{fig:moment_seesaw_unbalanced}.
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.6]{moment_seesaw}
+    \caption{Two happy friends on a see-saw}
+    \label{fig:moment_seesaw}
+\end{figure}
+
+As long as you \emph{make sure clockwise and counter-clockwise have opposite signs} -- just like how we make sure ``up'' and ``down'' have opposite signs in the usual force questions -- everything will work out!
+
+Our approach will be the following:
+
+\begin{enumerate}
+    \item Draw and label all the forces affecting the object in question, giving them unknown variables if necessary.
+    \item Label all the distances to the forces.
+    \item Resolve forces to be perpendicular to the moment if necessary.
+    \item Choose a base point smartly to remove unknown variables.
+    \item Choose a positive direction and use equilibriums (my favourite) to get force equations and eliminate unknowns.
+    \item Repeat using equilibriums until you get your answer.
+\end{enumerate}
+
+What do we mean by equilibriums? Just like with force questions before, if our object is not accelerating (or moving) in a direction then the total force in that direction must be zero.
+Similarly, if our object is not \emph{rotating}, then the \emph{total moment force around a pivot must be zero}. 
+
+Pretty much all A-level physics questions become $F=0$ in a smart way.
+
+Ignoring everything above, let's start with an example where we do not have an equilibrium.
+
+\begin{example}
+    Consider a weightless rod of length $10m$, with a pivot half way along the rod. One happy $60kg$ person is sat $2m$ from the end of the rod. What is the total moment force on the rod around the pivot?
+    See Figure \ref{fig:moment_seesaw_unbalanced}.
+    \begin{figure}[ht]
+    \centering
+    \incfig[0.6]{moment_seesaw_unbalanced}
+    \caption{One happy friend on a see-saw}
+    \label{fig:moment_seesaw_unbalanced}
+    \end{figure}
+\end{example}
+
+\begin{solution}
+    To begin with, let's draw and label \emph{all} the forces affecting the rod. Since the rod is weightless, the only force is from the person. 
+    We need to verify we are looking at the perpendicular component of the force to the rod, which we are. Therefore there are no additional forces to label or compute.
+
+    For the distances, we can see in that the distance from the half-way point at $5m$ in and the person is $3m$, labelled in Figure \ref{fig:moment_seesaw_unbalanced_labelled}.
+    \begin{figure}[ht]
+    \centering
+    \incfig[0.6]{moment_seesaw_unbalanced_labelled}
+    \caption{One happy friend on a see-saw, labelled}
+    \label{fig:moment_seesaw_unbalanced_labelled}
+    \end{figure}
+
+    For lack of a better choice, we can choose clockwise to be our positive direction. 
+    Since there are no other pieces of information to use, we can caculate that our total moment force $M$ around the pivot is
+    \[ M = 3 \times 60g = 180g \]
+
+    In this case, there is an unbalanced amount of force, meaning this see-saw would start rotating.
+    \qed
+\end{solution}
+
+
+\begin{example}
+    Consider a uniform horizontal $4kg$ rod of length $5m$, with a pivot $2m$ from the left side, and a with a block on the left side of the rod. The rod is in equilibrium. What is the weight of the block?
+    See Figure \ref{fig:moment_uneven_seesaw_labelled}. For convenience, I will mark the additional calculated forces and distances in red.
+\end{example}
+\begin{solution}
+
+    Let's choose our base point to be at the pivot.
+
+    To begin with, let's draw and label \emph{all} the forces affecting the rod. 
+    The rod is uniform, meaning it's weight is acting from the centre. The centre is half way into the rod, which is $5m$. Therefore force due to gravity is acting downwards 
+    as $4g$ Newtons.
+
+    If we label the mass of the block as $x$, we can write that the force due to gravity at the block is $xg$ Newtons. There are no other (relevant) forces acting on the rod -- we will revisit this.
+
+    The distances between the centre of the rod and the pivot, and between the pivot and the block can be calculated from taking the difference of $2$ and half of $5$.
+
+    We need to verify we are looking at the perpendicular component of the forces to the rod, which we are.
+
+    \begin{figure}[ht]
+    \centering
+    \incfig[0.6]{moment_uneven_seesaw_labelled}
+    \caption{A block on an uneven see-saw, labelled}
+    \label{fig:moment_uneven_seesaw_labelled}
+    \end{figure}
+
+    We can choose clockwise to be our positive direction. 
+    We are told the rod is in equilibrium. Therefore all of the moments of force around the pivot (or from any other base point) must cancel.
+    \[ F(\circlearrowright) - F(\circlearrowleft) = 0\]
+    Let's calculate the moment of force going clockwise, which we will label $F(\circlearrowright)$. The only force acting in this direction is $4g$, and therefore by the moment equation, the moment of force due to the rod from the pivot is
+
+    \[ F(\circlearrowright) = 0.5 \times 4g \]
+
+    Similarly for the counterclockwise moment of force on the pivot due to the block is the following.
+
+    \[F(\circlearrowleft) = 2 \times xg\]
+
+    Since there are no other pieces of information to use, we can substitute into our equilibrium equation:
+
+    \begin{align*}
+        0 &=  F(\circlearrowright) - F(\circlearrowleft) \\
+         &= 0.5 \times 4g - 2 \times xg
+    \end{align*}
+
+    Therefore 
+    \[ 0 = 0.5 \times 4g - 2 \times xg\]
+    Which we can rearrange for $x$:
+
+    \begin{align*}
+        0 &= 0.5 \times 4g - 2 \times xg \\
+        0 &= 2 - 2x \tag{canceling $g$} \\
+        0 &= 1 - x \tag{dividing by $2$} \\
+        x &= 1 \tag{rearranging for $x$}
+    \end{align*}
+    Therefore, the block is $1kg$.
+    \qed
+\end{solution}
+
+Why did we choose our base point as the pivot? We chose this to cancel any forces at the pivot itself. Because the rod is in equilibrium vertically too, we know there must be a reaction force from the pivot onto the block $R$ which prevents 
+the rod from falling into the pivot. Since we do not know what $R$ is, we chose our base point to be at the pivot itself, cancelling $R$ in our moment equation! If we chose another point, we would need to include $R$ acting upwards from the pivot!
+
+The point: choose the point of rotation smartly: the forces at the point itself can be ignored!
+
+\begin{example}
+    Consider a uniform horizontal $20kg$ rod of length $7m$, held in equilibrium by two ropes at right angles to the rod as in Figure \ref{fig:moment_two_rods}. Find the tension in both ropes.
+    \begin{figure}[ht]
+    \centering
+    \incfig[0.75]{moment_two_rods}
+    \caption{A rod with two ropes attached}
+    \label{fig:moment_two_rods}
+    \end{figure}
+
+\end{example}
+\begin{solution}
+
+    To begin with, let's draw and label \emph{all} the forces affecting the rod. 
+    The rod is uniform, meaning it's weight is acting from the centre. The centre is half way into the rod, which is $3.5m$. Therefore force due to gravity is acting downwards 
+    as $20g$ Newtons.
+
+    The other forces are tension in the ropes, pointing upwards. We can label them with $T_A$ and $T_C$. There are no other forces acting on the rod in this system.
+    See Figure \ref{fig:moment_two_rods_labelled}.
+
+    \begin{figure}[ht]
+    \centering
+    \incfig[0.75]{moment_two_rods_labelled}
+    \caption{A rod with two ropes attached, labelled}
+    \label{fig:moment_two_rods_labelled}
+    \end{figure}
+
+    We need to verify we are looking at the perpendicular component of the forces to the rod, which we are.
+
+    Since there are two unknowns, a smart choice of base point is at either $A$ or $C$. We will continue as setting $C$ to be our base point, cancelling $T_C$ from our equations.
+
+    We can choose clockwise to be our positive direction. 
+
+    We are told the rod is in equilibrium. Therefore all of the moments of force around the pivot (or from any other base point) must cancel.
+    \[ F(\circlearrowright) - F(\circlearrowleft) = 0\]
+
+    Let's calculate the moment of force going clockwise, which we will label $F(\circlearrowright)$. The only force acting in this direction is $T_A$, and therefore by the moment equation, the moment of force due to $T_A$ on $C$ is
+
+    \[ F(\circlearrowright) = 5 \times T_A \]
+
+    Similarly for the counterclockwise moment of force on the pivot due to the gravity is the following.
+
+    \[F(\circlearrowleft) = 1.5 \times 20g\]
+
+    Since there are no other pieces of information to use, we can substitute into our equilibrium equation:
+
+    \begin{align*}
+        0 &=  F(\circlearrowright) - F(\circlearrowleft) \\
+         &= 5 \times T_A - 1.5 \times 20g
+    \end{align*}
+
+    Which we can rearrange for $T_A$:
+
+    \begin{align*}
+        0 &= 5 \times T_A - 1.5 \times 20g \\
+        1.5 \times 20g &= 5 T_A \\
+        \frac{30g}{5} &= T_A \\
+        T_A &= 6g
+    \end{align*}
+    
+    Now we have found $T_A$, we still need to find $T_C$. There are a few approaches. My favourite is to use another kind of equilibrium: since the rod is not rising or falling, the vertical forces must total to zero.
+    Therefore, we can write:
+    \[T_A + T_C = 20g\]
+    And rearrange 
+    \begin{align*}
+        T_C &= 20g - T_A \\
+        T_C &= 20g - 6g \tag{substituting $T_A$}\\
+        T_C &= 14g
+    \end{align*}
+
+    Alternatively, we could write the moment equation from $C$, and repeat the rearranging from above:
+    \[ 5T_C - 3.5 \times 20g = 0\]
+
+    Or even you could set the base point as somewhere entirely different and substitute $T_A$ and rearrange. For example, setting the base point to be at $B$ gives the following equation:
+
+    \[2T_C - 3.5\times 20g + 7T_A = 0\]
+
+    Each of the three approaches result in the correct answer, so choosing the simplest approach is best. I like the vertical equilibrium option, but the moment at $C$ is perfectly acceptable -- just dont do the third option of the moment at $B$!
+    \qed
+\end{solution}
+
+Summary: look at \emph{all} equilibriums! $F=0$ in that direction.
+
+So far we have only seen questions where the forces are nicely already perpendicular. Let's see what happens when they are not.
+
+
+\begin{example}
+    A $4m$ $20kg$ uniform ladder is resting in equilibrium against a smooth wall at an angle of $60^\circ$ to the horizontal. The base of the ladder $A$ is on a rough floor and is at the point of slipping, with the coefficient of friction being $0.4$. 
+    An $80kg$ man is at a point $C$ on the ladder. What is the length $AC$? See Figure \ref{fig:man_on_ladder}.
+    \begin{figure}[ht]
+    \centering
+    \incfig[0.75]{moment_man_on_ladder}
+    \caption{A man on a ladder}
+    \label{fig:man_on_ladder}
+    \end{figure}
+
+\end{example}
+\begin{solution}
+
+    To begin with, let's draw and label \emph{all} the forces affecting the rod. 
+
+    The rod is uniform, meaning it's weight is acting from the centre. The centre is half way into the rod, which is $2m$. Therefore force due to gravity on the ladder is acting downwards 
+    as $20g$ Newtons. There is another force due to gravity on the man, acting downwards as $80g$ Newtons at point $C$.
+
+    Since the ladder is slipping at the base, friction $F_{max}$ is acting towards the wall, opposing the slipping away from the wall.
+
+    The other forces are resultant forces due to the contact between the ladder and the floor and wall. These forces must exist since we know the ladder is not 
+    falling into the floor or the wall, and they act perpendicular to the floor and wall each. We will label the floor resultant force $R$ and the wall resultant force $S$.
+
+    See Figure \ref{fig:man_on_ladder_labelled}.
+
+    \begin{figure}[ht]
+    \centering
+    \incfig[0.75]{moment_man_on_ladder_labelled}
+    \caption{A man on a ladder, labelled}
+    \label{fig:man_on_ladder_labelled}
+    \end{figure}
+
+    We need to verify we are looking at the perpendicular component of the forces to the rod, which we are not (!). To rectify this, we will need to do some geometry with $60^\circ$. 
+    This was covered in Section \ref{sec:components-of-forces-or-vectors} to recap. Here I will simply write the correct usage of $\sin$ or $\cos$, and leave it to the reader to verify.
+
+    Before starting with moment equations, we can gather information using equilibrium equations.
+
+    Since the ladder is in equilibrium horizontally, the horizontal forces must total zero. Choosing $S$ to be our positive direction, we find that 
+
+    \[S-F_{max} = 0\]
+    Therefore
+    \[S = F_{max}\]
+
+    Vertically, choosing $R$ to be our positive direction, we find 
+
+    \[ R - 20g - 80g = 0\]
+
+    Therefore
+    \[R = 100g\]
+
+    Using $F_{max} = \mu R$, we can find that 
+
+    \begin{align*}
+        F_{max} &= 0.4 R \tag{$\mu = 0.4$} \\
+        F_{max} &= 0.4 \times 100g \tag{$R = 100g$} \\
+        S &= 0.4 \times 100g \tag{$S = F_{max}$}
+    \end{align*}
+
+    Now we have deduced as much as possible using equilibria, we can tackle the moments part of the problem. Let us set our base point at $A$ to not deal with both $F_{max}$ and $R$. We are free to do this since there are no more unknown forces in the system to account for.
+    Let's label the distance $AC$ as $x$ for convenience.
+
+    We can choose clockwise to be our positive direction. The clockwise force is from $S$ and the counterclockwise forces are from $80g$ and $20g$, but they are not pointing perpendicular to the ladder.
+    Resolving the forces in the perpendicular direction to the ladder, and using that the total moment of force must be zero, working from left to write, we find
+
+    \[ 4 S \sin60^\circ - 80gx \cos 60^\circ - 2 \times 20g \cos 60^\circ = 0\]
+
+    Which is our equilibrium moment equation from $A$.
+
+    We can then finish the question by substituting what $S$ is from above, and rearranging for $x$, left as an exercise.
+    \qed
+\end{solution}
+
+\newpage
+\section{Differentiation}
+
+Why? Differentiation is the study of rates of change. For example, if you were to model how an epidemic moves through a population, you might want to know how quickly are people infected before and after a vaccination has been introduced. ``How quickly'' implies a rate of change, and therefore it would be useful to 
+set up a framework where we can find the rate of change of enough functions where we can model even extremely complicated situations.
+
+We have the concept of differentiation from first principles. This is where the definition of ``rate of change'' is used to explicitly calculate a derivative. 
+This involves something called a limit, and is very tedious and difficult to do in even slightly complex scenarios.
+
+Instead, we have come up with a great framework, where we have a set of standard functions,
+
+\[ ax, \; x^n, \; \sin x, \; \cos x, \; e^x, \; \ln x\]
+
+Which are varied enough that we can combine them to make any function we could want.
+
+By ``combine'' we mean three main things:
+
+\begin{enumerate}
+    \item Adding or subtracting functions, e.g. $ax - e^x$
+    \item Multiplying or dividing functions, e.g. $\frac{x \sin x}{\ln x}$
+    \item Composing functions as in Definition \ref{def:f-composition}, e.g. $\sin(x^3)$
+\end{enumerate}
+
+It turns out this is enough to (approximate) \emph{any} function!
+
+As such, we would like to be able to study the rate of change of these combinations of standard functions. This is done in three ways too:
+
+\begin{enumerate}
+    \item For adding or subtracting, we can use that you can differentiate each additive term separately, and add together the answers
+    \item For multiplying or dividing, we can use the product rule
+    \item For composition of functions, we can use the chain rule
+\end{enumerate}
+
+And combining these three methods allows us to differentiate anything we could want.
+
+\subsection{First Principles} \label{sec:first-principles}
+The derivative of a function is the slope of the function at a point. You can approximate the slope of a function by 
+calculating the difference in $x$ values and the difference in $y$ values between two points, and divide the difference in $y$ 
+by the difference in $x$. This is the formula for the slope of a straight line you find in GCSE.
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.75]{derivative}
+    \caption{Slope between two points on a function}
+    \label{fig:derivative-first-princ}
+\end{figure}
+
+The slope of the red line in Figure \ref{fig:derivative-first-princ} is therefore:
+\[ \frac{f(a+h) - f(a)}{(a+ h) - a} = \frac{f(a+h) - f(a)}{h}\]
+
+This approximates the slope of the function $f(x)$ at the point $a$, but not very well. We can make it better by 
+moving the second point closer and closer to the first, by making $h$ become smaller and smaller.
+
+Taking this to the limit, where $h$ is sent all the way to zero, gives us the derivative of $f$ at $a$, denoted $f'(a)$:
+
+\[ f'(a) = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} \]
+
+This is taking the derivative of $f$ from first principles.
+
+\begin{example}
+    Let $f(x) = x^2$. Using first principles, find the derivative of $f$.
+\end{example}
+\begin{solution}
+    Let's substitute $x^2$ into the definition of the derivative.
+
+    \begin{align*}
+        f'(a) &= \lim_{h \rightarrow 0} \frac{(a+h)^2 - a^2}{h} \tag{substituting into the formula}\\
+         &= \lim_{h \rightarrow 0} \frac{\cancel{a^2} + 2ah + h^2 - \cancel{a^2}}{h}  \tag{expanding numerator} \\
+         &= \lim_{h \rightarrow 0} \frac{\cancel{h}(2a + h)}{\cancel{h}}  \tag{factorise $h$ from numerator} \\
+         &= \lim_{h \rightarrow 0} 2a + h  \tag{cancel $h$ from top and bottom} \\ 
+        &= 2a \tag{now set $h=0$}
+    \end{align*}
+
+    Since this is true at every $a$, we can write 
+    $f'(x) = 2x$
+    \qed
+\end{solution}
+
+Because the derivative of a function is the slope of a function, what happens to constants when you differentiate them?
+
+If we plot $f(x) = c$, where $c$ is a constant, we get the graph in Figure \ref{fig:constant-function}.
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.75]{straight_line}
+    \caption{A constant function}
+    \label{fig:constant-function}
+\end{figure}
+
+What is the slope of this graph? Well, the difference in $y$ between any two points is $0$ because they are always at the same height.
+Therefore the difference in $y$ divided by the difference in $x$ is always $0$ since the numerator is always $0$.
+
+Therefore if $f(x) = c$ is a constant function, then $f'(x) = 0$.
+
+What about more complex differentiation by substitution?
+
+\begin{example}
+
+    From first principles, find the derivative of $\cos x$.
+    
+    You may assume the following.
+    \[ \lim_{h\rightarrow 0}\frac{\cos h-1}{h}=0\]
+    \[ \lim_{h\rightarrow 0}\frac{\sin h}{h}=1\]
+    \[ \cos(x+y) = \cos x \cos y - \sin x \sin y\]
+    \[ \lim(a+b) = \lim(a) + \lim(b)\]
+    You may also assume that if $f(x)$ is a function of only $x$, and $g(h)$ is a function of only $h$, then 
+    \[ \lim_{h \rightarrow 0} \left(f(x)g(h)\right) = f(x)\lim_{h \rightarrow 0} g(h) \]
+
+    Then deduce the derivative of $\sin x$.
+\end{example}
+\begin{solution}
+    Let's substitute into the first principles formula.
+
+    \begin{align*}
+         &\lim_{h\rightarrow 0}  \frac{\cos(x+h) - \cos(x)}{h} \tag{definition of derivative}\\
+        =&\lim_{h\rightarrow 0}  \frac{\cos x \cos h - \sin x \sin h - \cos x}{h} \tag{using the third hint}\\
+        =& \lim_{h\rightarrow 0}  \left(\frac{\cos x \cos h - \cos x}{h} - \frac{ \sin x \sin h }{h} \right) \tag{separate the fraction}\\
+        =& \cos x  \lim_{h\rightarrow 0}  \left(\frac{\cos h - 1}{h} \right) - \sin x  \lim_{h\rightarrow 0}  \left(\frac{\sin h}{h}\right) \tag{fourth and fifth hint}\\
+        =& \cos x \times 0 - \sin x \times 1 \tag{first and second hint} \\
+        =& -\sin x
+    \end{align*}
+
+    Therefore the derivative of $\cos(x)$ is $-\sin(x)$.
+
+    To deduce the derivative of $\sin(x)$, first recall that $\sin(x-\frac{\pi}{2})=-\cos(x)$ and $\cos\left(x-\frac{\pi}{2}\right) = \sin x$. Therefore, using the chain rule with $y = x-\frac{\pi}{2}$ (or by using first principles on $f(x+a)$ for some constant $a$),
+
+    \begin{align*}
+        \sin'(x) &= \cos'(x-\frac{\pi}{2}) \tag{using $\cos(x-\frac{\pi}{2})=\sin(x)$} \\
+         &= -\sin (x- \frac{\pi}{2}) \tag{using the chain rule} \\
+         &= - (-\cos (x)) \tag{using $\sin(x-\frac{\pi}{2})=-\cos(x)$} \\
+         &= \cos (x)
+    \end{align*}
+    Therefore the derivative of $\sin(x)$ is $\cos(x)$.
+    \qed
+\end{solution}
+To prove the limit of trigonometry identities used as hints, you can use the taylor expansion of $\sin$ and $\cos$ -- try it!
+
+
+
+\subsection{Product rule}
+The Product Rule tells us that if we have two functions $u = u(x)$ and $v = v(x)$, then 
+\[ (uv)' = uv' + u'v \]
+
+\begin{example}
+    Find the derivative of the function $x \sin(x)$.
+\end{example}
+\begin{solution}
+    Let $u = x$ and $v = \sin(x)$. So $u' = 1$ and $v' = \cos(x)$. Then by the product rule,
+    \[ (x\sin(x))' = x \cos (x) + 1 \cdot \sin (x) \]
+    \qed
+\end{solution}
+
+\begin{example}
+    Find the derivative of the function $\cos x \ln x + x \sin x$.
+\end{example}
+\begin{solution}
+    Let's write this as $f(x) + g(x)$, where $f(x) = \cos x \ln x$ and $g(x) = x \sin x$.
+
+    Then since we can differentiate each additive term separately and add the results, we want to know $f'(x)$ and $g'(x)$.
+
+    For $f(x)$, we can let $u= \cos x$ and $v = \ln x$ so that $u' = -\sin x$ and $v' = \frac{1}{x}$. Then by the product rule,
+
+    \begin{align*}
+        (uv)' &= uv' + u'v \\
+         &= \cos x \cdot \frac{1}{x} + (-\sin x) \cdot \ln x \\
+         &= \frac{\cos x}{x} - \ln x \sin x
+    \end{align*}
+
+    Which gives that $f'(x) = \frac{\cos x}{x} - \ln x \sin x$. For $g'(x)$, we can reuse the work from the previous question:
+    \[(x\sin(x))' = x \cos (x) + 1 \cdot \sin (x) \]
+
+    Therefore 
+    \begin{align*}
+        (f(x) + g(x))' &= f'(x) + g'(x) \\
+         &= \frac{\cos x}{x} - \ln x \sin x + x \cos (x) + 1 \cdot \sin (x) 
+    \end{align*}
+
+    Which completes the question.
+\end{solution}
+
+
+\subsection{Implicit Differentiation}
+
+When you are taking the derivative of a function with respect to $x$, you are actually applying a function $\frac{d}{dx}$ to both sides of the equation:
+
+\[y = f(x)\]
+\[\frac{dy}{dx} = \frac{d}{dx}(f(x))\]
+
+The notation on the right hand side is what you are used to doing when you differentiate an equation -- you apply all of your differentiation rules to wherever you see an $x$.
+
+If you had a more complex equality such as 
+
+\[ y + xy = x^2\]
+
+You can still differentiate this by differentiating \emph{both sides}, and applying any differentiation rules (product rule, chain rule, etc.) necessary.
+
+\begin{align*}
+    \frac{d}{dx}(y + xy) &= \frac{d}{dx}(x^2) \tag{differentiating both sides}\\
+    \frac{dy}{dx} + \frac{d}{dx}(xy) &= 2x \tag{expanding LHS and evaluating RHS}\\
+    \frac{dy}{dx} + x\frac{d}{dx}(y) + y\frac{d}{dx}(x)&= 2x \tag{product rule}\\
+    \frac{dy}{dx} + x\frac{dy}{dx} + y&= 2x \tag{using $\frac{dx}{dx} = 1$}
+\end{align*}
+In this way, our equation \emph{implicitly} contains $\frac{dy}{dx}$, but we would need to solve for it. If we are asked to find the value of $\frac{dy}{dx}$ at a single point, e.g. at $x=1$, $y=\frac{1}{2}$, we can substitute it into our final equation:
+
+\[ \frac{dy }{dx } + 1 \frac{dy }{dx} + \frac{1}{2} = 2\]
+
+We can rearrange this to find that, at $x=1$, $y=\frac{1}{2}$, the gradient $\frac{dy}{dx}$ is 
+\[\frac{dy}{dx} = 1- \frac{1}{4} = \frac{3}{4}\]
+
+Remember that this gradient is specifically at the point we substituted in! The gradient at any point would need to be calculated by solving 
+\[\frac{dy}{dx} + x\frac{dy}{dx} + y= 2x  \]
+by rearranging for $\frac{dy }{dx}$.
+
+\begin{example}
+    Find the gradient of the normal to the curve defined by the equation 
+    \[ 2x - 2y^2 + 4x^2y = 4x^2 + 8\]
+    at the point $x = 5$, $y = 1$.
+\end{example}
+\begin{solution}
+    To approach this question, we can first recall that the normal is the negative reciprocal of the gradient. Therefore, if we find $\frac{dy }{dx}$ at the point 
+    $x = 5$, $y = 1$, we can simply take the negative reciprocal of it to find the gradient of the normal.
+
+    Hence, let us find the derivative implicitly by taking the derivative of both sides.
+
+    \begin{align*}
+        \frac{d}{dx}(2x - 2y^2 + 4x^2y) &= \frac{d}{dx}(4x^2 + 8) \\
+         2 - 4y \frac{dy }{dx} + 8xy + 4x^2 \frac{dy }{dx} &= 8x \tag{using the chain and product rule}
+    \end{align*}
+
+    Hence now we can find $\frac{dy }{dx}$ at $x = 5$, $y = 1$ by substituting $x = 5$, $y = 1$ into the above equation and rearranging.
+
+    \begin{align*}
+         2 - 4 \frac{dy }{dx} + 8\times 5 + 4 \times 5^2 \frac{dy }{dx} &= 8\times 5 \tag{substituting $x = 5$, $y = 1$}\\ 
+         2 - 4\frac{dy }{dx}  + 100\frac{dy }{dx}  &= 0 \tag{simplifying}\\
+         \frac{dy }{dx} &= -\frac{2}{96} = - \frac{1}{48} \tag{rearranging}
+    \end{align*}
+
+    Hence, at $x = 5$, $y = 1$, the gradient is $- \frac{1}{48}$, which means that the normal has gradient $48$.
+
+    We could find the equation for the normal at this point by using the equation for a line with slope $48$ that passes through a point $x = 5$, $y = 1$.
+    \qed
+\end{solution}
+
+
+\subsection{The Chain Rule} \label{sec:chain-rule}
+The chain rule is an essential tool for differentiating, and allows you to differentiate any function as long as you can write it in terms of functions you know how to differentiate (sometimes you might need the product rule too).
+
+It goes as follows. 
+\begin{theorem} \emph{(The Chain Rule)}
+
+    If $y = g(u)$ for some function $g$, and $u = f(x)$ for some function $f$, then $y$ can be written as a function of $x$ via 
+    \[y = g(f(x))\]
+    And we have that 
+    \[ \frac{dy}{dx} = \frac{dy}{du} \frac{du}{dx}\]
+\end{theorem}
+
+For more details on function compositions, see Definition \ref{def:f-composition}.
+
+What this means is that we can differentiate any composition of the following standard functions:
+
+$ax$, $x^n$, $\sin x$, $\cos x$, $e^x$, $\ln x$.
+
+The easiest way to remember the chain rule is by pretending that they are actual fractions, and then seeing that the right-hand side would cancel to give the 
+left-hand side in the equation.
+
+This is the easiest to see with some examples.
+
+\begin{example}
+    Using the chain rule, differentiate $(2x)^2$, using $u = 2x$.
+\end{example}
+\begin{solution}
+    Obviously, we could write this as $4x^2$ and use our knowledge of differentiation to solve. This is not what the question is asking.
+
+    Let's write $y = (2x)^2$, $u = 2x$ so that $y = u^2$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= 2u \tag{using the derivative of $u^2$} \\
+        \frac{du}{dx} &= 2 \tag{using the derivative of $2x$}
+    \end{align*}
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= 2u \times 2 \\
+         &= 4u \\
+         &= 8x \tag{using $u = 2x$}
+    \end{align*}
+
+    Which gives us our answer.
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $(\ln x)^2$.
+\end{example}
+\begin{solution}
+    The question is: if we were to replace any part of $(\ln x)^2$ with $u$, how can we turn it into one of the functions that we know how to differentiate:
+    
+    $au$, $u^n$, $\sin u$, $\cos u$, $e^u$, $\ln u$?
+
+    Let's write $y = (\ln x)^2$, $u = \ln x$ so that $y = u^2$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= 2u \tag{using the derivative of $u^2$} \\
+        \frac{du}{dx} &= \frac{1}{x} \tag{using the derivative of $\ln x$}
+    \end{align*}
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= \frac{2u}{x} \tag{substituting our workings} \\
+         &= \frac{2\ln x}{x} \tag{using $u = \ln x$}
+    \end{align*}
+
+    Which gives us our answer.
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $e^{2\sin x}$.
+\end{example}
+\begin{solution}
+    The question is: if we were to replace any part of $e^{2\sin x}$ with $u$, how can we turn it into one of the functions that we know how to differentiate:
+    
+    $au$, $u^n$, $\sin u$, $\cos u$, $e^u$, $\ln u$?
+
+    Let's write $y = e^{2\sin x}$, $u = 2\sin x$ so that $y = e^u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= e^u \tag{using the derivative of $e^u$} \\
+        \frac{du}{dx} &= 2\cos x \tag{using the derivative of $2\sin x$}
+    \end{align*}
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= e^u \times 2\cos x  \tag{substituting our workings} \\
+         &= 2e^{2\sin x}\cos x \tag{using $u = 2\sin x$}
+    \end{align*}
+
+    Which gives us our answer.
+\end{solution}
+
+\begin{example} \emph{(Hard)}
+
+    Using the chain rule, differentiate $\sin(\cos(\ln x))$.
+\end{example}
+\begin{solution}
+    The question is: if we were to replace any part of $\sin(\cos(\ln x))$ with $u$, how can we turn it into one of the functions that we know how to differentiate:
+    
+    $au$, $u^n$, $\sin u$, $\cos u$, $e^u$, $\ln u$?
+
+    Let's write $y=\sin(\cos(\ln x))$, $u = \cos(\ln x)$ so that $y = \sin u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$. We can find the first:
+    \begin{align*}
+        \frac{dy}{du} &= \cos u \tag{using the derivative of $\sin u$} \\
+        \frac{du}{dx} &=  (\cos(\ln x))' \tag{leave for later}
+    \end{align*}
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &=  \cos u (\cos(\ln x))'  \tag{substituting our workings} \\
+         &= \cos (\cos(\ln x)) (\cos(\ln x))' \tag{using $u = \cos(\ln x)$}
+    \end{align*}
+
+    Which almost gives us our answer, except we still need to differentiate $\cos(\ln x)$. To do this, we can use the chain rule again!
+    
+    I will a new symbol $v$ for book-keeping: write $u = \cos(\ln x)$, $v = \ln x$ so that $u = \cos v$.
+    
+    The chain rule will then be 
+    \[ \frac{du}{dx} = \frac{du}{dv} \frac{dv}{dx}\]
+
+    We need the derivative of $u$ with respect to $v$ and the derivative of $v$ with respect to $x$.
+    \begin{align*}
+        \frac{du}{dv} &= -\sin v \tag{using the derivative of $\cos v$} \\
+        \frac{dv}{dx} &=  \frac{1}{x} \tag{using the derivative of $\ln x$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{du}{dx} &= \frac{du}{dv} \frac{dv}{dx} \\
+         &=  -\sin v \times \frac{1}{x}  \tag{substituting our workings} \\
+         &= -\frac{\sin (\ln x)}{x} \tag{using $v = \ln x$}
+    \end{align*}
+
+    This gives us the derivative of $z = \cos(\ln x)$ with respect to $x$
+    \[
+    \frac{du}{dx} = -\frac{\sin (\ln x)}{x}
+    \]
+    so
+    \[
+    (\cos(\ln x))' = -\frac{\sin (\ln x)}{x}
+    \]
+
+    Which we can substitute into our workings for the $\frac{dy}{dx}$:
+
+    \begin{align*}
+        \frac{dy}{dx} &= \cos (\cos(\ln x)) (\cos(\ln x))' \tag{from before}\\
+         &= \cos (\cos(\ln x))  \times -\frac{\sin (\ln x)}{x} \\ 
+          &= - \frac{\sin (\ln x)\cos (\cos(\ln x))}{x}
+    \end{align*}
+
+    Which gives us our funny looking answer. Note that if we have $n$ function compositions, we will need $n$ chain rules.
+\end{solution}
+
+Note that in the above, we worked through finding 
+
+\[ \frac{dy}{dx} = \frac{dy}{du}\frac{du}{dx}\]
+
+But since we did not know how to work with the final term, we then did the chain rule again to find 
+
+\[ \frac{du}{dx} = \frac{du}{dv}\frac{dv}{dx}\]
+
+Substituting this in gives 
+
+\[ \frac{dy}{dx} = \frac{dy}{du}\frac{du}{dv}\frac{dv}{dx}\]
+
+Which then gives us a hint about how the chain rule generalises. If we were to pretend that these were genuine fractions, 
+the right-hand side would cancel to give the left-hand side. This is true in general, that we can keep inserting additional multiples of derivatives 
+as long as they ``cancel'' if you consider them as actual fractions.
+
+Therefore, we can use the chain rule to compute the derivative of any composition of functions that we know how to differentiate.
+
+What this means in practise is that we can use a combination of the chain rule and the product rule to differentiate any composition and multiple of the following functions:
+
+$ax$, $x^n$, $\sin x$, $\cos x$, $e^x$, $\ln x$.
+
+\subsubsection{Generalising Standard Derivatives} \label{sec:standard-derivatives-chain-rule}
+
+We can now use our knowledge of standard derivatives to get generalised results almost for free.
+
+In this section, we will use that $f(x)$ is a function of $x$.
+
+\begin{example}
+    Using the chain rule, differentiate $(f(x))^n$ with respect to $x$. Give your answer in terms of $f(x)$ and $f'(x)$, where $n$ is a real number.
+\end{example}
+\begin{solution}
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let's write $y = (f(x))^n$, $u = f(x)$ so that $y = u^n$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= nu^{n-1} \tag{using the derivative of $u^n$} \\
+        \frac{du}{dx} &= f'(x) \tag{in terms of $f'(x)$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= nu^{n-1} \times f'(x)  \tag{substituting our workings} \\
+         &= nf(x)^{n-1}f'(x) \tag{using $u = f(x)$}
+    \end{align*}
+
+    Which gives us our answer.
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $e^{f(x)}$ with respect to $x$. Give your answer in terms of $f(x)$ and $f'(x)$.
+\end{example}
+\begin{solution}
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let's write $y = e^{f(x)}$, $u = f(x)$ so that $y = e^u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= e^u \tag{using the derivative of $e^u$} \\
+        \frac{du}{dx} &= f'(x) \tag{in terms of $f'(x)$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= e^u \times f'(x)  \tag{substituting our workings} \\
+         &= f'(x)e^{f(x)} \tag{using $u = f(x)$}
+    \end{align*}
+
+    Which gives us our answer.
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $\ln (f(x))$ with respect to $x$. Give your answer in terms of $f(x)$ and $f'(x)$.
+\end{example}
+\begin{solution}
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let's write $y = \ln (f(x))$, $u = f(x)$ so that $y = \ln u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= \frac{1}{u} \tag{using the derivative of $\ln u$} \\
+        \frac{du}{dx} &= f'(x) \tag{in terms of $f'(x)$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= \frac{1}{u} \times f'(x)  \tag{substituting our workings} \\
+         &= \frac{f'(x)}{f(x)} \tag{using $u = f(x)$}
+    \end{align*}
+
+    Which gives us our answer.
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $\sin(f(x))$ with respect to $x$. Give your answer in terms of $f(x)$ and $f'(x)$.
+\end{example}
+\begin{solution}
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let's write $y = \sin(f(x))$, $u = f(x)$ so that $y = \sin u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= \cos u \tag{using the derivative of $\sin u$} \\
+        \frac{du}{dx} &= f'(x) \tag{in terms of $f'(x)$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &=  \cos u \times f'(x)  \tag{substituting our workings} \\
+         &= f'(x) \cos (f(x)) \tag{using $u = f(x)$}
+    \end{align*}
+
+    Which gives us our answer.
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $\cos(f(x))$ with respect to $x$. Give your answer in terms of $f(x)$ and $f'(x)$.
+\end{example}
+\begin{solution}
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let's write $y = \cos(f(x))$, $u = f(x)$ so that $y = \cos u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= -\sin u \tag{using the derivative of $\cos u$} \\
+        \frac{du}{dx} &= f'(x) \tag{in terms of $f'(x)$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &=  -\sin u \times f'(x)  \tag{substituting our workings} \\
+         &= -f'(x) \sin (f(x)) \tag{using $u = f(x)$}
+    \end{align*}
+
+    Which gives us our answer.
+\end{solution}
+
+\subsection{Mixed Exercises}
+\begin{example}
+    Differentiate $\sin(x)\cos(\sin(x))$
+\end{example}
+\begin{solution}
+    Let's first define two functions $f(x) = \sin(x)$ and $g(x) = \cos(\sin(x))$ so that the thing we are trying to differentiate becomes
+    \[ \sin(x)\cos(\sin(x)) = f(x) \cdot g(x)\]
+
+    Then we can use the product rule:
+
+    \[(f(x)\cdot g(x))' = f'(x)g(x) + f(x)g'(x)\]
+
+    Now we can find $f'(x)$, since this is just the derivative of $f(x) = \sin(x)$, which is $\cos(x)$, but 
+    what about the derivative of $g(x) = \cos(\sin(x))$?
+
+    For this we need the chain rule.
+
+    How can we define $u$ so that $g(x)$ becomes something we know how to differentiate? If we set $u = \sin(x)$, and write $y = g(x)$, then 
+    $y = \cos u$. The chain rule then gives us that 
+
+    \[ \frac{dy }{dx} = \frac{dy }{du}\frac{du}{dx}\]
+
+    Since $u = \sin(x)$, we find that $\frac{du }{dx} = \cos x$, and since $y = \cos u$, we find that $\frac{dy}{du} = -\sin u$.
+
+    Substituting this in gives 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy }{du}\frac{du}{dx} \\
+         &= -\sin u \cos x \\
+         &= -\sin (\sin(x)) \cos x \tag{using $u = \sin(x)$}
+    \end{align*}
+
+    But this was all to find what $g'(x)$, i.e. the derivative of $\cos(\sin(x))$, which we have found to be 
+    \[ -\sin (\sin(x)) \cos x \]
+
+    Now we can substitute this into our product rule, recalling that $f(x) = \sin(x)$ and $g(x) = \cos(\sin(x))$, and $f'(x) = \cos x$ to find:
+
+    \begin{align*}
+        (f(x)\cdot g(x))' &= f'(x)g(x) + f(x)g'(x) \\
+         &=  \cos x g(x) + f(x) g'(x) \tag{substituting $f'(x)$} \\
+         &= \cos x \cos(\sin(x)) + f(x) g'(x) \tag{substituting $g(x)$} \\
+         &= \cos x \cos(\sin(x)) + \sin(x) g'(x) \tag{substituting $f(x)$} \\
+         &= \cos x \cos(\sin(x)) + \sin(x)\cdot(-\sin (\sin(x)) \cos x) \tag{substituting $g'(x)$} \\
+         &= \cos x \cos(\sin(x)) + -\sin (\sin(x)) \cos x \sin x
+    \end{align*}
+
+    Therefore, we have found the derivative 
+    \[ (\sin(x)\cos(\sin(x)))' = \cos x \cos(\sin(x)) + -\sin (\sin(x)) \cos x \sin x\]
+    \qed
+\end{solution}
+
+\begin{example}
+    Consider $e^{2\sin x} + \cos (x^2)$. First find the derivative, and then find the derivative of the derivative.
+\end{example}
+\begin{solution}
+    Since we know that you can differentiate each additive term separately and then add them together, we can consider them one by one.
+
+    Let $f(x) = e^{2\sin x} $ and $g(x) = \cos (x^2)$ so that we are trying to differentiate 
+    \[f(x) + g(x) = e^{2\sin x} + \cos (x^2)\]
+
+    Let's start with $f(x)$. 
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let $y =  e^{2\sin x}$, $u = 2\sin x$ so that $y = e^u$.
+    
+    Then we can compute our derivatives:
+    \begin{align*}
+        \frac{du}{dx} &= 2\cos x \\
+        \frac{dy}{du} &= e^u
+    \end{align*}
+
+    So that, by the chain rule,
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du}\frac{du}{dx} \\ 
+         &= e^u \cdot 2\cos x \tag{substituting}\\
+         &= e^{2\sin x} \cdot 2\cos x \tag{using $u = 2\sin x$}
+    \end{align*}
+
+    Therefore 
+    \[ f'(x) = 2\cos x  e^{2\sin x} \]
+
+    For $g(x)$:
+
+    Let $y =  \cos (x^2)$, $u = x^2$ so that $y = \cos u$.
+    
+    Then we can compute our derivatives:
+    \begin{align*}
+        \frac{du}{dx} &= 2x \\
+        \frac{dy}{du} &= -\sin u
+    \end{align*}
+
+    So that, by the chain rule,
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du}\frac{du}{dx} \\ 
+         &= -\sin u \cdot 2x \tag{substituting}\\
+         &= -\sin(x^2) \cdot 2x \tag{using $u = x^2$}
+    \end{align*}
+
+    Therefore 
+    \[ g'(x) = -2x \sin(x^2)\]
+
+    Which gives us our derivative:
+
+    \[(e^{2\sin x} + \cos (x^2))' = f'(x) + g'(x) = 2\cos x  e^{2\sin x} -2x \sin(x^2)\]
+
+    This completes the first part of the question. We are then asked to differentiate this function again.
+
+    Let's again split it into two cases based on the additive terms:
+
+    \[2\cos x  e^{2\sin x}\]
+
+    and 
+
+    \[-2x \sin(x^2)\]
+
+    Now for the purposes of this solution, we will only walk through the second term. The first is left as an exercise.
+
+    Since $-2x \sin(x^2)$ is a multiple of two terms, we need to use the product rule.
+    Let $u= -2x$ and $v = \sin (x^2)$. Then $u' = -2$, and $v'$ must be calculated via the chain rule.
+
+    Let's use the chain rule with $y = \sin(x^2)$, $w = x^2$ so that $y = \sin w$. We need the derivatives:
+    \begin{align*}
+        \frac{dw}{dx} &= 2x \\ 
+        \frac{dy}{dw} &= \cos w
+    \end{align*}
+    
+    Then the chain rule tells us that
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{dw} \frac{dw}{dx} \\
+         &= \cos w \cdot 2x \tag{substituting}\\
+         &= \cos (x^2) \cdot 2x
+    \end{align*}
+
+    Therefore $v' = 2x\cos (x^2) $.
+
+    Then the product rule tells us that
+
+    \begin{align*}
+        (uv)' &= uv' + u'v \\
+         &= -2x \cdot 2x\cos (x^2) -2 \cdot \sin (x^2)
+    \end{align*}
+
+    And therefore, we have found that 
+
+    \[ (-2x \sin(x^2))' = -4x^2 \cos (x^2) -2  \sin (x^2)\]
+
+    A similar process can be used to find 
+    \[(2\cos x  e^{2\sin x})' = 4\cos^2 x e^{2\sin x} - 2 \sin x e^{2\sin x}\]
+
+    Therefore, the derivative we are looking for is:
+    
+    \begin{align*}
+    (2\cos x  e^{2\sin x} -2x \sin(x^2))' =& 4\cos^2 x e^{2\sin x} - 2 \sin x e^{2\sin x} \\
+     &-4x^2 \cos (x^2) -2  \sin (x^2)
+    \end{align*}
+
+    Which finishes the question, finding the second derivative of $e^{2\sin x} + \cos (x^2)$.
+    \qed
+\end{solution}
+
+
+
+
+
+
+\newpage
+\section{Integration}
+\subsection{Definite vs Indefinite Integration}
+An \emph{indefinite integral} is an integral in which you do not evaluate at two points, and can be defined as the inverse of the derivative, up to a constant. That is,
+\[ \int f' dx = f + c\]
+
+Where $c$ is a constant. Where does the constant come from? We know that taking the derivative of a constant is always $0$ (see Section \ref{sec:first-principles}), 
+so we can calculate:
+\[ (f+c)' = f' + c' = f' + 0 = f'\]
+
+Which regains $f'$.
+
+\begin{example} \label{ex:int-cosx}
+    Find the indefinite integral of $\cos (x)$.
+\end{example}
+\begin{solution}
+    We know that if $A$ is a constant, then $ (A \sin (x))' = A (\sin (x))' = A \cos (x)$. Therefore, if we set $A$ to be $1$, 
+    we have found that $(\sin (x))' = \cos (x)$. Therefore,
+    \[ \int \cos(x) dx = \sin (x) + c\]
+    Where $c$ is a constant. 
+    \qed
+\end{solution}
+
+\begin{example}\label{ex:int-sinx}
+    Find the indefinite integral of $\sin (x)$.
+\end{example}
+\begin{solution}
+    We know that if $A$ is a constant, then $ (A \cos (x))' = A (\cos (x))' = -A \sin (x)$. Therefore, if we set $-A = 1$, we find 
+    $A=-1$ (since we want to find the indefinite integral of $\sin(x)$) gives that $(-\cos (x))' = \sin (x)$. Therefore,
+    \[ \int \sin(x) dx = -\cos (x) + c\]
+    Where $c$ is a constant.
+    \qed
+\end{solution}
+
+\begin{example}\label{ex:int-x18}
+    Find the indefinite integral of $x^8$.
+\end{example}
+\begin{solution}
+    We know that if $A$ is a constant, then $ (A x^9)' = A (x^9)' = 9A x^8$. Therefore, if we set $9A = 1$, we find 
+    $A=\frac{1}{9}$ (since we want to find the indefinite integral of $x^8$) gives that $(\frac{1}{9} x^9)' = x^8$. Therefore,
+    \[ \int x^8 dx = \frac{1}{9} x^9 + c\]
+    Where $c$ is a constant.
+    \qed
+\end{solution}
+
+A \emph{definite integral} is one where we evaluate at two points, and can be defined as the area under a function $f$ between those two points. 
+In practise, we compute this by the following:
+
+\[ \int_{a}^{b} f dx = \left[\int f dx\right]_{x=a}^{x=b}\]
+
+Where the notation on the RHS means that we calculate the indefinite integral at $b$ and remove it from the indefinite integral at $a$. Recall that 
+the indefinite integral always has a constant added $c$. If we take two evaluations of the indefinite integral, the $c$ will cancel. For example, let's use 
+the example of when we are integrating a derivative.
+
+\begin{align*}
+    \int_{a}^{b} f' dx &= \left[f + c\right]_{x=a}^{x=b} \tag{substitute indefinite integral of $f'$}\\
+    &= [f(b) + c - (f(a) + c)] \tag{expand}\\
+    &= f(b) - f(a) \tag{cancel $c$}
+\end{align*}
+
+\begin{example}
+    Calculate the following integral:
+    \[ \int_{0}^{\pi} \cos (x)dx\]
+\end{example}
+\begin{solution}
+    From Example \ref{ex:int-cosx}, we know that $\int \cos(x) dx = \sin (x) + c$ where $c$ is a constant.
+    Therefore (noting $c$ would cancel),
+
+    \begin{align*}
+        \int_{0}^{\pi} \cos(x) dx & = [\sin (x)]_{x=0}^{x=\pi} \\ 
+          &= [\sin(\pi) - \sin (0)] \\
+          &= 0 - 0 \\
+          &= 0
+    \end{align*}
+    \qed
+\end{solution}
+
+\begin{example}
+    Calculate the following integral:
+    \[ \int_{0}^{\pi} \sin (x)dx\]
+\end{example}
+\begin{solution}
+    From Example \ref{ex:int-sinx}, we know that $\int \sin(x) dx = -\cos (x) + c$ where $c$ is a constant.
+    Therefore (noting $c$ would cancel),
+
+    \begin{align*}
+        \int_{0}^{\pi} \sin(x) dx & = [-\cos (x)]_{x=0}^{x=\pi} \\ 
+          &= [-\cos(\pi) - (-\cos (0))] \\
+          &= [-(-1) - (-1)]  \tag{$\cos(0) = 1$, $\cos(\pi)=-1$}\\
+          &= 2
+    \end{align*}
+    \qed
+\end{solution}
+
+\begin{example}
+    Calculate the following integral:
+    \[ \int_{0}^{1} x^8 dx\]
+\end{example}
+\begin{solution}
+    From Example \ref{ex:int-x18}, we know that $\int x^8 dx = \frac{1}{9}x^9 + c$ where $c$ is a constant.
+    Therefore (noting $c$ would cancel),
+
+    \begin{align*}
+        \int_{0}^{1} x^8 dx & = [\frac{1}{9}x^9]_{x=0}^{x=1} \\ 
+          &= [\frac{1}{9}1^9 - \frac{1}{9}0^9] \\
+          &= \frac{1}{9}
+    \end{align*}
+    \qed
+\end{solution}
+
+In summary, indefinite integral you don't evaluate at two points, and definite integral you do evaluate at two points.
+
+\subsubsection{Additional Exercises}
+\begin{example}
+    Calculate the indefinite integral $\int \sin^2 x dx$.
+\end{example}
+\begin{solution}
+    The trick to higher powers of $\sin$ or $\cos$ is to use double angle formulae to reduce it to lower powers.
+
+    Recall 
+    \begin{align*}
+        \cos 2x &= \cos^2 x - \sin^2 x \tag{double angle formula for $\cos$} \\
+         &= 1 - \sin^2 x - \sin^2 x \tag{using $\sin^2 x + \cos^2 x = 1$} \\
+          &= 1 - 2\sin^2 x \tag{collecting terms}
+    \end{align*}
+    Therefore, rearranging gives us 
+    \[ \sin^2 x = \frac{1}{2}(1 - \cos 2x)\]
+
+    Then we can integrate 
+
+    \begin{align*} 
+        \int \sin^2 x dx &= \int  \frac{1}{2}(1 - \cos 2x) dx \tag{substituting the power reduction formula} \\
+         &= \frac{1}{2} \int 1dx - \frac{1}{2}  \int \cos 2x dx \tag{expanding and factorising} \\
+         &= \frac{1}{2} x - \frac{1}{4}  \sin 2x + c \tag{integrating}
+    \end{align*}
+    Where we deduced the integral of $\cos 2x$ by differentiating $\sin 2x$, and seeing that we get $2 \cos 2x$. Therefore we must divide by $2$ to cancel the factor of $2$ in front:
+    \[ \int \cos 2x dx = \frac{1}{2} \sin 2x + c\]
+    Alternatively, you can calculate this via substitution $y = 2x$, which is covered in Section \ref{sec:int-subs}.
+    \qed
+\end{solution}
+
+\subsection{Integration by Parts} \label{sec:int-parts}
+It is useful to know how to integrate two functions multiplied together.
+
+To do so, let's look at two functions $f(x)$ and $g(x)$.
+
+Consider the derivative of $f(x)g(x)$
+
+\[\frac{d(f\cdot g)}{dx} = \frac{df}{dx}\cdot g + f \cdot \frac{dg}{dx}\]
+
+Now recall that the integral of a derivative is the function itself:
+
+\begin{align*}
+f \cdot g = \int \frac{d(f\cdot g)}{dx} dx &= \int(\frac{df}{dx}\cdot g + f \cdot \frac{dg}{dx})dx \\
+ &= \int\frac{df}{dx}\cdot g dx + \int f \cdot \frac{dg}{dx}dx
+\end{align*} 
+
+Then we can rearrange this formula to get the integration by parts formula.
+
+\[ \int f \cdot \frac{dg}{dx} dx = f \cdot g - \int\frac{df}{dx}\cdot g dx  \]
+
+In textbooks, this is often written with $u$, $v$ instead, and using shorthand 
+$u'$, $v'$ for their derivatives:
+
+\[ \int u v' dx = uv - \int u' v dx \]
+
+Note that if we are integrating between $x=a_0$ and $x=a_1$, this will become:
+
+\[ \int_{a_0}^{a_1} u v' dx = [uv]_{x=a_0}^{x=a_1} - \int_{a_0}^{a_1} u' v dx \]
+
+Which is equivalent to 
+
+\[ \int_{a_0}^{a_1} u v' dx = u(a_1)v(a_1) - u(a_0)v(a_0) - \int_{a_0}^{a_1} u' v dx \]
+
+The reason this is useful is because often $u$ and $v'$ can be chosen so that the integral on the right is simpler!
+
+A handy mnemonic is LATE\footnote{Some use ILATE instead, where I is inverse trig. If you have not encountered differentiating inverse trig functions, ignore this.}: 
+Logarithm (or ln), Algebra (powers of $x$), Trig, Exponential -- this is usually a good guess as your choice of $u$ in order from left to right.
+This is mostly because these functions become simpler after differentiating -- the $u'$ on the right hand side will be easier to integrate.
+
+You should only use integration by parts if you cannot integrate it another way -- if you can see that your function is easy to integrate without this trick 
+you should not over-complicate it.
+
+\begin{example}
+    Find the indefinite integral of $x\cos(x)$. Then calculate 
+    \[ \int_{0}^{\pi}x\cos(x) dx\]
+\end{example}
+\begin{solution}
+    First we check if this looks like the derivative of a function we know. Since it doesn't, we continue with integration by parts.
+
+    Following LATE, we see that $x$ is algebra and comes before $\cos(x)$ which is trig. Therefore choose $u=x$ and $v' = \cos(x)$.
+    Now we know $\sin(x)$ differentiates to become $\cos(x)$ therefore $v = \sin(x)$. Also, $u' = 1$. I like to write this in a box:
+    \begin{align*}
+        u = x & & v = \sin(x) \\
+        u' = 1 & & v' = \cos(x)
+    \end{align*}
+    Now we remind ourselves of integration by parts:
+    \[ \int u v' dx = uv - \int u' v dx \]
+    Substituting, we get 
+
+    \[ \int x \cos x dx = x \sin(x) - \int 1 \cdot \sin(x) dx \]
+
+    Now we know $\cos(x)$ differentiates to become $-\sin(x)$. Therefore $\int \sin(x) dx = -\cos(x) + c'$, where $c'$ is a constant. Therefore:
+
+    \begin{align*}
+        \int x \cos x dx &= x \sin(x) - \int \sin(x) dx \\
+            &= x \sin(x) - (-\cos(x) + c') \\
+            &= x \sin(x) + \cos(x) + c \tag{letting $c = -c'$}\\
+    \end{align*}
+
+    This is the indefinite integral. To calculate the definite integral in the second part of the question, we need to include the bounds
+    \begin{align*}
+        \int_0^\pi x \cos x dx &= [x \sin(x)]_{x=0}^{x=\pi} - \int_0^\pi \sin(x) dx \\
+            &= \pi \cdot \sin(\pi) - 0 \cdot \sin(0) - [-\cos(x)]_{x=0}^{x=\pi} \\
+            &= 0 - 0 - [-\cos(\pi) + \cos(0)] \tag{$\sin(\pi) = 0$}\\
+            &=  -[1+1]\\
+            &= -2
+    \end{align*}
+    Which finishes the question.
+    \qed
+\end{solution}
+
+\begin{example}
+    Find the indefinite integral of $x \ln x$. Then calculate 
+    \[ \int_{1}^{2} x\ln(x) dx\]
+\end{example}
+\begin{solution}
+    First we check if this looks like the derivative of a function we know. Since it doesn't, we continue with integration by parts.
+
+    Following LATE, we see that $\ln(x)$ is logarithm and comes before $x$ which is algebra. Therefore choose $u=\ln(x)$ and $v' = x$.
+    Now we know $x^2$ differentiates to become $2x$ therefore $v = \frac{1}{2} x^2$. Also, $u' = \frac{1}{x}$. I like to write this in a box:
+    \begin{align*}
+        u = \ln (x) & & v= \frac{1}{2} x^2 \\
+        u' = \frac{1}{x} & & v' = x
+    \end{align*}
+    Now we remind ourselves of integration by parts:
+    \[ \int u v' dx = uv - \int u' v dx \]
+    Substituting, we get 
+
+    \[ \int x \ln x dx = \frac{1}{2} x^2 \ln (x) - \int \frac{1}{x} \cdot \frac{1}{2} x^2 dx \]
+
+    Therefore:
+
+    \begin{align*}
+        \int x \ln x dx &= \frac{1}{2} x^2 \ln (x) - \frac{1}{2} \int x dx \\
+            &= \frac{1}{2} x^2 \ln (x) - \frac{1}{4} x^2 + c \\
+            &= \frac{1}{2} x^2 (\ln(x) - \frac{1}{2}) + c
+    \end{align*}
+
+    Where $c$ is a constant. This is the indefinite integral. To calculate the definite integral in the second part of the question, we need to include the bounds
+    \begin{align*}
+        \int_1^2 x \ln x dx &= [\frac{1}{2} x^2 \ln (x)]_{x=1}^{x=2} - \frac{1}{2} \int_1^2 x dx \\
+            &= \dots
+    \end{align*}
+    Which we could continue like before. Alternatively, we can use the indefinite integral and calculate:
+
+    \begin{align*}
+        \int_1^2 x \ln x dx &=  [\frac{1}{2} x^2 \left(\ln(x) - \frac{1}{2}\right) + c]_{x=1}^{x=2} \\
+         &=  \frac{1}{2} 2^2 \left(\ln(2) - \frac{1}{2}\right)  - \frac{1}{2} 1^2 \left(\cancel{\ln(1)} - \frac{1}{2}\right) \\
+         &=  2 \left( \ln(2) - \frac{1}{2} \right) + \frac{1}{4} \\
+         &= \ln(4) - \frac{3}{4}
+    \end{align*}
+    Which finishes the question.
+    \qed
+\end{solution}
+A quirky application of this is how to integrate $\ln(x)$.
+
+\begin{exercise} \emph{Try it yourself!} \label{ex:integral-ln}
+    By writing $\ln (x)$ as $1 \cdot \ln (x)$, find the indefinite integral of $\ln (x)$.
+\end{exercise}
+\begin{solution}
+    First we check if this looks like the derivative of a function we know. Since it doesn't, we continue with integration by parts.
+
+    Following LATE, we see that $\ln(x)$ is logarithm and comes before $1$ which we consider as algebra here. We can construct our square as follows
+
+        \begin{align*}
+        u = \ln (x) & & v= x \\
+        u' = \frac{1}{x} & & v' = 1
+    \end{align*}
+    Now we remind ourselves of integration by parts:
+    \[ \int u v' dx = uv - \int u' v dx \]
+    Substituting, we get
+    \begin{align*}
+        \int \ln (x) dx &= x \ln (x) - \int \frac{x}{x} dx\\
+        &= x \ln(x) - x
+    \end{align*}
+
+    As a bonus exercise, verify that this differentiates to become $\ln(x)$.
+    \qed
+\end{solution}
+
+
+
+
+
+\subsection{Integration by Substitution} \label{sec:int-subs}
+
+It is possible to change what variable is being integrated by. This is useful in two ways:
+
+\begin{enumerate}
+    \item To convert an integral to one you know.
+    \item To simplify an integral.
+\end{enumerate}
+
+How does it work?
+
+Let's consider the following integral.
+
+\[ \int_{a}^{b} f(x) dx\]
+
+For clarity, we will clarify that the $a$ and $b$ are integrating between $x=a$ and $x=b$ in the following way.
+
+\[ \int_{x=a}^{x=b} f(x) dx\]
+
+Now what happens if we have a new variable in terms of $x$? Let's write it as $y = g(x)$. 
+We also require that we can write $x$ as a function of $y$, 
+i.e. that $g^{-1}$ exists -- see Section \ref{sec:function-inverse}.
+Then $x = g^{-1}(y)$.
+
+Now let's abuse notation\footnote{This can be made rigorous by looking at differentials.} a lot:
+
+\begin{align*}
+    \frac{dx}{dy} &= \frac{dx}{dy} \\
+    dx &= \frac{dx}{dy} dy \tag{`multiply' by $dy$ (abuse of notation)} \\
+    dx &= \frac{dg^{-1}}{dy} dy \tag{using $x = g^{-1}(y)$} 
+\end{align*}
+
+Now we have all the tools to replace all instances of $x$ in our integral. We will do this one-by-one from left to right for clarity.
+
+\begin{align*}
+    \int_{x=a}^{x=b} f(x) dx &=  \int_{\textcolor{red}{g^{-1}(y)}=a}^{\textcolor{red}{g^{-1}(y)}=b} f(x) dx \tag{using $x = g^{-1}(y)$}\\
+    &=  \int_{y=g(a)}^{y=g(b)} f(x) dx \tag{rearranging the bounds} \\
+    &= \int_{y=g(a)}^{y=g(b)} f(\textcolor{red}{g^{-1}(y)}) dx \tag{using $x = g^{-1}(y)$} \\
+    &= \int_{y=g(a)}^{y=g(b)} f(g^{-1}(y)) \textcolor{red}{\frac{dg^{-1}}{dy}} dy\tag{using $dx = \frac{dg^{-1}}{dy} dy$}
+\end{align*} 
+
+Since the final line is \emph{completely} in terms of $y$, we can continue by computing the integral as usual, but in the $y$ variable instead. 
+Note that the final formula uses both $g$ and $g^{-1}$, meaning that we need $g^{-1}$ to exist for the above formula.
+
+Summary: \textbf{exchange every instance of $x$ with the equivalent $y$, and then integrate in the $y$ variable.}
+
+We have only dealt with definite integrals here, but for indefinite you do the same procedure!
+
+Note that you could keep doing substitution if needed.
+
+This has been very abstract, so let's see some examples.
+
+\begin{example}
+    Compute the following integral.
+    \[ \int_{0}^{1} (x+1)^3 dx \]
+
+    Then state the indefinite integral of $(x+1)^3$.
+\end{example}
+
+\begin{solution}
+    Firstly, note that you \emph{could} expand the brackets and then integrate each term. Instead, let's utilise substitution.
+
+    Define $x+1 = y$. We now want to rewrite everything in terms of $y$. Rearranging gives $x = y-1$, and taking the derivative of both sides gives
+    $\frac{dy}{dx} = 1$, where we abuse notation to `multiply by $dx$' and write $dy = dx$. Let's collect our three equations:
+
+    \begin{align*}
+        y &= x+1 \\
+        x &= y-1 \\
+        dx &= dy
+    \end{align*}
+
+    Now let's substitute everything until it is in terms of $y$ only. For clarity, we will do this from left to right.
+
+    \begin{align*}
+        \int_{0}^{1} (x+1)^3 dx  &= \int_{x=0}^{x=1} (x+1)^3 dx \\
+         &= \int_{y-1=0}^{y-1=1} (x+1)^3 dx \tag{using $x = y-1$} \\
+         &= \int_{y=1}^{y=2} (x+1)^3 dx \tag{rearranging integral bounds} \\
+         &= \int_{y=1}^{y=2} y^3 dx \tag{using $y = x+1$} \\
+         &= \int_{y=1}^{y=2} y^3 dy \tag{using $dx = dy$}
+    \end{align*}
+
+    Now we can integrate this in $y$ as usual.
+    \begin{align*}
+        \int_{y=1}^{y=2} y^3 dy &= \left[ \frac{1}{4}y^4 \right]_{y=1}^{y=2} \\
+         &= \frac{1}{4} \left( 2^4 - 1^4 \right) \\
+         &= \frac{16}{4}
+    \end{align*}
+
+    The indefinite integral can be written as just \emph{the-bit-in-the-square-brackets-plus-$c$}:
+
+    \[ \int (x+1)^3 dx  = \frac{1}{4}y^4 + c \]
+
+    And now all we need to do is substitute back in what $y$ was:
+
+    \[ \int (x+1)^3 dx  = \frac{1}{4}(x+1)^4 + c \]
+    \qed
+\end{solution}
+
+
+\begin{example}
+    Compute the following integral.
+    \[ \int_{0}^{1} \cos(\pi x + \pi) dx \]
+
+    Then state the indefinite integral of $\cos(\pi x + \pi)$.
+\end{example}
+
+\begin{solution}
+    Notice that we know what the integral of $\cos(x)$ is, therefore it would be nice to make a substitution that gives us something we know.
+
+    Define $\pi x + \pi= y$. We now want to rewrite everything in terms of $y$. Rearranging gives $x = \frac{1}{\pi}(y - \pi)$, and taking the derivative of both sides gives
+    $\frac{dy}{dx} = \pi$, where we abuse notation to `multiply by $dx$' and write $dy = \pi dx$. Further rearranging gives 
+
+    \[ dx = \frac{1}{\pi}dy\] 
+    Let's collect our three equations:
+
+    \begin{align*}
+        y &= \pi x + \pi \\
+        x &= \frac{1}{\pi}(y - \pi) \\
+        dx &= \frac{1}{\pi}dy
+    \end{align*}
+
+    Now let's substitute everything until it is in terms of $y$ only. For clarity, we will do this from left to right.
+
+    \begin{align*}
+        \int_{0}^{1} \cos(\pi x + \pi) dx  &= \int_{x=0}^{x=1} \cos(\pi x + \pi) dx \\
+         &= \int_{x=0}^{x=1} \cos(\pi x + \pi) dx \\
+         &= \int_{\frac{1}{\pi}(y - \pi)=0}^{\frac{1}{\pi}(y - \pi)=1} \cos(\pi x + \pi) dx \tag{using $x = \frac{1}{\pi}(y - \pi) $} \\
+         &= \int_{y=\pi}^{y=2\pi} \cos(\pi x + \pi)  dx \tag{rearranging integral bounds} \\
+         &= \int_{y=\pi}^{y=2\pi} \cos(y) dx \tag{using $y = \pi x + \pi $} \\
+         &= \int_{y=\pi}^{y=2\pi}\cos(y) \frac{1}{\pi}dy \tag{using $dx =  \frac{1}{\pi}dy$} \\
+         &= \frac{1}{\pi}\int_{y=\pi}^{y=2\pi}\cos(y) dy \tag{rearranging} \\
+    \end{align*}
+
+    Now we can integrate this in $y$ as usual.
+    \begin{align*}
+         \frac{1}{\pi}\int_{y=\pi}^{y=2\pi}\cos(y) dy &= \frac{1}{\pi} \left[ \sin(y) \right]_{y=\pi}^{y=2\pi} \\
+         &=  \frac{1}{\pi} \left(  \sin(2\pi)  - \sin(\pi)  \right) \\
+         &=  \frac{1}{\pi} \left(  0 - 0  \right) \\
+         &= 0
+    \end{align*}
+
+    The indefinite integral can be written as just \emph{the-bit-in-the-square-brackets-plus-$c$}, remembering the $\frac{1}{\pi}$ we pulled out:
+
+    \[ \int  \cos(\pi x + \pi) dx  = \frac{1}{\pi}\sin(y) + c \]
+
+    And now all we need to do is substitute back in what $y$ was:
+
+    \[ \int \cos(\pi x + \pi) dx= \frac{1}{\pi}\sin(\pi x + \pi) + c \]
+
+    If the dividing by $\pi$ confuses you, go through the steps above but without the integral bounds!
+    \qed
+\end{solution}
+
+
+\begin{example}
+    Compute the following integral.
+    \[ \int_{0}^{1} \frac{1}{2x + 1} dx \]
+
+    Then state the indefinite integral of $\frac{1}{2x + 1}$.
+\end{example}
+
+\begin{solution}
+    Notice that we know what the integral of $\frac{1}{x}$ is, therefore it would be nice to make a substitution that gives us something closer to what we know.
+
+    Define $2x + 1 = y$. We now want to rewrite everything in terms of $y$. Rearranging gives $x = \frac{1}{2}(y-1)$, and taking the derivative of 
+    both sides using the chain rule gives
+    $\frac{dy}{dx} = 2$, where we abuse notation to `multiply by $dx$' and write $dy = 2 dx$. Further rearranging gives 
+
+    \[ dx = \frac{1}{2}dy\] 
+    Let's collect our three equations:
+
+    \begin{align*}
+        y &= 2x + 1 \\
+        x &= \frac{1}{2}(y-1) \\
+        dx &= \frac{1}{2}dy
+    \end{align*}
+
+    Now let's substitute everything until it is in terms of $y$ only. For clarity, we will do this from left to right.
+
+    \begin{align*}
+        \int_{0}^{1}\frac{1}{2x + 1} dx  &= \int_{x=0}^{x=1}\frac{1}{2x + 1} dx \\
+         &= \int_{\frac{1}{2}(y-1) =0}^{\frac{1}{2}(y-1) =1} \frac{1}{2x + 1}  dx \tag{using $x = \frac{1}{2}(y-1)  $} \\
+         &= \int_{y=1}^{y=3} \frac{1}{2x + 1}   dx \tag{rearranging integral bounds} \\
+         &= \int_{y=1}^{y=3} \frac{1}{y} dx \tag{using $y = 2x + 1  $} \\
+         &= \int_{y=1}^{y=3}\frac{1}{y} \frac{1}{2}dy \tag{using $dx =  \frac{1}{2}dy$} \\
+         &= \frac{1}{2} \int_{y=1}^{y=3}\frac{1}{y} dy \tag{rearranging} \\
+    \end{align*}
+
+    Now we can integrate this in $y$ as usual.
+    \begin{align*}
+          \frac{1}{2} \int_{y=1}^{y=3}\frac{1}{y} dy &= \frac{1}{2} \left[ \ln(y) \right]_{y=1}^{y=3} \\
+         &=  \frac{1}{2} \left(  \ln(3) - \ln(1)  \right) \\
+         &=   \ln(3) 
+    \end{align*}
+
+    The indefinite integral can be written as just \emph{the-bit-in-the-square-brackets-plus-$c$}, remembering the $\frac{1}{2}$ we pulled out:
+
+    \[ \int  \frac{1}{2x + 1}dx  = \frac{1}{2}\ln(y) + c \]
+
+    And now all we need to do is substitute back in what $y$ was:
+
+    \[ \int \frac{1}{2x + 1} dx= \frac{1}{2}\ln(2x + 1 ) + c \]
+
+    If the dividing by $2$ confuses you, go through the steps above but without the integral bounds!
+    \qed
+\end{solution}
+
+\begin{example}
+    Compute the following integral.
+    \[ \int_{0}^{\pi/4} \tan(x) dx \]
+
+    Then state the indefinite integral of $\tan(x)$.
+\end{example}
+
+\begin{solution}
+    Firstly, recall that
+    \[ \tan(x) = \frac{\sin(x)}{\cos(x)}\]
+
+    And here we can make a smart substitution by noticing that $\cos(x)$ differentiates into $-\sin(x)$, therefore when we replace $dx$, 
+    there might be some canceling.
+
+    Define $\cos(x)= y$. We now want to rewrite everything in terms of $y$. Rearranging gives $x = \arccos(y)$, and taking the derivative of both sides gives
+    $\frac{dy}{dx} = -\sin(x)$, where we abuse notation to `multiply by $dx$' and write $dy = -\sin(x)dx$. Further rearranging gives 
+
+    \[ dx = -\frac{1}{\sin(x)}dy\] 
+    Let's collect our three equations:
+
+    \begin{align*}
+        y &= \cos(x) \\
+        x &= \arccos(y) \\
+        dx &= -\frac{1}{\sin(x)}dy
+    \end{align*}
+
+    Now let's substitute everything until it is in terms of $y$ only. For clarity, we will do this from left to right.
+
+    \begin{align*}
+        \int_{0}^{\pi/4} \tan(x) dx  &= \int_{x=0}^{x=\pi/4} \tan(x) dx \\
+         &= \int_{x=0}^{x=\pi/4} \frac{\sin(x)}{\cos(x)} dx \\
+         &= \int_{\arccos(y)=0}^{\arccos(y)=\pi/4} \frac{\sin(x)}{\cos(x)} dx \tag{using $x = \arccos(y)$} \\
+         &= \int_{y=\cos(0)}^{y=\cos(\pi/4)} \frac{\sin(x)}{\cos(x)} dx \tag{rearranging integral bounds} \\
+         &= \int_{y=1}^{y=\cos(\pi/4)} \frac{\sin(x)}{\cos(x)} dx \tag{simplifying integral bounds} \\
+         &= -\int_{y=\cos(\pi/4)}^{y=1} \frac{\sin(x)}{\cos(x)} dx \tag{swapping integral bounds} \\
+         &= -\int_{y=\cos(\pi/4)}^{y=1} \frac{\sin(x)}{y} dx \tag{using $y = \cos(x)$} \\
+         &= -\int_{y=\cos(\pi/4)}^{y=1} \frac{\sin(x)}{y}(-\frac{1}{\sin(x)}) dy \tag{using $dx = -\frac{1}{\sin(x)}$} \\
+         &= \int_{y=\cos(\pi/4)}^{y=1} \frac{1}{y} dy \tag{simplifying} \\
+    \end{align*}
+
+    Now we can integrate this in $y$ as usual.
+    \begin{align*}
+         \int_{y=\cos(\pi/4)}^{y=1} \frac{1}{y} dy &= \left[ \ln(y) \right]_{y=\cos(\pi/4)}^{y=1} \\
+         &=  \left(  \ln(\cos(\pi/4)) - \ln(1) \right) \\
+         &=  \ln(\cos(\pi/4)) 
+    \end{align*}
+
+    The indefinite integral can be written as just \emph{the-bit-in-the-square-brackets-plus-$c$}, but since we swapped the integral bounds, we need to include a minus sign:
+
+    \[ \int \tan(x) dx  = -\ln(y) + c \]
+
+    And now all we need to do is substitute back in what $y$ was:
+
+    \[ \int \tan(x) dx  = -\ln(\cos(x)) + c \]
+
+    If the minus sign confuses you, go through the steps above but without the integral bounds!
+    \qed
+\end{solution}
+
+\subsubsection{Additional Exercises}
+\begin{example}
+    \emph{(hard)}
+
+    Calculate the indefinite integral $\int \cosec x dx$.
+
+    Rearrange your answer to be in the form found in your formula book. 
+    \[\int \cosec x dx = \ln | \cosec x + \cot x|\]
+
+    Hence deduce the indefinite integral $\int \sec x dx$.
+
+    Rearrange your answer to be in the form found in your formula book.
+    \[\int \sec x dx = \ln | \sec x + \tan x|\]
+\end{example}
+\begin{solution}
+    There is a reason that this is included in your formula book! There is no ``nice'' way of approaching this (without complex numbers).
+
+    If you were attempting this for yourself without knowing the answer, there are really three approaches:
+    \begin{enumerate}
+        \item Substitution, e.g. with $u=\sin x$
+        \item By parts with $u = \frac{1}{\sin x}$ and $v' = 1$
+        \item More rearranging before trying the above two again
+    \end{enumerate}
+
+    The first option, if you work through it gives that 
+    \[ \int \cosec x dx = \int \frac{1}{u} \frac{1}{\sqrt{1 - u^2}}du\]
+    But this integral is again very difficult, and probably requires more substitutions! This can be done, but it is good to attempt another approach if your first approach seems to be complicating the integral.
+
+    The second option, if you work through it gives that
+    \[ \int \cosec x dx = \frac{x}{\sin x} + \int  \frac{\cos x}{\sin^2 x}dx\]
+
+    Which gives us a disgusting integral to solve, which is definitely more complicated than the one we started with! That leaves us with the third option, which is to rearrange before integrating.
+
+    We will use multiple tricks to massage this into an integral we can approach, starting with the least intuitive trick.
+
+    \begin{align*}
+        \int \frac{1}{\sin x} dx &= \int \frac{\sin x }{\sin^2 x}dx \tag{multiply top and bottom by $\sin x$} \\
+         &= \int \frac{\sin x}{1 - \cos^2 x}dx \tag{using $\sin^2 x + \cos^2 x = 1$}\\
+    \end{align*}
+
+    Now let's use the substitution $u = \cos x$. Therefore $\frac{du}{dx} = -\sin x$. Pretending to rearrange this for $-du$ gives $-du = \sin x dx$.
+
+    We can substitute this into our final line above since the numerator is $\sin x dx$. 
+
+    \begin{align*}
+        \int \frac{1}{\sin x} dx &= -\int \frac{1}{1 - \cos^2 x}du \tag{using $-du = \sin x dx$}\\
+         &= -\int \frac{1}{1 - u^2}du \tag{using $u = \cos x $} \\
+         &= -\int \frac{1}{(1-u)(1+u)}du \tag{difference of two squares}
+    \end{align*}
+
+    We now use partial fractions to separate the final fraction into two easier to integrate fractions.
+
+    \begin{align*}
+        \frac{1}{(1-u)(1+u)} &= \frac{a}{1-u} + \frac{b}{1+u} \tag{set up partial fractions}\\
+         &= \frac{a(1+u) + b(1-u)}{(1-u)(1+u)} \tag{add the fractions}\\
+         &= \frac{(a + b) + (a-b)u}{(1-u)(1+u)} \tag{collecting terms}
+    \end{align*}
+
+    This gives us the following equation to solve:
+
+    \[ a(1+u) + b(1-u) = 1\]
+    Or equivalently 
+    \[ (a + b) + (a-b)u = 1\]
+    
+    There are two approaches to proceed to solve for $a$ and $b$. One is to substitute $u=1$ and $u=-1$ to cancel $a$ or $b$ in succession.
+    This gives us:
+    \begin{align*}
+        b(1- (-1)) = 1 \tag{$u = -1$}\\
+        a(1+1)= 1 \tag{$u = 1$}\\
+    \end{align*}
+    Which can be solved to find $a = b = \frac{1}{2}$.
+
+    The second approach is to compare like terms with coefficients of $u$ and constants on the left and right side of the equation.
+    \[ (a + b) + (a-b)u = 1 + 0u\]
+
+    We now compare the terms and deduce 
+    \begin{align*}
+        a + b &= 1 \\
+        a - b &= 0
+    \end{align*}
+
+    Adding the two together gives $2a = 1$ and therefore $a = \frac{1}{2}$. The second equation shows that $a = b$ therefore they are both $\frac{1}{2}$.
+
+    Returning to our integral, we can now split our denominator into two fractions.
+    
+        \begin{align*}
+        \int \frac{1}{\sin x} dx &= -\int \frac{1}{(1-u)(1+u)}du \tag{where we left off}\\
+         &= - \int\left( \frac{1}{2}\frac{1}{1-u} + \frac{1}{2}\frac{1}{1+u} \right)du \tag{substituting the partial fraction coefficients}\\
+         &= - \frac{1}{2}\left(\int \frac{1}{1-u}du + \int \frac{1}{1+u}du \right) \tag{factorising}\\
+    \end{align*}
+
+    Recall that the integral of $\frac{1}{u}$ is $\ln | u|$. Therefore by the chain rule (or by substitution of $y = 1-u$ and $z = 1+u$)
+
+    \begin{align*}
+        \int \frac{1}{\sin x} dx &= - \frac{1}{2}\left(-\ln |1-u| + \ln |1+u| \right) +c \tag{integrating}\\
+         &= - \frac{1}{2}\left( \ln \left| \frac{1+u}{1-u}\right|\right) +c \tag{recall $\ln x - \ln y = \ln \frac{x}{y}$}\\
+         &= - \frac{1}{2}\ln \left| \frac{1+\cos x}{1-\cos x}\right| +c \tag{substituting $u = \cos x$}\\
+         &= - \frac{1}{2}\ln \left| \frac{(1+\cos x)^2}{(1-\cos x)(1 + \cos x)}\right| +c \tag{multiplying top and bottom by $(1 + \cos x)$}\\
+         &= - \frac{1}{2}\ln \left| \frac{(1+\cos x)^2}{1-\cos^2 x}\right| +c \tag{multiplying denominator}\\
+         &= - \frac{1}{2}\ln \left| \frac{(1+\cos x)^2}{\sin^2 x}\right| +c \tag{using $\sin^2 x + \cos^2 x = 1$}\\
+         &= - \frac{1}{2}\ln \left| \left(\frac{1+\cos x}{\sin x}\right)^2\right| +c \tag{using $(xy)^2 = x^2y^2$}\\
+         &= - \ln \left| \frac{1+\cos x}{\sin x}\right| +c \tag{recall $a\ln x = \ln (x^a)$}\\
+         &= - \ln \left| \cosec x + \cot x \right| +c \tag{separating the fraction}
+    \end{align*}
+
+    Which is finally in the form of your formula book.
+
+    What about $\sec$? Recall that $\sin(x-\frac{\pi}{2}) = -\cos (x)$. Therefore 
+
+    \[ \int \sec x dx =  - \int \cosec (x - \frac{\pi}{2}) dx\]
+
+    Now, using the chain rule, we can observe that adding a constant to the argument of a function also adds the same constant to the argument of the derivative.
+    To see this, differentiate $f(x+a)$ using the chain rule -- you get $f'(x+a)$.
+
+    Therefore, 
+
+    \begin{align*}
+        \int \sec x dx&= - \int \cosec (x- \frac{\pi}{2}) dx \tag{using $\sec x = -\cosec (x - \frac{\pi}{2})$}\\
+         &= \ln \left| \cosec (x - \frac{\pi}{2}) + \cot(x - \frac{\pi}{2}) \right| +c \tag{using our result for $\int \cosec$}\\
+         &= \ln \left| - \sec x + \cot(x - \frac{\pi}{2}) \right| +c \tag{using our relation for $\cosec$ and $\sec$ again}\\
+         &= \ln \left| - \sec x + \frac{\cos(x - \frac{\pi}{2})}{\sin(x - \frac{\pi}{2})} \right| +c \tag{definition of $\cot$}\\
+         &= \ln \left| - \sec x + \frac{\sin x}{-\cos x } \right| +c \tag{shifting $\sin$ and $\cos$}\\
+         &= \ln \left| - \sec x - \tan x \right| +c \tag{definition of $\tan$} \\
+         &= \ln \left| \sec x + \tan x \right| +c \tag{using $|-x| = |x|$}
+    \end{align*}
+
+    Which is finally in the form of the formula book!
+
+    \qed
+\end{solution}
+
+
+
+\subsection{Mixed Exercises}
+These questions use a range of techniques.
+Remember that the main way to approach an integral question is as follows:
+
+\begin{enumerate}
+    \item Do we know what function has a derivative which is what we are trying to find the integral of? I.e. can we ``just see'' the answer? This can include the formula book.
+    \item Can we rearrange the integral into something we know how to integrate?
+    \item Can we use integration by parts?
+    \item Can we use a substitution?
+\end{enumerate}
+
+Where the numbering corresponds to difficulty. If you can do an earlier step you probably should.
+
+The following exercises will demonstrate this.
+
+
+
+\begin{example}
+    Find 
+    \[ \int_0^9 \frac{x}{1 + \sqrt{x}}dx\]
+\end{example}
+\begin{solution}
+    This might seem to be obviously a substitution question, but I recommend to at least attempt to go through the steps above in order first.
+
+    Can we just integrate it? Well since we have a $\frac{1}{1 + \sqrt{x}}$ term in the integrand, it is useful to think of any integral that might give us this term. One you might try is 
+    $\ln(1 + \sqrt{x})$. This differentiates to give $\frac{\frac{1}{2\sqrt{x}}}{1 + \sqrt{x}}$, which isnt exactly the form we need.
+
+    Secondly, can we rearrange or simplify it? I cannot see a way to rearrange this in an obvious way.
+    
+    Next you might have tried by parts with:
+    \begin{align*}
+        u= \frac{1}{1+\sqrt{x}}&  &v= \frac{1}{2}x^2\\
+        u' = -\frac{1}{2\sqrt{x}}\frac{1}{(1+\sqrt{x})^2}&  &v' = x
+    \end{align*}
+    Where we would then need to integrate $u'v$ as per the by parts formula. This new integral is most likely more complicated than the one we started with! So we should consider another method. We need to have 
+    clarity of mind to see that we are going down the wrong path with this method for this question.
+
+
+    So we proceed with a substitution. The first thing that should jump out at you is using the substitution $u = 1 + \sqrt{x}$
+    
+    We now calculate everything in terms of $u$ that we need.
+    \begin{align*}
+        \frac{du}{dx} &= \frac{1}{2\sqrt{x}} \tag{differentiating}\\
+        dx&=2\sqrt{x}du \tag{rearranging for $dx$}\\
+        u &= 1 + \sqrt{x} \tag{our substitution}\\
+        x&= (u-1)^2 \tag{rearranging $u = 1 + \sqrt{x}$}
+    \end{align*}
+
+    Now let's substitute instance of $x$ from left to right with $u$ in our integral, making sure to remember the integral bounds.
+
+    \begin{align*}
+        \int_{0}^{9}\frac{x}{1 + \sqrt{x}}dx &= \int_{x=0}^{x=9}\frac{x}{1 + \sqrt{x}}dx \tag{reminding ourselves of $x$} \\
+         &= \int_{u=1}^{u=4}\frac{x}{1 + \sqrt{x}}dx \tag{using $u = 1 + \sqrt{x}$} \\
+         &= \int_{u=1}^{u=4}\frac{(u-1)^2}{1 + \sqrt{x}}dx \tag{using $x = (u-1)^2$} \\
+         &= \int_{u=1}^{u=4}\frac{(u-1)^2}{u}dx \tag{using $u = 1 + \sqrt{x}$} \\
+         &= \int_{u=1}^{u=4}\frac{(u-1)^2}{u}2\sqrt{x}du \tag{using $dx = 2\sqrt{x}du$} \\
+         &= \int_{u=1}^{u=4}\frac{(u-1)^2}{u}2\sqrt{(u-1)^2}du \tag{using $x = (u-1)^2$} \\
+         &= \int_{u=1}^{u=4}\frac{(u-1)^2}{u}2(u-1)du \tag{using $(a^2)^\frac{1}{2} = a$} \\
+         &= 2\int_{u=1}^{u=4}\frac{(u-1)^3}{u}du \tag{simplifying} \\
+    \end{align*}
+    Now we again ask ourselves the questions we ask ourselves whenever there is an integral.
+
+    Can we see the integral is? Due to the $\frac{1}{u}$, we might expect there to be some $\ln$ in the answer, but it is not obvious.
+
+    Then we ask: can we rearrange this into something we \emph{do} know how to integrate?\footnote{It is possible to approach this with by parts with $f=(u-1)^3$ and $g' = \frac{1}{u}$, but you would need to do by parts multiple times with the resulting integral. There are no obvious substitutions either. It is essential to be able to identify when you can ``just do'' the integral and not waste time with a more complicated method.}
+
+    Well, the only thing we can try is expanding:
+
+    \begin{align*}
+        2\int_{u=1}^{u=4}\frac{(u-1)^3}{u}du &= 2\int_{u=1}^{u=4}\frac{u^3 + 3u^2\times(-1) + 3u\times(-1)^2 + (-1)^3}{u}du \tag{using binomial expansion formula} \\
+         &=  2\int_{u=1}^{u=4}\frac{u^3 - 3u^2\times + 3u\times -1}{u}du \tag{simplifying} \\
+         &= 2\int_{u=1}^{u=4}\frac{u^3}{u}- 3 \frac{u^2}{u} + 3\frac{u}{u} - \frac{1}{u} du \tag{separating the fraction} \\
+         &= 2 \int_{u=1}^{u=4}u^2- 3 u + 3 - \frac{1}{u} du \tag{simplifying}
+    \end{align*}
+
+    Which we can actually solve by computing each of the integrals one-by-one!
+
+    \begin{align*}
+        2 \int_{u=1}^{u=4}u^2- 3 u + 3 - \frac{1}{u} du &= 2\left[ \frac{1}{3}u^3 - \frac{3}{2}u^2 + 3u - \ln |u|\right]_{u=1}^{u=4} \\ \tag{``just doing'' the integrals}
+         &= 2(\frac{1}{3}4^3 - \frac{3}{2}4^2 + 3\times4 - \ln 4)\\
+         &- 2(\frac{1}{3}1^3 - \frac{3}{2}1^2 + 3\times1 - \cancel{\ln 1}) \tag{using $\ln 1 = 0$}
+    \end{align*}
+
+    Where you could expand all of this or put it in a calculator for the answer.
+    \qed
+\end{solution}
+
+\begin{example}
+    Find 
+    \[ \int_1^{e^2} x^2 \ln x dx\]
+\end{example}
+\begin{solution}
+    It's always good to think whether you can spot the integral before starting. Since it is not clear or in the formula book, we then ask ourselves whether we can rearrange it in any sensible way.
+    Since there is no real way to rearrange this obviously, we continue with by parts or substitution.
+
+    There is an obvious calling for by parts since it is two functions multiplied together.
+
+    Using LATE, we declare that $u= \ln x$ and $v' = x^2$. Writing this in a square and filling in the missing $u'$ and $v$ via differentiation and integration gives us:
+    \begin{align*}
+        u = \ln x & & v = \frac{1}{3}x^3 \\
+        u' = \frac{1}{x}& & v' = x^2
+    \end{align*}
+
+    Recall (or derive from the product rule as in Section \ref{sec:int-parts}) the by parts formula:
+
+    \[ \int_a^b u v' dx= \left[uv\right]_a^b - \int_a^b u' v dx\]
+
+    Substituting our square into this formula gives the following:
+
+    \begin{align*}
+        \int_1^{e^2} x^3 \ln x dx &= \left[\ln x \frac{1}{3}x^3\right]_1^{e^2} - \int_1^{e^2} \frac{1}{x} \times \frac{1}{3}x^3 dx \\
+         &=  \left(\ln (e^2) \frac{1}{3}(e^2)^3 - \ln (1) \frac{1}{3}(1)^3\right) - \int_1^{e^2} \frac{1}{x} \times \frac{1}{3}x^3 dx \tag{substituting bounds}\\
+         &= \left(2\ln (e) \frac{1}{3}e^6 - \cancel{\ln (1)} \frac{1}{3}\right) - \int_1^{e^2} \frac{1}{x} \times \frac{1}{3}x^3 dx \tag{using $\ln a^b = b\ln a$ and $\ln 1 = 0$}\\
+         &= \frac{2}{3}e^6  - \int_1^{e^2} \frac{1}{x} \times \frac{1}{3}x^3 dx \tag{using $\ln e = 1$} \\
+         &=  \frac{2}{3}e^6  - \frac{1}{3} \int_1^{e^2} x^2 dx \tag{simplifying the integral} \\ 
+         &= \frac{2}{3}e^6  - \frac{1}{3} \left[\frac{1}{3} x^3\right]_1^{e^2}  \tag{evaluating the integral} \\
+         &= \frac{2}{3}e^6  - \frac{1}{3} \left(\frac{1}{3} (e^2)^3 - \frac{1}{3} 1^3\right) \tag{evaluating the bounds}   
+    \end{align*}
+
+    Which you could go on to simplify and or plug into a calculator.
+
+    \qed
+\end{solution}
+
+
+
+\begin{example}
+    Find
+    \[ \int_0^{1} 8 x^2 e^{-3x} dx\]
+
+    Then state the indefinite integral
+    \[ \int 8 x^2 e^{-3x} dx\]
+\end{example}
+\begin{solution}
+    Again we start by trying to see if we can see an answer immediately. Since the derivative of $e^{f(x)}$ has a term like $e^{f(x)}$ in it, we might try something like
+    $x^3 e^{-3x}$, which differentiates to become $3x^2 e^{-3x} - 3x^3 e^{-3x}$, where this is almost like what we want except the second term has an $x^3$ in it, ruining our fun.
+
+    Since there is no obvious way to rearrange this, and we could not integrate it directly, we try by parts. Using LATE, choose $u= 8x^2$ and $v' =e^{-3x}$.
+    
+    Let us differentiate $u$ and integrate $v'$\footnote{Observe that $e^{-3x}$ differentiates to give $-3e^{-3x}$, so we must divide by $-3$ to get the answer we want.} 
+    to complete our square:
+
+    \begin{align*}
+        u = 8x^2 & & v = -\frac{1}{3}e^{-3x} \\
+        u' = 16x & & v' = e^{-3x}
+    \end{align*}
+    
+    Recall (or derive from the product rule as in Section \ref{sec:int-parts}) the by parts formula:
+
+    \[ \int_a^b u v' dx= \left[uv\right]_a^b - \int_a^b u' v dx\]
+
+    Substituting our square into this formula gives the following:
+
+    \begin{align*}
+        \int_0^{1} 8 x^2 e^{-3x} dx &= \left[8x^2\times (-\frac{1}{3}e^{-3x})\right]_0^{1} - \int_0^{1} 16x \times (-\frac{1}{3}e^{-3x}) dx \\
+         &=  \left(8\times1^2\times (-\frac{1}{3}e^{-3\times 1}) - \cancel{8\times0^2\times (-\frac{1}{3}e^{-3\times 0})}\right) - \int_0^{1} 16x \times (-\frac{1}{3}e^{-3x}) dx \tag{substituting the integral bounds} \\
+         &=  -\frac{8}{3}e^{-3}- \int_0^{1} 16x \times (-\frac{1}{3}e^{-3x}) dx \tag{simplifying} \\
+         &= -\frac{8}{3}e^{-3} + \frac{16}{3}\int_0^{1} x  e^{-3x} dx \tag{rearranging the integral}
+    \end{align*}
+    Now how can we approach this final integral? If we ask ourselves the same questions again, we realise that we must do integration by parts again! 
+    We should not worry however, since although this integral looks similar to the one we started with, the power of $x$ has decreased which means we are making progress -- 
+    if the power decreases one more time then we will be left with just $e^{-3x}$, which we know how to integrate happily.
+
+    We continue by repeating our process of integration by parts on
+    \[
+        \int_0^1 x e^{-3x} dx.
+    \]
+
+    Using LATE again, choose $u = x$ and $v' = e^{-3x}$. As before, integrating $e^{-3x}$ gives $v = -\frac{1}{3}e^{-3x}$ and differentiating $x$ gives $u' = 1$.
+    Our square is therefore:
+
+    \begin{align*}
+        u = x & & v = -\frac{1}{3}e^{-3x} \\
+        u' = 1 & & v' = e^{-3x}
+    \end{align*}
+
+    Applying the by parts formula on $[0,1]$:
+
+    \begin{align*}
+        \int_0^1 x e^{-3x} dx &= \left[x \times \left(-\frac{1}{3}e^{-3x}\right)\right]_0^1 - \int_0^1 1 \times \left(-\frac{1}{3}e^{-3x}\right) dx \\
+        &= \left[-\frac{1}{3}x e^{-3x}\right]_0^1 + \frac{1}{3}\int_0^1 e^{-3x} dx \\
+        &= \left(-\frac{1}{3}e^{-3} - 0\right) + \frac{1}{3}\int_0^1 e^{-3x} dx \tag{evaluating the boundary term}
+    \end{align*}
+
+    Now we integrate the remaining exponential:
+
+    \begin{align*}
+        \int_0^1 e^{-3x} dx &= \left[-\frac{1}{3}e^{-3x}\right]_0^1 \\
+        &= -\frac{1}{3}e^{-3} + \frac{1}{3}
+    \end{align*}
+
+    Substituting this back in, we get:
+
+    \begin{align*}
+        \int_0^1 x e^{-3x} dx &= -\frac{1}{3}e^{-3} + \frac{1}{3}\left(-\frac{1}{3}e^{-3} + \frac{1}{3}\right) \\
+        &= -\frac{1}{3}e^{-3} - \frac{1}{9}e^{-3} + \frac{1}{9} \\
+        &= -\frac{4}{9}e^{-3} + \frac{1}{9}
+    \end{align*}
+
+    Now recall that our original integral was:
+
+    \[
+        \int_0^{1} 8 x^2 e^{-3x} dx = -\frac{8}{3}e^{-3} + \frac{16}{3}\int_0^{1} x  e^{-3x} dx
+    \]
+
+    Substituting our result for $\int_0^1 x e^{-3x} dx$:
+
+    \begin{align*}
+        \int_0^{1} 8 x^2 e^{-3x} dx &= -\frac{8}{3}e^{-3} + \frac{16}{3}\left(-\frac{4}{9}e^{-3} + \frac{1}{9}\right) \\
+        &= -\frac{8}{3}e^{-3} - \frac{64}{27}e^{-3} + \frac{16}{27} \\
+        &= -\frac{72}{27}e^{-3} - \frac{64}{27}e^{-3} + \frac{16}{27} \tag{writing $\frac{8}{3} = \frac{72}{27}$} \\
+        &= \frac{16}{27} - \frac{136}{27}e^{-3}
+    \end{align*}
+
+    You could leave your answer as
+    \[
+        \int_0^{1} 8 x^2 e^{-3x} dx = \frac{16}{27} - \frac{136}{27}e^{-3}
+    \]
+    or factor it slightly as
+    \[
+        \int_0^{1} 8 x^2 e^{-3x} dx = \frac{8}{27}\left(2 - 17e^{-3}\right)
+    \]
+    or simply plug this into a calculator for a decimal approximation.
+
+    What if we wanted to know the indefinite integral of $8 x^2 e^{-3x} $? The only real difference between definite and indefinite integral is whether you write the square brackets or not.
+    To convert from a definite integral to an indefinite integral, you can work up until the square brackets part, and then remove the square brackets and add $c$.
+
+    For example, we can do some chasing around to find:
+
+    \begin{align*}
+        \int 8 x^2 e^{-3x} dx &= 8x^2\times (-\frac{1}{3}e^{-3x}) + \frac{16}{3}\int x  e^{-3x} dx \tag{reusing work up until square brackets} \\
+         &= 8x^2\times (-\frac{1}{3}e^{-3x}) + \frac{16}{3} \left( x \times \left(-\frac{1}{3}e^{-3x}\right) + \frac{1}{3}\int e^{-3x} dx\right) \\
+         &=   8x^2\times (-\frac{1}{3}e^{-3x}) + \frac{16}{3} \left( x \times \left(-\frac{1}{3}e^{-3x}\right) + \frac{1}{3}\left(-\frac{1}{3}e^{-3x}\right)\right) + c
+    \end{align*}
+    Where $c$ is a constant.
+
+    If you really want to, you could differentiate this to verify the result.
+    \qed
+\end{solution}
+
+\begin{example}
+    Let $a$ be a positive number. Using $x = a \sin^2 \theta$, find
+    \[ \int_0^{a} x^{\frac{1}{2}} \sqrt{a - x} dx\]
+    Give your answer in terms of $a$.
+\end{example}
+\begin{solution}
+    As usual, we first ask whether we can ``see'' an obvious answer which differentiates into the term inside the integral. Because of the square roots and the $a - x$ term, this does not look straightforward, so we follow the hint and use a substitution
+
+    Let
+    \[
+        x = a \sin^2 \theta
+    \]
+
+    Since $a > 0$, we can work out everything we need in terms of $\theta$
+
+    \begin{align*}
+        \sqrt{x} &= \sqrt{a \sin^2 \theta} = \sqrt{a}\sin \theta \tag{since $\sin \theta \ge 0$ on $[0,\tfrac{\pi}{2}]$} \\
+        a - x &= a - a \sin^2 \theta = a(1 - \sin^2 \theta) = a \cos^2 \theta \tag{using $\sin^2 \theta + \cos^2 \theta = 1$} \\
+        \sqrt{a - x} &= \sqrt{a \cos^2 \theta} = \sqrt{a}\cos \theta \\
+        \frac{dx}{d\theta} &= a \cdot 2\sin \theta \cos \theta = a \sin 2\theta \tag{using $\sin 2\theta = 2\sin \theta \cos \theta$} \\
+        \therefore \ dx &= a \sin 2\theta \, d\theta
+    \end{align*}
+
+    We also need to change the integral bounds
+
+    \begin{align*}
+        x = 0 &\therefore a \sin^2 \theta = 0 \therefore \sin^2 \theta = 0 \therefore \theta = 0 \\
+        x = a &\therefore a \sin^2 \theta = a \therefore \sin^2 \theta = 1 \therefore \theta = \frac{\pi}{2}
+    \end{align*}
+
+    Now we substitute everything into the integral, step by step, from left to right
+
+    \begin{align*}
+        \int_0^{a} x^{\frac{1}{2}} \sqrt{a - x} \, dx 
+        &= \int_{x=0}^{x=a} \sqrt{x} \sqrt{a - x} \, dx \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \sqrt{x} \sqrt{a - x} \, dx \tag{changing to $\theta$ bounds} \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \left(\sqrt{a}\sin \theta\right) \left(\sqrt{a}\cos \theta\right) \left(a \sin 2\theta \right) d\theta \tag{substituting $\sqrt{x}$, $\sqrt{a-x}$, and $dx$} \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} a \sin \theta \cos \theta \cdot a \sin 2\theta \, d\theta \tag{since $\sqrt{a}\sqrt{a} = a$} \\
+        &= a^2 \int_{\theta=0}^{\theta=\frac{\pi}{2}} \sin \theta \cos \theta \sin 2\theta \, d\theta
+    \end{align*}
+
+    Now we simplify the integrand using a double angle formula again. Recall
+
+    \[
+        \sin 2\theta = 2\sin \theta \cos \theta
+    \]
+
+    Therefore
+
+    \begin{align*}
+        \sin \theta \cos \theta \sin 2\theta &= \sin \theta \cos \theta \cdot 2\sin \theta \cos \theta \\
+        &= 2\sin^2 \theta \cos^2 \theta \\
+        &= \frac{1}{2}\left(2\sin \theta \cos \theta\right)^2 \\
+        &= \frac{1}{2} \sin^2 2\theta
+    \end{align*}
+
+    Substituting this back into our integral gives
+
+    \begin{align*}
+        \int_0^{a} x^{\frac{1}{2}} \sqrt{a - x} \, dx 
+        &= a^2 \int_{\theta=0}^{\theta=\frac{\pi}{2}} \sin \theta \cos \theta \sin 2\theta \, d\theta \\
+        &= a^2 \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{2} \sin^2 2\theta \, d\theta \\
+        &= \frac{a^2}{2} \int_{\theta=0}^{\theta=\frac{\pi}{2}} \sin^2 2\theta \, d\theta
+    \end{align*}
+
+    To integrate $\sin^2 2\theta$, we use the standard identities
+    \begin{align*}
+        \cos 2u &= \cos^2 u - \sin^2 u    \\
+        \sin^2 u + \cos^2 u &= 1
+    \end{align*}
+
+    Which can be combined to deduce 
+
+    \[
+        \sin^2 u = \frac{1}{2}(1 - \cos 2u)
+    \]
+
+    Here $u = 2\theta$, so
+
+    \[
+        \sin^2 2\theta = \frac{1}{2}\left(1 - \cos 4\theta\right)
+    \]
+
+    Substituting this into our integral
+
+    \begin{align*}
+        \frac{a^2}{2} \int_{\theta=0}^{\theta=\frac{\pi}{2}} \sin^2 2\theta \, d\theta
+        &= \frac{a^2}{2} \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{2}\left(1 - \cos 4\theta\right) d\theta \\
+        &= \frac{a^2}{4} \int_{\theta=0}^{\theta=\frac{\pi}{2}} \left(1 - \cos 4\theta\right) d\theta
+    \end{align*}
+
+    Now we can integrate term by term
+
+    \begin{align*}
+        \frac{a^2}{4} \int_{\theta=0}^{\theta=\frac{\pi}{2}} \left(1 - \cos 4\theta\right) d\theta
+        &= \frac{a^2}{4} \left[ \theta - \frac{1}{4}\sin 4\theta \right]_{\theta=0}^{\theta=\frac{\pi}{2}} \tag{integrating $1$ and $\cos 4\theta$} \\
+        &= \frac{a^2}{4} \left( \frac{\pi}{2} - \frac{1}{4}\sin 4\cdot\frac{\pi}{2} - \left(0 - \frac{1}{4}\sin 0\right) \right) \tag{substituting the bounds} \\
+        &= \frac{a^2}{4} \left( \frac{\pi}{2} - \frac{1}{4}\sin 2\pi + \frac{1}{4}\sin 0 \right) \\
+        &= \frac{a^2}{4} \cdot \frac{\pi}{2} \tag{since $\sin 2\pi = 0$ and $\sin 0 = 0$} \\
+        &= \frac{\pi a^2}{8}
+    \end{align*}
+
+    Therefore
+    \[
+        \int_0^{a} x^{\frac{1}{2}} \sqrt{a - x} \, dx = \frac{\pi a^2}{8}
+    \]
+
+    \qed
+\end{solution}
+
+\begin{example}
+    Find
+    \[ \int_0^{\frac{\pi^2}{4}} x  \sin \sqrt{x} dx\]
+\end{example}
+\begin{solution}
+    As usual, we first ask: can we ``just see'' an obvious answer which differentiates into the term inside the integral?  
+    Because of the $\sin \sqrt{x}$ term, this is not obvious, and it does not match anything in the formula book directly either.
+
+    Next, we ask whether we can rearrange this into something simpler. Again, nothing jumps out.
+
+    However, the $\sqrt{x}$ inside the sine is a strong hint to try a substitution to simplify the integrand.  
+    In particular, if we set the square root equal to a new variable, the inside of the sine becomes much simpler.
+
+    Let us define
+    \[
+        z = \sqrt{x}
+    \]
+    We now want to rewrite everything in terms of $z$. Rearranging this gives
+    \[
+        x = z^2
+    \]
+    Differentiating both sides with respect to $x$ gives
+    \[
+        \frac{dz}{dx} = \frac{1}{2\sqrt{x}}
+    \]
+    Now (abusing notation slightly)\footnote{This is the usual informal way to think about differentials; it can be made rigorous, but that is beyond our scope here.} we ``multiply'' both sides by $dx$ to get
+    \[
+        dz = \frac{1}{2\sqrt{x}} \, dx
+    \]
+    Substituting $\sqrt{x} = z$ into this, we obtain
+    \[
+        dz = \frac{1}{2z} \, dx \quad \therefore \quad dx = 2z \, dz
+    \]
+
+    Let us collect the key relations:
+    \begin{align*}
+        z &= \sqrt{x} \\
+        x &= z^2 \\
+        dx &= 2z \, dz
+    \end{align*}
+
+    We also need to update the integral bounds. When $x = 0$,
+    \[
+        z = \sqrt{0} = 0
+    \]
+    and when $x = \dfrac{\pi^2}{4}$
+    \[
+        z = \sqrt{\frac{\pi^2}{4}} = \frac{\pi}{2}
+    \]
+
+    Now we carefully substitute everything from left to right so that the integral becomes entirely in terms of $z$:
+    \begin{align*}
+        \int_0^{\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx
+            &= \int_{x=0}^{x=\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx \\
+            &= \int_{z=0}^{z=\frac{\pi}{2}} x \sin \sqrt{x} \, dx \tag{using $z = \sqrt{x}$ for the bounds} \\
+            &= \int_{z=0}^{z=\frac{\pi}{2}} z^2 \sin z \, dx \tag{using $x = z^2$ and $\sqrt{x} = z$} \\
+            &= \int_{z=0}^{z=\frac{\pi}{2}} z^2 \sin z \cdot 2z \, dz \tag{using $dx = 2z \, dz$} \\
+            &= 2 \int_{z=0}^{z=\frac{\pi}{2}} z^3 \sin z \, dz
+    \end{align*}
+
+    So the original integral has now become
+    \[
+        \int_0^{\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx
+        = 2 \int_0^{\frac{\pi}{2}} z^3 \sin z \, dz
+    \]
+
+    The substitution has done its job: the awkward $\sqrt{x}$ has disappeared, and we are left with a polynomial times a trig function, 
+    which is a classic situation for integration by parts (see Section \ref{sec:int-parts}).
+
+    Let us define
+    \[
+        J = \int_0^{\frac{\pi}{2}} z^3 \sin z \, dz
+    \]
+    so that our original integral is
+    \[
+        \int_0^{\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx = 2J
+    \]
+
+    We now tackle $J$ using integration by parts, and we will need to do this repeatedly, noticing that each time the power of $z$ goes down by $1$, 
+    so we are making progress.
+
+    \medskip
+    \noindent\textbf{First integration by parts}
+
+    Following LATE, we treat $z^3$ as algebra and $\sin z$ as trig, and choose
+    \[
+        u = z^3, \qquad v' = \sin z
+    \]
+    Differentiating and integrating gives:
+    \begin{align*}
+        u &= z^3            & v &= -\cos z \\
+        u' &= 3z^2          & v' &= \sin z
+    \end{align*}
+    (since $( -\cos z )' = \sin z$).
+
+    Recall the by-parts formula for definite integrals:
+    \[
+        \int_a^b u v' \, dz = \big[uv\big]_a^b - \int_a^b u' v \, dz
+    \]
+
+    Substituting our choices in, we obtain
+    \begin{align*}
+        J &= \int_0^{\frac{\pi}{2}} z^3 \sin z \, dz \\
+          &= \left[ z^3 \cdot (-\cos z) \right]_0^{\frac{\pi}{2}} - \int_0^{\frac{\pi}{2}} 3z^2 \cdot (-\cos z) \, dz \\
+          &= \left[ -z^3 \cos z \right]_0^{\frac{\pi}{2}} + 3 \int_0^{\frac{\pi}{2}} z^2 \cos z \, dz \tag{rearranging the integral}
+    \end{align*}
+
+    The integral bound term on the left simplifies nicely: since $\cos\left(\frac{\pi}{2}\right) = 0$ and $\cos(0)=1$,
+    \[
+        \left[ -z^3 \cos z \right]_0^{\frac{\pi}{2}} = \left(-\left(\frac{\pi}{2}\right)^3 \cdot 0\right) - \left(-0^3 \cdot 1\right) = 0.
+    \]
+    So
+    \[
+        J = 3 \int_0^{\frac{\pi}{2}} z^2 \cos z \, dz
+    \]
+    Let us call the new integral
+    \[
+        K = \int_0^{\frac{\pi}{2}} z^2 \cos z \, dz
+    \]
+    so that $J = 3K$.
+
+    \medskip
+    \noindent\textbf{Second integration by parts}
+
+    We now compute $K$ by integration by parts again. This time, we choose
+    \[
+        u = z^2, \qquad v' = \cos z
+    \]
+    Differentiating and integrating:
+    \begin{align*}
+        u &= z^2       & v &= \sin z \\
+        u' &= 2z       & v' &= \cos z
+    \end{align*}
+    (since $(\sin z)' = \cos z$).
+
+    By the same formula,
+    \begin{align*}
+        K &= \int_0^{\frac{\pi}{2}} z^2 \cos z \, dz \\
+          &= \left[ z^2 \sin z \right]_0^{\frac{\pi}{2}} - \int_0^{\frac{\pi}{2}} 2z \sin z \, dz
+    \end{align*}
+
+    Let us evaluate the boundary term:
+    \[
+        \left[ z^2 \sin z \right]_0^{\frac{\pi}{2}}
+        = \left(\left(\frac{\pi}{2}\right)^2 \sin\left(\frac{\pi}{2}\right)\right) - (0^2 \sin 0)
+        = \frac{\pi^2}{4} \cdot 1 - 0
+        = \frac{\pi^2}{4}
+    \]
+
+    So we obtain
+    \[
+        K = \frac{\pi^2}{4} - 2 \int_0^{\frac{\pi}{2}} z \sin z \, dz
+    \]
+
+    Let us define
+    \[
+        L = \int_0^{\frac{\pi}{2}} z \sin z \, dz
+    \]
+    so that $K = \dfrac{\pi^2}{4} - 2L$.
+
+    \medskip
+    \noindent\textbf{Third integration by parts}
+
+    The integral $L$ is simpler but still a product, so we perform integration by parts one more time.  
+    Take
+    \[
+        u = z, \qquad v' = \sin z
+    \]
+    Then
+    \begin{align*}
+        u &= z          & v &= -\cos z \\
+        u' &= 1         & v' &= \sin z
+    \end{align*}
+    (again, since $( -\cos z)' = \sin z$).
+
+    Applying the formula:
+    \begin{align*}
+        L &= \int_0^{\frac{\pi}{2}} z \sin z \, dz \\
+          &= \left[ z \cdot (-\cos z) \right]_0^{\frac{\pi}{2}} - \int_0^{\frac{\pi}{2}} 1 \cdot (-\cos z) \, dz \\
+          &= \left[ -z \cos z \right]_0^{\frac{\pi}{2}} + \int_0^{\frac{\pi}{2}} \cos z \, dz
+    \end{align*}
+
+    Evaluate each part:
+    \[
+        \left[ -z \cos z \right]_0^{\frac{\pi}{2}}
+        = \left(-\frac{\pi}{2} \cos\left(\frac{\pi}{2}\right)\right) - \left(-0 \cdot \cos 0\right)
+        = -\frac{\pi}{2} \cdot 0 - 0
+        = 0
+    \]
+    and
+    \[
+        \int_0^{\frac{\pi}{2}} \cos z \, dz = [\sin z]_0^{\frac{\pi}{2}} = \sin\left(\frac{\pi}{2}\right) - \sin(0) = 1 - 0 = 1
+    \]
+
+    Hence
+    \[
+        L = 0 + 1 = 1
+    \]
+
+    \medskip
+    \noindent\textbf{Putting it all back together}
+
+    We found:
+    \[
+        K = \frac{\pi^2}{4} - 2L = \frac{\pi^2}{4} - 2 \cdot 1 = \frac{\pi^2}{4} - 2
+    \]
+    Then
+    \[
+        J = 3K = 3\left(\frac{\pi^2}{4} - 2\right) = \frac{3\pi^2}{4} - 6
+    \]
+    Finally, recall that the original integral is
+    \[
+        \int_0^{\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx = 2J
+    \]
+    so
+    \begin{align*}
+        \int_0^{\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx
+            &= 2 \left( \frac{3\pi^2}{4} - 6 \right) \\
+            &= \frac{3\pi^2}{2} - 12
+    \end{align*}
+
+    Which finishes the question.
+    \qed
+\end{solution}
+
+
+\begin{example}
+    Compute the following integral
+    \[
+        \int_{0}^{1} \frac{2x}{\sqrt{1 - x^4}} \, dx
+    \]
+    Then state the indefinite integral of $\dfrac{2x}{\sqrt{1 - x^4}}$.
+\end{example}
+
+\begin{solution}
+    As usual, we first ask whether we can ``see'' an obvious answer which differentiates into the term inside the integral
+
+    \[
+        \frac{2x}{\sqrt{1 - x^4}}
+    \]
+
+    There is a $\sqrt{1 - x^4}$ in the denominator, and the numerator is $2x$. This looks like something that might appear from the chain rule, but it is not in a form we recognise directly
+
+    Next we ask if integration by parts would help. If we tried by parts, there is no obvious way to choose $u$ and $v'$ so that the resulting integral is simpler. For example, if we chose
+    \[
+        u = 2x, \quad v' = \frac{1}{\sqrt{1 - x^4}}
+    \]
+    then we would need to find an expression for $v$ by integrating $\dfrac{1}{\sqrt{1 - x^4}}$, which is \emph{harder} than the question we started with. So integration by parts is not a good choice here
+
+    This suggests we should try substitution. The $x^4$ inside the square root comes from $(x^2)^2$, and the numerator has a factor of $2x$. This suggests using
+
+    \[
+        u = x^2
+    \]
+
+    We now work out everything we need in terms of $u$
+
+    \begin{align*}
+        u &= x^2 \\
+        \frac{du}{dx} &= 2x \tag{differentiating} \\
+        du &= 2x \, dx \\
+        \therefore \ 2x \, dx &= du
+    \end{align*}
+
+    We also change the bounds from $x$ to $u$
+
+    \begin{align*}
+        x = 0 &\Rightarrow u = 0^2 = 0 \\
+        x = 1 &\Rightarrow u = 1^2 = 1
+    \end{align*}
+
+    Now we substitute, step by step, from left to right
+
+    \begin{align*}
+        \int_{0}^{1} \frac{2x}{\sqrt{1 - x^4}} \, dx 
+        &= \int_{x=0}^{x=1} \frac{2x}{\sqrt{1 - x^4}} \, dx \\
+        &= \int_{u=0}^{u=1} \frac{2x}{\sqrt{1 - (x^2)^2}} \, dx \tag{using $u = x^2$} \\
+        &= \int_{u=0}^{u=1} \frac{2x}{\sqrt{1 - u^2}} \, dx \tag{substituting $x^2 = u$ inside the square root} \\
+        &= \int_{u=0}^{u=1} \frac{1}{\sqrt{1 - u^2}} \, du \tag{using $2x \, dx = du$}
+    \end{align*}
+
+    Now our integral is
+
+    \[
+        \int_{0}^{1} \frac{1}{\sqrt{1 - u^2}} \, du
+    \]
+
+    This is a standard form which you might recognise from the formula book if you have looked at the further maths section as the derivative of $\sin^{-1} u$. 
+    Without access to this knowledge, we can still proceed using a second substitution. The integrand has the form $\dfrac{1}{\sqrt{1 - u^2}}$, which suggests a trigonometric substitution. 
+    One way to reason through this is to recall that $1 - \sin^2 x = \cos^2 x$, therefore using $u = \sin \theta$ will result in some simplification here.
+
+    We choose
+
+    \[
+        u = \sin \theta
+    \]
+
+    Then we work out everything we need in terms of $\theta$
+
+    \begin{align*}
+        u &= \sin \theta \\
+        \frac{du}{d\theta} &= \cos \theta \tag{differentiating} \\
+        du &= \cos \theta \, d\theta \\
+        1 - u^2 &= 1 - \sin^2 \theta = \cos^2 \theta \tag{using $\sin^2 \theta + \cos^2 \theta = 1$} \\
+        \sqrt{1 - u^2} &= \sqrt{\cos^2 \theta} = \cos \theta \tag{on $0 \le \theta \le \tfrac{\pi}{2}$, $\cos \theta \ge 0$}
+    \end{align*}
+
+    We also convert the bounds from $u$ to $\theta$
+
+    \begin{align*}
+        u = 0 &\therefore \sin \theta = 0 \therefore \theta = 0 \\
+        u = 1 &\therefore \sin \theta = 1 \therefore \theta = \frac{\pi}{2}
+    \end{align*}
+
+    Now we substitute everything into the integral, again from left to right
+
+    \begin{align*}
+        \int_{u=0}^{u=1} \frac{1}{\sqrt{1 - u^2}} \, du
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{\sqrt{1 - u^2}} \, du \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{\sqrt{1 - \sin^2 \theta}} \, du \tag{using $u = \sin \theta$} \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{\cos \theta} \, du \tag{using $\sqrt{1 - \sin^2 \theta} = \cos \theta$} \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{\cos \theta} \cdot \cos \theta \, d\theta \tag{using $du = \cos \theta \, d\theta$} \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} 1 \, d\theta \tag{simplifying}
+    \end{align*}
+
+    This is now very simple to integrate
+
+    \begin{align*}
+        \int_{\theta=0}^{\theta=\frac{\pi}{2}} 1 \, d\theta
+        &= \left[ \theta \right]_{\theta=0}^{\theta=\frac{\pi}{2}} \\
+        &= \frac{\pi}{2} - 0 \\
+        &= \frac{\pi}{2}
+    \end{align*}
+
+    Therefore
+
+    \[
+        \int_{0}^{1} \frac{2x}{\sqrt{1 - x^4}} \, dx = \frac{\pi}{2}
+    \]
+
+    Now we state the indefinite integral. Looking back at our first substitution, we had
+
+    \[
+        \int \frac{2x}{\sqrt{1 - x^4}} \, dx = \int \frac{1}{\sqrt{1 - u^2}} \, du = \int 1 \, d\theta = \theta + c
+    \]
+
+    Unravelling, we use that $u = \sin \theta$ to write that $\theta = \sin^{-1}u$, and substitute into the above to find that
+
+    \[
+        \int \frac{2x}{\sqrt{1 - x^4}}  \, dx = \sin^{-1} u + c
+    \]
+
+    Now we substitute back $u = x^2$
+
+    \[
+        \int \frac{2x}{\sqrt{1 - x^4}} \, dx = \sin^{-1}(x^2) + c
+    \]
+
+    You can check this by differentiating $\sin^{-1}(x^2)$ (e.g. using the formula book in the further maths section) and confirming that you get $\dfrac{2x}{\sqrt{1 - x^4}}$
+
+    \qed
+\end{solution}
+
+\begin{example}
+    Compute the following indefinite integral.
+
+    \[ \int x e^{x^2} dx\]
+\end{example}
+\begin{solution}
+    If you are rushing, you might immediately try to jump in with integration by parts or substitution.
+    Integration by parts would lead you to needing to integrate $e^{x^2}$, which you might try a substitution of 
+    $u = x^2$ to try to simplify, but you find that $dx = \frac{1}{2x}du$, and your integral ends up becoming even more complicated.
+
+    Instead -- slowing down -- we can try to ``just integrate'' it.
+
+    Since we know that (by the chain rule Section \ref{sec:chain-rule}) differentiating an exponential gives the same exponential times something, we know our integral needs to 
+    have $e^{x^2}$ as one of the terms to get something that differentiates to give $x e^{x^2}$.
+
+    Let's try differentiating $e^{x^2}$ and see if it is close to $x e^{x^2}$. We can do this by using the chain rule, see Section \ref{sec:chain-rule}.
+
+    \begin{align*}
+        (e^{f(x)})' &= f'(x)e^{f(x)} \tag{using the chain rule}\\
+         &= 2x e^{x^2} \tag{using $f(x) = x^2$}
+    \end{align*}
+
+    This is close to our desired $x e^{x^2}$, so we can divide both sides by $2$ to get
+
+    \[ (\frac{1}{2}e^{x^2})' = x e^{x^2}\]
+
+    This gives us a function that differentiates to give the function inside the integral, which is exactly what we are looking for.
+
+    Therefore, the indefinite integral of $x e^{x^2}$ is, using $f(x) = x^2$,
+
+    \[ \int x e^{x^2}dx = \frac{1}{2}e^{x^2} + c\]
+
+    Where $c$ is a constant.
+\end{solution}
+
+\begin{example}
+    Compute the following indefinite integral.
+
+    \[ \int \frac{5x}{1+2x^2} dx\]
+\end{example}
+\begin{solution}
+    If you are rushing, you might immediately try to jump in with integration by parts or substitution. Alternatively, one might try to factorise 
+    the denominator and use partial fractions. The most likely successful approach of those is substitution, but it would lead to a lengthy computation.
+
+    Instead -- slowing down -- we can try to ``just integrate'' it.
+
+    Since we know that (by the chain rule Section \ref{sec:chain-rule}) differentiating $\ln(f(x))$ gives something times $\frac{1}{f(x)}$, we might guess our integral needs to 
+    have $\ln(1+2x^2)$ as one of the terms to get something that differentiates to give $\frac{5x}{1+2x^2}$.
+
+    Let's try differentiating $\ln(1+2x^2)$ and see if it is close to $\frac{5x}{1+2x^2}$. We can do this by using the chain rule, see Section \ref{sec:chain-rule}.
+
+    \begin{align*}
+        (\ln(f(x)))' &= \frac{f'(x)}{f(x)} \tag{using the chain rule}\\
+         &= \frac{4x}{1+2x^2} \tag{using $f(x) = 1+2x^2$}
+    \end{align*}
+
+    This is close to our desired $\frac{5x}{1+2x^2}$, except we have a factor of $4$ instead of the $5$ that we want. 
+    We can times both sides by $\frac{5}{4}$ to convert our $4$ to a $5$ and find that 
+
+    \[ (\frac{5}{4}\ln(1+2x^2))' = \frac{5x}{1+2x^2}\]
+
+    This gives us a function that differentiates to give the function inside the integral, which is exactly what we are looking for.
+
+    Therefore, the indefinite integral of $\frac{5x}{1+2x^2}$ is, using $f(x) = 1+2x^2$,
+
+    \[ \int \frac{5x}{1+2x^2} dx = \frac{5}{4}\ln(1+2x^2) + c\]
+    
+    Where $c$ is a constant.
+\end{solution}
+
+
+\newpage
+\section{Probability and Statistics}
+\subsection{Distributions} \label{sec:distributions}
+A probability distribution is a function which satisfies two things:
+\begin{enumerate}
+    \item The area underneath the function is equal to $1$.
+    \item The function is always non-negative.
+\end{enumerate}
+
+Then we can interpret the function in a probabilistic sense in the following way. The area between two points is how `likely' that sampling a random variable with that probability distribution results in a value from that range.
+
+For example, the normal distribution has this property, where the integral of the entire distribution is $1$, and it is always positive.
+
+\subsubsection{Normal Distribution} \label{sec:normal-distribution}
+
+The normal distribution is a probability distribution characterised by two numbers: the mean $\mu$ and the variance $\sigma^2$. 
+Note that the variance is denoted with a square to remind us that taking the (positive) square root gives us the standard deviation $\sigma$.
+It is denoted $N(\mu,\sigma^2)$.
+
+The normal distribution has the shape of a bell curve around the mean, which can be interpreted as in 
+Section \ref{sec:distributions} that the majority of samples will occur around the mean, and that the further away you get from 
+the mean, the less likely a sample is to come from that area. This can be seen visually by which parts of the bell curve has more area underneath, and therefore has a higher likelihood of occurring.
+
+For example, let's say that human adult weights can be modelled as a normal distribution. 
+We sketch it as a bell curve, symmetric around $75$ as in Figure \ref{fig:normal_distribution_weight}.
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.75]{normal_distribution_weight}
+    \caption{A sketch of the normal distribution where $\mu=75$, $\sigma=30$}
+    \label{fig:normal_distribution_weight}
+\end{figure}
+
+Since it is symmetric, we know that the probability that a random sample $X$ is $75kg$ or below is $0.5$ -- this can be denoted as 
+\[ P(X\leq75) = 0.5\]
+In fact, it is always true for normal distributions that 
+\[P(X \leq \mu) = 0.5\]
+
+This is because $P(X\leq\mu) = P(X\geq \mu)$, and $P(X\leq\mu) + P(X\geq \mu) = 1$, therefore \[P(X\geq \mu) = 1 - P(X\leq\mu)\] Substituting back into the first 
+equation gives that  $P(X\leq\mu)= 1 - P(X\leq\mu)$, which can be solved to find $P(X\leq\mu)=0.5$.
+
+Moreover, due to symmetries and summing to $1$, we can figure out some other fun things:
+\begin{align*}
+P(45\leq X \leq 105) &= 1 - (P(X<45) + P(X>105)) \tag{the full area is $1$}\\ 
+&= 1 - 2P(X<45) \tag{symmetry around the mean}    
+\end{align*}
+All of the above are using symmetry around the mean! Again, this is true for any normal distribution -- you can use symmetries to convert 
+to other regions of the bell curve:
+
+\begin{exercise}
+
+Consider the normal distribution $N(\mu,\sigma^2)$. Using symmetry and the area being $1$, show the following equalities:
+
+\[P(X\leq a) = P(X\geq 2\mu - a) = 1 - P(X>a) = 1-P(X>2\mu-a)\]
+Have a think if you can reason your way through any of the above! Hint: what is the midpoint of $a$ and $2\mu - a$? What do these equalities become when $\mu = 0$ and $\sigma = 1$?
+
+\end{exercise}
+
+In your exam cheat sheet, you get told a lot of values for probabilties of the form $P(X\leq a)$, where $X$ comes from a specific normal distribution called the 
+standard normal distribution.
+\begin{definition}
+    The \emph{standard normal distribution} is a normal distribution with $\mu=0$ and $\sigma^2 = 1$, denoted $N(0,1)$.
+\end{definition}
+
+Using symmetries and the area being $1$, you can always rearrange any probability question to be of the form $P(X<a)$. Then you can look up the nearest 
+value from the cheat sheet to use for your probability. 
+
+The problem is that often you are not given a normal distribution which has this mean and variance, so how can you use this cheat sheet?
+
+It turns out that transforming $X$ by shifting and rescaling gives us a new normal distribution with the mean shifted and the standard deviation rescaled. 
+This can be understood intuitively if you understand that, for a normal distribution, the mean represents the centre of the distribution, and the standard deviation represents the spread of the 
+distribution. 
+It turns out that $68\%$ of random samples will occur within one standard deviation of the mean, 
+$95\%$ of random samples will occur within two standard deviations of the mean, and
+$99.7\%$ of random samples will occur within three standard deviations of the mean. 
+This gives a visual interpretation of the mean being the middle and the standard deviation being the width.
+
+So our goal is to think 
+of a way to transform $X$ so that the mean is shifted to become $0$ and the standard deviation is scaled to be $1$. 
+A little bit of thought would lead us to the formula 
+\[Z = \frac{X-\mu}{\sigma}\]
+Which will shift the mean $\mu$ to $0$ (you can substitute $X=\mu$ to see this), and will make the entire thing ``thinner'' by a factor of $\sigma$. 
+
+It can be proven that this transformation indeed converts $N(\mu,\sigma^2)$ to the standard normal distribution $N(0,1)$. 
+So the process in a normal distribution question is:
+\begin{enumerate}
+    \item Identify if it is a normal distribution question. 
+    \item Convert the normal distribution to a standard normal distribution by $Z = \frac{X-\mu}{\sigma}$.
+    \item Use symmetries and that the area is $1$ to rearrange the probability to one that can be found in the lookup sheet.
+\end{enumerate}
+
+For point $1$, we can use a little heuristic to figure out if we are dealing with a normal distribution. 
+\begin{enumerate}
+    \item Does the question deal with \emph{continuous} data? As in, the gaps between points can be infinitely small. For example, the weight of a person or a moment in time is continuous, but the value a die can take cannot be $4.5$ -- this is a discrete value set. The normal distribution has to be continuous.
+    \item Does the question give you or mention the mean and variance or standard deviation?
+\end{enumerate} 
+If the answer to both of those is yes, you are probably going to use a normal distribution. If no, you'll need to use something else! Usually a question spells it out for you.
+
+
+
+
+
+\newpage
+\section{Trigonometry} \label{sec:trig}
+
+Some key concepts were covered in Section \ref{sec:components-of-forces-or-vectors}, where we used standard trig identities to find components of vectors.
+
+\subsection{Small angle approximations}
+
+Using something called the Taylor expansion of trigonometry functions, we can see how each of the functions behave near $0$.
+
+\begin{align*}
+    \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots \\
+    \cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots \\
+    \tan x = x + \frac{x^3}{3} + \frac{2x^5}{15} + \dots 
+\end{align*}
+
+Where these come from can be researched by an interested reader via Taylor series.
+
+Using the above, we can observe that if $x$ is really small (close to $0$), $x^2$ is a small number times a small number, which is even smaller itself. Similarly, all higher powers of $x$ will also be (exponentially) smaller.
+
+Therefore, one way of approximating these functions when $x$ is close to 0 is by removing any power of $x$ above $1$, since they are all tiny.
+
+From this, you get the small angle approximations of the trigonometry functions.
+
+\begin{align*}
+    \sin x \approx x \\
+    \cos x \approx 1  \\
+    \tan x \approx x 
+\end{align*}
+
+Note that if you remember only two of them, and handy way of remembering the third is by rearranging 
+\[ \tan x = \frac{\sin x}{\cos x}\]
+
+Which also holds for small angle approximations (check this)!
+
+
+This can be used to approximate complicated functions within each trig function.
+
+\begin{example}
+    Let $f(x)$ be a function of $x$, and let $f(x)$ be close to $0$ when $x$ is near some number $a$.
+
+    Using small angle approximations, write $\sin(f(x))$, $\cos(f(x))$, and $\tan(f(x))$ in terms of $f(x)$, and make sure to state when 
+    these small angle approximations hold.
+\end{example}
+\begin{solution}
+    Using the formulae for small angle approximations, using $f(x)$ in place of $x$ in the formulae, we find that 
+    -- \textbf{as long as $f(x)$ is close to zero} -- the following small angle approximations hold:
+
+    \begin{align*}
+        \sin (f(x)) \approx f(x) \\
+        \cos (f(x)) \approx 1 \\
+        \tan (f(x)) \approx f(x) 
+    \end{align*}
+
+    Since \textbf{this only holds when $f(x)$ is near $0$}, this holds as long as $x$ is near $a$. This is because the question told us that 
+    $f(x)$ is close to $0$ when $x$ is near $a$.
+
+    This completes the question
+
+    \qed
+\end{solution}
+
+This can be used to get approximate solutions to problems, but only holds when the argument of the trigonometry functions is close to zero!
+
+
+
+
+
+
+
+
+\newpage
+\section{Proofs}\label{sec:proofs}
+
+This is the section that is most like what a degree in maths would look like.
+
+There are a few ways to attempt a proof.
+
+\subsection{Proof by Contradiction} \label{sec:proof-contradiction}
+A proof by contradiction works by assuming the opposite is true, and then applying logically correct steps until we reach a logical absurdity such as $1 = 0$. 
+If we reached a logical absurdity via logically correct steps, then the original assumption must be wrong. Since the opposite of what we wanted to prove is wrong, 
+the original statement was correct.
+
+\begin{example}
+
+    Prove by contradiction that 
+    \[ (a - 2\sqrt{ab})(a + 2\sqrt{ab}) \geq - 4b^2\]
+    for any non-negative real numbers $a$, $b$.
+\end{example}
+
+\begin{solution}
+    First assume the opposite is true:
+    \[(a - 2\sqrt{ab})(a + 2\sqrt{ab}) < - 4b^2 \]
+
+    Then let us rearrange this until we reach a contradiction.
+
+    \begin{align*}
+        (a - 2\sqrt{ab})(a + 2\sqrt{ab}) &< - 4b^2 \\
+        a^2 - 4ab &< - 4b^2 \tag{expanding}\\
+        a^2 - 4ab + 4b^2  &< 0 \tag{rearranging}\\
+        (a - 2b)^2 &< 0 \tag{factorising}
+    \end{align*}
+
+    This is a contradiction because the left-hand side is a square number, and a square number cannot be less than zero. Therefore our original assumption
+    \[(a - 2\sqrt{ab})(a + 2\sqrt{ab}) < - 4b^2 \]
+    Was false, which means that the following must be true:
+
+    \[ (a - 2\sqrt{ab})(a + 2\sqrt{ab}) \geq - 4b^2\]
+
+    This completes the proof.
+    \qed
+\end{solution}
+
+
+\subsection{Proof by Deduction}
+
+Proof by deduction is the act of starting with a true statement, applying logically correct steps, and ending on a statement that must therefore be true.
+
+It is like ``proof because it is true'' but made rigoroous.
+
+\begin{example}
+    
+    Starting with the statement 
+    \[(a - 2b)^2 \geq 0\]
+    Prove by deduction that 
+    \[ (a - 2\sqrt{ab})(a + 2\sqrt{ab}) \geq - 4b^2\]
+    for any non-negative real numbers $a$, $b$.
+\end{example}
+\begin{solution}
+    We start with the true statement, and rearrange to deduce the desired final statement.
+        \begin{align*}
+        (a - 2b)^2 &\geq 0 \tag{starting with the hint} \\
+        a^2 - 4ab + 4b^2  &\geq 0 \tag{expanding} \\
+        a^2 - 4ab  &\geq -4b^2 \tag{rearranging} \\
+        a^2 - \sqrt{4ab}^2 & \geq - 4b^2 \tag{using that $a$, $b$ are non-negative real numbers}\\
+        (a - \sqrt{4ab})(a + \sqrt{4ab}) & \geq - 4b^2 \tag{difference of two squares}\\
+        (a - 2\sqrt{ab})(a + 2\sqrt{ab})&\geq - 4b^2 \tag{using $\sqrt{xy} = \sqrt{x}\sqrt{y}$}
+        \end{align*}
+    Which is the statement we were trying to prove. This completes the proof.
+    \qed
+\end{solution}
+
+
+\subsection{Proof by Exhaustion}
+
+Proof by exhaustion is a method of proof that is essentially brute force; you try every case, and verify each case.
+
+This can be used when there are a small number of cases to test.
+
+Often, it is possible to use algebra to reduce what seems like a lot (even infinite) cases to only a few.
+
+For example, if you need to prove that $n^2$ preserves even and odd for all integers, 
+you can test all integers in two cases by splitting them into even $2m$ numbers and odd $2m-1$ numbers. 
+In this way we reduce ``all integers'' to two cases and can prove it by exhaustion.
+
+\begin{example}
+
+    Prove by exhaustion that, for every integer whenever the left-hand side is defined, 
+    \[ \sqrt{5-n^2} < 3 \]
+
+\end{example}
+
+\begin{solution}
+    Since $\sqrt{5-n^2} $ is only defined when $5-n^2>0$, we only need to check the integers 
+    $-2$, $-1$, $0$, $1$, $2$. 
+
+    Since $(-n)^2 = n^2$, we only need to check $0$, $1$, and $2$,
+
+    Starting with $n=2$,
+
+    \begin{align*}
+    \sqrt{5-2^2} &= \sqrt{5-4} \\
+     &= \sqrt{1} \\
+     &= 1
+    \end{align*}
+    And since $1<3$, the statement is true for $n=2$.
+
+    For $n=1$,
+
+    \begin{align*}
+    \sqrt{5-1^2} &= \sqrt{5-1} \\
+     &= \sqrt{4} \\
+     &= 2
+    \end{align*}
+    And since $2<3$, the statement is true for $n=1$.
+
+    For $n=0$,
+
+    \begin{align*}
+    \sqrt{5-0^2} &= \sqrt{5-0} \\
+     &= \sqrt{5} 
+    \end{align*}
+
+    Now to check if $\sqrt{5}$ is less than $3$, we can observe that 
+
+    \[ 5<9\]
+
+    And therefore, taking square roots of both sides, we can deduce
+
+    \[ \sqrt{5} < 3\]
+
+    Which completes the proof by exhaustion, because we have checked every case in which 
+    \[ \sqrt{5-n^2} < 3 \]
+
+    Is defined.
+    \qed
+\end{solution}
+
+\begin{example}
+    Using algebra, prove by exhaustion that $n^2-3$ is never a multiple of $9$ for any integer $n$.
+\end{example}
+\begin{solution}
+    We can split integers into three cases: $3m$, $3m+1$, and $3m+2$ where $m$ is an integer.
+
+    This accounts for every integer.
+
+    Case 1: $n= 3m+2$
+
+    Let's substitute and rearrange to see what we can deduce.
+
+    \begin{align*}
+        n^2-3 &= (3m+2)^2 - 3 \tag{using $n= 3m+2$}\\
+         &= 9m^2 + 12m + 4 - 3 \tag{expanding}\\
+         &=  9m^2 + 12m +1 \\
+         &= 3(3m^2 + 4m) +1
+    \end{align*}
+    Looking at the final line, we see that when $n= 3m+2$, $n^2-3$ is one more than a multiple of $3$, and therefore never a multiple of $3$
+
+    Since $9$ is a multiple of $3$, it is also never a multiple of $9$.
+
+    Case 2: $n= 3m+1$
+
+    Let's substitute and rearrange to see what we can deduce.
+
+    \begin{align*}
+        n^2-3 &= (3m+1)^2 - 3 \tag{using $n= 3m+1$}\\
+         &= 9m^2 + 6m + 1 - 3 \tag{expanding}\\
+         &=  9m^2 + 6m -2 \\
+         &= 3(3m^2 + 2m) -2
+    \end{align*}
+    Looking at the final line, we see that when $n= 3m+1$, $n^2-3$ is two less than a multiple of $3$, and therefore never a multiple of $3$.
+
+    Since $9$ is a multiple of $3$, it is also never a multiple of $9$.
+
+    Case 3: $n=3m$
+
+    Let's substitute and rearrange to see what we can deduce.
+
+    \begin{align*}
+        n^2-3 &= (3m)^2 - 3 \tag{using $n= 3m$}\\
+         &= 9m^2 - 3 \tag{expanding}\\
+    \end{align*}
+    Looking at the final line, we see that when $n= 3m$, $n^2-3$ is three less than a multiple of $9$, and therefore never a multiple of $9$
+
+    Since we have exhausted all cases, we can conclude that $n^2-3$ is never a multiple of $9$ for any integer $n$. This completes the proof.
+    \qed
+\end{solution}
+
+
+
+\end{document}
+
+
+%%
+%% End of file `elsarticle-template-1-num.tex'.
