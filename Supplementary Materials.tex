@@ -1578,6 +1578,7 @@ The Product Rule tells us that if we have two functions $u = u(x)$ and $v = v(x)
     \end{align*}
 
     Which completes the question.
+    \qed
 \end{solution}
 
 
@@ -1690,6 +1691,7 @@ This is the easiest to see with some examples.
     \end{align*}
 
     Which gives us our answer.
+    \qed
 \end{solution}
 
 \begin{example}
@@ -1716,6 +1718,7 @@ This is the easiest to see with some examples.
     \end{align*}
 
     Which gives us our answer.
+    \qed
 \end{solution}
 
 \begin{example}
@@ -1742,6 +1745,7 @@ This is the easiest to see with some examples.
     \end{align*}
 
     Which gives us our answer.
+    \qed
 \end{solution}
 
 \begin{example} \emph{(Hard)}
@@ -1807,6 +1811,7 @@ This is the easiest to see with some examples.
     \end{align*}
 
     Which gives us our funny looking answer. Note that if we have $n$ function compositions, we will need $n$ chain rules.
+    \qed
 \end{solution}
 
 Note that in the above, we worked through finding 
@@ -1861,6 +1866,7 @@ In this section, we will use that $f(x)$ is a function of $x$.
     \end{align*}
 
     Which gives us our answer.
+    \qed
 \end{solution}
 
 \begin{example}
@@ -1887,6 +1893,7 @@ In this section, we will use that $f(x)$ is a function of $x$.
     \end{align*}
 
     Which gives us our answer.
+    \qed
 \end{solution}
 
 \begin{example}
@@ -1913,6 +1920,7 @@ In this section, we will use that $f(x)$ is a function of $x$.
     \end{align*}
 
     Which gives us our answer.
+    \qed
 \end{solution}
 
 \begin{example}
@@ -1939,6 +1947,7 @@ In this section, we will use that $f(x)$ is a function of $x$.
     \end{align*}
 
     Which gives us our answer.
+    \qed
 \end{solution}
 
 \begin{example}
@@ -1965,6 +1974,7 @@ In this section, we will use that $f(x)$ is a function of $x$.
     \end{align*}
 
     Which gives us our answer.
+    \qed
 \end{solution}
 
 \subsection{Mixed Exercises}
@@ -2696,6 +2706,539 @@ This has been very abstract, so let's see some examples.
     If the minus sign confuses you, go through the steps above but without the integral bounds!
     \qed
 \end{solution}
+
+\subsubsection{Trigonometric Substitutions}
+
+One thing that appears frequently is the use of less direct substitutions, where the substitution you require does not directly appear in the integral itself as a change of variable.
+
+A good rule of thumb for when you might need these is if you can spot that the integral looks like an identity that we know if we were to swap out the variable for a different function.
+
+For example, we know that $1-\sin^2\theta = \cos^2 \theta$, and $1-\cos^2\theta = \sin^2 \theta$. Therefore, if we spot a term that looks like $1-x^2$ in an integral, we might think to use the substitution $x = \sin \theta$ or $x = \cos \theta$.
+
+This is because after the substitution this term would simplify:
+
+\[1- x^2 = 1 - \sin^2 \theta = \cos^2 \theta \]
+
+This is important because this often makes a complicated integral much simpler.
+
+We can get a suite of identities from starting with $\sin^2 \theta + \cos^2 \theta = 1$:
+
+\begin{align*}
+    \sin^2 \theta + \cos^2 \theta &= 1 \tag{main identity}\\
+    \sin^2 \theta &= 1 - \cos^2 \theta \tag{rearranging main identity}\\
+    \cos^2 \theta &= 1 - \sin^2 \theta \tag{rearranging main identity}\\
+    \tan^2 \theta + 1 &= \sec^2 \theta \tag{dividing main identity by $\cos^2\theta$}\\
+    \sec^2 \theta - 1 &= \tan^2 \theta \tag{rearranging previous identity} \\
+    1 + \cot^2 \theta &= \cosec^2 \theta \tag{dividing main identity by $\sin^2\theta$} \\
+    \cosec^2 \theta - 1 &= \cot^2 \theta \tag{rearranging previous identity}
+\end{align*}
+
+This means that we can always transform a term that looks like $1 \pm x^2$ or $x^2 \pm 1$ into a single trig term via any of the above identities.
+Which one to use then comes down to how the \emph{rest} of the integral transforms (especially the $dx$ part)!
+
+The thing to be careful of is how the bounds transform in these cases; for example, the integral:
+\[\int_0^2 1-x^2 \; dx\] 
+
+The upper bound of the integral is $2$, so what would happen if we try to use $x = \sin\theta$? Substituting the upper bound as we did in the previous section gives:
+
+\begin{align*}
+    x &= 2 \\
+    \therefore \sin \theta &= 2
+\end{align*}
+
+But now we have a problem! $\sin \theta$ can never be $2$ since $\sin \theta$ can only ever be between $-1$ and $1$.
+
+
+\begin{example}
+    Using a trigonometric substitution, find the indefinite integral 
+    \[ \int \sqrt{1 - x^2} dx \] 
+    Then state what integral bounds this is valid for when using that substitution.
+\end{example}
+\begin{solution}
+
+    Firstly, it is possible to integrate this directly in a few ways, using a substitution of $1-x^2$ being the most straightforward, or even a difference of two squares method. Since the question is asking for trig, we will do that instead.
+    The identities that look like $1-x^2$ are $1-\sin^2\theta = \cos^2 \theta$, and $1-\cos^2\theta = \sin^2 \theta$. 
+    This should suggest that we use $\sin$ or $\cos$
+
+    Let's substitute the following $x = \sin \theta$. Then calculate 
+    \[ \frac{dx}{d\theta} = \cos \theta\]
+    We can `pretend-to-be-able-to-multiply-by-$\theta$' to find $dx = \cos\theta d\theta$.
+
+    Then continue substituting every instance of $x$ with the appropriate thing in terms of $\theta$ from left to right.
+
+    \begin{align*}
+        \int \sqrt{1 - x^2} dx &= \int \sqrt{1 - \sin^2 \theta} dx \tag{using $x = \sin\theta$}\\
+         &=  \int \sqrt{1 - \sin^2 \theta} \cos\theta d\theta \tag{using $dx = \cos\theta d\theta$}\\ 
+         &= \int \sqrt{\cos^2 \theta} \cos\theta d\theta \tag{trig identity}\\
+         &= \int \cos \theta \cos \theta d\theta \\ 
+         &= \int \cos^2 \theta d\theta
+    \end{align*}
+
+    Note that here we used that $\sqrt{\cos^2 \theta} = \cos \theta$, which implicitly means that we need to restrict to where $\cos \theta$ is positive, i.e. 
+    $0 \leq \theta \leq \pi$
+
+    From here, we must remember how to integrate a power of $\cos$ and $\sin$. To do this, we (repeatedly if necessary) apply 
+    \begin{align*}
+    \cos(2\theta) &= \cos^2 \theta - \sin^2\theta     \tag{trig identity}\\
+    \therefore \cos(2\theta) &= \cos^2 \theta - (1 - \cos^2 \theta) \tag{trig identity}\\
+    \therefore \cos(2 \theta) &= 2 \cos^2 \theta - 1 \tag{simplifying}\\
+    \therefore \cos^2 \theta &= \frac{\cos(2 \theta) + 1}{2}   \tag{rearranging}
+    \end{align*}
+
+    This allows us to integrate directly:
+
+    \begin{align*}
+        \int \sqrt{1 - x^2} dx &= \int \cos^2 \theta d\theta \tag{where we left off}\\
+         &= \int \frac{\cos(2 \theta) + 1}{2} \theta d\theta \tag{using above identity}\\
+         &= \frac{1}{2}\int \cos(2\theta) d\theta +  \frac{1}{2}\int 1 d\theta \tag{separating the integral}\\
+         &= \frac{1}{2}(\frac{1}{2}\sin(2\theta))+  \frac{1}{2}\theta + c \tag{evaluating the integrals}
+    \end{align*}
+
+    In the last line, we have used that $\frac{1}{2}\sin(2\theta)$ differentiates to become $\cos(2\theta)$, which you can verify using the chain rule. In fact, because of the chain rule Section \ref{sec:chain-rule}, we could have worked this out by knowing that 
+    the function which differentiates to give $\cos (2\theta)$ must be of the form $A \sin (2\theta)$, and we can figure out what $A$ must be by differentiating it and setting it equal to what we want:
+    \begin{align*}
+        \cos(2\theta) &= (A \sin (2\theta))' \\
+         &= 2A \cos(2\theta) \tag{using the chain rule}\\
+         \therefore 2A &= 1 \tag{since $\cos(2\theta) = 2A \cos(2\theta)$ }\\
+         \therefore A &= \frac{1}{2}
+    \end{align*}
+
+    You always have time to do little calculations like this if you are not sure!
+
+    If you dislike this method, you can always do another substitution of $2\theta = u$ and run through the integration by substitution method.
+
+    To return to the question, we have found the indefinite integral in terms of $\theta$ via a trig substitution. We want to replace any $\theta$ with the equivalent $x$ terms.
+    To do this, we need to remember that $x = \sin \theta$. Therefore, $\theta = \sin^{-1} x$, whenever we can invert it\footnote{Explicitly, this is when $-\frac{\pi}{2} \leq \theta \leq \frac{\pi}{2}$}. We can continue to simplify by also remembering that 
+    \[ \sin 2\theta = 2 \sin \theta \cos \theta\], and that you can write $\cos \theta = \sqrt{1 - \sin^2 \theta}$ to rearrange it in terms of $\sin$ or $\theta$:
+
+    \begin{align*}
+        \int \sqrt{1 - x^2} dx &= \frac{1}{2}(\frac{1}{2}\sin(2\theta))+  \frac{1}{2}\theta + c \\
+         &=  \frac{1}{2}(\cancel{\frac{1}{2}2} \sin \theta \cos \theta)+  \frac{1}{2}\theta + c \tag{using $\sin 2 \theta$ identity}\\
+         &= \frac{1}{2}( \sin \theta  \sqrt{1 - \sin^2 \theta})+  \frac{1}{2}\theta + c \tag{writing $\cos$ in terms of $\sin$}\\
+         &= \frac{1}{2}( x \sqrt{1 - x^2})+  \frac{1}{2}\theta + c  \tag{using $x = \sin \theta$}\\
+         &= \frac{1}{2}( x \sqrt{1 - x^2})+  \frac{1}{2}\sin^{-1} x + c  \tag{using $\theta = \sin^{-1} x$}
+    \end{align*}
+
+    This almost finishes the question, giving us that, subject to certain restrictions on $x$.
+    \[ \int \sqrt{1 - x^2} dx  = \frac{1}{2}( x \sqrt{1 - x^2})+  \frac{1}{2}\sin^{-1} x + c \]
+
+    But what are the restrictions? We used $x = \sin\theta$, and therefore $x$ cannot be more than $1$ or less than $-1$ since $\sin$ is between $-1$ and $1$.
+    This means that this indefinite integral is only valid between $-1 \leq x \leq 1$.
+
+    This completes the question.
+
+    \qed
+\end{solution}
+This question also shows a major downside using some trigonometric substitutions -- the bounds are heavily restricted! For example, we cannot use the indefinite integral above to find 
+\[ \int_0^2 \sqrt{1 - x^2} dx\] 
+Since the upper bound is outside of $-1$ and $1$, whereas we \emph{can} compute
+\begin{align*}
+    \int_0^1 \sqrt{1 - x^2} dx &= \left[\frac{1}{2}( x \sqrt{1 - x^2})+  \frac{1}{2}\sin^{-1} x \right]_{x=0}^{x=1} \\
+    &= \frac{1}{2}( 1 \cancel{\sqrt{1 - 1^2}})+  \frac{1}{2}\sin^{-1} 1  - (\cancel{\frac{1}{2}( 0 \sqrt{1 - 0^2})}+  \cancel{\frac{1}{2}\sin^{-1} 0}) \\
+    &= \frac{1}{2}\sin^{-1} 1  \\
+    &= \frac{\pi}{4}
+\end{align*}
+
+Now we look at examples where it indeed helps us, and consider definite integrals. When considering definite integrals, we need to be very careful with the bounds since we will be inverting trigonometric functions.
+
+In each example, we will first try a substitution that \emph{looks} plausible, and then discard it if it complicates the integrand. 
+Then we will choose a trigonometric substitution that matches one of the identities
+\[
+1-\sin^2\theta=\cos^2\theta,\qquad 1+\tan^2\theta=\sec^2\theta,\qquad \sec^2\theta-1=\tan^2\theta,
+\]
+or a scaled version of them.
+
+% ------------------------------------------------------------
+\begin{example}
+    Using a trigonometric substitution, compute
+    \[
+        \int_{1/2}^{1}\frac{1}{x\sqrt{1-x^2}}\,dx.
+    \]
+
+\end{example}
+
+\begin{solution}
+    First, it is tempting to try the ``direct'' substitution $u=1-x^2$. Then $du=-2x\,dx$, so $dx = -\frac{1}{2x}du$.
+    Substituting this into the integral gives
+    \[
+        \int_{1/2}^{1}\frac{1}{x\sqrt{1-x^2}}\,dx
+        \;=\;\int \frac{1}{x\sqrt{u}}\left(-\frac{1}{2x}\right)du
+        \;=\;-\frac{1}{2}\int \frac{1}{x^2\sqrt{u}}\,du,
+    \]
+    This is complicating the integral because $x^2$ is still present, which will incorporate another $u$ due to $x^2 = u-1$. So we discard this.
+
+    Since the integrand contains $\sqrt{1-x^2}$, we should aim to use $1-\cos^2\theta=\sin^2\theta$ or $1-\sin^2\theta=\cos^2\theta$.
+    Both $x=\sin\theta$ and $x=\cos\theta$ are candidates.
+
+    We pick one and see if it helps. If not, we can try the other one.
+
+    Now proceed with $x=\cos\theta$. Since $1/2\leq x\leq 1$, we take $0\leq \theta\leq\frac{\pi}{2}$, where $\cos\theta\ge 0$ and $\sin\theta\ge 0$.
+
+    Compute the pieces:
+    \begin{align*}
+        x &= \cos\theta\\
+        dx &= -\sin\theta\,d\theta\\
+        \sqrt{1-x^2} &= \sqrt{1-\cos^2\theta}=\sqrt{\sin^2\theta}=\sin\theta \qquad (\text{since }\sin\theta\ge 0)
+    \end{align*}
+
+    Convert the bounds:
+    \begin{align*}
+        x=\frac{1}{2} &\therefore \cos\theta=\frac{1}{2}\therefore \theta=\frac{\pi}{3}\\
+        x=1 &\therefore \cos\theta=1\therefore \theta=0
+    \end{align*}
+
+    Substitute from left to right:
+    \begin{align*}
+        \int_{1/2}^{1}\frac{1}{x\sqrt{1-x^2}}\,dx &=\int_{x=1/2}^{x=1}\frac{1}{x\sqrt{1-x^2}}\,dx \\
+        &=\int_{\theta=0}^{\theta=\frac{\pi}{3}}\frac{1}{x\sqrt{1-x^2}}\,dx \\
+        &=\int_{\theta=0}^{\theta=\frac{\pi}{3}}\frac{1}{\cos\theta\sqrt{1-\cos^2\theta}}\,dx \\
+        &=\int_{\theta=0}^{\theta=\frac{\pi}{3}}\frac{1}{\cos\theta\sqrt{1-\cos^2\theta}}\,(-\sin\theta\,d\theta) \\
+        &= \int_{\theta=\pi/3}^{\theta=0}\frac{1}{\cos\theta\cdot \sin\theta}\,(-\sin\theta\,d\theta)\\
+        &= \int_{\theta=\pi/3}^{\theta=0} -\sec\theta\,d\theta\\
+        &= \int_{0}^{\pi/3}\sec\theta\,d\theta.
+    \end{align*}
+
+    Now integrate using the formula book:
+    \[
+        \int_{0}^{\pi/3}\sec\theta\,d\theta
+        = \left[\ln\left|\sec\theta+\tan\theta \right|\right]_{0}^{\pi/3}
+        = \ln\!\left(\sec\frac{\pi}{3}+\tan\frac{\pi}{3}\right)-\ln(\sec 0+\tan 0).
+    \]
+    Evaluate the trig values:
+    \[
+        \sec\frac{\pi}{3}=2,\quad \tan\frac{\pi}{3}=\sqrt{3},\quad \sec 0 = 1,\quad \tan 0=0.
+    \]
+    Therefore
+    \[
+        \int_{1/2}^{1}\frac{1}{x\sqrt{1-x^2}}\,dx
+        = \ln(2+\sqrt{3}) - \ln(1)
+        = \ln(2+\sqrt{3}).
+    \]
+    \qed
+\end{solution}
+
+% ------------------------------------------------------------
+\begin{example}
+    Using a trigonometric substitution, compute
+    \[
+        \int_{1}^{2}\frac{1}{\sqrt{x^2-1}}\,dx
+    \]
+\end{example}
+
+\begin{solution}
+
+    The expression $x^2-1$ matches the identity
+    \[
+        \sec^2\theta-1=\tan^2\theta
+    \]
+    This suggests the substitution
+    \[
+        x=\sec\theta
+    \]
+
+    We need to replace all instances of $x$ with $\theta$, including the bounds and $dx$, therefore we compute
+    \begin{align*}
+        x &= \sec\theta\\
+        dx &= \sec\theta\tan\theta\,d\theta\\
+        \sqrt{x^2-1} &= \sqrt{\sec^2\theta-1}=\sqrt{\tan^2\theta}=\tan\theta
+    \end{align*}
+
+    Convert the bounds
+    \begin{align*}
+        x=1 &\therefore \sec\theta=1 \therefore \theta=0\\
+        x=2 &\therefore \sec\theta=2 \therefore \theta=\frac{\pi}{3}
+    \end{align*}
+
+    Substitute from left to right
+    \begin{align*}
+        \int_{1}^{2}\frac{1}{\sqrt{x^2-1}}\,dx
+        &= \int_{x=1}^{x=2}\frac{1}{\sqrt{x^2-1}}\,dx\\
+        &= \int_{\theta=0}^{\theta=\pi/3}\frac{1}{\sqrt{\sec^2\theta-1}}\,dx\\
+        &= \int_{\theta=0}^{\theta=\pi/3}\frac{1}{\tan\theta}\,\sec\theta\tan\theta\,d\theta\\
+        &= \int_{0}^{\pi/3}\sec\theta\,d\theta
+    \end{align*}
+
+    Use the formula book
+    \[
+        \int \sec\theta\,d\theta=\ln\left|\sec\theta+\tan\theta\right|+c
+    \]
+
+    Therefore
+    \begin{align*}
+        \int_{0}^{\pi/3}\sec\theta\,d\theta
+        &= \left[\ln\left|\sec\theta+\tan\theta\right|\right]_{0}^{\pi/3}\\
+        &= \ln\left(\sec\frac{\pi}{3}+\tan\frac{\pi}{3}\right)-\ln\left(\sec 0+\tan 0\right)
+    \end{align*}
+
+    Evaluate
+    \begin{align*}
+        \sec\frac{\pi}{3}=2 &\qquad \tan\frac{\pi}{3}=\sqrt{3}\\
+        \sec 0=1 &\qquad \tan 0=0
+    \end{align*}
+
+    Therefore
+    \[
+        \int_{1}^{2}\frac{1}{\sqrt{x^2-1}}\,dx
+        = \ln(2+\sqrt{3})-\ln(1)
+        = \ln(2+\sqrt{3})
+    \]
+    \qed
+\end{solution}
+
+% ------------------------------------------------------------
+\begin{example}
+    Let $a>0$ and $b>0$. Using a trigonometric substitution, compute
+    \[
+        \int_{0}^{\frac{b}{a}}\frac{1}{\sqrt{a^2x^2+b^2}}\,dx
+    \]
+\end{example}
+
+\begin{solution}
+
+    We want to get it into a form where we can spot a term like $1 \pm x^2$ or $x^2 \pm 1$.
+    
+
+    The expression $a^2x^2+b^2$ can be written as
+    \[
+        a^2x^2+b^2=b^2\left(1+\left(\frac{ax}{b}\right)^2\right)
+    \]
+    and we recognise the identity
+    \[
+        1+\tan^2\theta=\sec^2\theta
+    \]
+    This suggests the substitution
+    \[
+        \frac{ax}{b}=\tan\theta
+    \]
+    which we write as
+    \[
+        x=\frac{b}{a}\tan\theta
+    \]
+
+    We need to replace all instances of $x$ with $\theta$, including the bounds and $dx$, therefore we compute
+    \begin{align*}
+        x &= \frac{b}{a}\tan\theta\\
+        dx &= \frac{b}{a}\sec^2\theta\,d\theta\\
+        \sqrt{a^2x^2+b^2}
+        &= \sqrt{a^2\left(\frac{b}{a}\tan\theta\right)^2+b^2}\\
+        &= \sqrt{b^2\tan^2\theta+b^2}\\
+        &= b\sqrt{1+\tan^2\theta}\\
+        &= b\sec\theta
+    \end{align*}
+
+    Convert the bounds
+    \begin{align*}
+        x=0 &\therefore \tan\theta=0 \therefore \theta=0\\
+        x=\frac{b}{a} &\therefore \tan\theta=1 \therefore \theta=\frac{\pi}{4}
+    \end{align*}
+
+    Substitute from left to right
+    \begin{align*}
+        \int_{0}^{\frac{b}{a}}\frac{1}{\sqrt{a^2x^2+b^2}}\,dx
+        &= \int_{x=0}^{x=\frac{b}{a}}\frac{1}{\sqrt{a^2x^2+b^2}}\,dx\\
+        &= \int_{\theta=0}^{\theta=\pi/4}\frac{1}{\sqrt{a^2\left(\frac{b}{a}\tan\theta\right)^2+b^2}}\,dx\\
+        &= \int_{\theta=0}^{\theta=\pi/4}\frac{1}{b\sec\theta}\,\frac{b}{a}\sec^2\theta\,d\theta\\
+        &= \frac{1}{a}\int_{0}^{\pi/4}\sec\theta\,d\theta
+    \end{align*}
+
+    Use the formula book
+    \[
+        \int \sec\theta\,d\theta=\ln\left|\sec\theta+\tan\theta\right|+c
+    \]
+
+    Therefore
+    \begin{align*}
+        \frac{1}{a}\int_{0}^{\pi/4}\sec\theta\,d\theta
+        &= \frac{1}{a}\left[\ln\left|\sec\theta+\tan\theta\right|\right]_{0}^{\pi/4}\\
+        &= \frac{1}{a}\left(\ln\left(\sec\frac{\pi}{4}+\tan\frac{\pi}{4}\right)-\ln\left(\sec 0+\tan 0\right)\right)
+    \end{align*}
+
+    Evaluate
+    \begin{align*}
+        \sec\frac{\pi}{4}=\sqrt{2} &\qquad \tan\frac{\pi}{4}=1\\
+        \sec 0=1 &\qquad \tan 0=0
+    \end{align*}
+
+    Therefore
+    \[
+        \int_{0}^{\frac{b}{a}}\frac{1}{\sqrt{a^2x^2+b^2}}\,dx
+        = \frac{1}{a}\left(\ln(\sqrt{2}+1)-\ln(1)\right)
+        = \frac{1}{a}\ln(\sqrt{2}+1)
+    \]
+    \qed
+\end{solution}
+
+
+The following two are mainly difficult due to the emergence of integrating $\sec^3 \theta$. Otherwise, the techniques are the same.
+
+\begin{example} \emph{(hard)} \label{ex:trig-subs-containing-sec3}
+    Using a trigonometric substitution, compute
+    \[
+        \int_{1}^{2}\sqrt{x^2-1}\,dx
+    \]
+\end{example}
+
+\begin{solution}
+    It is possible to evaluate this integral using a different substitution.
+    However, since the question asks for a trigonometric substitution, we proceed in that way.
+
+    The expression $x^2-1$ matches the identity
+    \[
+        \sec^2\theta-1=\tan^2\theta
+    \]
+    This suggests the substitution
+    \[
+        x=\sec\theta
+    \]
+
+    We need to replace all instances of $x$ with $\theta$, including the bounds and $dx$, therefore we compute
+    \begin{align*}
+        x &= \sec\theta\\
+        dx &= \sec\theta\tan\theta\,d\theta\\
+        \sqrt{x^2-1} &= \sqrt{\sec^2\theta-1}=\sqrt{\tan^2\theta}=\tan\theta
+    \end{align*}
+
+    Convert the bounds
+    \begin{align*}
+        x=1 &\therefore \sec\theta=1 \therefore \theta=0\\
+        x=2 &\therefore \sec\theta=2 \therefore \theta=\frac{\pi}{3}
+    \end{align*}
+
+    Substitute from left to right
+    \begin{align*}
+        \int_{1}^{2}\sqrt{x^2-1}\,dx
+        &= \int_{x=1}^{x=2}\sqrt{x^2-1}\,dx\\
+        &= \int_{\theta=0}^{\theta=\pi/3}\tan\theta\cdot\sec\theta\tan\theta\,d\theta\\
+        &= \int_{0}^{\pi/3}\sec\theta\tan^2\theta\,d\theta
+    \end{align*}
+
+    Use $\tan^2\theta=\sec^2\theta-1$
+    \begin{align*}
+        \int_{0}^{\pi/3}\sec\theta\tan^2\theta\,d\theta
+        &= \int_{0}^{\pi/3}\sec\theta(\sec^2\theta-1)\,d\theta\\
+        &= \int_{0}^{\pi/3}(\sec^3\theta-\sec\theta)\,d\theta
+    \end{align*}
+
+    The integral of $\sec\theta$ is in the formula book.
+    To integrate $\sec^3\theta$, we use integration by parts.
+
+    Write
+    \[
+        \sec^3\theta=\sec\theta\cdot\sec^2\theta
+    \]
+
+    Choose
+    \begin{align*}
+        u &= \sec\theta & v' &= \sec^2\theta\\
+        u' &= \sec\theta\tan\theta & v &= \tan\theta
+    \end{align*}
+
+    Apply integration by parts
+    \begin{align*}
+        \int \sec^3\theta\,d\theta
+        &= \sec\theta\tan\theta-\int \tan\theta(\sec\theta\tan\theta)\,d\theta\\
+        &= \sec\theta\tan\theta-\int \sec\theta\tan^2\theta\,d\theta\\
+        &= \sec\theta\tan\theta-\int \sec\theta(\sec^2\theta-1)\,d\theta\\
+        &= \sec\theta\tan\theta-\int \sec^3\theta\,d\theta+\int \sec\theta\,d\theta
+    \end{align*}
+
+    Rearranging
+    \begin{align*}
+        2\int \sec^3\theta\,d\theta
+        &= \sec\theta\tan\theta+\int \sec\theta\,d\theta\\
+        \therefore \int \sec^3\theta\,d\theta
+        &= \frac{1}{2}\sec\theta\tan\theta+\frac{1}{2}\ln|\sec\theta+\tan\theta|+c
+    \end{align*}
+
+    Return to the definite integral
+    \begin{align*}
+        \int_{0}^{\pi/3}(\sec^3\theta-\sec\theta)\,d\theta
+        &= \left[\frac{1}{2}\sec\theta\tan\theta-\frac{1}{2}\ln|\sec\theta+\tan\theta|\right]_{0}^{\pi/3}
+    \end{align*}
+
+    Evaluate
+    \begin{align*}
+        \sec\frac{\pi}{3}=2 &\qquad \tan\frac{\pi}{3}=\sqrt{3}\\
+        \sec 0=1 &\qquad \tan 0=0
+    \end{align*}
+
+    Therefore
+    \[
+        \int_{1}^{2}\sqrt{x^2-1}\,dx
+        = \sqrt{3}-\frac{1}{2}\ln(2+\sqrt{3})
+    \]
+    \qed
+\end{solution}
+
+% ------------------------------------------------------------
+\begin{example} \emph{(hard)}
+    Let $a>0$ and $b>0$. Using a trigonometric substitution, compute
+    \[
+        \int_{0}^{\frac{b}{a}}\sqrt{a^2x^2+b^2}\,dx
+    \]
+\end{example}
+
+\begin{solution}
+    We want to get it into a form where we can spot a term like $1 \pm x^2$ or $x^2 \pm 1$.
+
+    Factor out $b^2$
+    \[
+        \sqrt{a^2x^2+b^2}=b\sqrt{1+\left(\frac{ax}{b}\right)^2}
+    \]
+
+    Using $1+\tan^2\theta=\sec^2\theta$, we set
+    \[
+        \frac{ax}{b}=\tan\theta
+    \]
+
+    We need to replace all instances of $x$ with $\theta$, including the bounds and $dx$, therefore we compute
+    \begin{align*}
+        x &= \frac{b}{a}\tan\theta\\
+        dx &= \frac{b}{a}\sec^2\theta\,d\theta\\
+        \sqrt{a^2x^2+b^2} &= b\sec\theta
+    \end{align*}
+
+    Convert the bounds
+    \begin{align*}
+        x=0 &\therefore \tan\theta=0 \therefore \theta=0\\
+        x=\frac{b}{a} &\therefore \tan\theta=1 \therefore \theta=\frac{\pi}{4}
+    \end{align*}
+
+    Substitute from left to right
+    \begin{align*}
+        \int_{0}^{\frac{b}{a}}\sqrt{a^2x^2+b^2}\,dx
+        &= \int_{0}^{\pi/4} b\sec\theta\cdot\frac{b}{a}\sec^2\theta\,d\theta\\
+        &= \frac{b^2}{a}\int_{0}^{\pi/4}\sec^3\theta\,d\theta
+    \end{align*}
+
+    Using the result derived above in Example \ref{ex:trig-subs-containing-sec3}
+    \[
+        \int \sec^3\theta\,d\theta
+        = \frac{1}{2}\sec\theta\tan\theta+\frac{1}{2}\ln|\sec\theta+\tan\theta|+c
+    \]
+
+    Therefore
+    \begin{align*}
+        \int_{0}^{\frac{b}{a}}\sqrt{a^2x^2+b^2}\,dx
+        &= \frac{b^2}{a}\left[\frac{1}{2}\sec\theta\tan\theta+\frac{1}{2}\ln|\sec\theta+\tan\theta|\right]_{0}^{\pi/4}
+    \end{align*}
+
+    Evaluate
+    \[
+        \sec\frac{\pi}{4}=\sqrt{2}
+        \qquad
+        \tan\frac{\pi}{4}=1
+    \]
+
+    Hence
+    \[
+        \int_{0}^{\frac{b}{a}}\sqrt{a^2x^2+b^2}\,dx
+        = \frac{b^2}{2a}\left(\sqrt{2}+\ln(\sqrt{2}+1)\right)
+    \]
+    \qed
+\end{solution}
+
+% ------------------------------------------------------------
 
 \subsubsection{Additional Exercises}
 \begin{example}
@@ -3447,8 +3990,8 @@ The following exercises will demonstrate this.
     We also change the bounds from $x$ to $u$
 
     \begin{align*}
-        x = 0 &\Rightarrow u = 0^2 = 0 \\
-        x = 1 &\Rightarrow u = 1^2 = 1
+        x = 0 &\therefore u = 0^2 = 0 \\
+        x = 1 &\therefore u = 1^2 = 1
     \end{align*}
 
     Now we substitute, step by step, from left to right
@@ -3484,7 +4027,7 @@ The following exercises will demonstrate this.
         \frac{du}{d\theta} &= \cos \theta \tag{differentiating} \\
         du &= \cos \theta \, d\theta \\
         1 - u^2 &= 1 - \sin^2 \theta = \cos^2 \theta \tag{using $\sin^2 \theta + \cos^2 \theta = 1$} \\
-        \sqrt{1 - u^2} &= \sqrt{\cos^2 \theta} = \cos \theta \tag{on $0 \le \theta \le \tfrac{\pi}{2}$, $\cos \theta \ge 0$}
+        \sqrt{1 - u^2} &= \sqrt{\cos^2 \theta} = \cos \theta \tag{on $0 \leq \theta \leq \frac{\pi}{2}$, $\cos \theta \geq 0$}
     \end{align*}
 
     We also convert the bounds from $u$ to $\theta$
@@ -3576,6 +4119,7 @@ The following exercises will demonstrate this.
     \[ \int x e^{x^2}dx = \frac{1}{2}e^{x^2} + c\]
 
     Where $c$ is a constant.
+    \qed
 \end{solution}
 
 \begin{example}
@@ -3611,6 +4155,7 @@ The following exercises will demonstrate this.
     \[ \int \frac{5x}{1+2x^2} dx = \frac{5}{4}\ln(1+2x^2) + c\]
     
     Where $c$ is a constant.
+    \qed
 \end{solution}
 
 
