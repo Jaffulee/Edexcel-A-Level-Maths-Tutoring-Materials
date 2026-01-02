@@ -1,0 +1,507 @@
+%% This is file `elsarticle-template-1-num.tex',
+%%
+%% Copyright 2009 Elsevier Ltd
+%%
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+
+\documentclass[a4paper]{article}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+%% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+%% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
+
+%% The graphicx package provides the includegraphics command.
+\usepackage{graphicx}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{cancel}
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ mathrsfs }
+\usepackage{ dsfont }
+\usepackage{tikz-cd}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{float}
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers after \end{frontmatter}.
+\usepackage{lineno}
+\usepackage{hyperref}
+\usepackage{enumitem}
+%% natbib.sty is loaded by default. However, natbib options can be
+%% provided with \biboptions{...} command. Following options are
+%% valid:
+
+%%   round  -  round parentheses are used (default)
+%%   square -  square brackets are used   [option]
+%%   curly  -  curly braces are used      {option}
+%%   angle  -  angle brackets are used    <option>
+%%   semicolon  -  multiple citations separated by semi-colon
+%%   colon  - same as semicolon, an earlier confusion
+%%   comma  -  separated by comma
+%%   numbers-  selects numerical citations
+%%   super  -  numerical citations as superscripts
+%%   sort   -  sorts multiple citations according to order in ref. list
+%%   sort&compress   -  like sort, but also compresses numerical citations
+%%   compress - compresses without sorting
+%%
+%% \biboptions{comma,round}
+
+% \biboptions{}
+
+\newtheorem{name}{Printed output}
+\newtheorem{mydef}{Definition}
+\newtheoremstyle{break}% name
+  {}%         Space above, empty = `usual value'
+  {}%         Space below
+  {}%         Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries}% Thm head font
+  {.}%        Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
+
+\theoremstyle{plain} %italics
+\newtheorem{question}{Question}
+
+\newtheorem{theorem}{Theorem}[section]
+%\numberwithin{theorem}{subsection}
+
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+%\numberwithin{lemma}{subsection}
+
+\newtheorem{corollary}[theorem]{Corollary}
+%\numberwithin{corollary}{subsection}
+
+\newtheorem{proposition}[theorem]{Proposition}
+%\numberwithin{proposition}{subsection}
+
+\theoremstyle{definition} %non italics
+
+\newtheorem{definition}[theorem]{Definition}
+%\numberwithin{definition}{subsection}
+
+\newtheorem*{note*}{Note}
+
+\newtheorem*{claim}{Claim}
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem{example}{Example}
+% \numberwithin{example}{subsection}
+
+\newtheorem*{solution}{Solution}
+
+\newtheorem{exercise}{Exercise}
+
+\numberwithin{equation}{subsection}
+
+\newcommand{\incfig}[2][1]{%   % #1 = scale (default 1), #2 = filename
+    \def\svgwidth{#1\columnwidth}%
+    \import{./Figures/}{#2.pdf_tex}%
+}
+\newcommand{\hodge}{{*}}
+\newcommand{\tang}{\operatorname{\textbf{\textup{t}}}}
+\newcommand{\norm}{\operatorname{\textbf{\textup{n}}}}
+%mathbb short cut
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bP}{\mathbb{bP}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+
+\usepackage{comment}
+%bm short cut
+\newcommand{\bmv}{\bm{v}}
+\newcommand{\bmu}{\bm{u}}
+\newcommand{\bmw}{\bm{w}}
+\newcommand{\bmx}{\bm{x}}
+
+%mathcal shortcut
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cJ}{\mathcal{J}}
+
+%mathfraktur shortcut
+\newcommand{\frp}{\mathfrak{p}}
+\newcommand{\frq}{\mathfrak{q}}
+\newcommand{\frm}{\mathfrak{m}}
+\newcommand{\frP}{\mathfrak{P}}
+
+%mathscr shortcut
+\newcommand{\msF}{\mathscr{F}}
+\newcommand{\msA}{\mathscr{A}}
+\newcommand{\msM}{\mathscr{M}}
+\newcommand{\msE}{\mathscr{E}}
+\newcommand{\msU}{\mathscr{U}}
+\newcommand{\msB}{\mathscr{B}}
+\newcommand{\msD}{\mathscr{D}}
+\newcommand{\msL}{\mathscr{L}}
+\newcommand{\msS}{\mathscr{S}}
+\newcommand{\msG}{\mathscr{G}}
+\newcommand{\msT}{\mathscr{T}}
+\newcommand{\msC}{\mathscr{C}}
+\newcommand{\msH}{\mathscr{H}}
+\newcommand{\msO}{\mathscr{O}}
+\newcommand{\msJ}{\mathscr{J}}
+\newcommand{\msP}{\mathscr{P}}
+
+
+%set notation shortcut
+\newcommand{\vect}[1]{\underline{\textbf{#1}}}
+\newcommand{\llangle}{\left\langle}
+\newcommand{\rrangle}{\right\rangle}
+\newcommand{\llbrace}{\left\lbrace}
+\newcommand{\rrbrace}{\right\rbrace}
+\newcommand{\setof}[1]{\left\lbrace #1 \right\rbrace}
+
+
+\newcommand{\cFA}{\cF(\cA)}
+\newcommand{\sigmaA}{\sigma(\cA)}
+\newcommand{\del}[2]{\frac{\partial #1}{\partial #2}}
+
+
+\newcommand{\innerproductb}[2]{\llangle\bm{#1},\bm{#2}\rrangle}
+\newcommand{\innerproduct}[2]{\llangle{#1},{#2}\rrangle}
+
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\Span}{\operatorname{Span}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\sh}{\operatorname{sh}}
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Mor}{\operatorname{Mor}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\res}{\operatorname{res}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand*{\sheafhom}{\mathcal{H}\kern -.5pt \it{ om}}
+\newcommand*{\sheafspec}{\mathcal{S}\kern -.5pt \it{ pec}}
+\newcommand*{\sheafproj}{{\mathcal{P}\kern -.5pt \it{ roj}}}
+\newcommand{\Div}{\operatorname{div}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Qcoh}{\operatorname{Qcoh}}
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\Op}{\operatorname{Op}}
+\newcommand{\WF}{\operatorname{WF}}
+\newcommand{\Char}{\operatorname{Char}}
+\newcommand{\Ell}{\operatorname{Ell}}
+\newcommand{\RE}{\operatorname{Re}}
+\newcommand{\IM}{\operatorname{Im}}
+\newcommand{\cosec}{\operatorname{cosec}}
+
+\setlength{\parindent}{0pt}    % no indentation
+\setlength{\parskip}{1em}      % add vertical space between paragraphs
+
+\begin{document}
+
+%% Title, authors and addresses
+
+\title{\textbf{Problem Sheet: Chain Rule and Substitutions 1 Solution}}
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for the associated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for the associated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for the associated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%%
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \address{Address\fnref{label3}}
+%% \fntext[label3]{}
+
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{<author name>}
+%% \address[label1]{<address>}
+%% \address[label2]{<address>}
+
+\author{\textbf{Jeffrey Thompson}}
+\maketitle
+
+\begin{exercise}
+Differentiate the following functions.
+\begin{enumerate}
+    \item $\ln(5x)$
+    \item $e^{-20x^2}$
+    \item $\sin(16x^3)$
+    \item $\cos\!\left(\frac{2}{x}\right)$
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+
+\begin{enumerate}
+    \item Differentiating $\ln(5x)$
+
+    Let
+    \[
+        y = \ln(5x), \qquad u = 5x
+    \]
+    so that $y = \ln u$.
+
+    We compute
+    \begin{align*}
+        \frac{dy}{du} &= \frac{1}{u} \tag{using the derivative of $\ln u$}\\
+        \frac{du}{dx} &= 5 \tag{using the derivative of $5x$}
+    \end{align*}
+
+    Therefore
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du}\frac{du}{dx}\\
+        &= \frac{1}{u}\cdot 5\\
+        &= \frac{5}{5x}\\
+        &= \frac{1}{x}
+    \end{align*}
+
+    \item Differentiating $e^{-20x^2}$
+
+    Let
+    \[
+        y = e^{-20x^2}, \qquad u = -20x^2
+    \]
+    so that $y = e^u$.
+
+    We compute
+    \begin{align*}
+        \frac{dy}{du} &= e^u \tag{using the derivative of $e^u$}\\
+        \frac{du}{dx} &= -40x \tag{using the derivative of $-20x^2$}
+    \end{align*}
+
+    Therefore
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du}\frac{du}{dx}\\
+        &= e^u(-40x)\\
+        &= -40x e^{-20x^2}
+    \end{align*}
+
+    \item Differentiating $\sin(16x^3)$
+
+    Let
+    \[
+        y = \sin(16x^3), \qquad u = 16x^3
+    \]
+    so that $y = \sin u$.
+
+    We compute
+    \begin{align*}
+        \frac{dy}{du} &= \cos u \tag{using the derivative of $\sin u$}\\
+        \frac{du}{dx} &= 48x^2 \tag{using the derivative of $16x^3$}
+    \end{align*}
+
+    Therefore
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du}\frac{du}{dx}\\
+        &= \cos u \cdot 48x^2\\
+        &= 48x^2 \cos(16x^3)
+    \end{align*}
+
+    \item Differentiating $\cos\!\left(\frac{2}{x}\right)$
+
+    Let
+    \[
+        y = \cos\!\left(\frac{2}{x}\right), \qquad u = \frac{2}{x}
+    \]
+    so that $y = \cos u$.
+
+    We compute
+    \begin{align*}
+        \frac{dy}{du} &= -\sin u \tag{using the derivative of $\cos u$}\\
+        \frac{du}{dx} &= -\frac{2}{x^2} \tag{using the derivative of $2x^{-1}$}
+    \end{align*}
+
+    Therefore
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du}\frac{du}{dx}\\
+        &= (-\sin u)\left(-\frac{2}{x^2}\right)\\
+        &= \frac{2\sin\!\left(\frac{2}{x}\right)}{x^2}
+    \end{align*}
+\end{enumerate}
+\qed
+\end{solution}
+
+% ------------------------------------------------------------
+
+\begin{exercise}
+Evaluate the following indefinite integrals.
+\begin{enumerate}
+    \item $\displaystyle \int \sin^2 x \, dx$
+    \item $\displaystyle \int \cos^2 x \, dx$
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+
+\begin{enumerate}
+    \item Integrating $\sin^2 x$
+
+    We use the identity
+    \[
+        \sin^2 x = \frac{1-\cos(2x)}{2}
+    \]
+
+    Therefore
+    \begin{align*}
+        \int \sin^2 x\,dx
+        &= \int \frac{1-\cos(2x)}{2}\,dx\\
+        &= \frac{1}{2}\int 1\,dx - \frac{1}{2}\int \cos(2x)\,dx\\
+        &= \frac{1}{2}x - \frac{1}{2}\cdot\frac{1}{2}\sin(2x) + c\\
+        &= \frac{x}{2} - \frac{1}{4}\sin(2x) + c
+    \end{align*}
+
+    \item Integrating $\cos^2 x$
+
+    We use the identity
+    \[
+        \cos^2 x = \frac{1+\cos(2x)}{2}
+    \]
+
+    Therefore
+    \begin{align*}
+        \int \cos^2 x\,dx
+        &= \int \frac{1+\cos(2x)}{2}\,dx\\
+        &= \frac{1}{2}\int 1\,dx + \frac{1}{2}\int \cos(2x)\,dx\\
+        &= \frac{1}{2}x + \frac{1}{2}\cdot\frac{1}{2}\sin(2x) + c\\
+        &= \frac{x}{2} + \frac{1}{4}\sin(2x) + c
+    \end{align*}
+\end{enumerate}
+\qed
+\end{solution}
+
+% ------------------------------------------------------------
+
+\begin{exercise}
+For each integral below, state a suitable substitution before evaluating the indefinite integral.
+\begin{enumerate}
+    \item $\displaystyle \int \ln(5x)\,dx$
+    \item $\displaystyle \int e^{-20x}\,dx$
+    \item $\displaystyle \int \sin(16x)\,dx$
+    \item $\displaystyle \int \cos(2x)\,dx$
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+
+\begin{enumerate}
+    \item Integrating $\int \ln(5x)\,dx$
+
+    We use the substitution
+    \[
+        u = 5x
+    \]
+    so that $du = 5\,dx$ and $dx = \frac{1}{5}du$.
+
+    Then
+    \begin{align*}
+        \int \ln(5x)\,dx
+        &= \frac{1}{5}\int \ln u\,du\\
+        &= \frac{1}{5}(u\ln u - u) + c\\
+        &= \frac{1}{5}(5x\ln(5x) - 5x) + c\\
+        &= x\ln(5x) - x + c
+    \end{align*}
+
+    \item Integrating $\int e^{-20x}\,dx$
+
+    We use the substitution
+    \[
+        u = -20x
+    \]
+    so that $du = -20\,dx$ and $dx = -\frac{1}{20}du$.
+
+    Then
+    \begin{align*}
+        \int e^{-20x}\,dx
+        &= -\frac{1}{20}\int e^u\,du\\
+        &= -\frac{1}{20}e^u + c\\
+        &= -\frac{1}{20}e^{-20x} + c
+    \end{align*}
+
+    \item Integrating $\int \sin(16x)\,dx$
+
+    We use the substitution
+    \[
+        u = 16x
+    \]
+    so that $du = 16\,dx$ and $dx = \frac{1}{16}du$.
+
+    Then
+    \begin{align*}
+        \int \sin(16x)\,dx
+        &= \frac{1}{16}\int \sin u\,du\\
+        &= -\frac{1}{16}\cos u + c\\
+        &= -\frac{1}{16}\cos(16x) + c
+    \end{align*}
+
+    \item Integrating $\int \cos(2x)\,dx$
+
+    We use the substitution
+    \[
+        u = 2x
+    \]
+    so that $du = 2\,dx$ and $dx = \frac{1}{2}du$.
+
+    Then
+    \begin{align*}
+        \int \cos(2x)\,dx
+        &= \frac{1}{2}\int \cos u\,du\\
+        &= \frac{1}{2}\sin u + c\\
+        &= \frac{1}{2}\sin(2x) + c
+    \end{align*}
+\end{enumerate}
+\qed
+\end{solution}
+
+\end{document}
