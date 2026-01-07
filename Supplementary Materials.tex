@@ -2809,7 +2809,8 @@ But now we have a problem! $\sin \theta$ can never be $2$ since $\sin \theta$ ca
 
     To return to the question, we have found the indefinite integral in terms of $\theta$ via a trig substitution. We want to replace any $\theta$ with the equivalent $x$ terms.
     To do this, we need to remember that $x = \sin \theta$. Therefore, $\theta = \sin^{-1} x$, whenever we can invert it\footnote{Explicitly, this is when $-\frac{\pi}{2} \leq \theta \leq \frac{\pi}{2}$}. We can continue to simplify by also remembering that 
-    \[ \sin 2\theta = 2 \sin \theta \cos \theta\], and that you can write $\cos \theta = \sqrt{1 - \sin^2 \theta}$ to rearrange it in terms of $\sin$ or $\theta$:
+    \[ \sin 2\theta = 2 \sin \theta \cos \theta\] 
+    and that you can write $\cos \theta = \sqrt{1 - \sin^2 \theta}$ to rearrange it in terms of $\sin$ or $\theta$:
 
     \begin{align*}
         \int \sqrt{1 - x^2} dx &= \frac{1}{2}(\frac{1}{2}\sin(2\theta))+  \frac{1}{2}\theta + c \\
@@ -2829,7 +2830,7 @@ But now we have a problem! $\sin \theta$ can never be $2$ since $\sin \theta$ ca
 
     \qed
 \end{solution}
-This question also shows a major downside using some trigonometric substitutions -- the bounds are heavily restricted! For example, we cannot use the indefinite integral above to find 
+This question also shows a major downside using some trigonometric substitutions -- the bounds are heavily restricted! For example, we cannot use the indefinite integral above\footnote{In fact, simply because we cannot allow $1-x^2$ to be negative is sufficient to deduce this, but the point still stands.} to find 
 \[ \int_0^2 \sqrt{1 - x^2} dx\] 
 Since the upper bound is outside of $-1$ and $1$, whereas we \emph{can} compute
 \begin{align*}
@@ -4266,7 +4267,7 @@ If the answer to both of those is yes, you are probably going to use a normal di
 
 Some key concepts were covered in Section \ref{sec:components-of-forces-or-vectors}, where we used standard trig identities to find components of vectors.
 
-\subsection{Small angle approximations}
+\subsection{Small angle approximations} \label{sec:trig-small-angle}
 
 Using something called the Taylor expansion of trigonometry functions, we can see how each of the functions behave near $0$.
 
@@ -4280,21 +4281,20 @@ Where these come from can be researched by an interested reader via Taylor serie
 
 Using the above, we can observe that if $x$ is really small (close to $0$), $x^2$ is a small number times a small number, which is even smaller itself. Similarly, all higher powers of $x$ will also be (exponentially) smaller.
 
-Therefore, one way of approximating these functions when $x$ is close to 0 is by removing any power of $x$ above $1$, since they are all tiny.
+Therefore, one way of approximating these functions when $x$ is close to $0$ is by removing any power of $x$ above $2$, since they are all tiny.
 
-From this, you get the small angle approximations of the trigonometry functions.
+From this, you get the small angle approximations of the trigonometry functions.\footnote{This technically requires that $x$ is in radians too, but we will assume that in this section.}
 
 \begin{align*}
     \sin x \approx x \\
-    \cos x \approx 1  \\
+    \cos x \approx 1 -   \frac{x^2}{2} \\
     \tan x \approx x 
 \end{align*}
 
 Note that if you remember only two of them, and handy way of remembering the third is by rearranging 
 \[ \tan x = \frac{\sin x}{\cos x}\]
 
-Which also holds for small angle approximations (check this)!
-
+Which also holds for small angle approximations, and using instead that $\cos x \approx 1$ (check this)!
 
 This can be used to approximate complicated functions within each trig function.
 
@@ -4310,7 +4310,7 @@ This can be used to approximate complicated functions within each trig function.
 
     \begin{align*}
         \sin (f(x)) \approx f(x) \\
-        \cos (f(x)) \approx 1 \\
+        \cos (f(x)) \approx 1  - \frac{f(x)^2}{2}\\
         \tan (f(x)) \approx f(x) 
     \end{align*}
 
@@ -4324,12 +4324,295 @@ This can be used to approximate complicated functions within each trig function.
 
 This can be used to get approximate solutions to problems, but only holds when the argument of the trigonometry functions is close to zero!
 
+Now for some questions. 
+
+\begin{example}
+    Let $x$ be a small non-zero number in radians.
+
+    Using small angle approximations and justifying why you can, simplify the following.
+
+    \[ x\frac{\cos(x)}{\sqrt{2}x - \sin(x^2)} \]
+
+    Show that, as long as $x \neq \sqrt{2}$, this can be simplified to become:
+    \[ \frac{2 + \sqrt{2}x}{2}\]
+
+    Using this, estimate the integral:
+
+    \[ \int_{-0.05}^{0.1} x\frac{\cos(x)}{\sqrt{2}x - \sin(x^2)} dx \]
+\end{example}
+\begin{solution}
+    
+    First note that we are told $x$ is small, and therefore $x^2$ is smaller. We then proceed with calculating our small angle approximations:
+
+    \[\cos(x) \approx 1 - \frac{x^2}{2} \]
+
+    And using that $x^2$ is small,
+    \[ \sin(x^2) \approx x^2\]
+
+    \begin{align*}
+        \frac{x\cos(x)}{\sqrt{2}x - \sin(x^2)} &\approx x\frac{1 - \frac{x^2}{2}}{\sqrt{2}x - x^2}  \tag{using our small angle approximations}\\
+        &= x\frac{1 - \frac{x^2}{\sqrt{2}^2}}{\sqrt{2}x - x^2} \tag{writing $2 = \sqrt{2}^2$}\\
+        &= x\frac{1 - (\frac{x}{\sqrt{2}})^2}{\sqrt{2}x - x^2} \tag{using $a^2/b^2 = (a/b)^2$}\\
+        &= x\frac{(1 - \frac{x}{\sqrt{2}})(1 + \frac{x}{\sqrt{2}})}{\sqrt{2}x - x^2} \tag{using difference of two squares}\\
+        &= \cancel{x}\frac{(1 - \frac{x}{\sqrt{2}})(1 + \frac{x}{\sqrt{2}})}{\cancel{x}(\sqrt{2} - x)} \tag{factorising denominator, and using $x\neq0$}\\
+        &= \frac{\cancel{(1 - \frac{x}{\sqrt{2}})}(1 + \frac{x}{\sqrt{2}})}{\sqrt{2}\cancel{(1 - \frac{x}{\sqrt{2}})}} \tag{factorising again} \\
+        &= 1 + \frac{x}{\sqrt{2}}\\
+        &= 1 + \frac{\sqrt{2} x}{2} \\
+        &= \frac{2 + \sqrt{2}x}{2}
+    \end{align*}
+
+    This finishes the first part of the question. Now for the integral, we use the small result from the first question since the integral bounds are small:
+
+    \begin{align*}
+         \int_{-0.05}^{0.1} x\frac{\cos(x)}{\sqrt{2}x - \sin(x^2)} dx &= \int_{-0.05}^{0.1} \frac{2 + \sqrt{2}x}{2} dx \\
+         &= \int_{-0.05}^{0.1} 1dx + \int_{-0.05}^{0.1}  \frac{\sqrt{2}x}{2} dx \tag{splitting the integral} \\
+         &= \left[x\right]_{x=-0.05}^{x=0.1} + \left[ \frac{\sqrt{2}}{4}x^2 \right]_{x=-0.05}^{x=0.1} \tag{integrating the parts} \\
+         &= 0.1 - 0.05 +  \frac{\sqrt{2}}{4}(0.1)^2 -  \frac{\sqrt{2}}{4}(0.05)^2
+    \end{align*}
+    Which can be solved using a calculator.
+
+    \qed
+\end{solution}
 
 
+\newpage
+\section{Parametric Equations}
+Parametric equations are when you are given multiple equations which use shared variables, and are to be calculated from the shared variables.
 
+Commonly in exams this will be given in a form where you have $x$ and $y$ in terms of $t$ separately.
 
+\begin{align*}
+    x &= f(t)\\
+    y &= g(t)
+\end{align*}
 
+You will be normally asked to find $y$ in terms of $x$. 
+From here, there are a two main approaches:
+\begin{enumerate}
+    \item Rearrange one of the equations for $t$ and substitute this into the other equation to eliminate $t$. This is sometimes not possible!
+    \item Rearrange one of the equations so that it is in terms of the other equation, and then substitute the variable $x$ or $y$ in directly.
+\end{enumerate}
 
+We will see both approaches below.
+
+\begin{example}
+    A curve has equations:
+    \begin{align*}
+        x &= 2t + 1 \\
+        y &= 4t - 5 + \frac{3}{t}, \; t\neq 0
+    \end{align*}
+    Let $x \neq1$. Then show that the curve satisfied by the above equations can be written as:
+
+    \[ y = \frac{ax^2 + bx + c}{x-1}\]
+
+    Where $a$, $b$, and $c$ are constants to be found.
+\end{example}
+
+\begin{solution}
+    We can approach this by writing the simplest equation in terms of $t$. Note that we can't easily write $y$ in terms of $t$, so if we were not able to do this we would need to find another approach.
+
+    \begin{align*}
+        x &= 2t+1 \\
+        x - 1 &= 2t \\
+        \frac{x-1}{2} &= t
+    \end{align*}
+
+    And then substituting what $t$ is into $y$.
+
+    \begin{align*}
+        y &= 4t - 5 + \frac{3}{t} \\
+         &= 4\frac{x-1}{2} - 5 +\frac{3}{(\frac{x-1}{2})} \tag{replacing each $t$ with $\frac{x-1}{2}$}\\
+         &= 2(x-1) - 5 +\frac{3}{\frac{1}{2}(x-1)} \tag{taking out a factor of $\frac{1}{2}$} \\
+         &= 2(x-1) - 5 + \frac{2}{2} \cdot \frac{3}{\frac{1}{2}(x-1)} \tag{multiplying by $1$} \\
+         &= 2(x-1) - 5 + \frac{6}{\cancel{\frac{2}{2}}(x-1)} \tag{multiplying fractions}\\
+         &= 2(x-1) - 5 + \frac{6}{x-1}\\
+         &= \frac{2(x-1)(x-1)}{(x-1)} - \frac{5(x-1)}{(x-1)} + \frac{6}{x-1} \tag{common denominator}\\ 
+         &= \frac{2(x-1)(x-1) - 5(x-1) + 6}{(x-1)} \tag{putting over one denominator}\\
+         &= \frac{2(x^2-2x+1) - 5x+5 + 6}{(x-1)} \tag{expanding brackets}\\
+         &= \frac{2x^2-4x+2 - 5x+11}{(x-1)} \tag{expanding brackets}\\
+         &= \frac{2x^2-9x+3}{(x-1)} \tag{simplifying}
+    \end{align*}
+    Which finishes the question, finding $a=2$, $b=-9$, and $c=3$ so that 
+    \[y = \frac{ax^2 + bx + c}{x-1} = \frac{2x^2+(-9)x+3}{(x-1)} \]
+
+    \qed
+\end{solution}
+
+\begin{example}
+    A curve has equations:
+    \begin{align*}
+        x &= \frac{1}{t} +5t\\
+        y &= \frac{1}{t^2} + 10 + 25t^2, \; t\neq 0
+    \end{align*}
+    Show that the curve satisfied by the above equations can be written as:
+
+    \[ y = f(x)\]
+
+    Where $f(x)$ is a function of $x$ to be found.
+\end{example}
+
+\begin{solution}
+    We might want to approach this by writing the simplest equation in terms of $t$, but in this case it is not easily possible.
+    For example, trying to rearrange the $x$ equation for $t$ you might get stuck at the point
+
+    \[x = t(\frac{1}{t^2} +5)\]
+    And not able to continue so simply.
+
+    Instead, we attempt to rearrange the more complicated equation to be written in terms of the simpler one.
+
+    What can we do with the second equation? Firstly, we can turn it into something that is easier to work with:
+
+    \begin{align*}
+        y &= \frac{1}{t^2} + 10 + 25t^2 \\
+        \therefore t^2y &= 1 + 10t^2 + 25t^4
+    \end{align*}
+    Here, this almost looks familiar as a quadratic, except we have this pesky $t^2$ hanging around. Let's briefly use 
+    a variable $u = t^2$ for convenience. Then 
+    \begin{align*}
+        t^2y &= 1 + 10t^2 + 25t^4 \\
+        \therefore uy &= 1 + 10u + 25u^2 \tag{using $u = t^2$} \\
+         &= (1 + 5u)(1 + 5u) \tag{factorising} \\
+         &= (1+5u)^2\\
+        \therefore uy &= (1+5u)^2 \tag{reminding ourselves} \\
+        \therefore y &= \frac{1}{u}(1+5u)^2 \tag{rearranging}\\
+        \therefore y &=  \frac{1}{t^2}(1+5t^2)^2 \tag{using $u = t^2$}\\
+         &= (\frac{1}{t})^2(1+5t^2)^2 \tag{using $a^2/b^2 = (a/b)^2$}\\ 
+         &= (\frac{1}{t}(1+5t^2))^2 \tag{using $a^2b^2 = (ab)^2$}\\ 
+         &= (\frac{1}{t} + 5t)^2 \tag{expanding the bracket inside}
+    \end{align*}
+
+    This is as much simplification as we can get, and we have found that 
+    \[ y = \frac{1}{t^2} + 10 + 25t^2  = (\frac{1}{t} + 5t)^2 \]
+
+    Note that we could have gone straight to the answer if we noticed that we could factorise directly.
+
+    But the last equality contains the equation for $x$ directly:
+
+    \[x = \frac{1}{t} +5t\]
+
+    Therefore we can replace any instance of $\frac{1}{t} +5t$ with $x$ to find:
+
+    \[y = x^2\]
+
+    This completes the question, finding $f(x) = x^2$.
+
+    \qed
+\end{solution}
+
+\begin{example}
+    A curve has equations:
+    \begin{align*}
+        x &= \cos(t)\\
+        y &= \tan(t) + \sec(t)
+    \end{align*}
+
+    Where $0\leq t < \frac{\pi}{2}$.
+
+    Show that the curve satisfied by the above equations can be written as:
+
+    \[ y = f(x) \]
+
+    Where $f(x)$ is a function of $x$ to be found.
+
+    Comment on whether the the final function is the same as the curve for all $x$.
+\end{example}
+
+\begin{solution}
+    We might want to approach this by writing the simplest equation in terms of $t$, but in this case we would need to invert $\cos$ and be careful with when this is allowed.
+
+    Instead, we attempt to rearrange the more complicated equation to be written in terms of the simpler one.
+
+    What can we do with the second equation? Firstly, we can write the definitions and then try to extract $\cos(t)$ wherever possible:
+
+    \begin{align*}
+        y &= \tan(t) + \sec(t)\\
+         &= \frac{\sin t}{\cos t} + \frac{1}{\cos t}
+    \end{align*}
+    This is almost in terms of $\cos t$, except we have this pesky $\sin t$ lingering. We can make use of familiar equations to fix this (using that $0\leq t < \frac{\pi}{2}$):
+
+    \begin{align*}
+        \sin^2 t + \cos^2 t&= 1 \\
+         \therefore \sin^2 t &= 1 - \cos^2 t \\
+         \therefore \sin t &= \sqrt{1 - \cos^2 t}
+    \end{align*}
+
+    We can now substitute everything in to find:
+
+    \begin{align*}
+        y &= \frac{\sin t}{\cos t} + \frac{1}{\cos t} \\
+         &= \frac{\sqrt{1 - \cos^2 t}}{\cos t } + \frac{1}{\cos t} \tag{substituting $\sin t$ above} \\
+         &= \frac{\sqrt{1 - x^2}}{x} + \frac{1}{x} \tag{using $x = \cos t$}
+    \end{align*}
+    This finishes the question, finding 
+
+    \[ y = f(x) = \frac{\sqrt{1 - x^2}}{x} + \frac{1}{x} \]
+
+    Note that the question was careful to restrict $t$ between $0\leq t < \frac{\pi}{2}$. This means that only a portion of the \emph{full} curve given by 
+
+    \[y  = \frac{\sqrt{1 - x^2}}{x} + \frac{1}{x}  \]
+    is covered by the original equations for $x$ and $y$, specifically between the ranges of $x$ allowed by $\cos t$ inside this range, which is $0 < x \leq 1$.
+
+    Therefore, the curve is actually the portion of the graph 
+
+    \[y  = \frac{\sqrt{1 - x^2}}{x} + \frac{1}{x}  \]
+
+    Where $0 < x \leq 1$. The expression defines a larger graph, but the parametric curve is only the part in this range of $x$.
+    \qed
+\end{solution}
+
+The next question makes use of small angle approximations, covered in Section \ref{sec:trig-small-angle}.
+
+\begin{example}
+    Let $t>0$ be small, and measured in radians. A curve is given parametrically via 
+    \begin{align*}
+        x &= \cos(t^2) + 1 \\ 
+        y &= \frac{1}{t^4} + t^8
+    \end{align*}
+    Using small angle approximations, show that the curve satisfied by the above equations can be written as:
+
+    \[ y \approx f(x) \]
+    Where $f(x)$ is a function of $x$ to be found. Comment on what portion of the curve is valid for this approximation.
+\end{example}
+
+\begin{solution}
+    There is no nice way to rearrange $y$ for $t$, and the question instructs us to use small angle approximations. Let's begin with recalling that if $\theta$ is small,
+
+    \[\cos(\theta) \approx 1 - \frac{\theta^2}{2}\]
+
+    And since $t$ is given to be small, we know that $t^2$ must be also small. Therefore,
+
+    \[\cos(t^2) \approx 1 - \frac{(t^2)^2}{2}\]
+
+    And therefore, we have that 
+
+    \[ x = \cos(t^2) + 1 \approx 1 - \frac{t^4}{2} + 1  = 2 - \frac{t^4}{2}\]
+    
+    This is simple enough to rearrange for $t$:
+
+    \begin{align*}
+        x +   \frac{t^4}{2} &\approx 2 \\
+         \therefore \frac{t^4}{2} &\approx 2 - x \\
+         \therefore t^4 &\approx 4 - 2x \\
+         \therefore t &\approx (4 - 2x)^{\frac{1}{4}}
+    \end{align*}
+
+    We can plug this into the equation for $y$:
+
+    \begin{align*}
+        y &= \frac{1}{t^4} + t^8 \\
+         &\approx \frac{1}{((4 - 2x)^{\frac{1}{4}})^4} + ((4 - 2x)^{\frac{1}{4}})^8 \\
+         &= \frac{1}{4 - 2x} + (4 - 2x)^2 \tag{using ${(a^b)}^c = a^{bc}$}\\
+         &=\frac{1}{4 - 2x} + \frac{(4 - 2x)^2(4 - 2x)}{4 - 2x} \tag{common denominator}\\
+         &=  \frac{1 + (4 - 2x)^3}{4 - 2x}
+    \end{align*}
+
+    This completes the question, as long as $x \neq 2$, which is always true. This is because the approximation is valid whenever $t$ is positive and small, which means that $x$ is close to $2$ but not equal to $2$ since $x = \cos(t^2) +1$ is only equal to $2$ at $t = 0$.
+    Moreover, we deduce that $x$ must be slightly less than $2$ since $\cos(t^2)+1$ is slightly less than $2$ when $t$ is slightly bigger than $0$. 
+
+    This means that the approximation is valid slightly below $x=2$.
+
+    \qed
+\end{solution}
 
 \newpage
 \section{Proofs}\label{sec:proofs}
