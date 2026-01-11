@@ -4803,6 +4803,106 @@ In this way we reduce ``all integers'' to two cases and can prove it by exhausti
 
 
 
+\newpage
+\section{Numerical Methods}
+Numerical methods are ways to approximate the solution to equations using a repeatable procedure, usually designed for computers to use efficiently.
+
+\subsection{The Trapezium Rule}
+
+The goal of the trapezium rule is to estimate the area under the curve as in the shaded area of Figure \ref{fig:shaded-function}, i.e. a way to estimate an integral, using only knowledge of the function we are trying to integrate at a few points.
+
+\begin{figure}[ht]
+\centering
+\incfig[0.75]{shaded function}
+\caption{A function shaded below the curve}
+\label{fig:shaded-function}
+\end{figure}
+
+One approach is to:
+
+\begin{enumerate}
+    \item Choose a bunch of $x$ points we want to know the value of the function at.
+    \item Find what $f(x)$ is at each point chosen. 
+    \item Connect the $f(x)$ points with straight lines, and draw lines down to the $x$ axis from each $f(x)$ point found. 
+    This will make a sequence of trapeziums, where the ``top'' of the trapezium is approximating the function curve with straight lines.
+    This can be seen in Figure \ref{fig:shaded-function-with-trapz}.
+    \item Calculate the area of each trapezium and add them together.
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\incfig[0.75]{shaded function with trapz}
+\caption{A function shaded below the curve, with trapeziums drawn, equal width.}
+\label{fig:shaded-function-with-trapz}
+\end{figure}
+
+Recall that for a trapezium with side lengths $a$ and $b$, and height $h$, the area of a trapezium is the following.
+
+\[ \text{Area of trapezium} = \frac{h(a+b)}{2}\]
+
+This can be proved by formalising the geometric construction seen in Figure \ref{fig:trapezium-geometric}, creating a copy of the trapezium, rotating it $180^\circ$, and then gluing it on the side of the original trapezium.
+It can be proved\footnote{You would approach this by labelling the angles in the outer triangles, and using the fact that they must add up to $180^\circ$ to find that the construction does indeed create a parallelogram.} 
+that this creates a parallelogram with width $a+b$ and height $h$, which has a total area of $h(a+b)$. Then since we duplicated our trapezium, this must be twice the area of the original trapezium.
+
+
+\begin{figure}[ht]
+\centering
+\incfig[0.75]{trapezium}
+\caption{A trapezium glued to itself to form a parallelogram.}
+\label{fig:trapezium-geometric}
+\end{figure}
+
+
+So what are the areas of the trapeziums in our problem? For convenience, we will space the $x$ points out evenly, with a distance of $h$ between each one. 
+As in, $x_1 = x_0 + h$, $x_2 = x_1 + h$, and so on for how many $x$ points we chose.
+
+Firstly, let's label the diagram with the widths and heights of the trapeziums, as in Figure \ref{fig:shaded-function-with-trapz-labelled}.
+
+\begin{figure}[ht]
+\centering
+\incfig[0.75]{shaded function with trapz labelled}
+\caption{A function shaded below the curve, with trapeziums drawn, equal width.}
+\label{fig:shaded-function-with-trapz-labelled}
+\end{figure}
+
+From this figure, we can notice that each trapezium has a side length of $f(x_i)$ and $f(x_{i+1})$, and a height of $h$.
+
+Therefore, the area of one of the trapeziums must be of the form:
+
+\[ \text{Area of trapezium }i = \frac{h(f(x_i) + f(x_{i+1}))}{2}\]
+
+To approximate the total area of $f(x)$ between two points, we add them all together to get (starting from $x_0$ and ending at $x_n$):
+
+\begin{align*}
+    \int_{x_0}^{x_n}f(x) dx \approx& \frac{h\big(f(x_0) + \textcolor{red}{f(x_{1})}\big)}{2} \tag{first trapezium} \\
+     &+ \frac{h\big(\textcolor{red}{f(x_{1})} + \textcolor{teal}{f(x_{2})}\big)}{2} \tag{second trapezium}\\
+     &+ \frac{h\big(\textcolor{teal}{f(x_{2})} + f(x_{3})\big)}{2} \tag{third trapezium}\\
+     &+ \dots \\
+     &+ \frac{h\big(f(x_{n-2}) + \textcolor{olive}{f(x_{n-1})}\big)}{2} \tag{second-to-last trapezium}\\
+     &+ \frac{h\big(\textcolor{olive}{f(x_{n-1})} + f(x_{n})\big)}{2} \tag{last trapezium} 
+\end{align*}
+
+Similar terms have been colour-coded. In fact, the right-hand-side can be simplified drastically by collecting the similar terms. 
+You can see that the term at the end of the line appears at the start of the next line, which means that there are repeat terms for every line except 
+the first or the last one. Let's expand and collect the terms together to see what we get:
+\begin{align*}
+    \int_{x_0}^{x_n}f(x) dx \approx \frac{h}{2}\bigg(& f(x_0) + \textcolor{red}{f(x_{1})} \tag{pulling $h/2$ out of the full equation} \\
+     &+ \textcolor{red}{f(x_{1})} + \textcolor{teal}{f(x_{2})} \\
+     &+ \textcolor{teal}{f(x_{2})} + f(x_{3}) \\
+     &+ \dots \\
+     &+ f(x_{n-2}) + \textcolor{olive}{f(x_{n-1})} \\
+     &+ \textcolor{olive}{f(x_{n-1})} + f(x_{n}) \bigg) \\
+     = \frac{h}{2} \bigg( & f(x_0) + 2\textcolor{red}{f(x_{1})}+ 2\textcolor{teal}{f(x_{2})}  + \dots + 2\textcolor{olive}{f(x_{n-1})}+ f(x_n)\bigg) \tag{collecting terms}\\
+     = \frac{h}{2} \bigg( & f(x_0) + f(x_n) + 2\big( \textcolor{red}{f(x_{1})}+ \textcolor{teal}{f(x_{2})} + \dots + \textcolor{olive}{f(x_{n-1})}\big) \bigg)  \tag{rearranging}
+\end{align*}
+
+This gives us the trapezium rule from the formula book:
+\[ \int_{x_0}^{x_n}f(x) dx  \approx  \frac{h}{2} \bigg( & f(x_0) + f(x_n) + 2\big( f(x_{1})+ f(x_{2}) + \dots + f(x_{n-1})\big) \bigg) \]
+
+Now the question is: what is $h$ in terms of $n$?
+\subsection{The Newton-Raphson Method}
+
+
 \end{document}
 
 
