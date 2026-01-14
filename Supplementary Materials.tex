@@ -4334,11 +4334,11 @@ Now for some questions.
     \[ x\frac{\cos(x)}{\sqrt{2}x - \sin(x^2)} \]
 
     Show that, as long as $x \neq \sqrt{2}$, this can be simplified to become:
-    \[ \frac{2 + \sqrt{2}x}{2}\]
+    \[ \frac{\sqrt{2} + x}{2}\]
 
     Using this, estimate the integral:
 
-    \[ \int_{-0.05}^{0.1} x\frac{\cos(x)}{\sqrt{2}x - \sin(x^2)} dx \]
+    \[ \int_{0.05}^{0.1} x\frac{\cos(x)}{\sqrt{2}x - \sin(x^2)} dx \]
 \end{example}
 \begin{solution}
     
@@ -4356,18 +4356,18 @@ Now for some questions.
         &= x\frac{(1 - \frac{x}{\sqrt{2}})(1 + \frac{x}{\sqrt{2}})}{\sqrt{2}x - x^2} \tag{using difference of two squares}\\
         &= \cancel{x}\frac{(1 - \frac{x}{\sqrt{2}})(1 + \frac{x}{\sqrt{2}})}{\cancel{x}(\sqrt{2} - x)} \tag{factorising denominator, and using $x\neq0$}\\
         &= \frac{\cancel{(1 - \frac{x}{\sqrt{2}})}(1 + \frac{x}{\sqrt{2}})}{\sqrt{2}\cancel{(1 - \frac{x}{\sqrt{2}})}} \tag{factorising again} \\
-        &= 1 + \frac{x}{\sqrt{2}}\\
-        &= 1 + \frac{\sqrt{2} x}{2} \\
-        &= \frac{2 + \sqrt{2}x}{2}
+        &= \frac{1}{\sqrt{2}} + \frac{x}{2}\\
+        &= \frac{\sqrt{2}}{2}+ \frac{x}{2} \\
+        &= \frac{\sqrt{2} + x}{2}
     \end{align*}
 
     This finishes the first part of the question. Now for the integral, we use the small result from the first question since the integral bounds are small:
 
     \begin{align*}
-         \int_{-0.05}^{0.1} x\frac{\cos(x)}{\sqrt{2}x - \sin(x^2)} dx &= \int_{-0.05}^{0.1} \frac{2 + \sqrt{2}x}{2} dx \\
-         &= \int_{-0.05}^{0.1} 1dx + \int_{-0.05}^{0.1}  \frac{\sqrt{2}x}{2} dx \tag{splitting the integral} \\
-         &= \left[x\right]_{x=-0.05}^{x=0.1} + \left[ \frac{\sqrt{2}}{4}x^2 \right]_{x=-0.05}^{x=0.1} \tag{integrating the parts} \\
-         &= 0.1 - 0.05 +  \frac{\sqrt{2}}{4}(0.1)^2 -  \frac{\sqrt{2}}{4}(0.05)^2
+         \int_{0.05}^{0.1} x\frac{\cos(x)}{\sqrt{2}x - \sin(x^2)} dx &\approx \int_{0.05}^{0.1} \frac{\sqrt{2} + x}{2} dx \\
+         &= \int_{0.05}^{0.1} \frac{\sqrt{2}}{2}+dx + \int_{0.05}^{0.1}  \frac{x}{2} dx \tag{splitting the integral} \\
+         &= \left[\frac{\sqrt{2}}{2}x\right]_{x=0.05}^{x=0.1} + \left[ \frac{1}{2}x^2 \right]_{x=0.05}^{x=0.1} \tag{integrating the parts} \\
+         &= \frac{\sqrt{2}}{2}\cdot0.1 - \frac{\sqrt{2}}{2}\cdot0.05 +  \frac{1}{2}(0.1)^2 -  \frac{1}{2}(0.05)^2
     \end{align*}
     Which can be solved using a calculator.
 
@@ -4613,6 +4613,91 @@ The next question makes use of small angle approximations, covered in Section \r
 
     \qed
 \end{solution}
+
+\begin{example}
+    A curve is defined by 
+    \begin{align*}
+        x &= \frac{1}{t} + 1, \; t\neq0\\
+        y &= \cos t
+    \end{align*}
+    Show that we can write 
+    \[ y = \cos\left(\frac{1}{ax + b}\right)\]
+
+    Where $a$ and $b$ are constants to be found. Then find the derivative:
+    \[ \frac{dy}{dx} \]
+\end{example}
+
+\begin{solution}
+    Firstly we can rearrange $x$ in terms of $t$:
+    \begin{align*}
+        x &= \frac{1}{t} - 1 \\
+        x +1 &= \frac{1}{t} \\
+        t(x+1) &= 1 \\
+        t &= \frac{1}{x+1} \tag{as long as $x\neq -1$}
+    \end{align*}
+    Then we can substitute $t$ into $y$ to find:
+    \begin{align*}
+     y &= \cos\left(\frac{1}{x+1} \right) 
+    \end{align*}
+
+    Which finds that $a=1$ and $b=1$ so that 
+    \[ y = \cos\left(\frac{1}{ax + b}\right)= \cos\left(\frac{1}{x+1}\right)\]
+
+    Now to differentiate $y$ in terms of $x$, we must use the chain rule. We can ask our question of: \emph{if we could replace any part with $u$, how can we turn it into a function we know how to differentiate?}
+
+    Note that we know how to differentiate $\cos u$, so we write:
+
+    \begin{align*}
+        y &= \cos\left(\frac{1}{x+1}\right) \\
+        y &= \cos u \tag{what we want} \\
+        u &= \frac{1}{x+1} \tag{to get what we want}
+    \end{align*}
+
+    Now remind ourselves of the chain rule Section \ref{sec:chain-rule}, e.g. by pretending that the $du$ cancel:
+    \[ \frac{dy}{dx} = \frac{dy }{du}\frac{du }{dx}\]
+    And therefore we can differentiate the equations to find the right hand side of the above:
+    \[ \frac{dy }{du} = -\sin u\]
+    But what about differentiating $ u = \frac{1}{x+1}$? For this, we can do another chain rule! After asking ourselves the same question, we proceed with:
+
+    \begin{align*}
+        u &= \frac{1}{x+1}\\
+        u &= \frac{1}{v} \tag{what we want}\\
+        v &= x + 1 \tag{to get what we want}
+    \end{align*}
+
+    And the chain rule in this case would be:
+    \[ \frac{du}{dx} = \frac{du }{dv}\frac{dv }{dx}\]
+
+    We can differentiate each equation to get the right hand side of the above:
+    \begin{align*}
+        \frac{du }{dv} &= -\frac{1}{v^2} \tag{writing $\frac{1}{v} = v^{-1}$}\\
+        \frac{dv }{dx} &= 1 \\
+        \therefore \frac{du}{dx} &= -\frac{1}{v^2} \tag{using the chain rule}\\
+        &= -\frac{1 }{(x+1)^2} \tag{using $v = x+1$}
+    \end{align*}
+    Therefore, reminding ourselves, we have found:
+
+    \begin{align*}
+        \frac{du}{dx} &= -\frac{1 }{(x+1)^2} \\
+        \frac{dy }{du} &= -\sin u \tag{from above}\\
+        \therefore \frac{dy }{dx} &= -\sin u (-\frac{1 }{(x+1)^2}) \tag{using the chain rule}\\
+        &= \frac{\sin u }{(x+1)^2} \\
+        &= \frac{\sin \left( \frac{1}{x+1}\right)}{(x+1)^2} \tag{using $u =  \frac{1}{x+1}$}
+    \end{align*}
+
+    Therefore, if $y = \cos\left(\frac{1}{x+1}\right)$, then 
+
+    \[\frac{dy }{dx} = \frac{\sin \left( \frac{1}{x+1}\right)}{(x+1)^2}\]
+
+    This completes the question.
+
+    \qed
+\end{solution}
+
+
+
+
+
 
 \newpage
 \section{Proofs}\label{sec:proofs}
@@ -4897,10 +4982,79 @@ the first or the last one. Let's expand and collect the terms together to see wh
 \end{align*}
 
 This gives us the trapezium rule from the formula book:
-\[ \int_{x_0}^{x_n}f(x) dx  \approx  \frac{h}{2} \bigg( & f(x_0) + f(x_n) + 2\big( f(x_{1})+ f(x_{2}) + \dots + f(x_{n-1})\big) \bigg) \]
+\[ \int_{x_0}^{x_n}f(x) dx  \approx  \frac{h}{2} \bigg(  f(x_0) + f(x_n) + 2\big( f(x_{1})+ f(x_{2}) + \dots + f(x_{n-1})\big) \bigg) \]
 
 Now the question is: what is $h$ in terms of $n$?
+
+If we know what the start and end points are that we are integrating between, and we know how many points we are going to use, we can figure out what $h$ is.
+
+To split the line-segment between 
+$x_0$ and $x_n$ into $n$ segments, we need to set $h$ to be 
+
+\[ h = \frac{x_n - x_0}{n}\]
+
+So that 
+\[ x_{i+1} = x_i + h \]
+
+Note that since we are counting from $x_0$ to $x_n$, we actually have $(n+1)$ points, but $n$ segments between them.
+
+\begin{example}
+    By splitting the interval between $0$ and $3$ with $4$ equally spaced segments, use the trapezium rule to estimate the integral:
+
+    \[ \int_0^3 x^2 dx\]
+
+    Then compare this with the answer you get from integrating it directly.
+\end{example}
+
+\begin{solution}
+    The $4$ equally spaced segments will have $h = \frac{3 - 0}{4-1} = \frac{3}{3} = 1$. That means we have:
+    \begin{align*}
+        x_0 &= 0 \\
+        x_1 &= x_0 + h = 1 \\
+        x_2 &= x_1 + h = 2 \\
+        x_3 &= x_2 + h = 3
+    \end{align*}
+
+    Setting $f(x) = x^2$, let's compute each value as a table:
+
+    \begin{center}
+    \begin{tabular}{c|cccc}
+    $x$        & 0 & 1 & 2 & 3 \\
+    \hline
+    $f(x)=x^2$ & 0 & 1 & 4 & 9
+    \end{tabular}
+    \end{center}
+
+    Now let's plug this into the trapezium rule:
+
+    \begin{align*}
+    \int_{x_0}^{x_n}f(x) dx  &\approx  \frac{h}{2} \bigg(  f(x_0) + f(x_n) + 2\big( f(x_{1})+ f(x_{2}) + \dots + f(x_{n-1})\big) \bigg) \\
+    \therefore \int_{0}^{3}x^2 dx  &\approx  \frac{1}{2} \bigg(  0 + 9 + 2\big( 1 + 4 \big) \bigg) \\
+    &= \frac{1}{2} \bigg(  9+ 2\big( 5 \big) \bigg) \\
+    &= \frac{19}{2}\\
+    &= 9.5
+    \end{align*} 
+
+    Comparing this to computing the integral directly:
+
+    \begin{align*}
+    \int_{x_0}^{x_n}f(x) dx  &=  \int_0^3 x^2 dx \\
+     &= \left[\frac{1}{3}x^3\right]_{x=0}^{x=3}\\ 
+     &= \frac{1}{3}3^3 \\
+     &= 3^2 \\
+     &= 9
+    \end{align*} 
+    Comparing it with the trapezium rule, we were only out by $0.5$ -- the trapezium rule with $4$ equally spaced segments got $9.5$ as the integral whereas the actual answer was $9$. Pretty close!
+    \qed
+\end{solution}
+
+In the previous question, we found that the trapezium rule overshot the real answer. If you draw out the function with the trapeziums, you can see this visually -- the trapeziums include sections above the curve since it curves upwards. 
+In fact, you can usually anticipate whether the trapezium rule will over or undershoot the actual integral 
+by looking at the section which does not overlap between the trapeziums and the function itself, look at Figure \ref{fig:shaded-function-with-trapz} again to see which parts the trapeziums include more area than the function, and which parts the trapeziums include less area than the function. Notice the patterns in the overlap when the function is curving in the same direction.
+
+
 \subsection{The Newton-Raphson Method}
+\textcolor{red}{To come.}
 
 
 \end{document}
