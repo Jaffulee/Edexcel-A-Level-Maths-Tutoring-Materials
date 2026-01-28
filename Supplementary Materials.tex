@@ -2394,7 +2394,7 @@ Which regains $f'$.
     \qed
 \end{solution}
 
-A \emph{definite integral} is one where we evaluate at two points, and can be defined as the area under a function $f$ between those two points. 
+A \emph{definite integral} is one where we evaluate at two points, and can be defined as the area under a function $f$ between those two points\footnote{In fact, it is a signed area since if a function is negative, the integral is also negative.}. 
 In practise, we compute this by the following:
 
 \[ \int_{a}^{b} f dx = \left[\int f dx\right]_{x=a}^{x=b}\]
@@ -5276,7 +5276,7 @@ Numerical methods are ways to approximate the solution to equations using a repe
 
 \subsection{The Trapezium Rule}\label{sec:traprule}
 
-The goal of the trapezium rule is to estimate the area under the curve as in the shaded area of Figure \ref{fig:shaded-function}, i.e. a way to estimate an integral, using only knowledge of the function we are trying to integrate at a few points.
+The goal of the trapezium rule is to estimate the area under the curve\footnote{Actually we are estimating the integral, which is a signed area since the integral of a negative function is also negative. This is left here to assist intuition.} as in the shaded area of Figure \ref{fig:shaded-function}, i.e. a way to estimate an integral, using only knowledge of the function we are trying to integrate at a few points.
 
 \begin{figure}[H]
 \centering
@@ -5445,7 +5445,7 @@ by looking at the section which does not overlap between the trapeziums and the 
     \end{tabular}
     \end{center}
 
-    By using the Trapezium rule, estimate the area under the curve between $x=-1$ and $x=2.75$.
+    By using the Trapezium rule, estimate the integral of the curve between $x=-1$ and $x=2.75$.
 
     If you are told that the curve's derivative is always decreasing, what can you say about whether the estimate for the area will be under or over the true area of $f(x)$?
 \end{example}
@@ -5458,8 +5458,8 @@ by looking at the section which does not overlap between the trapeziums and the 
 
     \begin{align*}
     \int_{x_0}^{x_n}f(x) dx  &\approx  \frac{h}{2} \bigg(  f(x_0) + f(x_n) + 2\big( f(x_{1})+ f(x_{2}) + \dots + f(x_{n-1})\big) \bigg) \\
-    \therefore \int_{-1}^{2.75}x^2 dx  &\approx  \frac{1.25}{2} \bigg(  -1 + 5 + 2\big( 4 + 6 \big) \bigg) \\
-    &= \frac{1}{2} \bigg(  4+ 2\big( 10 \big) \bigg) \\
+    \therefore \int_{-1}^{2.75}f(x) dx  &\approx  \frac{1.25}{2} \bigg(  -1 + 5 + 2\big( 4 + 6 \big) \bigg) \\
+    &= \frac{1.25}{2} \bigg(  4+ 2\big( 10 \big) \bigg) \\
     &= \frac{1.25 \times 24}{2}\\
     &= 15
     \end{align*} 
@@ -5475,14 +5475,14 @@ by looking at the section which does not overlap between the trapeziums and the 
     \label{fig:shaded-function-2}
     \end{figure}
 
-    Now it becomes clear that the trapeziums are always under the curve. When the curve is below zero, this means that the trapezium area is less than the curve's area. What about when the function 
+    Now it becomes clear that the trapeziums are always under the curve. When the curve is above zero, this means that the trapezium area is less than the curve's area. What about when the function 
     is below zero? In this case, the trapezium area is covering more space than the function is. But since it is negative, this should contribute more ``negative area''. However since we have not marked zero itself in the table, the trapezium calculation we are computing has negative side (!), which affects the area in this case. 
     
     The actual ``trapezium'' we are computing for the first trapezium is:
 
     \[ \frac{h(-1 + 5)}{2}\]
 
-    This makes it unclear whether the area in this case is less than or more than the actual function.
+    This makes it unclear whether the area in this case is less than or more than the actual function, at least for the geometrical approach we have been using, but it turns out the trapezium rule still underestimates the true integral in this case too, as long as the curve's derivative is decreasing\footnote{If we instead think of the straight line segment itself between $x_0$ and $x_1$ as a function, say $L(x)$, it follows due to the decreasing derivative that $f(x)\geq L(x)$ on this interval, and the ``trapezium area'' we have been using is given as $\int_{x_0}^{x_1}L(x)dx$. It then follows that $\int_{x_0}^{x_1}f(x)dx \geq\int_{x_0}^{x_1}L(x)dx$, which shows that the trapezium rule still undershoots the true value in this case.}.
     \qed
 \end{solution}
 
