@@ -2461,6 +2461,8 @@ the example of when we are integrating a derivative.
 
 In summary, indefinite integral you don't evaluate at two points, and definite integral you do evaluate at two points.
 
+You might ask why not just use the trapezium rule (Section \ref{sec:traprule}) if we only care about the area? The trapezium rule gives an estimate, whereas it is useful to know the precise, exact answer. However, in the ``real world'' the estimate is almost always enough.
+
 \subsubsection{Additional Exercises}
 \begin{example}
     Calculate the indefinite integral $\int \sin^2 x dx$.
@@ -2489,6 +2491,7 @@ In summary, indefinite integral you don't evaluate at two points, and definite i
     Alternatively, you can calculate this via substitution $y = 2x$, which is covered in Section \ref{sec:int-subs}.
     \qed
 \end{solution}
+
 
 \subsection{Integration by Parts} \label{sec:int-parts}
 It is useful to know how to integrate two functions multiplied together.
@@ -2910,7 +2913,7 @@ This has been very abstract, so let's see some examples.
     \qed
 \end{solution}
 
-\subsubsection{Trigonometric Substitutions}
+\subsubsection{Trigonometric Substitutions} \label{sec:trig-subs}
 
 One thing that appears frequently is the use of less direct substitutions, where the substitution you require does not directly appear in the integral itself as a change of variable.
 
@@ -2938,6 +2941,30 @@ We can get a suite of identities from starting with $\sin^2 \theta + \cos^2 \the
 
 This means that we can always transform a term that looks like $1 \pm x^2$ or $x^2 \pm 1$ into a single trig term via any of the above identities.
 Which one to use then comes down to how the \emph{rest} of the integral transforms (especially the $dx$ part)!
+
+Now the other key part is that we can multiply any of the above equations by any number and they are still true!
+
+For example, we have that $a\cos^2 \theta = a - a \sin^2 \theta$. So what if we have something of the form $a-bx^2$? Let's work backwards from what we want to use, and figure out what $x^2$ must be.
+We will highlight the non-$x$ part red to show what we are trying to match with the identity.
+
+\begin{align*}
+    &\textcolor{red}{a}-bx^2 \tag{the starting point}\\
+    \text{What is }&\text{a relevant trig identity?}\\
+    \\
+    a\cos^2 \theta &= \textcolor{red}{a} - a \sin^2 \theta \tag{what we want to use}\\
+     &= \textcolor{red}{a} - bx^2 \tag{what we want to replace}\\
+     \therefore  bx^2 &= a\sin^2 \theta \tag{what we need to use}\\
+     \therefore x &= \sqrt{\frac{a}{b}}\sin \theta \tag{the substitution we get}
+\end{align*}
+
+You could go and work out all examples of possible substitutions for each combination of $a \pm bx^2$, but:
+
+
+\textbf{Using the technique above to 
+multiply the trig identities by a constant to get the non-$x$ part in the correct form, and deduce what the $x$ part needs to be to achieve this is very powerful.
+This will allow you to deduce any trig substitution in the form $a \pm bx^2$.}
+
+The above is related to the fact that the equation of a circle at the origin is $x^2 + y^2 = r^2$, and we can rearrange to find $y = \sqrt{r^2 - x^2}$, and trigonometry usually appears when we are dealing with circles.
 
 The thing to be careful of is how the bounds transform in these cases; for example, the integral:
 \[\int_0^2 1-x^2 \; dx\] 
@@ -3576,6 +3603,120 @@ The following two are mainly difficult due to the emergence of integrating $\sec
 \end{solution}
 
 
+\begin{example}
+    Compute the following indefinite integral, assuming that $4-x^2\geq 0$.
+
+    \[ \int \frac{1}{x^2 \sqrt{4 - x^2}}dx\]
+\end{example}
+
+\begin{solution}
+    I will approach this from the point of view of discovering what the correct approach is, if it is not obvious from the start, and ignoring that 
+    we are in the substitution section of these notes.
+
+    Firstly, it is not obvious to ``see'' an easy way to integrate it directly, so we move on to 
+    trying to rearrange it into something we can integrate.
+
+    The only way I can spot to rearrange the integral is by spotting a difference of two squares in the denominator:
+
+    \[ \int \frac{1}{x^2 \sqrt{(2-x)(2+x)}}dx\]
+
+    The issue is that this didn't lead to any additional simplifications, so it is unclear whether this helped or not.
+
+    Instead let's consider an integration by parts, which might seem like a natural way to progress.
+
+    Using LATE does not help too much as a choice of $u$, so let's just choose the left side as $u$:
+
+    \begin{align}
+        u=\frac{1}{x^2}=x^{-2} & & v=? \\
+        u' = -2x^{-3} = \frac{-2}{x^3} & & v' = \frac{1}{\sqrt{4 - x^2}}
+    \end{align}
+
+    This has two problems: one is that the $u'$ has introduced an additional power of $x$, making our life worse, and the other problem is that 
+    we still need to integrate something difficult to find $v$. This should clue us in to the idea that maybe this approach is wrong.
+
+    Next let's try integration by substitution. For example, we could try $u= x^2\sqrt{4 - x^2}$, but finding what $dx$ is will be an issue since we will have a very complicated derivative via the product rule. Again 
+    this is complicating our work. At some point we must realise that if this is an exam question, we are probably not expected to spend this much time on it.
+
+    Instead, let's try a substitution of the ``bad'' part: $u = \sqrt{4 - x^2} $ If we were to continue, we would realise that the chain rule Section \ref{sec:chain-rule} is needed for $\frac{du }{dx}$.
+
+    The other part of the integral is $x^2$, which we can rearrange for by squaring both sides and finding $x^2 = 4 - u^2$.
+
+    This would turn the integral into the following.
+
+    \[ \int \frac{1}{u(4-u^2)}\cdot (\text{whatever }dx\text{ is})\]
+
+    This is also a complicated integral, but potentially more manageable than the original. So far, this is our best option.
+
+    However, if you have recently looked at the trigonometric substitution Section \ref{sec:trig-subs}, you might recognise the $\sqrt{4 - x^2}$ as containing something that looks like $a \pm bx^2$.
+
+    \textbf{This is the correct approach.}
+
+    Let's find a trig identity which looks like $4 - x^2$, following the procedure outlined in that section.
+
+    \begin{align*}
+        \sin^2\theta + \cos^2 \theta &= 1 \\ 
+        \therefore 4\sin^2\theta + 4\cos^2 \theta &= 4 \\ 
+        \therefore 4 \sin^2 \theta &= 4 - 4\cos^2 \theta \\ 
+        \therefore 4 \cos^2 \theta &= 4 - 4 \sin^2 \theta
+    \end{align*}
+
+    This gives us two options which look like $4 - (\text{something})^2$. The point is that when we take the square root, the square on the left-hand-side will cancel and leave us with something much simpler. 
+    Let's choose the first one\footnote{Choosing the other one and working through ends up with needing to integrate $\cosec^2 \theta$, which is not in the Edexcel formula book, but is possible to continue through regardless. We choose the other approach for reasons that will become clear at the end of the example.}
+    and deduce what substitution we need.
+
+    \begin{align*}
+        4 \sin^2 \theta &= 4 - 4\cos^2 \theta \\  
+        \therefore 2 \sin \theta &= \sqrt{4 - 4\cos^2 \theta} \tag{what we want to use}\\
+         &= \sqrt{4 - x^2} \tag{what we want to replace}\\
+         \therefore x^2 &= 4\cos^2 \theta \tag{what we need to be true}\\
+         \therefore x &= 2 \cos \theta \tag{what the substitution is}\\
+         \therefore \frac{dx}{d\theta} &= -2\sin \theta \tag{for $dx$}\\
+         \therefore dx &= -2\sin \theta  d\theta \tag{pretending to rearrange for $dx$} 
+    \end{align*}
+    Now we can substitute the relevant equations from above into the integral from left to right:
+
+    \begin{align*}
+        \int \frac{1}{x^2\sqrt{4 - x^2}}dx &= \int \frac{1}{4\cos^2 \theta\sqrt{4 - x^2}}dx \tag{using $x^2 = 4\cos^2 \theta$}\\
+         &= \int \frac{1}{4\cos^2 \theta \cdot 2 \sin \theta}dx \tag{using $2 \sin \theta = \sqrt{4 - 4\cos^2 \theta}$}\\
+         &= \int \frac{1}{4\cos^2 \theta \cdot \cancel{2 \sin \theta}}(-\cancel{2\sin \theta})  d\theta  \tag{using $dx = -2\sin \theta  d\theta$}\\
+         &= -\frac{1}{4}\int \sec^2 \theta d\theta \tag{rearranging, using $\frac{1}{\cos \theta} = \sec \theta$}
+    \end{align*}
+
+    Now we could continue with integrating this, but for Edexcel A-level, it is always worth checking if a trigonometric integral is just in the formula book. The formula book indeed tells us that:
+
+    \[ \int \sec^2 kx dx  = \frac{1}{k}\tan kx + c\]
+
+    Setting $k=1$ and $x = \theta$ in the formula gives:
+
+    \begin{align*}
+        \int \frac{1}{x^2\sqrt{4 - x^2}}dx &=  -\frac{1}{4}\int \sec^2 \theta \tag{where we left off}\\
+        &= -\frac{1}{4}\tan \theta + c
+    \end{align*}
+
+    We are not done however, since we introduced $\theta$ as part of our substitution -- the question was in terms of $x$ so we should give this in terms of $x$ too.
+
+    Recall that $x = 2 \cos \theta$, and therefore $\cos \theta = \frac{1}{2}x$
+    \begin{align*}
+        \int \frac{1}{x^2\sqrt{4 - x^2}}dx &=  -\frac{1}{4}\tan \theta + c \\
+        &= -\frac{1}{4}\frac{\sin \theta   }{\cos \theta}  + c \tag{using $\tan \theta = \frac{\sin \theta   }{\cos \theta} $}\\
+        &= -\frac{1}{4}\frac{\sqrt{1 - \cos^2 \theta}}{\cos \theta}  + c \tag{using $\sin \theta = \sqrt{1 - \cos^2 \theta}$}\\
+        &= -\frac{1}{4}\frac{\sqrt{1 - {(\frac{1}{2}x)}^2}}{\frac{1}{2}x}  + c \tag{using $\cos \theta = \frac{1}{2}x$}\\
+        &= -\frac{2}{4}\frac{\sqrt{1 - {(\frac{1}{2}x)}^2}}{x}  + c \tag{multiplying top and bottom by $2$}\\
+        &= -\frac{1}{2}\frac{\sqrt{1 - {(\frac{1}{2}x)}^2}}{x}  + c \tag{simplifying fraction}\\
+        &= -\frac{1}{2}\frac{\sqrt{1 - \frac{1}{4}x^2}}{x}  + c \tag{expanding the square}\\
+        &= -\frac{1}{2}\frac{\sqrt{\frac{4}{4} - \frac{1}{4}x^2}}{x}  + c \tag{writing $1 =\frac{4}{4}$}\\
+        &= -\frac{1}{2}\frac{\sqrt{\frac{1}{4}(4 - x^2)}}{x}  + c \tag{factorising}\\
+        &= -\frac{1}{2}\frac{\sqrt{\frac{1}{4}}\sqrt{4 - x^2}}{x}  + c \tag{using $\sqrt{ab} = \sqrt{a}\sqrt{b}$}\\
+        &= -\frac{1}{2}\frac{\frac{1}{2}\sqrt{4 - x^2}}{x}  + c \tag{using $\sqrt{a/b} = \sqrt{a}/\sqrt{b}$}\\
+        &= -\frac{1}{4}\frac{\sqrt{4 - x^2}}{x}  + c \tag{multiplying top and bottom by $2$}
+    \end{align*}
+
+    And finally, we find that the integral is as follows.
+
+    \[\int \frac{1}{x^2\sqrt{4 - x^2}}dx  = -\frac{1}{4}\frac{\sqrt{4 - x^2}}{x}  + c \]
+    \qed
+\end{solution}
+
 
 \subsection{Mixed Exercises}
 These questions use a range of techniques.
@@ -3593,6 +3734,44 @@ Where the numbering corresponds to difficulty. If you can do an earlier step you
 The following exercises will demonstrate this.
 
 
+\begin{example}
+    Find the following indefinite integral, where $a \neq0$ is a constant.
+
+    \[\int \frac{1}{x}\cdot x^a dx\]
+
+    What happens if $a = 0$?
+\end{example}
+\begin{solution}
+    If we skipped the stepped approach, we might get tunnel-visioned into jumping into a integration by parts. This would 
+    have us choose $u = x^a$ and $v' = \frac{1}{x}$ via LATE, and therefore $v = \ln x$, and we could continue. This unfortunately is jumping the gun 
+    and complicating our lives, when if we had followed the steps the answer would be much clearer.
+
+    Firstly, it is not directly obvious to see a function which differentiates into $\frac{1}{x}\cdot x^a$, but we \emph{can} rearrange it into something we can handle.
+
+    \begin{align*}
+        \int \frac{1}{x}\cdot x^a dx &=  \int x^{-1}\cdot x^a dx \\
+         &= \int x^{a-1}dx \tag{using $x^ax^b = x^{a+b}$}
+    \end{align*}
+    Now this one you can recognise as something we can integrate. Since we know $x^{a}$ differentiates to become $ax^{a-1}$, we 
+    can divide by $a$ to find:
+     \begin{align*}
+        \int \frac{1}{x}\cdot x^a dx &= \int x^{a-1}dx \\
+        &= \frac{1}{a}x^a + c
+    \end{align*}
+
+    Therefore, simplifying the integral first allowed us to find that 
+    \[\int \frac{1}{x}\cdot x^a dx = \frac{1}{a}x^a + c\]
+
+    Now this holds whenever $a \neq 0$, which can be seen by the right-hand-side being divided by $a$. If $a=0$, the integral becomes:
+
+    \[\int \frac{1}{x} dx = \ln |x|+ c\]
+
+    Which again is possible by first simplifying the integral before continuing. Notice that $\ln x$ only occurs when we have exactly $\frac{1}{x}$ in the integral\footnote{In general the integral needs to be of the form $\int \frac{f'(x)}{f(x)}dx = \ln |f(x)| + c$.}, 
+    otherwise we also get a power of $x$ as the integral as seen above.
+
+    This completes the question by considering the two cases separately.
+    \qed
+\end{solution}
 
 \begin{example}
     Find 
@@ -5095,7 +5274,7 @@ In this way we reduce ``all integers'' to two cases and can prove it by exhausti
 \section{Numerical Methods}
 Numerical methods are ways to approximate the solution to equations using a repeatable procedure, usually designed for computers to use efficiently.
 
-\subsection{The Trapezium Rule}
+\subsection{The Trapezium Rule}\label{sec:traprule}
 
 The goal of the trapezium rule is to estimate the area under the curve as in the shaded area of Figure \ref{fig:shaded-function}, i.e. a way to estimate an integral, using only knowledge of the function we are trying to integrate at a few points.
 
@@ -5254,6 +5433,58 @@ Note that since we are counting from $x_0$ to $x_n$, we actually have $(n+1)$ po
 In the previous question, we found that the trapezium rule overshot the real answer. If you draw out the function with the trapeziums, you can see this visually -- the trapeziums include sections above the curve since it curves upwards. 
 In fact, you can usually anticipate whether the trapezium rule will over or undershoot the actual integral 
 by looking at the section which does not overlap between the trapeziums and the function itself, look at Figure \ref{fig:shaded-function-with-trapz} again to see which parts the trapeziums include more area than the function, and which parts the trapeziums include less area than the function. Notice the patterns in the overlap when the function is curving in the same direction.
+
+\begin{example}
+    You are given the following grid for of values for a function.
+
+        \begin{center}
+    \begin{tabular}{c|cccc}
+    $x$        & -1 & 0.25 & 1.5 & 2.75 \\
+    \hline
+    $f(x)$ & -1 & 4 & 6 & 5
+    \end{tabular}
+    \end{center}
+
+    By using the Trapezium rule, estimate the area under the curve between $x=-1$ and $x=2.75$.
+
+    If you are told that the curve's derivative is always decreasing, what can you say about whether the estimate for the area will be under or over the true area of $f(x)$?
+\end{example}
+\begin{solution}
+    First we need to determine $h$. Since $h$ is the distance between two $x$ points, we can deduce that it should be:
+    \[ h= 0.25 - (-1) = 1.25\]
+
+    And we can verify that each point is $1.25$ apart, meaning that $h=1.25$ is the distance between each point, and we can use the trapezium rule.
+    Now let's plug this into the trapezium rule:
+
+    \begin{align*}
+    \int_{x_0}^{x_n}f(x) dx  &\approx  \frac{h}{2} \bigg(  f(x_0) + f(x_n) + 2\big( f(x_{1})+ f(x_{2}) + \dots + f(x_{n-1})\big) \bigg) \\
+    \therefore \int_{-1}^{2.75}x^2 dx  &\approx  \frac{1.25}{2} \bigg(  -1 + 5 + 2\big( 4 + 6 \big) \bigg) \\
+    &= \frac{1}{2} \bigg(  4+ 2\big( 10 \big) \bigg) \\
+    &= \frac{1.25 \times 24}{2}\\
+    &= 15
+    \end{align*} 
+
+    Therefore the trapezium rule gives us an estimate of the area as $15$.
+
+    For the second part of the question, if we draw a sketch of the curve, we know that the slope must be going from steep to less steep since the question told us the derivative is decreasing.
+
+    \begin{figure}[H]
+    \centering
+    \incfig[0.75]{shaded function 2}
+    \caption{A function shaded below the curve, with trapeziums drawn.}
+    \label{fig:shaded-function-2}
+    \end{figure}
+
+    Now it becomes clear that the trapeziums are always under the curve. When the curve is below zero, this means that the trapezium area is less than the curve's area. What about when the function 
+    is below zero? In this case, the trapezium area is covering more space than the function is. But since it is negative, this should contribute more ``negative area''. However since we have not marked zero itself in the table, the trapezium calculation we are computing has negative side (!), which affects the area in this case. 
+    
+    The actual ``trapezium'' we are computing for the first trapezium is:
+
+    \[ \frac{h(-1 + 5)}{2}\]
+
+    This makes it unclear whether the area in this case is less than or more than the actual function.
+
+\end{solution}
 
 
 \subsection{The Newton-Raphson Method}
