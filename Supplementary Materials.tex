@@ -4770,7 +4770,7 @@ we assess whether the sample is inconsistent with that claim, to some level of s
 Since we are dealing with probabilities, we cannot fully disprove (or prove) anything, rather only find that it is exceedingly unlikely to be true given what we've seen, like if we claimed $80\%$ of people had sentient hair, but only experienced people without sentient hair. 
 After a while of seeing no sentience in hair, we would like to find a way to reassess our original beliefs. Conversely, if we somehow started spotting people with sentient hair every second person, we could never be certain that our claim is true, but only get more certain that other claims are false.
 
-To do this, we will have two hypotheses, the original baseline hypothesis that we assume to be true, called the \emph{null hypothesis}, and the \emph{alternative hypothesis}, which is usually ``not the null hypothesis'' or something a directional version of not (like more than or less than).
+To do this, we will have two hypotheses, the original baseline hypothesis that we assume to be true, called the \emph{null hypothesis}, and the \emph{alternative hypothesis}, which is usually ``not the null hypothesis'' or some directional version of not (like more than or less than).
 
 The null hypothesis is denoted $H_0$ and the alternative hypothesis is denoted $H_1$. In our hair sentience example, the null hypothesis would be that $50\%$ of people have sentient hair, and we are doubting this so the alternative hypothesis might be that less than $50\%$ of people have sentient hair.
 
@@ -4787,6 +4787,8 @@ Remember that you have tables for the following:
     \item Percentage Points of the $\chi^2$ Distribution
     \item Critical Values for Correlation Coefficients
 \end{enumerate}
+
+Not all of these are required for A-level hypothesis testing, but they appear in the formula book.
 
 It is useful to know when to use each of the distributions above.
 
@@ -4842,6 +4844,135 @@ The template we will follow is roughly:
     \item Compare the observed value with the critical value (or compute the p-value).
     \item State a conclusion in context.
 \end{enumerate}
+
+For the alternative hypothesis, for the purposes of the exam, we can choose either not equal, less than, or greater than, depending of the wording of the question. 
+E.g. if we wanted to check that the number of chocolate balls is not $50\%$ in our chocolate ball cereal warehouse, we could have our alternative hypothesis of the probability being not equal to $50\%$, 
+whereas if we wanted to check that the number of chocolate balls is more than expected, we would use the alternative hypothesis of the probability being more than $50\%$.
+
+An alternative hypothesis which looks like $H_1:\;p\neq a$ is called a two-tailed test, whereas an alternative hypothesis which looks like $H_1:\;p>a$ or $H_1:\; p<a$ is called a one-tailed test. 
+The two-tailed test has this name since it can be split into two regions on either side of the null value, e.g. $p<a$ and $p>a$, which when combined account for all of $p\neq a$. In practise, a two-tailed test involves calculating probabilities for both tails separately. Note that we have just used $p$ as a notational example.
+
+We choose (usually are told) a \emph{level of significance}, which amounts to ``assuming $H_0$ is true, how extreme of a result do we want to choose as too unexpected before we doubt it?'' 
+More rigoroously, it is the maximum probability (in the case of one tail) we are allowing for an event to occur under the null hypothesis. For a two-tailed tests, we consider it as two one-tailed tests with half the allowed maximum probability.
+
+What about critical regions? The critical region is the set of possible observations in which we would have evidence to reject the null hypothesis, i.e. a value which lies within our one or two-tailed region which would give us reason to doubt our null hypothesis for some level of significance.
+
+In the case of the binomial distribution (and Poisson if it were examined, or any discrete distribution for that matter), since we cannot have a decimal number of successes, the critical region does not perfectly line up with the percentages we have set as the maximum allowed percentage for a tail via the level of significance. 
+For example, if we have a one-tailed test and a level of significance of $2.5\%$, we might find that the probability of being in our tail is  $2.4\%$, if the next value jumps up to e.g. $3.7\%$. This means that the actual maximum probability we are allowing to be in our critical region is $2.4 \%$ in this case, rather than $2.5 \%$. 
+We call the actual percentage likelihood of being in the critical region the \emph{actual level of significance}. In the case of two tails, we would sum the one-tailed probabilities of being in the critical region.
+
+For the level of significance, we normally require to be strictly within the tail, as in for a one-tailed test with a level of significance of $2.5\%$ for a binomial distribution, we only accept a critical region which has a probability less than $2.5 \%$, not equal to. This should be clarified by any exam question, however.
+
+\begin{example}
+    A supervisor at the chocolate ball cereal warehouse wants to ensure that there are an equal percentage of chocolate balls to non-chocolate balls in our chocolate ball cereal.
+
+    During production, the balls are mixed together in bulk randomly and then portioned into a cereal box. We can consider the probability each ball is chocolate as independent.
+    
+    The supervisor randomly samples $50$ cereal balls from a box of cereal, and wants to know what the critical region is for a two-tailed test with a significance level of $1\%$. The probability of being within the critical region should be less than $1\%$, with each tail being less than $0.5\%$
+
+    Stating your hypotheses clearly, conduct an appropriate hypothesis test, stating clearly the critical region and the actual level of significance.
+
+    If the supervisor finds that there are $16$ chocolate balls in his sample, what should his conclusion be?
+\end{example}
+
+\begin{solution}
+    Since we have independent events, a probability of ``success'' of $0.5$ since there should be an equal percentage of chocolate to non-chocolate balls, we are using a fixed number of events, and we want to count the number of successes, 
+    we should use a binomial distribution $X \sim B(50,0.5)$, where $X$ is the number of chocolate balls. We want to test if the probability $p$ really is $0.5$, therefore since we are using a two-tailed test, our hypothesis are as follows:
+
+    \begin{align*}
+        H_0 : \; p=0.5 \tag{null hypothesis}\\
+        H_1: \; p\neq0.5 \tag{alternative hypothesis}
+    \end{align*}
+
+    To find the critical region for a significance level of $1\%$, we consider the two tails separately, which each have a maximum percentage of $0.5\%$.
+
+    Therefore we are interested in the values $x$ and $y$ such that 
+
+    \begin{align*}
+        P(X\leq x)&<0.005 \\
+        P(X\geq y)&<0.005
+    \end{align*}
+    
+    Then together, our critical region would be $X\leq x$ or $X \geq y$.
+
+    Start with $x$:
+
+    Using the formula book for $P(X\leq x)$ for $B(50,p)$, in the column corresponding to $p=0.5$, we find that 
+
+    \begin{align*}
+        P(X\leq 15) &=  0.0033 \\
+        P(X \leq 16) &= 0.0077
+    \end{align*}
+
+    Therefore, since each tail must have a probability less than $0.005$, we choose $x=15$ as our first (left) part of the critical region, with a probability of $ 0.0033$.
+
+    Now for $y$:
+    We must first convert this to the form of less than:
+
+    \begin{align*}
+        P(X\ge y) &< 0.005\\
+        \therefore 1-P(X< y) &< 0.005\\
+        \therefore 1-P(X\le y-1) &< 0.005\\
+        \therefore P(X\le y-1) &> 0.995
+    \end{align*}
+
+    So let's find the value where the probability exceeds $0.995$:
+
+    \begin{align*}
+        P(X\leq 33) &=  0.9923 \\
+        P(X \leq 34) &= 0.9967
+    \end{align*}
+
+    Thus $y-1=34$, making $y=35$. One way to think about this, even though it seems like we have overshot the actual answer from the table, is that the table tells us specifically the `$\leq$' region, and we want to find the `$>$' region, which is from one more than the `$\leq$' region.
+
+    Therefore, since each tail must have a probability less than $0.005$, we found the point at which the probability becomes more than $0.995$, and therefore we have found that the second (right) part of the critical region is $y=35$, with a probability of $1-0.9967 = 0.0033$.
+
+    That makes our critical region $X\leq 15$ or $X\geq 35$, with an actual level of significance of the sum of the individual probabilities: 
+    \[0.0033+ 0.0033 = 0.0066 = 0.66\%\]
+
+    This completes the first part of the question. Now if the supervisor found that in his sample there were $16$ chocolate balls, this is (just about) not within the critical region of $X\leq 15$ or $X\geq 35$, and therefore this sample does not provide enough evidence to reject the null hypothesis, at this level of significance.
+
+    I.e. there is not enough evidence to suggest that the percentage of chocolate balls produced by the factory differs from $50\%$, to this level of significance.
+    \qed
+\end{solution}
+
+\begin{example}
+    A consumer of the previous chocolate ball cereal warehouse suspects that the chocolate ball cereal warehouse is stingy with their chocolate balls, which are claimed to be an equal chance of having chocolate or non-chocolate balls.
+
+    This consumer takes a sample of $50$ balls from their cereal box, and counts the chocolate balls, finding there to be $16$.
+
+    Using an appropriate one-tailed test with a significance level of $1\%$, what should the consumer's conclusion be? The probability of the tail should be less than $1\%$.
+
+    Stating your hypotheses clearly, conduct an appropriate hypothesis test, stating clearly the critical region and the actual level of significance.
+
+    Then comment on the comparison to the conclusion from the previous question.
+\end{example}
+\begin{solution}
+    We can use the same setup for the most part from the previous question: $X$ the number of chocolate balls, $X \sim B(50,0.5)$ assumed, $H_0\;p=0.5$, but since the consumer is doing a single tailed test, wanting to know whether they are stingy, the alternative hypothesis is instead 
+    \[ H_1\;p<0.5 \]
+
+    Therefore, since the probability of the tail must be less than $0.01$, we use the formula book for $P(X\leq x)$ for $B(50,p)$, in the column corresponding to $p=0.5$, to find that 
+    
+    \begin{align*}
+        P(X \leq 16) &= 0.0077 \\
+        P(X \leq 17) &= 0.0164
+    \end{align*}
+
+    We therefore find that the critical region is $X\leq 16$, with an actual significance level of $0.0077$
+
+    This completes the first part of the question.
+
+    For the consumer's observation, they found $16$ chocolate balls in their sample of $50$ from the cereal, which is within the critical region.
+
+    Therefore there is evidence to reject the null hypothesis, i.e. there is evidence to suggest that the percentage of chocolate balls produced by the factory is less than $50\%$, to this level of significance.
+
+    Commenting on the previous example, we found that the amount of tails alone can change the conclusion; the supervisor found nothing to be wrong whereas the consumer found they were stingier than claimed.
+    \qed
+\end{solution}
+
+
+
+
 
 
 
