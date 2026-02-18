@@ -4853,7 +4853,7 @@ An alternative hypothesis which looks like $H_1:\;p\neq a$ is called a two-taile
 The two-tailed test has this name since it can be split into two regions on either side of the null value, e.g. $p<a$ and $p>a$, which when combined account for all of $p\neq a$. In practise, a two-tailed test involves calculating probabilities for both tails separately. Note that we have just used $p$ as a notational example.
 
 We choose (usually are told) a \emph{level of significance}, which amounts to ``assuming $H_0$ is true, how extreme of a result do we want to choose as too unexpected before we doubt it?'' 
-More rigoroously, it is the maximum probability (in the case of one tail) we are allowing for an event to occur under the null hypothesis. For a two-tailed tests, we consider it as two one-tailed tests with half the allowed maximum probability.
+More rigoroously, it is the maximum probability (in the case of one tail) we are allowing for an event to occur in the extreme of our null hypothesis. For a two-tailed tests, we consider it as two one-tailed tests with half the allowed maximum probability.
 
 What about critical regions? The critical region is the set of possible observations in which we would have evidence to reject the null hypothesis, i.e. a value which lies within our one or two-tailed region which would give us reason to doubt our null hypothesis for some level of significance.
 
@@ -4971,6 +4971,171 @@ For the level of significance, we normally require to be strictly within the tai
 \end{solution}
 
 
+\begin{example}
+    The chocolate ball cereal warehouse claims that the mean mass of each chocolate ball is $5.40$ g. 
+    Past records suggest that the masses of chocolate balls are normally distributed with standard deviation $0.68$ g.
+
+    A consumer suspects that the mean mass of the chocolate balls has changed.
+
+    A random sample of $52$ chocolate balls is taken and found to have mean mass $5.72$ g.
+
+    Using a $5\%$ level of significance, conduct an appropriate hypothesis test to assess the consumer’s claim.
+
+    Stating your hypotheses clearly, conduct an appropriate hypothesis test, stating clearly the critical region
+
+    Find the p-value for this test and interpret it in context.
+
+\end{example}
+
+ \begin{solution}
+    Firstly, let's model the mass of the chocolate ball as $X$, so that $X \sim N(5.4,0.68^2)$
+
+    Since we are taking a sample of $52$ chocolate balls and using the sample mean, we instead model the sample mean $\overline{X}$:
+
+    \[
+    \overline{X}\sim N\!\left(5.4,\frac{0.68^2}{52}\right)
+    \]
+
+    Then our hypothesis should be around $\mu$ itself:
+
+    \begin{align*}
+        H_0 :\; \mu &= 5.4 \\
+        H_1 :\; \mu &\neq 5.4
+    \end{align*}
+
+    We are then interested in the two-tailed test, finding the values $x$, $y$ such that 
+    $P(\overline{X}< x)= 0.025$ and $P(\overline{X}>y)=0.025$, using that we have a $5\%$ significance.
+
+    To compute these values, we want to use the formula book, which tells us values related to the standard normal distribution, so we transform:
+
+    \[
+    Z = \frac{\overline{X} - 5.4}{0.68/\sqrt{52}}
+    \]
+
+    Then $Z\sim N(0,1)$. Since the formula book tells us values for $P(Z>z)$, we can use symmetries to know that $P(Z<z) = P(Z>-z)$. We continue, reading from the formula book:
+
+    \begin{align*} 
+        P(Z>z) &= 0.025 \\
+        \therefore z &= 1.9600
+    \end{align*}
+
+    Now let's work out what this means for our two cases:
+
+    Starting with $y$:
+
+    \begin{align*}
+        P(\overline{X}>y)&=0.025 \\
+        \therefore P\!\left(Z> \frac{y - 5.4}{0.68/\sqrt{52}}\right) &= 0.025 \\
+        \therefore \frac{y - 5.4}{0.68/\sqrt{52}} &= 1.9600 \\
+        \therefore y - 5.4 &= 1.9600\left(\frac{0.68}{\sqrt{52}}\right) \\
+        \therefore y - 5.4 &\approx 0.1849 \\
+        \therefore y &\approx 5.5849
+    \end{align*}
+
+    Continuing with $x$:
+
+    \begin{align*}
+        P(\overline{X}<x)&=0.025 \\
+        \therefore P\!\left(Z< \frac{x - 5.4}{0.68/\sqrt{52}}\right) &= 0.025 \\
+        \therefore P\!\left(Z> -\frac{x - 5.4}{0.68/\sqrt{52}}\right) &= 0.025 \\
+        \therefore -\frac{x - 5.4}{0.68/\sqrt{52}} &= 1.9600 \\
+        \therefore x - 5.4 &= -1.9600\left(\frac{0.68}{\sqrt{52}}\right) \\
+        \therefore x - 5.4 &\approx -0.1849 \\
+        \therefore x &\approx 5.2151
+    \end{align*}
+
+    Therefore the critical region for $\overline{X}$ is
+    \[
+    \overline{X}<5.215 \quad \text{or} \quad \overline{X}>5.585.
+    \]
+
+    Now compare the observed value with this critical region.  
+    The sample mean mass is $5.72$ g, which lies in the critical region since
+    \[
+    5.72>5.585.
+    \]
+
+    Therefore we reject $H_0$.  
+    There is sufficient evidence at the $5\%$ level to suggest that the mean mass of chocolate balls differs from $5.4$ g.
+
+    We now find the p-value using the standard normal tables.
+
+    \begin{align*}
+    Z &= \frac{5.72-5.4}{0.68/\sqrt{52}} \\
+    &\approx 3.39
+    \end{align*}
+
+    From the formula book,
+    \[
+    P(Z>3.2905)=0.0005.
+    \]
+
+    Since $3.39>3.2905$, the probability in one tail must be smaller:
+    \[
+    P(Z>3.39)<0.0005.
+    \]
+
+    As this is a two-tailed test,
+    \[
+    \text{p-value} = 2P(Z>3.39) < 2(0.0005)=0.001.
+    \]
+
+    Hence the p-value is less than $0.001$, which is far smaller than $0.05$, giving very strong evidence against $H_0$.
+    \qed
+
+\end{solution}
+
+\subsubsection{Additional Exercises}
+
+\begin{example}
+    After spotting many people with orange hair, James believes that the percentage of orange haired people has increased to $75\%$ in recent times.
+
+    To support his claim, James randomly selects $50$ people and finds that $29$ of them have orange hair. You may assume that the selections are independent.
+
+    This is less than his expected amount, making him doubt his claim.
+
+    Using an appropriate one-tailed test with a significance level of $1\%$, conduct an appropriate hypothesis test. The probability of the tail should be less than $1\%$.
+
+    Stating your hypotheses clearly, conduct an appropriate hypothesis test, stating clearly the critical region and the actual level of significance.
+\end{example}
+
+\begin{solution}
+    Let's model the number of non-orange haired people, so that the null hypothesis is that $25\%$ of people have non-orange hair. This is to allow us to use the formula book, which has values between $p=0.05$ and $p=0.5$.
+
+    If $X$ is the number of non-orange haired people, we will model $X \sim B(50,0.25)$, and our hypothesis are that either James is right or the number of non-orange haired people have increased, letting p be the probability a person has non-orange hair:
+
+    \begin{align*}
+        H_0: \; &p=0.25 \\
+        H_1: \; &p>0.25
+    \end{align*}
+
+    The critical region is the set of values that are in the $1\%$ most extreme tail of non-orange haired people under $H_0$, therefore we wish to find $x$ so that $P(X\geq x)<0.01$.
+
+    We convert to $\leq$ for the formula book:
+
+    \begin{align*}
+        P(X\geq x) &<0.01 \\
+        \therefore 1 - P(X<x) &< 0.01 \\
+        \therefore 1 - P(X\leq x-1) &< 0.01 \\
+        \therefore 1-0.01 &< P(X\leq x-1)\\
+        \therefore 0.99 &< P(X\leq x-1)
+    \end{align*}
+
+    From the formula book, the first value which exceeds $0.99$ is:
+
+    \[P(X\leq20) = 0.9937\]
+
+    Therefore we find that 
+
+    \[x-1 = 20\]
+
+    Which gives us our critical region of $X\geq21$. This makes the actual level of significance $P(X\geq 21)=1- 0.9937 = 0.0063$.
+    
+    Recall that $X$ was the number of non-orange haired people.
+
+    James found that $29$ out of his $50$ people had orange hair, meaning that $21$ people had non-orange hair. Since this is within the critical region, there is evidence to reject the the null hypothesis that $75\%$ of people have orange hair, in favour of there less than $75 \%$ of people have orange hair, to this level of significance.
+    \qed
+\end{solution}
 
 
 
