@@ -4640,6 +4640,23 @@ For point $1$, we can use a little heuristic to figure out if we are dealing wit
 \end{enumerate} 
 If the answer to both of those is yes, you are probably going to use a normal distribution. If no, you'll need to use something else! Usually a question spells it out for you.
 
+Often times, the question asks you about the mean of the normal distribution, and in particular, how you might model the mean itself.
+
+Given a set of samples $x_1, \dots, x_n$, we can find the sample mean via:
+
+\[ \frac{x_1 + \dots + x_n}{n} \]
+
+If we consider a set of $n$ random variables, $X_1, \dots, X_n$, where each are independently distributed with the same normal distribution $N(\mu, \sigma^2)$, 
+we can ask ourselves what would the distribution of the mean of those random variables look like:
+
+\[ \overline{X} = \frac{X_1 + \dots + X_n}{n}\]
+
+It turns out that this can be considered itself a random variable having a normal distribution with the same mean, but a rescaled variance $\overline{X} \sim N(\mu, (\sigma/\sqrt{n})^2)$.
+
+Why this is true requires a few facts out of scope, one being that the sum of scaled normal distributions is itself a normal distribution, combined with some facts about how the mean and variance behave under summing and scaling.\footnote{Precisely, we can use Expectation Algebra (see formula book) to realise that $E(\sum X/n) = 1/n\sum E(X) = E(X)$ and $\operatorname{Var}(\sum X/n) = 1/n^2 \sum \operatorname{Var}(X) = 1/n \operatorname{Var}(X)$, which we can combine with the assumption that a linear combination of normal distributions is itself normal to get the result.}.
+
+One more intuitive way to think about this is that the mean of the mean should itself be the mean with enough points, but the standard deviation of a mean should be smaller since the more points we have the closer to the mean we expect to be, and the mean is bringing those points with it. The additional points help to cancel out any extremes.
+
 \subsubsection{Binomial Distribution} \label{sec:binomial-distribution}
 
 The binomial distribution is a useful probability distribution, which gives a probability of a given number of successes in a fixed number of trials. This means we know the number of times something has been repeated, and know that in each case only two outcomes are possible.
@@ -4775,6 +4792,9 @@ To do this, we will have two hypotheses, the original baseline hypothesis that w
 The null hypothesis is denoted $H_0$ and the alternative hypothesis is denoted $H_1$. In our hair sentience example, the null hypothesis would be that $50\%$ of people have sentient hair, and we are doubting this so the alternative hypothesis might be that less than $50\%$ of people have sentient hair.
 
 To \emph{test the validity of the null hypothesis, we calculate the probability of the observed data occurring (or more extreme than the observed data), assuming that $H_0$ is true.}\footnote{This is a conditional probability, and is normally denoted $P(\text{observed data (or more extreme) } \vert \; H_0 \text{ is true})$}
+
+The way to think about how this helps us is to realise this is the same as asking ``if we rank all possible outcomes from most to least likely given our null hypothesis, what percentile of least likely things happening does the observed data lie in?''
+Then if our observation is in the e.g. bottom $1\%$ of least likely outcomes if the null hypothesis was true, we should start to doubt it.
 
 The key thing that makes this all feasible to compute in an exam question is that the null hypothesis will allow you to either calculate the probabilities directly or look them up using the statistical tables in the formula book.
 
@@ -4999,6 +5019,8 @@ The $p$-value is the probability, assuming $H_0$ is true, of obtaining a result 
     \[
     \overline{X}\sim N\!\left(5.4,\frac{0.68^2}{52}\right)
     \]
+
+    See Section \ref{sec:normal-distribution}.
 
     Then our hypothesis should be around $\mu$ itself:
 
