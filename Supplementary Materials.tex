@@ -33,6 +33,9 @@
 \usepackage{ mathrsfs }
 \usepackage{ dsfont }
 \usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{arrows.meta}
 \usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 \usepackage{float}
 %% The lineno packages adds line numbers. Start line numbering with
@@ -5730,6 +5733,377 @@ The next question makes use of small angle approximations, covered in Section \r
 
 
 
+\newpage 
+\section{Vectors}\label{sec:vectors}
+
+Vectors encode a length and a direction. It is good to visualise them as an arrow from a base point, and adding a vector takes you from the base point to the end of that arrow.
+
+In this way, you can visualise an ant travelling around by adding and taking away vectors. 
+The output of the adding and taking away will give you a single vector, which encodes the length and direction from the starting point to the final point the ant ended at.
+
+Vectors are written as a column of numbers, where each number corresponds to moving an amount in that axis' direction. 
+
+This allows us to visualise moving in a vector as moving each axis individually.
+
+To get the overall length of the vector, we can now ask ourself how can we find the length of the line formed by drawing the shape formed by going in each axis' direction as instructed to by the vector.
+
+\[
+\begin{tikzpicture}[scale=1.1, >=Latex]
+
+    % Axes
+    \draw[->] (-0.5,0) -- (4.5,0) node[right] {$x$};
+    \draw[->] (0,-0.5) -- (0,3.5) node[above] {$y$};
+
+    % Points
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (3,0);
+    \coordinate (B) at (3,2);
+
+    % Component triangle
+    \draw[dashed] (O) -- (A);
+    \draw[dashed] (A) -- (B);
+
+    % Vector
+    \draw[very thick,->] (O) -- (B) node[midway, above left] {$\vec{v}$};
+
+    % Labels for components
+    \node[below] at (1.5,0) {$a$};
+    \node[right] at (3,1) {$b$};
+
+    % Point label
+    \node[above right] at (B) {$(a,b)$};
+
+    % Right angle marker
+    \draw (2.7,0) -- (2.7,0.3) -- (3,0.3);
+
+\end{tikzpicture}
+\]
+Drawn like this, it should be obvious that the length of $\vec{v}$ can be found using Pythagoras:
+
+\[ \vert\vec{v}\vert = \sqrt{a^2 + b^2}\]
+
+We can extend this to 3 dimensions:
+
+% Set viewing angle
+\tdplotsetmaincoords{70}{-300}
+
+\[
+\begin{tikzpicture}[tdplot_main_coords, scale=2, >=latex]
+
+    % Axes
+    \draw[->] (0,0,0) -- (2.5,0,0) node[anchor=north east] {$x$};
+    \draw[->] (0,0,0) -- (0,2.5,0) node[anchor=north west] {$y$};
+    \draw[->] (0,0,0) -- (0,0,2.5) node[anchor=south] {$z$};
+
+    % Coordinates
+    \coordinate (O) at (0,0,0);
+    \coordinate (A) at (1.5,0,0);
+    \coordinate (B) at (1.5,1,0);
+    \coordinate (C) at (1.5,1,1.5);
+
+    % Component path
+    \draw[dashed] (O) -- (A);
+    \draw[dashed] (A) -- (B);
+    \draw[dashed] (B) -- (C);
+
+    % Projection to xy-plane
+    \draw[dashed] (O) -- (B);
+
+    % Vector
+    \draw[very thick,->] (O) -- (C) node[midway, above left] {$\vec{v}$};
+
+    % Labels
+    \node[below] at (0.75,0,0) {$a$};
+    \node[right] at (1.5,0.5,0) {$b$};
+    \node[right] at (1.5,1,0.75) {$c$};
+
+    % Endpoint label
+    \node[above right] at (C) {$(a,b,c)$};
+
+\end{tikzpicture}
+\]
+
+And some geometry (think about why this is true by splitting into two different triangles!) can let you find out that:
+
+\begin{align*}
+    \vert \vec{v} \vert = \sqrt{\sqrt{a^2 + b^2} + c^2} = \sqrt{a^2 + b^2 + c^2}
+\end{align*}
+
+This gives us the equations for lengths of one and two-dimensional vectors as the square root of the sum of squares of the components! This should now be clear that it is the same as Pythagoras.
+
+To continue the discussion about imagining vectors as a path you can follow from a starting point to an end point, let's imagine we have two vectors $\vec{x}$ and $\vec{y}$. 
+We are an ant that starts at the origin and can only move using these vectors. We choose to do the following:
+
+\begin{enumerate}
+    \item Go along $\vec{x}$
+    \item Go along $\vec{y}$
+    \item Go along $\vec{y}$
+    \item Go along $\vec{x}$
+    \item Go along the reverse of $\vec{y}$
+    \item Go along the reverse of $\vec{x}$
+\end{enumerate}
+
+This can be visualised as the following, labelling the start as S and the end as E:
+
+
+\[
+\begin{tikzpicture}[scale=0.7, >=Latex]
+
+    % Axes
+    \draw[->] (-1,0) -- (13,0) node[right] {$x$};
+    \draw[->] (0,-1) -- (0,8) node[above] {$y$};
+
+    % Path points
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (5,1);   % +x
+    \coordinate (B) at (6,3);   % +y
+    \coordinate (C) at (7,5);   % +y
+    \coordinate (D) at (12,6);  % +x
+    \coordinate (E) at (11,4);  % -y
+    \coordinate (F) at (6,3);   % -x
+
+    % Path arrows with labels
+    \draw[very thick,->] (O) -- (A) node[midway, below] {$\vec{x}$};
+    \draw[very thick,->] (A) -- (B) node[midway, right] {$\vec{y}$};
+    \draw[very thick,->] (B) -- (C) node[midway, right] {$\vec{y}$};
+    \draw[very thick,->] (C) -- (D) node[midway, above] {$\vec{x}$};
+    \draw[very thick,->] (D) -- (E) node[midway, right] {$-\vec{y}$};
+    \draw[very thick,->] (E) -- (F) node[midway, below] {$-\vec{x}$};
+
+    % Mark start and end
+    \fill (O) circle (2pt);
+    \fill (F) circle (2pt);
+
+    \node[below left] at (O) {$S$};
+    \node[above right] at (F) {$E$};
+
+\end{tikzpicture}
+\]
+
+If we wanted to write the outcome of this path as a single vector, we can sum all of the steps we took:
+
+\[ \vec{SE} = \vec{x} + \vec{y} + \vec{y} + \vec{x} - \vec{y} - \vec{x}
+\]
+
+Which we can simplify as usual:
+
+\[\vec{SE} =  \vec{x} + \vec{y} \]
+
+This gives us exactly what the arrow between the origin and the end point would be as a vector, which in this case is much simpler than the path we actually took to get there.
+
+\begin{example}
+    Jim wants to test two routes to his work. Jim lives at point $A$, and works at point $C$, with a point $B$ as a potential place to stop on his way. Jim has a map that shows 
+    distances to the town centre, which he marks as $O$, the origin. 
+    Jim knows the vectors:
+    \[
+    \vec{OA}=\begin{pmatrix}1\\2\end{pmatrix},\quad
+    \vec{OB}=\begin{pmatrix}3\\1\end{pmatrix},\quad
+    \vec{OC}=\begin{pmatrix}4\\-3\end{pmatrix}
+    \]
+
+    Jim compares the two routes by going to work via $B$ but going directly from work to his home without stopping at $B$.
+
+    By calculating his journey as vectors, find the distances he travelled to and from work.
+\end{example}
+\begin{solution}
+    \[
+    \begin{tikzpicture}[scale=0.9, >=Latex]
+
+        % Axes
+        \draw[->] (-0.5,0) -- (5.5,0) node[right] {$x$};
+        \draw[->] (0,-4.5) -- (0,3.5) node[above] {$y$};
+
+        % Points
+        \coordinate (O) at (0,0);
+        \coordinate (A) at (1,2);
+        \coordinate (B) at (3,1);
+        \coordinate (C) at (4,-3);
+
+        % Position vectors
+        \draw[very thick,->] (O) -- (A) node[midway, left] {$\vec{OA}$};
+        \draw[very thick,->] (O) -- (B) node[midway, above] {$\vec{OB}$};
+        \draw[very thick,->] (O) -- (C) node[midway, right] {$\vec{OC}$};
+
+        % Optional journey paths
+        \draw[dashed] (A) -- (B);
+        \draw[dashed] (B) -- (C);
+        \draw[dashed] (C) -- (A);
+
+        % Points
+        \fill (O) circle (2pt) node[below left] {$O$};
+        \fill (A) circle (2pt) node[above left] {$A$};
+        \fill (B) circle (2pt) node[above right] {$B$};
+        \fill (C) circle (2pt) node[below right] {$C$};
+
+    \end{tikzpicture}
+    \]
+    On the way to work, Jim takes the following path given by $\vec{AB}$ and then $\vec{BC}$.
+
+    On the way back, Jim follows the path given by $\vec{CA}$.
+
+    To find the path $\vec{AB}$, we imagine ourselves as an ant at point $A$, where we are only allowed to move along or back along the arrows 
+    we have been given in the question. From this we realise we want to travel backwards through $\vec{OA}$ and then forwards through $\vec{OB}$.
+
+    This results in:
+
+    \[ \vec{AB} = -\vec{OA} + \vec{OB} \]
+
+    We now substitute the values and add the components:
+
+    \[ \vec{AB} = - \begin{pmatrix}1\\2\end{pmatrix} + \begin{pmatrix}3\\1\end{pmatrix} = \begin{pmatrix}2\\-1\end{pmatrix}\]
+
+    Then repeat for $\vec{BC}$:
+
+    \begin{align*}
+        \vec{BC} &= -\vec{OB} + \vec{OC} \\
+        &= - \begin{pmatrix}3\\1\end{pmatrix} + \begin{pmatrix}4\\-3\end{pmatrix} \\
+        &= \begin{pmatrix}1\\-4\end{pmatrix}
+    \end{align*}
+
+    Then to get the lengths, we use the equation for length of a vector (secretly Pythagoras) on each leg of the journey separately to find the distance Jim travelled to work by travelling through $B$ is
+
+    \[ \vert \vec{AB} \vert + \vert \vec{BC} \vert  = \sqrt{2^2 + 1^2} + \sqrt{1^2 + (-4)^2} = \sqrt{5} + \sqrt{17}\]
+
+    What about on the way back? Jim travels directly $\vec{CA}$ on the way back. There are many ways we could calculate this as a vector, using 
+    the fact we know if we add the individual vector steps we get the overall vector taking us from the starting point to the end point.
+
+    \begin{enumerate}
+        \item Through town: $\vec{CA} = -\vec{OC} + \vec{OA}$
+        \item Reversing the original route: $\vec{CA} = -\vec{BC} - \vec{BA}$
+        \item Whatever this route is: $\vec{CA} = -\vec{OC} + \vec{OB} - \vec{BA}$
+        \item \dots
+    \end{enumerate}
+    In fact, the right hand side will be idential for all of these options! Let's calculate the first two:
+
+    \begin{align*}
+        \vec{CA} &= -\vec{OC} + \vec{OA} \\
+        &= -\begin{pmatrix}4\\-3\end{pmatrix} + \begin{pmatrix}1\\2\end{pmatrix} \\
+        &= \begin{pmatrix}-3\\5\end{pmatrix}
+    \end{align*}
+    \begin{align*}
+        \vec{CA} &= -\vec{BC} - \vec{BA} \\
+        &= -\begin{pmatrix}1\\-4\end{pmatrix} - \begin{pmatrix}2\\-1\end{pmatrix} \\
+        &= \begin{pmatrix}-3\\5\end{pmatrix}
+    \end{align*}
+    Which suggests that maths is correct.
+
+    We may now calculate the distance going directly home would be:
+
+    \[ \vert \begin{pmatrix}-3\\5\end{pmatrix} \vert = \sqrt{(-3)^2 + 5^2} = \sqrt{9 + 25} = \sqrt{34}\]
+
+    You can check in a calculator that it is a shorter distance to travel directly in this case. In fact, it is always true that adding a point along the journey can only increase the journey distance.
+    \qed
+\end{solution}
+
+\begin{example}
+    You are given a cuboid with one corner at the origin with the remaining vertices marked $A$ through $G$, 
+    $N$ is at the midpoint of $D$ and $E$, $M$ is at the midpoint of $B$ and $G$ as in the diagram below.
+
+    \[
+\tdplotsetmaincoords{70}{40}
+\begin{tikzpicture}[tdplot_main_coords, scale=2, >=latex]
+
+    % Coordinates
+    \coordinate (O) at (0,0,0);
+    \coordinate (A) at (0,0,1);
+    \coordinate (B) at (2,0,0);
+    \coordinate (C) at (2,0,1);
+    \coordinate (D) at (0,3,0);
+    \coordinate (E) at (0,3,1);
+    \coordinate (F) at (2,3,1);
+    \coordinate (G) at (2,3,0);
+
+    % Midpoints from your comment
+    \coordinate (M) at (2,1.5,0);
+    \coordinate (N) at (0,3,0.5);
+
+    % Cuboid edges
+    \draw (O)--(A)--(C)--(B)--(O);
+    \draw (O)--(D)--(E)--(A);
+    \draw (D)--(G)--(F)--(E);
+    \draw (B)--(G);
+    \draw (C)--(F);
+
+    % Internal / marked segments
+    \draw[dashed] (B)--(G);
+    \draw[dashed] (D)--(E);
+
+    % Points
+    \fill (O) circle (0.8pt) node[below left] {$O$};
+    \fill (A) circle (0.8pt) node[left] {$A$};
+    \fill (B) circle (0.8pt) node[below] {$B$};
+    \fill (C) circle (0.8pt) node[right] {$C$};
+    \fill (D) circle (0.8pt) node[left] {$D$};
+    \fill (E) circle (0.8pt) node[left] {$E$};
+    \fill (F) circle (0.8pt) node[right] {$F$};
+    \fill (G) circle (0.8pt) node[below right] {$G$};
+    \fill (M) circle (0.8pt) node[right] {$M$};
+    \fill (N) circle (0.8pt) node[left] {$N$};
+
+\end{tikzpicture}
+\]
+    You are told that 
+    \begin{enumerate}
+        \item $\vert \vec{OA} \vert = 1$
+        \item $\vert \vec{OB} \vert = 2$
+        \item $\vert \vec{OD} \vert = 3$
+    \end{enumerate}
+    and that $A$ is on the $z$ axis, $B$ is on the $x$ axis, and $D$ is on the $y$ axis.
+
+    Find the vector $\vec{MN}$, and then find its length.
+\end{example}
+\begin{solution}
+    With the information given, we can write 
+    \begin{align}
+        \vec{OA} &= \begin{pmatrix}0\\0\\1\end{pmatrix}\\
+        \vec{OB} &= \begin{pmatrix}2\\0\\0\end{pmatrix}\\
+        \vec{OD} &= \begin{pmatrix}0\\3\\0\end{pmatrix}\\
+    \end{align}
+
+    Since it is a cuboid, we know that all lines with the same direction (parallel) must have the same vector (they are the same length in the same direction).
+
+    For example, we know that 
+    \begin{align*}
+        \vec{BG} &= \vec{OD} \\
+        \vec{DE} &= \vec{OA}
+    \end{align*}
+
+    Equipped with this, let's find a path from $M$ to $N$ via the vectors we know:
+
+    \[ \vec{MN} = \vec{MB} + \vec{BO} + \vec{OD} + \vec{DN}\]
+
+    We know the vector $\vec{OD}$, and we also know $\vec{BO}=-\vec{OB}$ since it is in the opposite direction with the same length.
+
+    Now consider $\vec{BM}$. Since it is half way along $\vec{BG}$, we know that 
+
+    \[ \vec{BM} = \frac{1}{2} \vec{BG}\]
+
+    And since we also know $\vec{BG} = \vec{OD}$, we can write 
+
+    \[ \vec{BM} = \frac{1}{2} \vec{OD} = \frac{1}{2} \begin{pmatrix}0\\3\\0\end{pmatrix} \]
+    Therefore 
+    \[ \vec{MB} = \begin{pmatrix}0\\-3/2\\0\end{pmatrix}\]
+
+    Similarly, since $\vec{DN}$ is half way along $\vec{DE}$, we can calculate 
+
+    \begin{align*}
+        \vec{DN} &= \frac{1}{2} \vec{DE} \\
+        &= \frac{1}{2} \vec{OA} \tag{using $\vec{DE} = \vec{OA}$}\\
+        &=  \frac{1}{2} \begin{pmatrix}0\\0\\1\end{pmatrix} \\
+        &= \begin{pmatrix}0\\0\\1/2\end{pmatrix}
+    \end{align*}
+
+    Therefore, we have found that 
+
+    \begin{align*}
+         \vec{MN} &= \vec{MB} + \vec{BO} + \vec{OD} + \vec{DN} \\
+         &= \begin{pmatrix}0\\-3/2\\0\end{pmatrix} -\begin{pmatrix}2\\0\\0\end{pmatrix} + \begin{pmatrix}0\\3\\0\end{pmatrix} + \begin{pmatrix}0\\0\\1/2\end{pmatrix} \\
+         &= \begin{pmatrix}-2\\3/2\\1/2\end{pmatrix}
+    \end{align*}
+
+    Therefore $\vec{MN}$ has length $\vert \vec{MN}\vert = \sqrt{(-2)^2 + (3/2)^2 + (1/2)^2} = \sqrt{13/2}$.
+    \qed
+\end{solution}
 
 \newpage
 \section{Sequences and Series}\label{sec:series}
