@@ -1,0 +1,601 @@
+\section{Functions}
+\subsection{Compositions and Inverses}
+\subsubsection{Compositions}
+\begin{definition} \label{def:f-composition}
+If $f$ and $g$ are two functions, we can define a new function $fg$ by 
+\[ fg(x) = f(g(x)) \]
+Note that this relies on $f$ being defined at the point $g(x)$. If $f$ has a \emph{singularity} at a point $a$ (as in $f(a)$ divides by zero somewhere in the calculation) then if there is an $x$ such that $g(x) = a$, $fg(x) = f(a)$, which would not be allowed.
+\end{definition}
+
+We can think of this similar to bracket rules - you do the ``innermost'' one first, and work outwards. 
+In the case of Definition \ref{def:f-composition} we compute $g(x)$ first, and then $f(x)$
+
+This can keep going! If we have three functions $f$, $g$, $h$, then $fgh(x) = f(g(h(x)))$, and we evaluate the functions inside-out ($h$ acts on $x$ first, then $g$, then $f$).
+\subsubsection{Compositions Examples and Exercises}
+\begin{example} \label{ex:simple-composition}
+    Let $f$ be a function defined by 
+    \[ f(x) = \frac{2x + 1}{5}\]
+    Find $ff(x)$, and write your answer in the form
+    \[ff(x) = \frac{ax + b}{25}\]
+    Where $a,b$ are numbers.
+\end{example}
+\begin{solution}
+    First write:
+    \[ f(x) = \frac{2x + 1}{5}\]
+    So 
+    \[ ff(x) = f(f(x)) = \frac{2\textcolor{red}{f(x)} + 1}{5}\]
+    Substituting $f(x)$ into this equation gives 
+    \[ ff(x) =  \frac{2\frac{2x + 1}{5} + 1}{5}\]
+    Here we have a fraction with fractions in it. Fractions are annoying, so we want to reduce the number of fractions. Notice that if we times the inner fraction by $5$, it would remove the fraction. 
+    We can use the fact that any number times $1$ is itself to multiply the fraction by $5/5$:
+    \begin{align*}
+        ff(x) &=  \frac{5}{5} \times \frac{2\frac{2x + 1}{5} + 1}{5} & \tag*{(substitute in $f(x)$)}\\
+            &= \frac{2\times \cancel{5} \times \frac{2x + 1}{\cancel{5}} +5}{5 \times 5} & \tag*{(expand top and bottom)}\\
+            &= \frac{4x + 2 + 5}{25} \\
+            &= \frac{4x + 7}{25}
+    \end{align*}
+
+    Now set 
+    \[ \frac{4x + 7}{25} = \frac{ax + b}{25}\]
+    Which finishes the question, finding $a = 4$, $b = 7$.
+    \qed
+\end{solution}
+
+
+
+\begin{example} \label{ex:simple-composition2}
+    Let $f$ be a function defined by 
+    \[ f(x) = \frac{2x + 1}{4x}\]
+    Where $x \neq 0$. \emph{This is required to not divide by $0$.}
+
+    Find $ff(x)$, and write your answer in the most simplified form of
+    \[ff(x) = \frac{ax + b}{cx + d}\]
+    Where $a,b,c,d$ are numbers. Make sure to state where $ff(x)$ is defined (what can $x$ not be).
+\end{example}
+\begin{solution}
+    First write (whenever $x\neq 0$):
+   \[ f(x) = \frac{2x + 1}{4x}\]
+    So 
+    \[ ff(x) = f(f(x)) = \frac{2\textcolor{red}{f(x)} + 1}{4\textcolor{red}{f(x)}}\]
+    Substituting $f(x)$ into this equation gives 
+    \[ ff(x) =  \frac{2\frac{2x + 1}{4x}\ + 1}{4 \frac{2x + 1}{4x}}\]
+    Here we have a fraction with fractions in it. Fractions are annoying, so we want to reduce the number of fractions. Notice that if we times the inner fractions by 
+    $4x$, it would remove the fraction. 
+    We can use the fact that any number times $1$ is itself to multiply the fraction by $4x/4x$, which is allowed because $x\neq 0$:
+    \begin{align*}
+        ff(x) &=  \frac{4x}{4x} \times \frac{2\frac{2x + 1}{4x}\ + 1}{4 \frac{2x + 1}{4x}} & \tag*{(substitute in $f(x)$)}\\
+            &= \frac{2\times \cancel{4x} \times \frac{2x + 1}{\cancel{4x}} + 4x}{4 \times \cancel{4x} \times \frac{2x + 1}{\cancel{4x}}} & \tag*{(expand top and bottom)}\\
+            &= \frac{4x + 2 + 4x}{8x + 4} \\
+            &= \frac{8x + 2}{8x + 4} \\
+            &= \frac{2}{2} \times \frac{4x + 1}{4x + 2} & \tag*{(factorise top and bottom)}\\
+            &= \frac{4x + 1}{4x + 2}
+    \end{align*}
+
+    Since we cannot simplify the equation any further, we now set 
+    \[ \frac{4x + 1}{4x + 2} = \frac{ax + b}{cx + d}\]
+    Which finds $a = c = 4$, $b = 1$, $d = 2$ by comparison.
+    $ff(x)$ cannot divide by zero, so we know  $4x+2 \neq 0$, and get that therefore  
+    $x \neq - \frac{1}{2} $. But remember $f$ itself requires $x \neq 0$, so $x$ cannot be $0$ or $-\frac{1}{2}$.
+    Which finishes the question.
+    \qed 
+\end{solution}
+
+\begin{example} \label{ex:simple-composition-different-functions}
+    Let $f$ and $g$ be functions defined by 
+    \[ f(x) = \sin (x) + \cos (3x) \]
+    \[g(x) = \frac{x +1}{3}\]
+
+    Find $fg(x)$, simplifying your answer.
+\end{example}
+\begin{solution}
+    First write:
+    \[ f(x) = \sin (x) + \cos (3x) \]
+    \[g(x) = \frac{x +1}{3}\]
+    So 
+    \[ fg(x) = f(g(x)) = \sin (\textcolor{red}{g(x)}) + \cos (3\textcolor{red}{g(x)})\]
+    Substituting $g(x)$ into this equation gives 
+    \begin{align*} fg(x) &=  \sin \left(\frac{x +1}{3}\right) + \cos \left(3\times\frac{x +1}{3}\right) \\&= \sin \left(\frac{x +1}{3}\right) + \cos (x +1)
+    \end{align*}
+    Which finishes the question.
+    \qed
+\end{solution}
+\begin{exercise} \label{ex:composition-three-functions}
+    \emph{Try it yourself!}
+    
+    Let $f$, $g$, $h$, be functions defined by 
+    \[ f(x) = \frac{1}{2}x^2\]
+    \[g(x) = \sin(x) - \cos(x)\]
+    \[h(x) = \cos(x) + \sin(x)\]
+
+    Show that \[ fg(x) + fh(x) = 1\] 
+    Hint: you may use (or recall) without proof that $\sin(x)^2 + \cos(x)^2 = 1$.
+\end{exercise}
+\begin{solution}
+    We will approach this question by calculating $fg$ and $fh$ separately, and then plugging them in.
+    First write:
+    \[ f(x) = \frac{1}{2}x^2\]
+    \[g(x) = \sin(x) - \cos(x)\]
+    \[h(x) = \cos(x) + \sin(x)\]
+    So 
+    \[ fg(x) = f(g(x)) =\frac{1}{2}\textcolor{red}{g(x)}^2\]
+    Substituting $g(x)$ into this equation gives 
+    \[ fg(x) = \frac{1}{2}(\sin(x) - \cos(x))^2 \]
+
+    Similarly, 
+    \[ fh(x) = f(h(x)) = \frac{1}{2}\textcolor{red}{h(x)}^2 \]
+    Subsituting $h(x)$ into this equation gives
+    \[ fh(x) = \frac{1}{2}(\cos(x) + \sin(x))^2 \]
+
+    Then we can calculate:
+    \begin{align*}
+        fg(x) + fh(x) &= \frac{1}{2}(\sin(x) - \cos(x))^2 +  \frac{1}{2}(\cos(x) + \sin(x))^2 & \tag{plugging in the equations}\\
+        &= \frac{1}{2}\left((\sin(x) - \cos(x))^2 + (\cos(x) + \sin(x))^2\right) & \tag{factoring}\\
+        &= \frac{1}{2}\left( \sin(x)^2 - \cancel{2\sin(x)\cos(x)} + \cos(x)^2  + \cos(x)^2 + \cancel{2\sin(x)\cos(x)} + \sin(x)^2 \right) & \tag{expanding} \\
+        &= \frac{1}{\cancel{2}} \times \cancel{2} (\sin(x)^2 + \cos(x)^2) & \tag{factoring} \\
+        &= \sin(x)^2 + \cos(x)^2 \\
+        &= 1 \tag{trig rules (the hint)}
+    \end{align*}
+    Which finishes the question.
+    \qed
+\end{solution}
+
+\subsubsection{Inverses} \label{sec:function-inverse}
+\begin{definition} \label{def:f-inverse}
+    If $f$ is a function, we define the inverse of $f$, denoted $f^{-1}$ by the following equation:
+    \[ ff^{-1}(x) = x \]
+    Or equivalently, 
+    \[ f^{-1}f(x) = x \]
+    The most common way to solve for $f^{-1}$ is by: 
+    \begin{enumerate} 
+        \item Write $y = f(x)$
+        \item Rearrange so that we have $x$ in terms of $y$
+        \item Swap $x$ and $y$ to find $f^{-1}(x)$
+    \end{enumerate}
+    You can show that this satisfies the definition of the inverse of $f$. 
+    Intuitively, Step 2 above finds ``what do you need to do to $y$ to find $x$''? This is because we are writing $x$ as a bunch of operations 
+    applied to $y$, but $y$ was chosen to be $f(x)$ in step $1$, therefore it must ``undo'' the operations we did in Step 1. This argument can be 
+    made rigorous.
+\end{definition}
+Here we have used the notation for function composition in Definition \ref{def:f-composition}.
+
+\subsubsection{Inverses Examples and Exercises}
+\begin{example} \label{ex:simple-inverse}
+    Example \ref{ex:simple-composition} continued.
+
+    Let $f$ be a function defined by 
+    \[ f(x) = \frac{2x + 1}{5}\]
+
+    Find $f^{-1}(x)$, and write your answer in the form
+    \[f^{-1}(x) = \frac{ax + b}{2}\]
+    Where $a,b$ are numbers.
+
+
+\end{example}
+\begin{solution}
+    First write 
+    \[y = \frac{2x + 1}{5}\]
+
+    Then rearrange for $x$:
+    \begin{align*}
+        5y &= 2x+1 \tag{multiply by 5}\\
+        5y -1 &= 2x \tag{minus 1}\\
+        x &= \frac{5y - 1}{2} \tag{divide by 2}
+    \end{align*}
+    Therefore,
+    \[ f^{-1}(x) = \frac{5x - 1}{2}\]
+    And setting it equal to $\frac{ax + b}{2}$, we find that $a = 5$ and $b = -1$ by comparison.
+    \qed
+\end{solution}
+
+\begin{example} \label{ex:simple-inverse-verification}
+    Example \ref{ex:simple-inverse} continued.
+
+    Let $f$ and $g$ be functions defined by 
+    \[ f(x) = \frac{2x + 1}{5}\]
+    \[ g(x) = \frac{5x - 1}{2}\]
+    By computing $fg(x)$, verify that $g$ is the inverse function of $f$, verifying the calculation in the previous question.
+
+\end{example}
+\begin{solution}
+    First write 
+    \[ f(x) = \frac{2x + 1}{5}\]
+    \[ g(x) = \frac{5x - 1}{2}\]
+
+    Then calculate
+    \begin{align*}
+        f(g(x)) &= \frac{2\textcolor{red}{g(x)} + 1}{5} \\
+         &= \frac{\cancel{2}\frac{5x - 1}{\cancel{2}} + 1}{5} \\
+         &= \frac{5x \cancel{- 1 + 1}}{5}  \\
+         &= \frac{\cancel{5}x}{\cancel{5}} \\
+         &= x
+    \end{align*}
+    Therefore, $fg(x) = x$, which verifies $g$ is the inverse function of $f$.
+    \qed
+\end{solution}
+
+
+
+\begin{example} \label{ex:simple-inverse2}
+    Example \ref{ex:simple-composition2} continued.
+
+    Let $f$ be a function defined by 
+    \[ f(x) = \frac{2x + 1}{4x}\]
+    Where $x \neq 0$. \emph{This is required to not divide by $0$.}
+
+    Find $f^{-1}(x)$, and write your answer in the form of
+    \[f^{-1}(x) = \frac{1}{ax + b}\]
+    Where $a,b$ are numbers. Make sure to state where $f^{-1}(x)$ is defined (what can $x$ not be).
+
+
+\end{example}
+\begin{solution}
+    Let $x \neq 0$. First write 
+    \[y = \frac{2x + 1}{4x}\]
+
+    Then rearrange for $x$:
+    \begin{align*}
+        4xy &= 2x+1 \tag{multiply by $4x$}\\
+        4xy -2x &= 1 \tag{minus $2x$ to get $x$ on one side}\\
+        x(4y - 2) &= 1 \tag{factorise $x$}\\
+        x &= \frac{1}{4y-2} \tag{divide by $4y - 2$}
+    \end{align*}
+    Therefore, 
+    \[ f^{-1}(x) = \frac{1}{4x-2}\]
+    And setting it equal to $\frac{1}{ax + b}$, we find that $a = 4$ and $b = -2$ by comparison.
+    This function is valid (not dividing by zero) whenever $4x- 2 \neq 0$, therefore it is valid whenever $x \neq \frac{1}{2}$.
+    \qed
+\end{solution}
+
+\begin{exercise} \label{ex:simple-inverse-verification2}
+    Example \ref{ex:simple-inverse2} continued.
+    \emph{Try it yourself!}
+
+    Let $f$ and $g$ be functions defined by 
+    \[ f(x) = \frac{2x + 1}{4x}, \; x \neq 0\]
+    \[ g(x) = \frac{1}{4x-2}, \; x \neq \frac{1}{2}\]
+    By computing $fg(x)$, verify that $g$ is the inverse function of $f$, verifying the calculation in the previous question.
+\end{exercise}
+\begin{solution}
+    First write 
+    \[ f(x) = \frac{2x + 1}{4x}\]
+    \[ g(x) = \frac{1}{4x-2} = \frac{1}{2} \times \frac{1}{2x-1}\]
+
+    Then set $x \neq  \frac{1}{2}$ and calculate
+    \begin{align*}
+        f(g(x)) &= \frac{2\textcolor{red}{g(x)} + 1}{4\textcolor{red}{g(x)}} \\
+         &= \frac{\cancel{2}\times\frac{1}{\cancel{2}}\times\frac{1}{2x-1} + 1}{4 \times \frac{1}{2} \times \frac{1}{2x-1}} \\
+         &= \frac{\frac{1}{2x-1} + 1}{2 \times \frac{1}{2x-1}}  
+    \end{align*}
+
+    Now we use my favourite trick of getting-rid-of-the-annoying-fractions-by-multiplying-by-the-inner-denominator, which is allowed because $x \neq  \frac{1}{2}$:
+    \begin{align*}
+        f(g(x)) &= \frac{2x-1}{2x-1} \times \frac{\frac{1}{2x-1} + 1}{2 \times \frac{1}{2x-1}}  \tag{multiply by $1$}\\
+         &= \frac{\cancel{(2x-1)} \times \frac{1}{\cancel{2x-1}} +2x - 1}{2 \times \cancel{(2x -1) } \times \frac{1}{\cancel{2x-1}}}  \tag{simplify fractions} \\ 
+         &= \frac{\cancel{1} + 2x - \cancel{1}}{2} \\
+         &= \frac{2x}{2} \\
+         &= x
+    \end{align*}
+    Therefore, $fg(x) = x$, which verifies $g$ is the inverse function of $f$.
+    \qed
+\end{solution}
+
+\subsubsection{Additional Exercises}
+
+\begin{exercise}
+    The function $f$ is defined by 
+    \[f(x) = \frac{4x + 3}{x-2}, \;\;\;\;x \neq 2\]
+\begin{enumerate}
+    \item Find $f^{-1}$
+    \item Show that 
+    \[ff(x) = \frac{ax + b}{cx + d}\]
+    where $a$, $b$, $c$, $d$ are integers to be found.
+\end{enumerate}
+
+The point $P$ $(3,15)$ lies on the curve with equation $y = f(x)$.
+\begin{enumerate}
+\setcounter{enumi}{2}
+    \item Find the point to which $P$ is mapped when $y = f(x)$ is transformed to the curve with equation $y = 2f(3x)+8$.
+    \item (Bonus) Verify $f^{-1}$ in the first part satisfies $ff^{-1}(x) = x$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+
+
+    \begin{enumerate}
+        \item
+        Find $f^{-1}$
+
+        First write $y = f(x)$, where $x \neq 2$ i.e.
+        \[ y = \frac{4x + 3}{x-2} \]
+
+        Now rearrange for $x$, getting rid of any fractions.
+        \begin{align*}
+            y &= \frac{4x + 3}{x-2} \\
+             y(x-2) &= 4x + 3 \tag{multiply by $(x-2)$} \\
+             xy - 2y &= 4x + 3 \tag{expand} \\
+             xy - 4x &= 2y+3 \tag{collect $x$ terms to one side} \\
+             x(y-4) &= 2y + 3 \tag{factorise LHS} \\
+             x &= \frac{2y+3}{y-4} \tag{assuming $y \neq 4$}
+        \end{align*}
+        Hence, whenever $x \neq 4$, 
+        \[ f^{-1}(x) = \frac{2x+3}{x-4}\]
+        \item 
+        Show  
+        \[ff(x) = \frac{ax + b}{cx + d}\]
+
+        Then calculate 
+        \begin{align*}
+            ff(x) &= f(\textcolor{red}{f(x)}) \\
+             &= \frac{4\textcolor{red}{f(x)} + 3}{\textcolor{red}{f(x)}-2}  \tag{insert $f(x)$ wherever $x$ is}\\
+             &=  \frac{4\times \textcolor{red}{\frac{4x + 3}{x-2}} + 3}{\textcolor{red}{\frac{4x + 3}{x-2}}-2} \tag{substitute $f(x)$}\\
+             &= \frac{x-2}{x-2} \times \frac{4\times \textcolor{red}{\frac{4x + 3}{x-2}} + 3}{\textcolor{red}{\frac{4x + 3}{x-2}}-2} \tag{multiply by $1$ to remove the $x-2$ denominators}\\
+             &= \frac{(x-2) (4\times \textcolor{red}{\frac{4x + 3}{x-2}} + 3)}{(x-2)(\textcolor{red}{\frac{4x + 3}{x-2}}-2)} \tag{multiply fractions} \\
+             &= \frac{4(4x + 3) + 3(x-2)}{4x + 3 - 2(x-2)} \tag{expand multiplication} \\
+             &= \frac{16x + 12 + 3x - 6}{4x + 3 - 2x + 4} \tag{expand multiplication} \\
+             &= \frac{19x + 6}{2x + 7} \tag{collect like terms}
+        \end{align*}
+        This is valid whenever $2x+7 \neq 0$, which is when $x \neq -\frac{7}{2}$
+
+        Hence we have found
+        \[ ff(x) = \frac{19x + 6}{2x + 7} \;\;\;\; x \neq 2, \; x \neq -\frac{7}{2}\]
+
+        \item 
+        We will reword the question slightly. Define $g$ by 
+        \[g(x) = 2f(3x) + 8\]
+        Find $g(3)$.
+
+        First calculate $f(\textcolor{red}{3x})$.
+        \[ f(\textcolor{red}{3x}) = \frac{4\times \textcolor{red}{3x} + 3}{\textcolor{red}{3x}-2} = \frac{12x + 3}{3x-2}\]
+        
+        Therefore 
+
+        \begin{align*}
+            g(x) &= 2\textcolor{red}{f(3x)} + 8 \\
+             &= 2\textcolor{red}{ \frac{12x + 3}{3x-2}} + 8 \tag{substitute $f(3x)$} \\
+             &=  \frac{24x + 6}{3x - 2} + 8 \tag{multiply fractions, noting $2 = \frac{2}{1}$}
+        \end{align*}
+
+        Then we can substitute $3$ into the above equation:
+
+        \begin{align*}
+            g(3) &= \frac{24 \times 3 + 6}{3 \times 3 - 2} + 8 \\
+             &= \frac{78}{7} + 8 \\
+             &= \frac{78 + 56}{7} \\
+             &= \frac{134}{7}
+        \end{align*}
+
+        Therefore the point $P$ is mapped to $(3, g(3))$ which is the point $(3,\frac{134}{7})$.
+
+        \item Show $ff^{-1}(x) = x$.
+        This is an exercise in function composition, and we will follow the same style of approach as in e.g. Example \ref{ex:simple-composition-different-functions}.
+
+        First write 
+        \[ ff^{-1}(x) =  f(\textcolor{red}{f^{-1}(x)})\]
+        Remember that 
+        \[ f(x) = \frac{4x + 3}{x-2} \]
+        And that we found 
+        \[ f^{-1}(x) = \frac{2x+3}{x-4}\]
+        Therefore 
+        \begin{align*}
+            f(\textcolor{red}{f^{-1}(x)}) &= \frac{4\textcolor{red}{f^{-1}(x)} + 3 }{\textcolor{red}{f^{-1}(x)} - 2} \\
+                &= \frac{4\textcolor{red}{\frac{2x+3}{x-4}} + 3 }{\textcolor{red}{\frac{2x+3}{x-4}} - 2} \\ 
+                &= \frac{x-4}{x-4} \times \frac{4\times \frac{2x+3}{x-4} + 3 }{\frac{2x+3}{x-4} - 2} \tag{multiply by $1$ to remove nested fractions} \\
+                &= \frac{(x-4)\left(4\times \frac{2x+3}{x-4} + 3 \right)}{(x-4 )\left(\frac{2x+3}{x-4} - 2\right)} \tag{multiply fractions} \\
+                &= \frac{4(3 + 2x) + 3(x-4)}{3+2x - 2(x-4)} \tag{expand} \\
+                &= \frac{12 + 8x + 3x - 12}{3 + 2x - 2x + 8} \tag{expand more} \\
+                &= \frac{11x}{11} \tag{collect terms}\\
+                &= x
+        \end{align*}
+        As required, therefore $ff^{-1}(x) = x$.
+    \end{enumerate}
+    \qed
+\end{solution}
+
+
+
+\subsection{Domain and Range}
+
+My school teacher said that he remembered which is range and what is domain by thinking of a lion's domain, and somehow he linked this to the inputs for a function. 
+I never understood quite what he meant, but it stuck with me.
+
+The domain of a function is the set of all input values for a function, and the range is the set of all possible outputs of that function, over the domain.
+
+For example, consider the following function.
+\[ f(x) = \frac{1}{x^2}\]
+
+This function defined everywhere except for $x=0$, where we would be dividing by $0$. Therefore its (maximal) domain is every number except for $0$. 
+On this domain, we can see that it is always positive since the denominator is always positive, and it gets closer to $0$ as $x$ gets larger (or more negative). 
+We can also observe that as $x$ gets close to $0$, the function outputs larger and larger numbers. Because of this, you might realise\footnote{You can prove this by setting $f(x) = a$ where $a>0$, and showing you can solve for $x$.} 
+that it can reach every number more than $0$. Therefore, we have found the domain and range of $f(x)$.
+
+The domain is $x<0$ or $x>0$, and the range is $0 < f(x)$.
+
+\begin{example}
+    Consider $f(x) = 2x$, for $-2\leq x < 1$. Find the range for this function, making sure to only allow the $x$ range in the question.
+\end{example}
+\begin{solution}
+    We know that this function is a straight line that is increasing, so therefore the range has to between whatever the leftmost point and the rightmost point is. The place to be careful is that 
+    we are told that $-2\leq x < 1$, therefore it does not quite reach the rightmost point.
+     
+    We can find the range therefore by plugging in:
+
+    \begin{align*}
+        f(-2) &= 2\times(-2) = -4\\
+        f(1) &= 2\times(1) = 2
+    \end{align*}
+
+    Therefore, when $-2\leq x < 1$, we have that $-4 \leq f(x) < 2$ is the range. This completes the question.
+    \qed
+\end{solution}
+
+\subsubsection{The Modulus Function}
+The modulus function is defined in two cases:
+
+\begin{enumerate}
+    \item If $x\geq0$, then $| x |= x$
+    \item If $x<0$, then $| x |= -x$
+\end{enumerate}
+
+This has the effect of ``removing-the-minus-sign'' from the number.
+
+\begin{example}
+    \begin{align*}
+        |3| &= 3\\
+        |-3| &= 3\\
+        |-20| &= 20\\
+        |0| &= 0\\
+        |5| &= 5
+    \end{align*}
+\end{example}
+
+We are interested in how this can interact with a function $f(x)$, seen in Figure \ref{fig:function-for-modulus}.
+\begin{figure}[H]
+    \centering
+    \incfig[0.75]{function for modulus}
+    \caption{An example function}
+    \label{fig:function-for-modulus}
+\end{figure}
+
+What would $|f(x)|$ look like? Since we know that the modulus function makes negative numbers positive, we care about when $f(x)$ is negative or positive.
+
+Since $f(x)$ is on the $y$ axis, we know whether it is negative or positive based on whether it is below or above the $x$ axis. To plot the modulus of the function, 
+observe that this is the same as reflecting all parts below the $x$ axis to be above it, and leaving the parts above the $x$ axis the same. 
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.75]{mod function for modulus}
+    \caption{An example function, with the modulus of the function in red.}
+    \label{fig:mod-function-for-modulus}
+\end{figure}
+
+Now what might $f(|x|)$ look like instead? Since we know that the modulus function makes negative numbers positive, we care about when $x$ is negative or positive.
+
+Since $x$ is on the $x$ axis (of course it is!), we know whether it is negative or positive based on whether it is to the left or the right of the $y$ axis. 
+When it is on the right of the $y$ axis, $x$ is positive and therefore $f(|x|)$ is unchanged. When it is on the left of the $x$ axis, the $x$ point that we plug into $f(x)$ is shifted to be 
+the positive $x$ point. This means that the $y$ position of $f(|x|)$ is given by whatever the $y$ position is by going an equal amount to the right of the $y$ axis than you are on the left of it. 
+This is the same as simply reflecting the right side of the $y$ axis to the left side. This is shown in Figure \ref{fig:modx-function-for-modulus}.
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.75]{modx function for modulus}
+    \caption{An example function, with the function using the modulus of the input in blue.}
+    \label{fig:modx-function-for-modulus}
+\end{figure}
+
+Now what about a combination of the above? What would $-|f(|x|)|$ look like? We can split this up into steps, as in when inputting an $x$, what steps happen to $x$? 
+This works inside-out in order:
+
+\begin{align*}
+    x &\mapsto |x| \tag{taking the modulus}\\
+    &\mapsto f(|x|) \tag{applying $f$}\\
+    &\mapsto |f(|x|)| \tag{taking the modulus}\\
+    &\mapsto -|f(|x|)| \tag{taking the minus sign}
+\end{align*}
+
+Now we can sketch each one in order, since each step individually we have done above. For example, we can 
+start with $f(|x|)$, which we sketched in Figure \ref{fig:modx-function-for-modulus}. From here, the next step is to take the modulus.
+From our discussion leading up to Figure \ref{fig:mod-function-for-modulus}, we know that this amounts to reflecting everything below the $y$ axis to above the $y$ axis.
+We will do the same thing, but to $f(|x|)$. This is sketched in Figure \ref{fig:modmodx-function-for-modulus}.
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.75]{modmodx function for modulus}
+    \caption{An example function, with the function using the modulus of the input, with the modulus applied in red}
+    \label{fig:modmodx-function-for-modulus}
+\end{figure}
+
+And for the last step, we can take the minus sign of the red line sketched for  $|f(|x|)|$. This reflect every number about the $x$ axis. This gives us Figure \ref{fig:minusmodmodx-function-for-modulus}.
+\begin{figure}[H]
+    \centering
+    \incfig[0.75]{minusmodmodx function for modulus}
+    \caption{An example function, with the function using the modulus of the input, with the modulus applied, with a negative sign in red}
+    \label{fig:minusmodmodx-function-for-modulus}
+\end{figure}
+
+The final result would have been hard to spot directly from Figure \ref{fig:function-for-modulus} without breaking it down step-by-step.
+
+We are often interested in how the range of a function is affected by the modulus.
+
+\begin{example}
+    Given that $f(x)$ has range $-16 < f(x) \leq 5$ and reaches every point inbetween, what range does $|f(x)|$ have?
+\end{example}
+\begin{solution}
+    Since the range means that the $y$ values are between $-16$ and $5$ (but not equal to $-16$ in this case), and we know the 
+    modulus turns negative values into positive values, we therefore know that $-16$ will transform into $16$. Since this is more than $5$, this is the new top-end of the range. 
+    For the lower end, we are told that $f$ reaches every point inbetween. Therefore the lowest point the modulus can reach is $0$.
+
+    This gives us the range $0 \leq |f(x)| < 16$, since the original function did not quite reach $-16$, the modulus can't reach $16$ either. This completes the question.
+    \qed
+\end{solution}
+The key point here is that the modulus does not ``remove'' values; it makes them positive. One way to think about the previous question is that 
+$-16$ is ``further negative'' than $5$ is positive, the new upper end of the range must go to the one that is further out, in this case $|-16|$.
+
+
+\begin{example}
+    Let $f(x) = 2x - 1$, for $-2 \leq x \leq 1$.
+
+    \begin{enumerate}
+        \item What is the range of $f(x)$?
+        \item What is the range of $|f(x)|$?
+        \item What is the range of $f(|x|)$ if we are given that $f$ is not defined for inputs not between $-2$ and $-1$? What is the range if we allowed $-2 \leq x \leq 1$ for $f(|x|) = 2|x| - 1$?\footnote{The difference here is whether we impose that $f$ itself is only defined on inputs between $-2$ and $1$, or if we consider $f(|x|)$ on all inputs between $-2$ and $1$, which actually implies that we are allowed to use $f$ between the points $0$ and $2$, since we are taking the modulus first before plugging into $f$. This is an important clarification since $2$ is outside our original allowed range of $x$ values.}
+    \end{enumerate}
+\end{example}
+
+\begin{solution}
+
+    \begin{enumerate}
+        \item 
+    We know that this function is a straight line that is increasing, so therefore the range has to between whatever the leftmost point and the rightmost point is. The place to be careful is that 
+    we are told that $-2\leq x \leq 1$.
+     
+    We can find the range therefore by plugging in:
+
+    \begin{align*}
+        f(-2) &= 2\times(-2) - 1 = -4 -1 = -5\\
+        f(1) &= 2\times(1) -1= 2 -1 = 1
+    \end{align*}
+
+    Therefore, when $-2\leq x < 1$, we have that $-5 \leq f(x) \leq 1$ is the range. This completes the first part of the question.
+        \item
+    For this part, it is useful to sketch the graph, Figure \ref{fig:line-for-modulus}
+
+    \begin{figure}[H]
+    \centering
+    \incfig[0.75]{line for modulus}
+    \caption{(Sketch) The function $2x - 1$, with the modulus of the function in red, for $-2 \leq x \leq 1$.}
+    \label{fig:line-for-modulus}
+    \end{figure}
+
+    From here we can see that the new minimum of the function is $0$, and the new maximum is the old minimum, which in this case is $|-5|= 5$.
+
+    This gives us the range $0 \leq |f(x)| \leq 5$, which completes this part of the question.
+
+    \item 
+    For this part, it is again useful to sketch the graph, Figure \ref{fig:modxline-for-modulus}
+
+    \begin{figure}[H]
+    \centering
+    \incfig[0.75]{modxline for modulus}
+    \caption{(Sketch) The function $2x - 1$, with the function using the modulus of the input in red, for $-2 \leq x \leq 1$.}
+    \label{fig:modxline-for-modulus}
+    \end{figure}
+    
+    Notice that this the function cuts off on the left side. This is because we are only allowed to use $f(x)$ when $x$ is between $-2$ and $1$ from the question. But if $x$ is less than $-1$, then $|x|$ is more than $1$, which is not allowed to be input into the function.
+    
+    From here we can see that the new minimum of the function is where the old function intersected the $y$ axis, at $x=0$, and the new maximum is the maximum of the right side of $f(x)$, which in this case is at $x=1$ or $x=-1$.
+
+    At $x=0$, 
+    \[f(|0|) = 2\times 0 - 1 = -1\] 
+    This gives the minimum as $-1$. at $x=1$, 
+    \[ f(|1|) = 2 \times 1 - 1 = 1\]
+
+    This gives us the range $-1 \leq |f(x)| \leq 1$, which completes this part of the question.
+    
+    If we allow $-2 \leq x \leq 1$ as in the second half of this question, the red line would extend backwards to $x=-2$, where $f(|x|) = 2 \times |-2| - 1 = 3$, and therefore the 
+    range in this case is $-1 \leq |f(x)| \leq 3$.
+    
+    This completes the full question.
+\end{enumerate}
+    \qed
+\end{solution}
+

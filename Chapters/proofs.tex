@@ -1,0 +1,186 @@
+\section{Proofs}\label{sec:proofs}
+
+This is the section that is most like what a degree in maths would look like.
+
+There are a few ways to attempt a proof.
+
+\subsection{Proof by Contradiction} \label{sec:proof-contradiction}
+A proof by contradiction works by assuming the opposite is true, and then applying logically correct steps until we reach a logical absurdity such as $1 = 0$. 
+If we reached a logical absurdity via logically correct steps, then the original assumption must be wrong. Since the opposite of what we wanted to prove is wrong, 
+the original statement was correct.
+
+\begin{example}
+
+    Prove by contradiction that 
+    \[ (a - 2\sqrt{ab})(a + 2\sqrt{ab}) \geq - 4b^2\]
+    for any non-negative real numbers $a$, $b$.
+\end{example}
+
+\begin{solution}
+    First assume the opposite is true:
+    \[(a - 2\sqrt{ab})(a + 2\sqrt{ab}) < - 4b^2 \]
+
+    Then let us rearrange this until we reach a contradiction.
+
+    \begin{align*}
+        (a - 2\sqrt{ab})(a + 2\sqrt{ab}) &< - 4b^2 \\
+        a^2 - 4ab &< - 4b^2 \tag{expanding}\\
+        a^2 - 4ab + 4b^2  &< 0 \tag{rearranging}\\
+        (a - 2b)^2 &< 0 \tag{factorising}
+    \end{align*}
+
+    This is a contradiction because the left-hand side is a square number, and a square number cannot be less than zero. Therefore our original assumption
+    \[(a - 2\sqrt{ab})(a + 2\sqrt{ab}) < - 4b^2 \]
+    Was false, which means that the following must be true:
+
+    \[ (a - 2\sqrt{ab})(a + 2\sqrt{ab}) \geq - 4b^2\]
+
+    This completes the proof.
+    \qed
+\end{solution}
+
+
+\subsection{Proof by Deduction}
+
+Proof by deduction is the act of starting with a true statement, applying logically correct steps, and ending on a statement that must therefore be true.
+
+It is like ``proof because it is true'' but made rigoroous.
+
+\begin{example}
+    
+    Starting with the statement 
+    \[(a - 2b)^2 \geq 0\]
+    Prove by deduction that 
+    \[ (a - 2\sqrt{ab})(a + 2\sqrt{ab}) \geq - 4b^2\]
+    for any non-negative real numbers $a$, $b$.
+\end{example}
+\begin{solution}
+    We start with the true statement, and rearrange to deduce the desired final statement.
+        \begin{align*}
+        (a - 2b)^2 &\geq 0 \tag{starting with the hint} \\
+        a^2 - 4ab + 4b^2  &\geq 0 \tag{expanding} \\
+        a^2 - 4ab  &\geq -4b^2 \tag{rearranging} \\
+        a^2 - \sqrt{4ab}^2 & \geq - 4b^2 \tag{using that $a$, $b$ are non-negative real numbers}\\
+        (a - \sqrt{4ab})(a + \sqrt{4ab}) & \geq - 4b^2 \tag{difference of two squares}\\
+        (a - 2\sqrt{ab})(a + 2\sqrt{ab})&\geq - 4b^2 \tag{using $\sqrt{xy} = \sqrt{x}\sqrt{y}$}
+        \end{align*}
+    Which is the statement we were trying to prove. This completes the proof.
+    \qed
+\end{solution}
+
+
+\subsection{Proof by Exhaustion}
+
+Proof by exhaustion is a method of proof that is essentially brute force; you try every case, and verify each case.
+
+This can be used when there are a small number of cases to test.
+
+Often, it is possible to use algebra to reduce what seems like a lot (even infinite) cases to only a few.
+
+For example, if you need to prove that $n^2$ preserves even and odd for all integers, 
+you can test all integers in two cases by splitting them into even $2m$ numbers and odd $2m-1$ numbers. 
+In this way we reduce ``all integers'' to two cases and can prove it by exhaustion.
+
+\begin{example}
+
+    Prove by exhaustion that, for every integer whenever the left-hand side is defined, 
+    \[ \sqrt{5-n^2} < 3 \]
+
+\end{example}
+
+\begin{solution}
+    Since $\sqrt{5-n^2} $ is only defined when $5-n^2>0$, we only need to check the integers 
+    $-2$, $-1$, $0$, $1$, $2$. 
+
+    Since $(-n)^2 = n^2$, we only need to check $0$, $1$, and $2$,
+
+    Starting with $n=2$,
+
+    \begin{align*}
+    \sqrt{5-2^2} &= \sqrt{5-4} \\
+     &= \sqrt{1} \\
+     &= 1
+    \end{align*}
+    And since $1<3$, the statement is true for $n=2$.
+
+    For $n=1$,
+
+    \begin{align*}
+    \sqrt{5-1^2} &= \sqrt{5-1} \\
+     &= \sqrt{4} \\
+     &= 2
+    \end{align*}
+    And since $2<3$, the statement is true for $n=1$.
+
+    For $n=0$,
+
+    \begin{align*}
+    \sqrt{5-0^2} &= \sqrt{5-0} \\
+     &= \sqrt{5} 
+    \end{align*}
+
+    Now to check if $\sqrt{5}$ is less than $3$, we can observe that 
+
+    \[ 5<9\]
+
+    And therefore, taking square roots of both sides, we can deduce
+
+    \[ \sqrt{5} < 3\]
+
+    Which completes the proof by exhaustion, because we have checked every case in which 
+    \[ \sqrt{5-n^2} < 3 \]
+
+    Is defined.
+    \qed
+\end{solution}
+
+\begin{example}
+    Using algebra, prove by exhaustion that $n^2-3$ is never a multiple of $9$ for any integer $n$.
+\end{example}
+\begin{solution}
+    We can split integers into three cases: $3m$, $3m+1$, and $3m+2$ where $m$ is an integer.
+
+    This accounts for every integer.
+
+    Case 1: $n= 3m+2$
+
+    Let's substitute and rearrange to see what we can deduce.
+
+    \begin{align*}
+        n^2-3 &= (3m+2)^2 - 3 \tag{using $n= 3m+2$}\\
+         &= 9m^2 + 12m + 4 - 3 \tag{expanding}\\
+         &=  9m^2 + 12m +1 \\
+         &= 3(3m^2 + 4m) +1
+    \end{align*}
+    Looking at the final line, we see that when $n= 3m+2$, $n^2-3$ is one more than a multiple of $3$, and therefore never a multiple of $3$
+
+    Since $9$ is a multiple of $3$, it is also never a multiple of $9$.
+
+    Case 2: $n= 3m+1$
+
+    Let's substitute and rearrange to see what we can deduce.
+
+    \begin{align*}
+        n^2-3 &= (3m+1)^2 - 3 \tag{using $n= 3m+1$}\\
+         &= 9m^2 + 6m + 1 - 3 \tag{expanding}\\
+         &=  9m^2 + 6m -2 \\
+         &= 3(3m^2 + 2m) -2
+    \end{align*}
+    Looking at the final line, we see that when $n= 3m+1$, $n^2-3$ is two less than a multiple of $3$, and therefore never a multiple of $3$.
+
+    Since $9$ is a multiple of $3$, it is also never a multiple of $9$.
+
+    Case 3: $n=3m$
+
+    Let's substitute and rearrange to see what we can deduce.
+
+    \begin{align*}
+        n^2-3 &= (3m)^2 - 3 \tag{using $n= 3m$}\\
+         &= 9m^2 - 3 \tag{expanding}\\
+    \end{align*}
+    Looking at the final line, we see that when $n= 3m$, $n^2-3$ is three less than a multiple of $9$, and therefore never a multiple of $9$
+
+    Since we have exhausted all cases, we can conclude that $n^2-3$ is never a multiple of $9$ for any integer $n$. This completes the proof.
+    \qed
+\end{solution}
+

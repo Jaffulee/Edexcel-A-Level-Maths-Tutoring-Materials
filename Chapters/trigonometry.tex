@@ -1,0 +1,111 @@
+\section{Trigonometry} \label{sec:trig}
+
+Some key concepts were covered in Section \ref{sec:components-of-forces-or-vectors}, where we used standard trig identities to find components of vectors.
+
+\subsection{Small angle approximations} \label{sec:trig-small-angle}
+
+Using something called the Taylor expansion of trigonometry functions, we can see how each of the functions behave near $0$.
+
+\begin{align*}
+    \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots \\
+    \cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots \\
+    \tan x = x + \frac{x^3}{3} + \frac{2x^5}{15} + \dots 
+\end{align*}
+
+Where these come from can be researched by an interested reader via Taylor series.
+
+Using the above, we can observe that if $x$ is really small (close to $0$), $x^2$ is a small number times a small number, which is even smaller itself. Similarly, all higher powers of $x$ will also be (exponentially) smaller.
+
+Therefore, one way of approximating these functions when $x$ is close to $0$ is by removing any power of $x$ above $2$, since they are all tiny.
+
+From this, you get the small angle approximations of the trigonometry functions.\footnote{This technically requires that $x$ is in radians too, but we will assume that in this section.}
+
+\begin{align*}
+    \sin x \approx x \\
+    \cos x \approx 1 -   \frac{x^2}{2} \\
+    \tan x \approx x 
+\end{align*}
+
+Note that if you remember only two of them, and handy way of remembering the third is by rearranging 
+\[ \tan x = \frac{\sin x}{\cos x}\]
+
+Which also holds for small angle approximations, and using instead that $\cos x \approx 1$ (check this)!
+
+This can be used to approximate complicated functions within each trig function.
+
+\begin{example}
+    Let $f(x)$ be a function of $x$, and let $f(x)$ be close to $0$ when $x$ is near some number $a$.
+
+    Using small angle approximations, write $\sin(f(x))$, $\cos(f(x))$, and $\tan(f(x))$ in terms of $f(x)$, and make sure to state when 
+    these small angle approximations hold.
+\end{example}
+\begin{solution}
+    Using the formulae for small angle approximations, using $f(x)$ in place of $x$ in the formulae, we find that 
+    -- \textbf{as long as $f(x)$ is close to zero} -- the following small angle approximations hold:
+
+    \begin{align*}
+        \sin (f(x)) \approx f(x) \\
+        \cos (f(x)) \approx 1  - \frac{f(x)^2}{2}\\
+        \tan (f(x)) \approx f(x) 
+    \end{align*}
+
+    Since \textbf{this only holds when $f(x)$ is near $0$}, this holds as long as $x$ is near $a$. This is because the question told us that 
+    $f(x)$ is close to $0$ when $x$ is near $a$.
+
+    This completes the question
+
+    \qed
+\end{solution}
+
+This can be used to get approximate solutions to problems, but only holds when the argument of the trigonometry functions is close to zero!
+
+Now for some questions. 
+
+\begin{example}
+    Let $x$ be a small non-zero number in radians.
+
+    Using small angle approximations and justifying why you can, simplify the following.
+
+    \[ x\frac{\cos(x)}{\sqrt{2}x - \sin(x^2)} \]
+
+    Show that, as long as $x \neq \sqrt{2}$, this can be simplified to become:
+    \[ \frac{\sqrt{2} + x}{2}\]
+
+    Using this, estimate the integral:
+
+    \[ \int_{0.05}^{0.1} x\frac{\cos(x)}{\sqrt{2}x - \sin(x^2)} dx \]
+\end{example}
+\begin{solution}
+    
+    First note that we are told $x$ is small, and therefore $x^2$ is smaller. We then proceed with calculating our small angle approximations:
+
+    \[\cos(x) \approx 1 - \frac{x^2}{2} \]
+
+    And using that $x^2$ is small,
+    \[ \sin(x^2) \approx x^2\]
+
+    \begin{align*}
+        \frac{x\cos(x)}{\sqrt{2}x - \sin(x^2)} &\approx x\frac{1 - \frac{x^2}{2}}{\sqrt{2}x - x^2}  \tag{using our small angle approximations}\\
+        &= x\frac{1 - \frac{x^2}{\sqrt{2}^2}}{\sqrt{2}x - x^2} \tag{writing $2 = \sqrt{2}^2$}\\
+        &= x\frac{1 - (\frac{x}{\sqrt{2}})^2}{\sqrt{2}x - x^2} \tag{using $a^2/b^2 = (a/b)^2$}\\
+        &= x\frac{(1 - \frac{x}{\sqrt{2}})(1 + \frac{x}{\sqrt{2}})}{\sqrt{2}x - x^2} \tag{using difference of two squares}\\
+        &= \cancel{x}\frac{(1 - \frac{x}{\sqrt{2}})(1 + \frac{x}{\sqrt{2}})}{\cancel{x}(\sqrt{2} - x)} \tag{factorising denominator, and using $x\neq0$}\\
+        &= \frac{\cancel{(1 - \frac{x}{\sqrt{2}})}(1 + \frac{x}{\sqrt{2}})}{\sqrt{2}\cancel{(1 - \frac{x}{\sqrt{2}})}} \tag{factorising again} \\
+        &= \frac{1}{\sqrt{2}} + \frac{x}{2}\\
+        &= \frac{\sqrt{2}}{2}+ \frac{x}{2} \\
+        &= \frac{\sqrt{2} + x}{2}
+    \end{align*}
+
+    This finishes the first part of the question. Now for the integral, we use the small result from the first question since the integral bounds are small:
+
+    \begin{align*}
+         \int_{0.05}^{0.1} x\frac{\cos(x)}{\sqrt{2}x - \sin(x^2)} dx &\approx \int_{0.05}^{0.1} \frac{\sqrt{2} + x}{2} dx \\
+         &= \int_{0.05}^{0.1} \frac{\sqrt{2}}{2}+dx + \int_{0.05}^{0.1}  \frac{x}{2} dx \tag{splitting the integral} \\
+         &= \left[\frac{\sqrt{2}}{2}x\right]_{x=0.05}^{x=0.1} + \left[ \frac{1}{2}x^2 \right]_{x=0.05}^{x=0.1} \tag{integrating the parts} \\
+         &= \frac{\sqrt{2}}{2}\cdot0.1 - \frac{\sqrt{2}}{2}\cdot0.05 +  \frac{1}{2}(0.1)^2 -  \frac{1}{2}(0.05)^2
+    \end{align*}
+    Which can be solved using a calculator.
+
+    \qed
+\end{solution}
+

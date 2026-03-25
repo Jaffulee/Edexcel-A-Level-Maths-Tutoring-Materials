@@ -1,0 +1,319 @@
+\section{Parametric Equations}
+Parametric equations are when you are given multiple equations which use shared variables, and are to be calculated from the shared variables.
+
+Commonly in exams this will be given in a form where you have $x$ and $y$ in terms of $t$ separately.
+
+\begin{align*}
+    x &= f(t)\\
+    y &= g(t)
+\end{align*}
+
+You will be normally asked to find $y$ in terms of $x$. 
+From here, there are a two main approaches:
+\begin{enumerate}
+    \item Rearrange one of the equations for $t$ and substitute this into the other equation to eliminate $t$. This is sometimes not possible!
+    \item Rearrange one of the equations so that it is in terms of the other equation, and then substitute the variable $x$ or $y$ in directly.
+\end{enumerate}
+
+We will see both approaches below.
+
+\begin{example}
+    A curve has equations:
+    \begin{align*}
+        x &= 2t + 1 \\
+        y &= 4t - 5 + \frac{3}{t}, \; t\neq 0
+    \end{align*}
+    Let $x \neq1$. Then show that the curve satisfied by the above equations can be written as:
+
+    \[ y = \frac{ax^2 + bx + c}{x-1}\]
+
+    Where $a$, $b$, and $c$ are constants to be found.
+\end{example}
+
+\begin{solution}
+    We can approach this by writing the simplest equation in terms of $t$. Note that we can't easily write $y$ in terms of $t$, so if we were not able to do this we would need to find another approach.
+
+    \begin{align*}
+        x &= 2t+1 \\
+        x - 1 &= 2t \\
+        \frac{x-1}{2} &= t
+    \end{align*}
+
+    And then substituting what $t$ is into $y$.
+
+    \begin{align*}
+        y &= 4t - 5 + \frac{3}{t} \\
+         &= 4\frac{x-1}{2} - 5 +\frac{3}{(\frac{x-1}{2})} \tag{replacing each $t$ with $\frac{x-1}{2}$}\\
+         &= 2(x-1) - 5 +\frac{3}{\frac{1}{2}(x-1)} \tag{taking out a factor of $\frac{1}{2}$} \\
+         &= 2(x-1) - 5 + \frac{2}{2} \cdot \frac{3}{\frac{1}{2}(x-1)} \tag{multiplying by $1$} \\
+         &= 2(x-1) - 5 + \frac{6}{\cancel{\frac{2}{2}}(x-1)} \tag{multiplying fractions}\\
+         &= 2(x-1) - 5 + \frac{6}{x-1}\\
+         &= \frac{2(x-1)(x-1)}{(x-1)} - \frac{5(x-1)}{(x-1)} + \frac{6}{x-1} \tag{common denominator}\\ 
+         &= \frac{2(x-1)(x-1) - 5(x-1) + 6}{(x-1)} \tag{putting over one denominator}\\
+         &= \frac{2(x^2-2x+1) - 5x+5 + 6}{(x-1)} \tag{expanding brackets}\\
+         &= \frac{2x^2-4x+2 - 5x+11}{(x-1)} \tag{expanding brackets}\\
+         &= \frac{2x^2-9x+3}{(x-1)} \tag{simplifying}
+    \end{align*}
+    Which finishes the question, finding $a=2$, $b=-9$, and $c=3$ so that 
+    \[y = \frac{ax^2 + bx + c}{x-1} = \frac{2x^2+(-9)x+3}{(x-1)} \]
+
+    \qed
+\end{solution}
+
+\begin{example}
+    A curve has equations:
+    \begin{align*}
+        x &= \frac{1}{t} +5t\\
+        y &= \frac{1}{t^2} + 10 + 25t^2, \; t\neq 0
+    \end{align*}
+    Show that the curve satisfied by the above equations can be written as:
+
+    \[ y = f(x)\]
+
+    Where $f(x)$ is a function of $x$ to be found.
+\end{example}
+
+\begin{solution}
+    We might want to approach this by writing the simplest equation in terms of $t$, but in this case it is not easily possible.
+    For example, trying to rearrange the $x$ equation for $t$ you might get stuck at the point
+
+    \[x = t(\frac{1}{t^2} +5)\]
+    And not able to continue so simply.
+
+    Instead, we attempt to rearrange the more complicated equation to be written in terms of the simpler one.
+
+    What can we do with the second equation? Firstly, we can turn it into something that is easier to work with:
+
+    \begin{align*}
+        y &= \frac{1}{t^2} + 10 + 25t^2 \\
+        \therefore t^2y &= 1 + 10t^2 + 25t^4
+    \end{align*}
+    Here, this almost looks familiar as a quadratic, except we have this pesky $t^2$ hanging around. Let's briefly use 
+    a variable $u = t^2$ for convenience. Then 
+    \begin{align*}
+        t^2y &= 1 + 10t^2 + 25t^4 \\
+        \therefore uy &= 1 + 10u + 25u^2 \tag{using $u = t^2$} \\
+         &= (1 + 5u)(1 + 5u) \tag{factorising} \\
+         &= (1+5u)^2\\
+        \therefore uy &= (1+5u)^2 \tag{reminding ourselves} \\
+        \therefore y &= \frac{1}{u}(1+5u)^2 \tag{rearranging}\\
+        \therefore y &=  \frac{1}{t^2}(1+5t^2)^2 \tag{using $u = t^2$}\\
+         &= (\frac{1}{t})^2(1+5t^2)^2 \tag{using $a^2/b^2 = (a/b)^2$}\\ 
+         &= (\frac{1}{t}(1+5t^2))^2 \tag{using $a^2b^2 = (ab)^2$}\\ 
+         &= (\frac{1}{t} + 5t)^2 \tag{expanding the bracket inside}
+    \end{align*}
+
+    This is as much simplification as we can get, and we have found that 
+    \[ y = \frac{1}{t^2} + 10 + 25t^2  = (\frac{1}{t} + 5t)^2 \]
+
+    Note that we could have gone straight to the answer if we noticed that we could factorise directly.
+
+    But the last equality contains the equation for $x$ directly:
+
+    \[x = \frac{1}{t} +5t\]
+
+    Therefore we can replace any instance of $\frac{1}{t} +5t$ with $x$ to find:
+
+    \[y = x^2\]
+
+    This completes the question, finding $f(x) = x^2$.
+
+    \qed
+\end{solution}
+
+\begin{example}
+    A curve has equations:
+    \begin{align*}
+        x &= \cos(t)\\
+        y &= \tan(t) + \sec(t)
+    \end{align*}
+
+    Where $0\leq t < \frac{\pi}{2}$.
+
+    Show that the curve satisfied by the above equations can be written as:
+
+    \[ y = f(x) \]
+
+    Where $f(x)$ is a function of $x$ to be found.
+
+    Comment on whether the the final function is the same as the curve for all $x$.
+\end{example}
+
+\begin{solution}
+    We might want to approach this by writing the simplest equation in terms of $t$, but in this case we would need to invert $\cos$ and be careful with when this is allowed.
+
+    Instead, we attempt to rearrange the more complicated equation to be written in terms of the simpler one.
+
+    What can we do with the second equation? Firstly, we can write the definitions and then try to extract $\cos(t)$ wherever possible:
+
+    \begin{align*}
+        y &= \tan(t) + \sec(t)\\
+         &= \frac{\sin t}{\cos t} + \frac{1}{\cos t}
+    \end{align*}
+    This is almost in terms of $\cos t$, except we have this pesky $\sin t$ lingering. We can make use of familiar equations to fix this (using that $0\leq t < \frac{\pi}{2}$):
+
+    \begin{align*}
+        \sin^2 t + \cos^2 t&= 1 \\
+         \therefore \sin^2 t &= 1 - \cos^2 t \\
+         \therefore \sin t &= \sqrt{1 - \cos^2 t}
+    \end{align*}
+
+    We can now substitute everything in to find:
+
+    \begin{align*}
+        y &= \frac{\sin t}{\cos t} + \frac{1}{\cos t} \\
+         &= \frac{\sqrt{1 - \cos^2 t}}{\cos t } + \frac{1}{\cos t} \tag{substituting $\sin t$ above} \\
+         &= \frac{\sqrt{1 - x^2}}{x} + \frac{1}{x} \tag{using $x = \cos t$}
+    \end{align*}
+    This finishes the question, finding 
+
+    \[ y = f(x) = \frac{\sqrt{1 - x^2}}{x} + \frac{1}{x} \]
+
+    Note that the question was careful to restrict $t$ between $0\leq t < \frac{\pi}{2}$. This means that only a portion of the \emph{full} curve given by 
+
+    \[y  = \frac{\sqrt{1 - x^2}}{x} + \frac{1}{x}  \]
+    is covered by the original equations for $x$ and $y$, specifically between the ranges of $x$ allowed by $\cos t$ inside this range, which is $0 < x \leq 1$.
+
+    Therefore, the curve is actually the portion of the graph 
+
+    \[y  = \frac{\sqrt{1 - x^2}}{x} + \frac{1}{x}  \]
+
+    Where $0 < x \leq 1$. The expression defines a larger graph, but the parametric curve is only the part in this range of $x$.
+    \qed
+\end{solution}
+
+The next question makes use of small angle approximations, covered in Section \ref{sec:trig-small-angle}.
+
+\begin{example}
+    Let $t>0$ be small, and measured in radians. A curve is given parametrically via 
+    \begin{align*}
+        x &= \cos(t^2) + 1 \\ 
+        y &= \frac{1}{t^4} + t^8
+    \end{align*}
+    Using small angle approximations, show that the curve satisfied by the above equations can be written as:
+
+    \[ y \approx f(x) \]
+    Where $f(x)$ is a function of $x$ to be found. Comment on what portion of the curve is valid for this approximation.
+\end{example}
+
+\begin{solution}
+    There is no nice way to rearrange $y$ for $t$, and the question instructs us to use small angle approximations. Let's begin with recalling that if $\theta$ is small,
+
+    \[\cos(\theta) \approx 1 - \frac{\theta^2}{2}\]
+
+    And since $t$ is given to be small, we know that $t^2$ must be also small. Therefore,
+
+    \[\cos(t^2) \approx 1 - \frac{(t^2)^2}{2}\]
+
+    And therefore, we have that 
+
+    \[ x = \cos(t^2) + 1 \approx 1 - \frac{t^4}{2} + 1  = 2 - \frac{t^4}{2}\]
+    
+    This is simple enough to rearrange for $t$:
+
+    \begin{align*}
+        x +   \frac{t^4}{2} &\approx 2 \\
+         \therefore \frac{t^4}{2} &\approx 2 - x \\
+         \therefore t^4 &\approx 4 - 2x \\
+         \therefore t &\approx (4 - 2x)^{\frac{1}{4}}
+    \end{align*}
+
+    We can plug this into the equation for $y$:
+
+    \begin{align*}
+        y &= \frac{1}{t^4} + t^8 \\
+         &\approx \frac{1}{((4 - 2x)^{\frac{1}{4}})^4} + ((4 - 2x)^{\frac{1}{4}})^8 \\
+         &= \frac{1}{4 - 2x} + (4 - 2x)^2 \tag{using ${(a^b)}^c = a^{bc}$}\\
+         &=\frac{1}{4 - 2x} + \frac{(4 - 2x)^2(4 - 2x)}{4 - 2x} \tag{common denominator}\\
+         &=  \frac{1 + (4 - 2x)^3}{4 - 2x}
+    \end{align*}
+
+    This completes the question, as long as $x \neq 2$, which is always true. This is because the approximation is valid whenever $t$ is positive and small, which means that $x$ is close to $2$ but not equal to $2$ since $x = \cos(t^2) +1$ is only equal to $2$ at $t = 0$.
+    Moreover, we deduce that $x$ must be slightly less than $2$ since $\cos(t^2)+1$ is slightly less than $2$ when $t$ is slightly bigger than $0$. 
+
+    This means that the approximation is valid slightly below $x=2$.
+
+    \qed
+\end{solution}
+
+\begin{example}
+    A curve is defined by 
+    \begin{align*}
+        x &= \frac{1}{t} + 1, \; t\neq0\\
+        y &= \cos t
+    \end{align*}
+    Show that we can write 
+    \[ y = \cos\left(\frac{1}{ax + b}\right)\]
+
+    Where $a$ and $b$ are constants to be found. Then find the derivative:
+    \[ \frac{dy}{dx} \]
+\end{example}
+
+\begin{solution}
+    Firstly we can rearrange $x$ in terms of $t$:
+    \begin{align*}
+        x &= \frac{1}{t} - 1 \\
+        x +1 &= \frac{1}{t} \\
+        t(x+1) &= 1 \\
+        t &= \frac{1}{x+1} \tag{as long as $x\neq -1$}
+    \end{align*}
+    Then we can substitute $t$ into $y$ to find:
+    \begin{align*}
+     y &= \cos\left(\frac{1}{x+1} \right) 
+    \end{align*}
+
+    Which finds that $a=1$ and $b=1$ so that 
+    \[ y = \cos\left(\frac{1}{ax + b}\right)= \cos\left(\frac{1}{x+1}\right)\]
+
+    Now to differentiate $y$ in terms of $x$, we must use the chain rule. We can ask our question of: \emph{if we could replace any part with $u$, how can we turn it into a function we know how to differentiate?}
+
+    Note that we know how to differentiate $\cos u$, so we write:
+
+    \begin{align*}
+        y &= \cos\left(\frac{1}{x+1}\right) \\
+        y &= \cos u \tag{what we want} \\
+        u &= \frac{1}{x+1} \tag{to get what we want}
+    \end{align*}
+
+    Now remind ourselves of the chain rule Section \ref{sec:chain-rule}, e.g. by pretending that the $du$ cancel:
+    \[ \frac{dy}{dx} = \frac{dy }{du}\frac{du }{dx}\]
+    And therefore we can differentiate the equations to find the right hand side of the above:
+    \[ \frac{dy }{du} = -\sin u\]
+    But what about differentiating $ u = \frac{1}{x+1}$? For this, we can do another chain rule! After asking ourselves the same question, we proceed with:
+
+    \begin{align*}
+        u &= \frac{1}{x+1}\\
+        u &= \frac{1}{v} \tag{what we want}\\
+        v &= x + 1 \tag{to get what we want}
+    \end{align*}
+
+    And the chain rule in this case would be:
+    \[ \frac{du}{dx} = \frac{du }{dv}\frac{dv }{dx}\]
+
+    We can differentiate each equation to get the right hand side of the above:
+    \begin{align*}
+        \frac{du }{dv} &= -\frac{1}{v^2} \tag{writing $\frac{1}{v} = v^{-1}$}\\
+        \frac{dv }{dx} &= 1 \\
+        \therefore \frac{du}{dx} &= -\frac{1}{v^2} \tag{using the chain rule}\\
+        &= -\frac{1 }{(x+1)^2} \tag{using $v = x+1$}
+    \end{align*}
+    Therefore, reminding ourselves, we have found:
+
+    \begin{align*}
+        \frac{du}{dx} &= -\frac{1 }{(x+1)^2} \\
+        \frac{dy }{du} &= -\sin u \tag{from above}\\
+        \therefore \frac{dy }{dx} &= -\sin u (-\frac{1 }{(x+1)^2}) \tag{using the chain rule}\\
+        &= \frac{\sin u }{(x+1)^2} \\
+        &= \frac{\sin \left( \frac{1}{x+1}\right)}{(x+1)^2} \tag{using $u =  \frac{1}{x+1}$}
+    \end{align*}
+
+    Therefore, if $y = \cos\left(\frac{1}{x+1}\right)$, then 
+
+    \[\frac{dy }{dx} = \frac{\sin \left( \frac{1}{x+1}\right)}{(x+1)^2}\]
+
+    This completes the question.
+
+    \qed
+\end{solution}
+
+

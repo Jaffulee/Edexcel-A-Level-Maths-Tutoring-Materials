@@ -1,0 +1,156 @@
+\section{Sequences and Series}\label{sec:series}
+
+There are many kinds of series and sequences, but we care about two of them: \emph{arithmetic} and \emph{geometric}.
+In general, a sequence is an ordered list of numbers, and a series is a sum of a sequence.
+\subsection{Arithmetic Series}
+
+An arithmetic sequence is one in which the distance between consecutive points are the same:
+
+    \begin{center}
+    \begin{tabular}{c|ccccc}
+    $i$      & 1 & 2 & 3 & 4 & \dots\\
+    \hline
+    $x_i$ & -6 & 1 & 8 & 16 & \dots
+    \end{tabular}
+    \end{center}
+In the above, each term has a gap of $7$, which can be worked out by calculating $x_n - x_{n-1}$, and verifying that it is $7$ in each case.
+
+What if we wanted to add the terms together? What if we wanted to find a formula for the arithmetic series? 
+
+A general arithmetic series with $n$ terms looks like the following:
+\[ a + (a+d) + (a + 2d) + \dots + (a + (n-1)d)\]
+
+Here $a$ is the first term, and $d$ is the distance between consecutive terms.
+
+Since we are mathematicians, let's give the sum a label $S$.
+
+\[ a + (a+d) + (a + 2d) + \dots + (a + (n-1)d)\]
+
+Here comes a fun trick, if we write the sum backwards:
+
+
+\[ S = (a + (n-1)d) + (a + (n-2)d) +(a + (n-3)d) + \dots + a\]
+
+Why would we do this? It turns out that adding together the two simplifies our lives greatly:
+
+\begin{align*}
+    S + S =& &a &+ &(a+d) &+ &(a+2d)a &+ &\dots &+ &(a + (n-1)d)\\
+        &+ &(a + (n-1)d)  &+ &(a + (n-2)d)  &+&(a + (n-3)d) &+ &\dots& + &a\\
+        =& &(2a + (n-1)d)  &+ &(2a + (n-1)d)   &+&(2a + (n-1)d)  &+ &\dots& + &(2a + (n-1)d) \\
+        =& n(2a + (n-1)d) 
+\end{align*}
+
+The last line is since we had $n$ of the same term added together. Therefore we have found:
+
+\[2S = n(2a + (n-1)d) \]
+
+And dividing gives us the formula for an arithmetic series of $n$ terms, starting at $a$ and with a distance of $d$:
+\[S = \frac{n}{2}(2a + (n-1)d) \]
+
+\begin{example}
+    An arithmetic series is given by
+
+    \[ -6 + 1 + 8 + 15 + 22 + \dots\]
+
+    What is the sum of the first $7$ terms?
+\end{example}
+
+\begin{solution}
+    If this is an arithmetic series, then each consecutive term must have the same distance apart.
+
+    We can calculate that this distance should be $1 - (-6) = 7$, and can verify this is true for the remaining entries.
+
+    Then all we need to do is plug into our formula, using that the first term is $a = -6$ and we found that $d = 7$, and we want the first $n= 7$ terms:
+
+    \begin{align*}
+        S &= \frac{n}{2}(2a + (n-1)d) \\
+         &= \frac{7}{2}(2\cdot(-6) + (7-1)7)\\
+         &=  \frac{7}{2}(-12 + 6\cdot 7)\\
+         &= 7(-6+3\cdot7)\\
+         &= 7(15) \\
+         &= 105
+    \end{align*}
+
+    This finishes the question, finding the sum of the first $7$ terms to be $105$.
+    \qed
+\end{solution}
+
+
+\subsection{Geometric Series}
+
+A geometric sequence is one in which the ratio between consecutive points are the same:
+
+    \begin{center}
+    \begin{tabular}{c|ccccc}
+    $i$      & 1 & 2 & 3 & 4 & \dots\\
+    \hline
+    $x_i$ & 32 & 16 & 8 & 4 & \dots
+    \end{tabular}
+    \end{center}
+In the above, each term is $1/2$ of the previous, which can be worked out by calculating $x_n / x_{n-1}$, and verifying that it is $1/2$ in each case.
+
+What if we wanted to add the terms together? What if we wanted to find a formula for the geometric series? 
+
+A general arithmetic series with $n$ terms looks like the following:
+\[ a + ra + r^2a + \dots + r^{n-2}a + r^{n-1}a\]
+
+Here $a$ is the first term, and $r$ is the ratio between consecutive terms.
+
+Since we are mathematicians, let's give the sum a label $S$.
+
+\[  a + ra + r^2a + \dots + r^{n-2}a + r^{n-1}a\]
+
+Here comes another fun trick, if we write the sum multiplied by $r$:
+
+
+\[ rS =  ra + r^2a + r^3a + \dots + r^{n-1}a + r^na\]
+
+Why would we do this? It turns out that subtracting to two simplifies our lives greatly:
+
+\begin{align*}
+    S - rS =& a &+& \cancel{ra} &+& \cancel{r^2a} &+& \dots  &+& \cancel{r^{n-1}a} & &\\
+        & &-&\cancel{ra} &-& \cancel{r^2a}  &-& \dots &-& \cancel{r^{n-1}a} &-& r^na\\
+        =& a - r^na
+\end{align*}
+
+After factorising the left and right side, we find:
+
+\[S(1-r) = a(1 - r^{n})\]
+
+And dividing gives us the formula for geometric series of $n$ terms, starting at $a$ and with a ratio of $r$:
+\[S = \frac{a(1 - r^{n})}{1-r}\]
+
+\begin{example}
+    A geometric series is given by
+
+    \[ 32 + 16+ 8 + 4 + \dots\]
+
+    What is the sum of the first $5$ terms?
+\end{example}
+
+\begin{solution}
+    If this is a geometric series, then each consecutive term must have the same ratio.
+
+    We can calculate that this ratio should be $16/32 = 1/2$, and can verify this is true for the remaining entries.
+
+    Then all we need to do is plug into our formula, using that the first term is $a = 32$ and we found that $r = 1/2$, and we want the first $n= 5$ terms:
+
+    \begin{align*}
+    S &= \frac{a(1 - r^{n})}{1-r} \\
+      &= \frac{32\left(1 - \left(\frac{1}{2}\right)^5\right)}{1-\frac{1}{2}} \\
+      &= 2\cdot 32\left(1 - \left(\frac{1}{2}\right)^5\right) \\
+      &= 2\cdot 32\left(1 - \frac{1}{32}\right) \\
+      &= 2\cdot 32\cdot \frac{31}{32} \\
+      &= 2\cdot 31 \\
+      &= 62
+\end{align*}
+
+
+    This completes the question, finding the sum of the first $5$ terms to be $62$.
+    \qed
+\end{solution}
+
+
+
+
+

@@ -1,0 +1,2192 @@
+\section{Integration}
+\subsection{Definite vs Indefinite Integration}
+An \emph{indefinite integral} is an integral in which you do not evaluate at two points, and can be defined as the inverse of the derivative, up to a constant. That is,
+\[ \int f' dx = f + c\]
+
+Where $c$ is a constant. Where does the constant come from? We know that taking the derivative of a constant is always $0$ (see Section \ref{sec:first-principles}), 
+so we can calculate:
+\[ (f+c)' = f' + c' = f' + 0 = f'\]
+
+Which regains $f'$.
+
+\begin{example} \label{ex:int-cosx}
+    Find the indefinite integral of $\cos (x)$.
+\end{example}
+\begin{solution}
+    We know that if $A$ is a constant, then $ (A \sin (x))' = A (\sin (x))' = A \cos (x)$. Therefore, if we set $A$ to be $1$, 
+    we have found that $(\sin (x))' = \cos (x)$. Therefore,
+    \[ \int \cos(x) dx = \sin (x) + c\]
+    Where $c$ is a constant. 
+    \qed
+\end{solution}
+
+\begin{example}\label{ex:int-sinx}
+    Find the indefinite integral of $\sin (x)$.
+\end{example}
+\begin{solution}
+    We know that if $A$ is a constant, then $ (A \cos (x))' = A (\cos (x))' = -A \sin (x)$. Therefore, if we set $-A = 1$, we find 
+    $A=-1$ (since we want to find the indefinite integral of $\sin(x)$) gives that $(-\cos (x))' = \sin (x)$. Therefore,
+    \[ \int \sin(x) dx = -\cos (x) + c\]
+    Where $c$ is a constant.
+    \qed
+\end{solution}
+
+\begin{example}\label{ex:int-x18}
+    Find the indefinite integral of $x^8$.
+\end{example}
+\begin{solution}
+    We know that if $A$ is a constant, then $ (A x^9)' = A (x^9)' = 9A x^8$. Therefore, if we set $9A = 1$, we find 
+    $A=\frac{1}{9}$ (since we want to find the indefinite integral of $x^8$) gives that $(\frac{1}{9} x^9)' = x^8$. Therefore,
+    \[ \int x^8 dx = \frac{1}{9} x^9 + c\]
+    Where $c$ is a constant.
+    \qed
+\end{solution}
+
+A \emph{definite integral} is one where we evaluate at two points, and can be defined as the area under a function $f$ between those two points\footnote{In fact, it is a signed area since if a function is negative, the integral is also negative.}. 
+In practise, we compute this by the following:
+
+\[ \int_{a}^{b} f dx = \left[\int f dx\right]_{x=a}^{x=b}\]
+
+Where the notation on the RHS means that we calculate the indefinite integral at $b$ and remove it from the indefinite integral at $a$. Recall that 
+the indefinite integral always has a constant added $c$. If we take two evaluations of the indefinite integral, the $c$ will cancel. For example, let's use 
+the example of when we are integrating a derivative.
+
+\begin{align*}
+    \int_{a}^{b} f' dx &= \left[f + c\right]_{x=a}^{x=b} \tag{substitute indefinite integral of $f'$}\\
+    &= [f(b) + c - (f(a) + c)] \tag{expand}\\
+    &= f(b) - f(a) \tag{cancel $c$}
+\end{align*}
+
+\begin{example}
+    Calculate the following integral:
+    \[ \int_{0}^{\pi} \cos (x)dx\]
+\end{example}
+\begin{solution}
+    From Example \ref{ex:int-cosx}, we know that $\int \cos(x) dx = \sin (x) + c$ where $c$ is a constant.
+    Therefore (noting $c$ would cancel),
+
+    \begin{align*}
+        \int_{0}^{\pi} \cos(x) dx & = [\sin (x)]_{x=0}^{x=\pi} \\ 
+          &= [\sin(\pi) - \sin (0)] \\
+          &= 0 - 0 \\
+          &= 0
+    \end{align*}
+    \qed
+\end{solution}
+
+\begin{example}
+    Calculate the following integral:
+    \[ \int_{0}^{\pi} \sin (x)dx\]
+\end{example}
+\begin{solution}
+    From Example \ref{ex:int-sinx}, we know that $\int \sin(x) dx = -\cos (x) + c$ where $c$ is a constant.
+    Therefore (noting $c$ would cancel),
+
+    \begin{align*}
+        \int_{0}^{\pi} \sin(x) dx & = [-\cos (x)]_{x=0}^{x=\pi} \\ 
+          &= [-\cos(\pi) - (-\cos (0))] \\
+          &= [-(-1) - (-1)]  \tag{$\cos(0) = 1$, $\cos(\pi)=-1$}\\
+          &= 2
+    \end{align*}
+    \qed
+\end{solution}
+
+\begin{example}
+    Calculate the following integral:
+    \[ \int_{0}^{1} x^8 dx\]
+\end{example}
+\begin{solution}
+    From Example \ref{ex:int-x18}, we know that $\int x^8 dx = \frac{1}{9}x^9 + c$ where $c$ is a constant.
+    Therefore (noting $c$ would cancel),
+
+    \begin{align*}
+        \int_{0}^{1} x^8 dx & = [\frac{1}{9}x^9]_{x=0}^{x=1} \\ 
+          &= [\frac{1}{9}1^9 - \frac{1}{9}0^9] \\
+          &= \frac{1}{9}
+    \end{align*}
+    \qed
+\end{solution}
+
+In summary, indefinite integral you don't evaluate at two points, and definite integral you do evaluate at two points.
+
+You might ask why not just use the trapezium rule (Section \ref{sec:traprule}) if we only care about the area? The trapezium rule gives an estimate, whereas it is useful to know the precise, exact answer. However, in the ``real world'' the estimate is almost always enough.
+
+\subsubsection{Additional Exercises}
+\begin{example}
+    Calculate the indefinite integral $\int \sin^2 x dx$.
+\end{example}
+\begin{solution}
+    The trick to higher powers of $\sin$ or $\cos$ is to use double angle formulae to reduce it to lower powers.
+
+    Recall 
+    \begin{align*}
+        \cos 2x &= \cos^2 x - \sin^2 x \tag{double angle formula for $\cos$} \\
+         &= 1 - \sin^2 x - \sin^2 x \tag{using $\sin^2 x + \cos^2 x = 1$} \\
+          &= 1 - 2\sin^2 x \tag{collecting terms}
+    \end{align*}
+    Therefore, rearranging gives us 
+    \[ \sin^2 x = \frac{1}{2}(1 - \cos 2x)\]
+
+    Then we can integrate 
+
+    \begin{align*} 
+        \int \sin^2 x dx &= \int  \frac{1}{2}(1 - \cos 2x) dx \tag{substituting the power reduction formula} \\
+         &= \frac{1}{2} \int 1dx - \frac{1}{2}  \int \cos 2x dx \tag{expanding and factorising} \\
+         &= \frac{1}{2} x - \frac{1}{4}  \sin 2x + c \tag{integrating}
+    \end{align*}
+    Where we deduced the integral of $\cos 2x$ by differentiating $\sin 2x$, and seeing that we get $2 \cos 2x$. Therefore we must divide by $2$ to cancel the factor of $2$ in front:
+    \[ \int \cos 2x dx = \frac{1}{2} \sin 2x + c\]
+    Alternatively, you can calculate this via substitution $y = 2x$, which is covered in Section \ref{sec:int-subs}.
+    \qed
+\end{solution}
+
+
+\subsection{Integration by Parts} \label{sec:int-parts}
+It is useful to know how to integrate two functions multiplied together.
+
+To do so, let's look at two functions $f(x)$ and $g(x)$.
+
+Consider the derivative of $f(x)g(x)$
+
+\[\frac{d(f\cdot g)}{dx} = \frac{df}{dx}\cdot g + f \cdot \frac{dg}{dx}\]
+
+Now recall that the integral of a derivative is the function itself:
+
+\begin{align*}
+f \cdot g = \int \frac{d(f\cdot g)}{dx} dx &= \int(\frac{df}{dx}\cdot g + f \cdot \frac{dg}{dx})dx \\
+ &= \int\frac{df}{dx}\cdot g dx + \int f \cdot \frac{dg}{dx}dx
+\end{align*} 
+
+Then we can rearrange this formula to get the integration by parts formula.
+
+\[ \int f \cdot \frac{dg}{dx} dx = f \cdot g - \int\frac{df}{dx}\cdot g dx  \]
+
+In textbooks, this is often written with $u$, $v$ instead, and using shorthand 
+$u'$, $v'$ for their derivatives:
+
+\[ \int u v' dx = uv - \int u' v dx \]
+
+Note that if we are integrating between $x=a_0$ and $x=a_1$, this will become:
+
+\[ \int_{a_0}^{a_1} u v' dx = [uv]_{x=a_0}^{x=a_1} - \int_{a_0}^{a_1} u' v dx \]
+
+Which is equivalent to 
+
+\[ \int_{a_0}^{a_1} u v' dx = u(a_1)v(a_1) - u(a_0)v(a_0) - \int_{a_0}^{a_1} u' v dx \]
+
+The reason this is useful is because often $u$ and $v'$ can be chosen so that the integral on the right is simpler!
+
+A handy mnemonic is LATE\footnote{Some use ILATE instead, where I is inverse trig. If you have not encountered differentiating inverse trig functions, ignore this.}: 
+Logarithm (or ln), Algebra (powers of $x$), Trig, Exponential -- this is usually a good guess as your choice of $u$ in order from left to right.
+This is mostly because these functions become simpler after differentiating -- the $u'$ on the right hand side will be easier to integrate.
+
+You should only use integration by parts if you cannot integrate it another way -- if you can see that your function is easy to integrate without this trick 
+you should not over-complicate it.
+
+\begin{example}
+    Find the indefinite integral of $x\cos(x)$. Then calculate 
+    \[ \int_{0}^{\pi}x\cos(x) dx\]
+\end{example}
+\begin{solution}
+    First we check if this looks like the derivative of a function we know. Since it doesn't, we continue with integration by parts.
+
+    Following LATE, we see that $x$ is algebra and comes before $\cos(x)$ which is trig. Therefore choose $u=x$ and $v' = \cos(x)$.
+    Now we know $\sin(x)$ differentiates to become $\cos(x)$ therefore $v = \sin(x)$. Also, $u' = 1$. I like to write this in a box:
+    \begin{align*}
+        u = x & & v = \sin(x) \\
+        u' = 1 & & v' = \cos(x)
+    \end{align*}
+    Now we remind ourselves of integration by parts:
+    \[ \int u v' dx = uv - \int u' v dx \]
+    Substituting, we get 
+
+    \[ \int x \cos x dx = x \sin(x) - \int 1 \cdot \sin(x) dx \]
+
+    Now we know $\cos(x)$ differentiates to become $-\sin(x)$. Therefore $\int \sin(x) dx = -\cos(x) + c'$, where $c'$ is a constant. Therefore:
+
+    \begin{align*}
+        \int x \cos x dx &= x \sin(x) - \int \sin(x) dx \\
+            &= x \sin(x) - (-\cos(x) + c') \\
+            &= x \sin(x) + \cos(x) + c \tag{letting $c = -c'$}\\
+    \end{align*}
+
+    This is the indefinite integral. To calculate the definite integral in the second part of the question, we need to include the bounds
+    \begin{align*}
+        \int_0^\pi x \cos x dx &= [x \sin(x)]_{x=0}^{x=\pi} - \int_0^\pi \sin(x) dx \\
+            &= \pi \cdot \sin(\pi) - 0 \cdot \sin(0) - [-\cos(x)]_{x=0}^{x=\pi} \\
+            &= 0 - 0 - [-\cos(\pi) + \cos(0)] \tag{$\sin(\pi) = 0$}\\
+            &=  -[1+1]\\
+            &= -2
+    \end{align*}
+    Which finishes the question.
+    \qed
+\end{solution}
+
+\begin{example}
+    Find the indefinite integral of $x \ln x$. Then calculate 
+    \[ \int_{1}^{2} x\ln(x) dx\]
+\end{example}
+\begin{solution}
+    First we check if this looks like the derivative of a function we know. Since it doesn't, we continue with integration by parts.
+
+    Following LATE, we see that $\ln(x)$ is logarithm and comes before $x$ which is algebra. Therefore choose $u=\ln(x)$ and $v' = x$.
+    Now we know $x^2$ differentiates to become $2x$ therefore $v = \frac{1}{2} x^2$. Also, $u' = \frac{1}{x}$. I like to write this in a box:
+    \begin{align*}
+        u = \ln (x) & & v= \frac{1}{2} x^2 \\
+        u' = \frac{1}{x} & & v' = x
+    \end{align*}
+    Now we remind ourselves of integration by parts:
+    \[ \int u v' dx = uv - \int u' v dx \]
+    Substituting, we get 
+
+    \[ \int x \ln x dx = \frac{1}{2} x^2 \ln (x) - \int \frac{1}{x} \cdot \frac{1}{2} x^2 dx \]
+
+    Therefore:
+
+    \begin{align*}
+        \int x \ln x dx &= \frac{1}{2} x^2 \ln (x) - \frac{1}{2} \int x dx \\
+            &= \frac{1}{2} x^2 \ln (x) - \frac{1}{4} x^2 + c \\
+            &= \frac{1}{2} x^2 (\ln(x) - \frac{1}{2}) + c
+    \end{align*}
+
+    Where $c$ is a constant. This is the indefinite integral. To calculate the definite integral in the second part of the question, we need to include the bounds
+    \begin{align*}
+        \int_1^2 x \ln x dx &= [\frac{1}{2} x^2 \ln (x)]_{x=1}^{x=2} - \frac{1}{2} \int_1^2 x dx \\
+            &= \dots
+    \end{align*}
+    Which we could continue like before. Alternatively, we can use the indefinite integral and calculate:
+
+    \begin{align*}
+        \int_1^2 x \ln x dx &=  [\frac{1}{2} x^2 \left(\ln(x) - \frac{1}{2}\right) + c]_{x=1}^{x=2} \\
+         &=  \frac{1}{2} 2^2 \left(\ln(2) - \frac{1}{2}\right)  - \frac{1}{2} 1^2 \left(\cancel{\ln(1)} - \frac{1}{2}\right) \\
+         &=  2 \left( \ln(2) - \frac{1}{2} \right) + \frac{1}{4} \\
+         &= \ln(4) - \frac{3}{4}
+    \end{align*}
+    Which finishes the question.
+    \qed
+\end{solution}
+A quirky application of this is how to integrate $\ln(x)$.
+
+\begin{exercise} \emph{Try it yourself!} \label{ex:integral-ln}
+    By writing $\ln (x)$ as $1 \cdot \ln (x)$, find the indefinite integral of $\ln (x)$.
+\end{exercise}
+\begin{solution}
+    First we check if this looks like the derivative of a function we know. Since it doesn't, we continue with integration by parts.
+
+    Following LATE, we see that $\ln(x)$ is logarithm and comes before $1$ which we consider as algebra here. We can construct our square as follows
+
+        \begin{align*}
+        u = \ln (x) & & v= x \\
+        u' = \frac{1}{x} & & v' = 1
+    \end{align*}
+    Now we remind ourselves of integration by parts:
+    \[ \int u v' dx = uv - \int u' v dx \]
+    Substituting, we get
+    \begin{align*}
+        \int \ln (x) dx &= x \ln (x) - \int \frac{x}{x} dx\\
+        &= x \ln(x) - x
+    \end{align*}
+
+    As a bonus exercise, verify that this differentiates to become $\ln(x)$.
+    \qed
+\end{solution}
+
+
+
+
+
+\subsection{Integration by Substitution} \label{sec:int-subs}
+
+It is possible to change what variable is being integrated by. This is useful in two ways:
+
+\begin{enumerate}
+    \item To convert an integral to one you know.
+    \item To simplify an integral.
+\end{enumerate}
+
+How does it work?
+
+Let's consider the following integral.
+
+\[ \int_{a}^{b} f(x) dx\]
+
+For clarity, we will clarify that the $a$ and $b$ are integrating between $x=a$ and $x=b$ in the following way.
+
+\[ \int_{x=a}^{x=b} f(x) dx\]
+
+Now what happens if we have a new variable in terms of $x$? Let's write it as $y = g(x)$. 
+We also require that we can write $x$ as a function of $y$, 
+i.e. that $g^{-1}$ exists -- see Section \ref{sec:function-inverse}.
+Then $x = g^{-1}(y)$.
+
+Now let's abuse notation\footnote{This can be made rigorous by looking at differentials.} a lot:
+
+\begin{align*}
+    \frac{dx}{dy} &= \frac{dx}{dy} \\
+    dx &= \frac{dx}{dy} dy \tag{`multiply' by $dy$ (abuse of notation)} \\
+    dx &= \frac{dg^{-1}}{dy} dy \tag{using $x = g^{-1}(y)$} 
+\end{align*}
+
+Now we have all the tools to replace all instances of $x$ in our integral. We will do this one-by-one from left to right for clarity.
+
+\begin{align*}
+    \int_{x=a}^{x=b} f(x) dx &=  \int_{\textcolor{red}{g^{-1}(y)}=a}^{\textcolor{red}{g^{-1}(y)}=b} f(x) dx \tag{using $x = g^{-1}(y)$}\\
+    &=  \int_{y=g(a)}^{y=g(b)} f(x) dx \tag{rearranging the bounds} \\
+    &= \int_{y=g(a)}^{y=g(b)} f(\textcolor{red}{g^{-1}(y)}) dx \tag{using $x = g^{-1}(y)$} \\
+    &= \int_{y=g(a)}^{y=g(b)} f(g^{-1}(y)) \textcolor{red}{\frac{dg^{-1}}{dy}} dy\tag{using $dx = \frac{dg^{-1}}{dy} dy$}
+\end{align*} 
+
+Since the final line is \emph{completely} in terms of $y$, we can continue by computing the integral as usual, but in the $y$ variable instead. 
+Note that the final formula uses both $g$ and $g^{-1}$, meaning that we need $g^{-1}$ to exist for the above formula.
+
+Summary: \textbf{exchange every instance of $x$ with the equivalent $y$, and then integrate in the $y$ variable.}
+
+We have only dealt with definite integrals here, but for indefinite you do the same procedure!
+
+Note that you could keep doing substitution if needed.
+
+This has been very abstract, so let's see some examples.
+
+\begin{example}
+    Compute the following integral.
+    \[ \int_{0}^{1} (x+1)^3 dx \]
+
+    Then state the indefinite integral of $(x+1)^3$.
+\end{example}
+
+\begin{solution}
+    Firstly, note that you \emph{could} expand the brackets and then integrate each term. Instead, let's utilise substitution.
+
+    Define $x+1 = y$. We now want to rewrite everything in terms of $y$. Rearranging gives $x = y-1$, and taking the derivative of both sides gives
+    $\frac{dy}{dx} = 1$, where we abuse notation to `multiply by $dx$' and write $dy = dx$. Let's collect our three equations:
+
+    \begin{align*}
+        y &= x+1 \\
+        x &= y-1 \\
+        dx &= dy
+    \end{align*}
+
+    Now let's substitute everything until it is in terms of $y$ only. For clarity, we will do this from left to right.
+
+    \begin{align*}
+        \int_{0}^{1} (x+1)^3 dx  &= \int_{x=0}^{x=1} (x+1)^3 dx \\
+         &= \int_{y-1=0}^{y-1=1} (x+1)^3 dx \tag{using $x = y-1$} \\
+         &= \int_{y=1}^{y=2} (x+1)^3 dx \tag{rearranging integral bounds} \\
+         &= \int_{y=1}^{y=2} y^3 dx \tag{using $y = x+1$} \\
+         &= \int_{y=1}^{y=2} y^3 dy \tag{using $dx = dy$}
+    \end{align*}
+
+    Now we can integrate this in $y$ as usual.
+    \begin{align*}
+        \int_{y=1}^{y=2} y^3 dy &= \left[ \frac{1}{4}y^4 \right]_{y=1}^{y=2} \\
+         &= \frac{1}{4} \left( 2^4 - 1^4 \right) \\
+         &= \frac{16}{4}
+    \end{align*}
+
+    The indefinite integral can be written as just \emph{the-bit-in-the-square-brackets-plus-$c$}:
+
+    \[ \int (x+1)^3 dx  = \frac{1}{4}y^4 + c \]
+
+    And now all we need to do is substitute back in what $y$ was:
+
+    \[ \int (x+1)^3 dx  = \frac{1}{4}(x+1)^4 + c \]
+    \qed
+\end{solution}
+
+
+\begin{example}
+    Compute the following integral.
+    \[ \int_{0}^{1} \cos(\pi x + \pi) dx \]
+
+    Then state the indefinite integral of $\cos(\pi x + \pi)$.
+\end{example}
+
+\begin{solution}
+    Notice that we know what the integral of $\cos(x)$ is, therefore it would be nice to make a substitution that gives us something we know.
+
+    Define $\pi x + \pi= y$. We now want to rewrite everything in terms of $y$. Rearranging gives $x = \frac{1}{\pi}(y - \pi)$, and taking the derivative of both sides gives
+    $\frac{dy}{dx} = \pi$, where we abuse notation to `multiply by $dx$' and write $dy = \pi dx$. Further rearranging gives 
+
+    \[ dx = \frac{1}{\pi}dy\] 
+    Let's collect our three equations:
+
+    \begin{align*}
+        y &= \pi x + \pi \\
+        x &= \frac{1}{\pi}(y - \pi) \\
+        dx &= \frac{1}{\pi}dy
+    \end{align*}
+
+    Now let's substitute everything until it is in terms of $y$ only. For clarity, we will do this from left to right.
+
+    \begin{align*}
+        \int_{0}^{1} \cos(\pi x + \pi) dx  &= \int_{x=0}^{x=1} \cos(\pi x + \pi) dx \\
+         &= \int_{x=0}^{x=1} \cos(\pi x + \pi) dx \\
+         &= \int_{\frac{1}{\pi}(y - \pi)=0}^{\frac{1}{\pi}(y - \pi)=1} \cos(\pi x + \pi) dx \tag{using $x = \frac{1}{\pi}(y - \pi) $} \\
+         &= \int_{y=\pi}^{y=2\pi} \cos(\pi x + \pi)  dx \tag{rearranging integral bounds} \\
+         &= \int_{y=\pi}^{y=2\pi} \cos(y) dx \tag{using $y = \pi x + \pi $} \\
+         &= \int_{y=\pi}^{y=2\pi}\cos(y) \frac{1}{\pi}dy \tag{using $dx =  \frac{1}{\pi}dy$} \\
+         &= \frac{1}{\pi}\int_{y=\pi}^{y=2\pi}\cos(y) dy \tag{rearranging} \\
+    \end{align*}
+
+    Now we can integrate this in $y$ as usual.
+    \begin{align*}
+         \frac{1}{\pi}\int_{y=\pi}^{y=2\pi}\cos(y) dy &= \frac{1}{\pi} \left[ \sin(y) \right]_{y=\pi}^{y=2\pi} \\
+         &=  \frac{1}{\pi} \left(  \sin(2\pi)  - \sin(\pi)  \right) \\
+         &=  \frac{1}{\pi} \left(  0 - 0  \right) \\
+         &= 0
+    \end{align*}
+
+    The indefinite integral can be written as just \emph{the-bit-in-the-square-brackets-plus-$c$}, remembering the $\frac{1}{\pi}$ we pulled out:
+
+    \[ \int  \cos(\pi x + \pi) dx  = \frac{1}{\pi}\sin(y) + c \]
+
+    And now all we need to do is substitute back in what $y$ was:
+
+    \[ \int \cos(\pi x + \pi) dx= \frac{1}{\pi}\sin(\pi x + \pi) + c \]
+
+    If the dividing by $\pi$ confuses you, go through the steps above but without the integral bounds!
+    \qed
+\end{solution}
+
+
+\begin{example}
+    Compute the following integral.
+    \[ \int_{0}^{1} \frac{1}{2x + 1} dx \]
+
+    Then state the indefinite integral of $\frac{1}{2x + 1}$.
+\end{example}
+
+\begin{solution}
+    Notice that we know what the integral of $\frac{1}{x}$ is, therefore it would be nice to make a substitution that gives us something closer to what we know.
+
+    Define $2x + 1 = y$. We now want to rewrite everything in terms of $y$. Rearranging gives $x = \frac{1}{2}(y-1)$, and taking the derivative of 
+    both sides using the chain rule gives
+    $\frac{dy}{dx} = 2$, where we abuse notation to `multiply by $dx$' and write $dy = 2 dx$. Further rearranging gives 
+
+    \[ dx = \frac{1}{2}dy\] 
+    Let's collect our three equations:
+
+    \begin{align*}
+        y &= 2x + 1 \\
+        x &= \frac{1}{2}(y-1) \\
+        dx &= \frac{1}{2}dy
+    \end{align*}
+
+    Now let's substitute everything until it is in terms of $y$ only. For clarity, we will do this from left to right.
+
+    \begin{align*}
+        \int_{0}^{1}\frac{1}{2x + 1} dx  &= \int_{x=0}^{x=1}\frac{1}{2x + 1} dx \\
+         &= \int_{\frac{1}{2}(y-1) =0}^{\frac{1}{2}(y-1) =1} \frac{1}{2x + 1}  dx \tag{using $x = \frac{1}{2}(y-1)  $} \\
+         &= \int_{y=1}^{y=3} \frac{1}{2x + 1}   dx \tag{rearranging integral bounds} \\
+         &= \int_{y=1}^{y=3} \frac{1}{y} dx \tag{using $y = 2x + 1  $} \\
+         &= \int_{y=1}^{y=3}\frac{1}{y} \frac{1}{2}dy \tag{using $dx =  \frac{1}{2}dy$} \\
+         &= \frac{1}{2} \int_{y=1}^{y=3}\frac{1}{y} dy \tag{rearranging} \\
+    \end{align*}
+
+    Now we can integrate this in $y$ as usual.
+    \begin{align*}
+          \frac{1}{2} \int_{y=1}^{y=3}\frac{1}{y} dy &= \frac{1}{2} \left[ \ln(y) \right]_{y=1}^{y=3} \\
+         &=  \frac{1}{2} \left(  \ln(3) - \ln(1)  \right) \\
+         &=   \ln(3) 
+    \end{align*}
+
+    The indefinite integral can be written as just \emph{the-bit-in-the-square-brackets-plus-$c$}, remembering the $\frac{1}{2}$ we pulled out:
+
+    \[ \int  \frac{1}{2x + 1}dx  = \frac{1}{2}\ln(y) + c \]
+
+    And now all we need to do is substitute back in what $y$ was:
+
+    \[ \int \frac{1}{2x + 1} dx= \frac{1}{2}\ln(2x + 1 ) + c \]
+
+    If the dividing by $2$ confuses you, go through the steps above but without the integral bounds!
+    \qed
+\end{solution}
+
+\begin{example}
+    Compute the following integral.
+    \[ \int_{0}^{\pi/4} \tan(x) dx \]
+
+    Then state the indefinite integral of $\tan(x)$.
+\end{example}
+
+\begin{solution}
+    Firstly, recall that
+    \[ \tan(x) = \frac{\sin(x)}{\cos(x)}\]
+
+    And here we can make a smart substitution by noticing that $\cos(x)$ differentiates into $-\sin(x)$, therefore when we replace $dx$, 
+    there might be some canceling.
+
+    Define $\cos(x)= y$. We now want to rewrite everything in terms of $y$. Rearranging gives $x = \arccos(y)$, and taking the derivative of both sides gives
+    $\frac{dy}{dx} = -\sin(x)$, where we abuse notation to `multiply by $dx$' and write $dy = -\sin(x)dx$. Further rearranging gives 
+
+    \[ dx = -\frac{1}{\sin(x)}dy\] 
+    Let's collect our three equations:
+
+    \begin{align*}
+        y &= \cos(x) \\
+        x &= \arccos(y) \\
+        dx &= -\frac{1}{\sin(x)}dy
+    \end{align*}
+
+    Now let's substitute everything until it is in terms of $y$ only. For clarity, we will do this from left to right.
+
+    \begin{align*}
+        \int_{0}^{\pi/4} \tan(x) dx  &= \int_{x=0}^{x=\pi/4} \tan(x) dx \\
+         &= \int_{x=0}^{x=\pi/4} \frac{\sin(x)}{\cos(x)} dx \\
+         &= \int_{\arccos(y)=0}^{\arccos(y)=\pi/4} \frac{\sin(x)}{\cos(x)} dx \tag{using $x = \arccos(y)$} \\
+         &= \int_{y=\cos(0)}^{y=\cos(\pi/4)} \frac{\sin(x)}{\cos(x)} dx \tag{rearranging integral bounds} \\
+         &= \int_{y=1}^{y=\cos(\pi/4)} \frac{\sin(x)}{\cos(x)} dx \tag{simplifying integral bounds} \\
+         &= -\int_{y=\cos(\pi/4)}^{y=1} \frac{\sin(x)}{\cos(x)} dx \tag{swapping integral bounds} \\
+         &= -\int_{y=\cos(\pi/4)}^{y=1} \frac{\sin(x)}{y} dx \tag{using $y = \cos(x)$} \\
+         &= -\int_{y=\cos(\pi/4)}^{y=1} \frac{\sin(x)}{y}(-\frac{1}{\sin(x)}) dy \tag{using $dx = -\frac{1}{\sin(x)}$} \\
+         &= \int_{y=\cos(\pi/4)}^{y=1} \frac{1}{y} dy \tag{simplifying} \\
+    \end{align*}
+
+    Now we can integrate this in $y$ as usual.
+    \begin{align*}
+         \int_{y=\cos(\pi/4)}^{y=1} \frac{1}{y} dy &= \left[ \ln(y) \right]_{y=\cos(\pi/4)}^{y=1} \\
+         &=  \left(  \ln(\cos(\pi/4)) - \ln(1) \right) \\
+         &=  \ln(\cos(\pi/4)) 
+    \end{align*}
+
+    The indefinite integral can be written as just \emph{the-bit-in-the-square-brackets-plus-$c$}, but since we swapped the integral bounds, we need to include a minus sign:
+
+    \[ \int \tan(x) dx  = -\ln(y) + c \]
+
+    And now all we need to do is substitute back in what $y$ was:
+
+    \[ \int \tan(x) dx  = -\ln(\cos(x)) + c \]
+
+    If the minus sign confuses you, go through the steps above but without the integral bounds!
+    \qed
+\end{solution}
+
+\subsubsection{Trigonometric Substitutions} \label{sec:trig-subs}
+
+One thing that appears frequently is the use of less direct substitutions, where the substitution you require does not directly appear in the integral itself as a change of variable.
+
+A good rule of thumb for when you might need these is if you can spot that the integral looks like an identity that we know if we were to swap out the variable for a different function.
+
+For example, we know that $1-\sin^2\theta = \cos^2 \theta$, and $1-\cos^2\theta = \sin^2 \theta$. Therefore, if we spot a term that looks like $1-x^2$ in an integral, we might think to use the substitution $x = \sin \theta$ or $x = \cos \theta$.
+
+This is because after the substitution this term would simplify:
+
+\[1- x^2 = 1 - \sin^2 \theta = \cos^2 \theta \]
+
+This is important because this often makes a complicated integral much simpler.
+
+We can get a suite of identities from starting with $\sin^2 \theta + \cos^2 \theta = 1$:
+
+\begin{align*}
+    \sin^2 \theta + \cos^2 \theta &= 1 \tag{main identity}\\
+    \sin^2 \theta &= 1 - \cos^2 \theta \tag{rearranging main identity}\\
+    \cos^2 \theta &= 1 - \sin^2 \theta \tag{rearranging main identity}\\
+    \tan^2 \theta + 1 &= \sec^2 \theta \tag{dividing main identity by $\cos^2\theta$}\\
+    \sec^2 \theta - 1 &= \tan^2 \theta \tag{rearranging previous identity} \\
+    1 + \cot^2 \theta &= \cosec^2 \theta \tag{dividing main identity by $\sin^2\theta$} \\
+    \cosec^2 \theta - 1 &= \cot^2 \theta \tag{rearranging previous identity}
+\end{align*}
+
+This means that we can always transform a term that looks like $1 \pm x^2$ or $x^2 \pm 1$ into a single trig term via any of the above identities.
+Which one to use then comes down to how the \emph{rest} of the integral transforms (especially the $dx$ part)!
+
+Now the other key part is that we can multiply any of the above equations by any number and they are still true!
+
+For example, we have that $a\cos^2 \theta = a - a \sin^2 \theta$. So what if we have something of the form $a-bx^2$? Let's work backwards from what we want to use, and figure out what $x^2$ must be.
+We will highlight the non-$x$ part red to show what we are trying to match with the identity.
+
+\begin{align*}
+    &\textcolor{red}{a}-bx^2 \tag{the starting point}\\
+    \text{What is }&\text{a relevant trig identity?}\\
+    \\
+    a\cos^2 \theta &= \textcolor{red}{a} - a \sin^2 \theta \tag{what we want to use}\\
+     &= \textcolor{red}{a} - bx^2 \tag{what we want to replace}\\
+     \therefore  bx^2 &= a\sin^2 \theta \tag{what we need to use}\\
+     \therefore x &= \sqrt{\frac{a}{b}}\sin \theta \tag{the substitution we get}
+\end{align*}
+
+You could go and work out all examples of possible substitutions for each combination of $a \pm bx^2$, but:
+
+
+\textbf{Using the technique above to 
+multiply the trig identities by a constant to get the non-$x$ part in the correct form, and deduce what the $x$ part needs to be to achieve this is very powerful.
+This will allow you to deduce any trig substitution in the form $a \pm bx^2$.}
+
+The above is related to the fact that the equation of a circle at the origin is $x^2 + y^2 = r^2$, and we can rearrange to find $y = \sqrt{r^2 - x^2}$, and trigonometry usually appears when we are dealing with circles.
+
+The thing to be careful of is how the bounds transform in these cases; for example, the integral:
+\[\int_0^2 1-x^2 \; dx\] 
+
+The upper bound of the integral is $2$, so what would happen if we try to use $x = \sin\theta$? Substituting the upper bound as we did in the previous section gives:
+
+\begin{align*}
+    x &= 2 \\
+    \therefore \sin \theta &= 2
+\end{align*}
+
+But now we have a problem! $\sin \theta$ can never be $2$ since $\sin \theta$ can only ever be between $-1$ and $1$.
+
+
+\begin{example}
+    Using a trigonometric substitution, find the indefinite integral 
+    \[ \int \sqrt{1 - x^2} dx \] 
+    Then state what integral bounds this is valid for when using that substitution.
+\end{example}
+\begin{solution}
+
+    Firstly, it is possible to integrate this directly in a few ways, using a substitution of $1-x^2$ being the most straightforward, or even a difference of two squares method. Since the question is asking for trig, we will do that instead.
+    The identities that look like $1-x^2$ are $1-\sin^2\theta = \cos^2 \theta$, and $1-\cos^2\theta = \sin^2 \theta$. 
+    This should suggest that we use $\sin$ or $\cos$
+
+    Let's substitute the following $x = \sin \theta$. Then calculate 
+    \[ \frac{dx}{d\theta} = \cos \theta\]
+    We can `pretend-to-be-able-to-multiply-by-$\theta$' to find $dx = \cos\theta d\theta$.
+
+    Then continue substituting every instance of $x$ with the appropriate thing in terms of $\theta$ from left to right.
+
+    \begin{align*}
+        \int \sqrt{1 - x^2} dx &= \int \sqrt{1 - \sin^2 \theta} dx \tag{using $x = \sin\theta$}\\
+         &=  \int \sqrt{1 - \sin^2 \theta} \cos\theta d\theta \tag{using $dx = \cos\theta d\theta$}\\ 
+         &= \int \sqrt{\cos^2 \theta} \cos\theta d\theta \tag{trig identity}\\
+         &= \int \cos \theta \cos \theta d\theta \\ 
+         &= \int \cos^2 \theta d\theta
+    \end{align*}
+
+    Note that here we used that $\sqrt{\cos^2 \theta} = \cos \theta$, which implicitly means that we need to restrict to where $\cos \theta$ is positive, i.e. 
+    $0 \leq \theta \leq \pi$
+
+    From here, we must remember how to integrate a power of $\cos$ and $\sin$. To do this, we (repeatedly if necessary) apply 
+    \begin{align*}
+    \cos(2\theta) &= \cos^2 \theta - \sin^2\theta     \tag{trig identity}\\
+    \therefore \cos(2\theta) &= \cos^2 \theta - (1 - \cos^2 \theta) \tag{trig identity}\\
+    \therefore \cos(2 \theta) &= 2 \cos^2 \theta - 1 \tag{simplifying}\\
+    \therefore \cos^2 \theta &= \frac{\cos(2 \theta) + 1}{2}   \tag{rearranging}
+    \end{align*}
+
+    This allows us to integrate directly:
+
+    \begin{align*}
+        \int \sqrt{1 - x^2} dx &= \int \cos^2 \theta d\theta \tag{where we left off}\\
+         &= \int \frac{\cos(2 \theta) + 1}{2} \theta d\theta \tag{using above identity}\\
+         &= \frac{1}{2}\int \cos(2\theta) d\theta +  \frac{1}{2}\int 1 d\theta \tag{separating the integral}\\
+         &= \frac{1}{2}(\frac{1}{2}\sin(2\theta))+  \frac{1}{2}\theta + c \tag{evaluating the integrals}
+    \end{align*}
+
+    In the last line, we have used that $\frac{1}{2}\sin(2\theta)$ differentiates to become $\cos(2\theta)$, which you can verify using the chain rule. In fact, because of the chain rule Section \ref{sec:chain-rule}, we could have worked this out by knowing that 
+    the function which differentiates to give $\cos (2\theta)$ must be of the form $A \sin (2\theta)$, and we can figure out what $A$ must be by differentiating it and setting it equal to what we want:
+    \begin{align*}
+        \cos(2\theta) &= (A \sin (2\theta))' \\
+         &= 2A \cos(2\theta) \tag{using the chain rule}\\
+         \therefore 2A &= 1 \tag{since $\cos(2\theta) = 2A \cos(2\theta)$ }\\
+         \therefore A &= \frac{1}{2}
+    \end{align*}
+
+    You always have time to do little calculations like this if you are not sure!
+
+    If you dislike this method, you can always do another substitution of $2\theta = u$ and run through the integration by substitution method.
+
+    To return to the question, we have found the indefinite integral in terms of $\theta$ via a trig substitution. We want to replace any $\theta$ with the equivalent $x$ terms.
+    To do this, we need to remember that $x = \sin \theta$. Therefore, $\theta = \sin^{-1} x$, whenever we can invert it\footnote{Explicitly, this is when $-\frac{\pi}{2} \leq \theta \leq \frac{\pi}{2}$}. We can continue to simplify by also remembering that 
+    \[ \sin 2\theta = 2 \sin \theta \cos \theta\] 
+    and that you can write $\cos \theta = \sqrt{1 - \sin^2 \theta}$ to rearrange it in terms of $\sin$ or $\theta$:
+
+    \begin{align*}
+        \int \sqrt{1 - x^2} dx &= \frac{1}{2}(\frac{1}{2}\sin(2\theta))+  \frac{1}{2}\theta + c \\
+         &=  \frac{1}{2}(\cancel{\frac{1}{2}2} \sin \theta \cos \theta)+  \frac{1}{2}\theta + c \tag{using $\sin 2 \theta$ identity}\\
+         &= \frac{1}{2}( \sin \theta  \sqrt{1 - \sin^2 \theta})+  \frac{1}{2}\theta + c \tag{writing $\cos$ in terms of $\sin$}\\
+         &= \frac{1}{2}( x \sqrt{1 - x^2})+  \frac{1}{2}\theta + c  \tag{using $x = \sin \theta$}\\
+         &= \frac{1}{2}( x \sqrt{1 - x^2})+  \frac{1}{2}\sin^{-1} x + c  \tag{using $\theta = \sin^{-1} x$}
+    \end{align*}
+
+    This almost finishes the question, giving us that, subject to certain restrictions on $x$.
+    \[ \int \sqrt{1 - x^2} dx  = \frac{1}{2}( x \sqrt{1 - x^2})+  \frac{1}{2}\sin^{-1} x + c \]
+
+    But what are the restrictions? We used $x = \sin\theta$, and therefore $x$ cannot be more than $1$ or less than $-1$ since $\sin$ is between $-1$ and $1$.
+    This means that this indefinite integral is only valid between $-1 \leq x \leq 1$.
+
+    This completes the question.
+
+    \qed
+\end{solution}
+This question also shows a major downside using some trigonometric substitutions -- the bounds are heavily restricted! For example, we cannot use the indefinite integral above\footnote{In fact, simply because we cannot allow $1-x^2$ to be negative is sufficient to deduce this, but the point still stands.} to find 
+\[ \int_0^2 \sqrt{1 - x^2} dx\] 
+Since the upper bound is outside of $-1$ and $1$, whereas we \emph{can} compute
+\begin{align*}
+    \int_0^1 \sqrt{1 - x^2} dx &= \left[\frac{1}{2}( x \sqrt{1 - x^2})+  \frac{1}{2}\sin^{-1} x \right]_{x=0}^{x=1} \\
+    &= \frac{1}{2}( 1 \cancel{\sqrt{1 - 1^2}})+  \frac{1}{2}\sin^{-1} 1  - (\cancel{\frac{1}{2}( 0 \sqrt{1 - 0^2})}+  \cancel{\frac{1}{2}\sin^{-1} 0}) \\
+    &= \frac{1}{2}\sin^{-1} 1  \\
+    &= \frac{\pi}{4}
+\end{align*}
+
+Now we look at examples where it indeed helps us, and consider definite integrals. When considering definite integrals, we need to be very careful with the bounds since we will be inverting trigonometric functions.
+
+In each example, we will first try a substitution that \emph{looks} plausible, and then discard it if it complicates the integrand. 
+Then we will choose a trigonometric substitution that matches one of the identities
+\[
+1-\sin^2\theta=\cos^2\theta,\qquad 1+\tan^2\theta=\sec^2\theta,\qquad \sec^2\theta-1=\tan^2\theta,
+\]
+or a scaled version of them.
+
+% ------------------------------------------------------------
+\begin{example}
+    Using a trigonometric substitution, compute
+    \[
+        \int_{1/2}^{1}\frac{1}{x\sqrt{1-x^2}}\,dx.
+    \]
+
+\end{example}
+
+\begin{solution}
+    First, it is tempting to try the ``direct'' substitution $u=1-x^2$. Then $du=-2x\,dx$, so $dx = -\frac{1}{2x}du$.
+    Substituting this into the integral gives
+    \[
+        \int_{1/2}^{1}\frac{1}{x\sqrt{1-x^2}}\,dx
+        \;=\;\int \frac{1}{x\sqrt{u}}\left(-\frac{1}{2x}\right)du
+        \;=\;-\frac{1}{2}\int \frac{1}{x^2\sqrt{u}}\,du,
+    \]
+    This is complicating the integral because $x^2$ is still present, which will incorporate another $u$ due to $x^2 = u-1$. So we discard this.
+
+    Since the integrand contains $\sqrt{1-x^2}$, we should aim to use $1-\cos^2\theta=\sin^2\theta$ or $1-\sin^2\theta=\cos^2\theta$.
+    Both $x=\sin\theta$ and $x=\cos\theta$ are candidates.
+
+    We pick one and see if it helps. If not, we can try the other one.
+
+    Now proceed with $x=\cos\theta$. Since $1/2\leq x\leq 1$, we take $0\leq \theta\leq\frac{\pi}{2}$, where $\cos\theta\ge 0$ and $\sin\theta\ge 0$.
+
+    Compute the pieces:
+    \begin{align*}
+        x &= \cos\theta\\
+        dx &= -\sin\theta\,d\theta\\
+        \sqrt{1-x^2} &= \sqrt{1-\cos^2\theta}=\sqrt{\sin^2\theta}=\sin\theta \qquad (\text{since }\sin\theta\ge 0)
+    \end{align*}
+
+    Convert the bounds:
+    \begin{align*}
+        x=\frac{1}{2} &\therefore \cos\theta=\frac{1}{2}\therefore \theta=\frac{\pi}{3}\\
+        x=1 &\therefore \cos\theta=1\therefore \theta=0
+    \end{align*}
+
+    Substitute from left to right:
+    \begin{align*}
+        \int_{1/2}^{1}\frac{1}{x\sqrt{1-x^2}}\,dx &=\int_{x=1/2}^{x=1}\frac{1}{x\sqrt{1-x^2}}\,dx \\
+        &=\int_{\theta=0}^{\theta=\frac{\pi}{3}}\frac{1}{x\sqrt{1-x^2}}\,dx \\
+        &=\int_{\theta=0}^{\theta=\frac{\pi}{3}}\frac{1}{\cos\theta\sqrt{1-\cos^2\theta}}\,dx \\
+        &=\int_{\theta=0}^{\theta=\frac{\pi}{3}}\frac{1}{\cos\theta\sqrt{1-\cos^2\theta}}\,(-\sin\theta\,d\theta) \\
+        &= \int_{\theta=\pi/3}^{\theta=0}\frac{1}{\cos\theta\cdot \sin\theta}\,(-\sin\theta\,d\theta)\\
+        &= \int_{\theta=\pi/3}^{\theta=0} -\sec\theta\,d\theta\\
+        &= \int_{0}^{\pi/3}\sec\theta\,d\theta.
+    \end{align*}
+
+    Now integrate using the formula book:
+    \[
+        \int_{0}^{\pi/3}\sec\theta\,d\theta
+        = \left[\ln\left|\sec\theta+\tan\theta \right|\right]_{0}^{\pi/3}
+        = \ln\!\left(\sec\frac{\pi}{3}+\tan\frac{\pi}{3}\right)-\ln(\sec 0+\tan 0).
+    \]
+    Evaluate the trig values:
+    \[
+        \sec\frac{\pi}{3}=2,\quad \tan\frac{\pi}{3}=\sqrt{3},\quad \sec 0 = 1,\quad \tan 0=0.
+    \]
+    Therefore
+    \[
+        \int_{1/2}^{1}\frac{1}{x\sqrt{1-x^2}}\,dx
+        = \ln(2+\sqrt{3}) - \ln(1)
+        = \ln(2+\sqrt{3}).
+    \]
+    \qed
+\end{solution}
+
+% ------------------------------------------------------------
+\begin{example}
+    Using a trigonometric substitution, compute
+    \[
+        \int_{1}^{2}\frac{1}{\sqrt{x^2-1}}\,dx
+    \]
+\end{example}
+
+\begin{solution}
+
+    The expression $x^2-1$ matches the identity
+    \[
+        \sec^2\theta-1=\tan^2\theta
+    \]
+    This suggests the substitution
+    \[
+        x=\sec\theta
+    \]
+
+    We need to replace all instances of $x$ with $\theta$, including the bounds and $dx$, therefore we compute
+    \begin{align*}
+        x &= \sec\theta\\
+        dx &= \sec\theta\tan\theta\,d\theta\\
+        \sqrt{x^2-1} &= \sqrt{\sec^2\theta-1}=\sqrt{\tan^2\theta}=\tan\theta
+    \end{align*}
+
+    Convert the bounds
+    \begin{align*}
+        x=1 &\therefore \sec\theta=1 \therefore \theta=0\\
+        x=2 &\therefore \sec\theta=2 \therefore \theta=\frac{\pi}{3}
+    \end{align*}
+
+    Substitute from left to right
+    \begin{align*}
+        \int_{1}^{2}\frac{1}{\sqrt{x^2-1}}\,dx
+        &= \int_{x=1}^{x=2}\frac{1}{\sqrt{x^2-1}}\,dx\\
+        &= \int_{\theta=0}^{\theta=\pi/3}\frac{1}{\sqrt{\sec^2\theta-1}}\,dx\\
+        &= \int_{\theta=0}^{\theta=\pi/3}\frac{1}{\tan\theta}\,\sec\theta\tan\theta\,d\theta\\
+        &= \int_{0}^{\pi/3}\sec\theta\,d\theta
+    \end{align*}
+
+    Use the formula book
+    \[
+        \int \sec\theta\,d\theta=\ln\left|\sec\theta+\tan\theta\right|+c
+    \]
+
+    Therefore
+    \begin{align*}
+        \int_{0}^{\pi/3}\sec\theta\,d\theta
+        &= \left[\ln\left|\sec\theta+\tan\theta\right|\right]_{0}^{\pi/3}\\
+        &= \ln\left(\sec\frac{\pi}{3}+\tan\frac{\pi}{3}\right)-\ln\left(\sec 0+\tan 0\right)
+    \end{align*}
+
+    Evaluate
+    \begin{align*}
+        \sec\frac{\pi}{3}=2 &\qquad \tan\frac{\pi}{3}=\sqrt{3}\\
+        \sec 0=1 &\qquad \tan 0=0
+    \end{align*}
+
+    Therefore
+    \[
+        \int_{1}^{2}\frac{1}{\sqrt{x^2-1}}\,dx
+        = \ln(2+\sqrt{3})-\ln(1)
+        = \ln(2+\sqrt{3})
+    \]
+    \qed
+\end{solution}
+
+% ------------------------------------------------------------
+\begin{example}
+    Let $a>0$ and $b>0$. Using a trigonometric substitution, compute
+    \[
+        \int_{0}^{\frac{b}{a}}\frac{1}{\sqrt{a^2x^2+b^2}}\,dx
+    \]
+\end{example}
+
+\begin{solution}
+
+    We want to get it into a form where we can spot a term like $1 \pm x^2$ or $x^2 \pm 1$.
+    
+
+    The expression $a^2x^2+b^2$ can be written as
+    \[
+        a^2x^2+b^2=b^2\left(1+\left(\frac{ax}{b}\right)^2\right)
+    \]
+    and we recognise the identity
+    \[
+        1+\tan^2\theta=\sec^2\theta
+    \]
+    This suggests the substitution
+    \[
+        \frac{ax}{b}=\tan\theta
+    \]
+    which we write as
+    \[
+        x=\frac{b}{a}\tan\theta
+    \]
+
+    We need to replace all instances of $x$ with $\theta$, including the bounds and $dx$, therefore we compute
+    \begin{align*}
+        x &= \frac{b}{a}\tan\theta\\
+        dx &= \frac{b}{a}\sec^2\theta\,d\theta\\
+        \sqrt{a^2x^2+b^2}
+        &= \sqrt{a^2\left(\frac{b}{a}\tan\theta\right)^2+b^2}\\
+        &= \sqrt{b^2\tan^2\theta+b^2}\\
+        &= b\sqrt{1+\tan^2\theta}\\
+        &= b\sec\theta
+    \end{align*}
+
+    Convert the bounds
+    \begin{align*}
+        x=0 &\therefore \tan\theta=0 \therefore \theta=0\\
+        x=\frac{b}{a} &\therefore \tan\theta=1 \therefore \theta=\frac{\pi}{4}
+    \end{align*}
+
+    Substitute from left to right
+    \begin{align*}
+        \int_{0}^{\frac{b}{a}}\frac{1}{\sqrt{a^2x^2+b^2}}\,dx
+        &= \int_{x=0}^{x=\frac{b}{a}}\frac{1}{\sqrt{a^2x^2+b^2}}\,dx\\
+        &= \int_{\theta=0}^{\theta=\pi/4}\frac{1}{\sqrt{a^2\left(\frac{b}{a}\tan\theta\right)^2+b^2}}\,dx\\
+        &= \int_{\theta=0}^{\theta=\pi/4}\frac{1}{b\sec\theta}\,\frac{b}{a}\sec^2\theta\,d\theta\\
+        &= \frac{1}{a}\int_{0}^{\pi/4}\sec\theta\,d\theta
+    \end{align*}
+
+    Use the formula book
+    \[
+        \int \sec\theta\,d\theta=\ln\left|\sec\theta+\tan\theta\right|+c
+    \]
+
+    Therefore
+    \begin{align*}
+        \frac{1}{a}\int_{0}^{\pi/4}\sec\theta\,d\theta
+        &= \frac{1}{a}\left[\ln\left|\sec\theta+\tan\theta\right|\right]_{0}^{\pi/4}\\
+        &= \frac{1}{a}\left(\ln\left(\sec\frac{\pi}{4}+\tan\frac{\pi}{4}\right)-\ln\left(\sec 0+\tan 0\right)\right)
+    \end{align*}
+
+    Evaluate
+    \begin{align*}
+        \sec\frac{\pi}{4}=\sqrt{2} &\qquad \tan\frac{\pi}{4}=1\\
+        \sec 0=1 &\qquad \tan 0=0
+    \end{align*}
+
+    Therefore
+    \[
+        \int_{0}^{\frac{b}{a}}\frac{1}{\sqrt{a^2x^2+b^2}}\,dx
+        = \frac{1}{a}\left(\ln(\sqrt{2}+1)-\ln(1)\right)
+        = \frac{1}{a}\ln(\sqrt{2}+1)
+    \]
+    \qed
+\end{solution}
+
+
+The following two are mainly difficult due to the emergence of integrating $\sec^3 \theta$. Otherwise, the techniques are the same.
+
+\begin{example} \emph{(hard)} \label{ex:trig-subs-containing-sec3}
+    Using a trigonometric substitution, compute
+    \[
+        \int_{1}^{2}\sqrt{x^2-1}\,dx
+    \]
+\end{example}
+
+\begin{solution}
+    It is possible to evaluate this integral using a different substitution.
+    However, since the question asks for a trigonometric substitution, we proceed in that way.
+
+    The expression $x^2-1$ matches the identity
+    \[
+        \sec^2\theta-1=\tan^2\theta
+    \]
+    This suggests the substitution
+    \[
+        x=\sec\theta
+    \]
+
+    We need to replace all instances of $x$ with $\theta$, including the bounds and $dx$, therefore we compute
+    \begin{align*}
+        x &= \sec\theta\\
+        dx &= \sec\theta\tan\theta\,d\theta\\
+        \sqrt{x^2-1} &= \sqrt{\sec^2\theta-1}=\sqrt{\tan^2\theta}=\tan\theta
+    \end{align*}
+
+    Convert the bounds
+    \begin{align*}
+        x=1 &\therefore \sec\theta=1 \therefore \theta=0\\
+        x=2 &\therefore \sec\theta=2 \therefore \theta=\frac{\pi}{3}
+    \end{align*}
+
+    Substitute from left to right
+    \begin{align*}
+        \int_{1}^{2}\sqrt{x^2-1}\,dx
+        &= \int_{x=1}^{x=2}\sqrt{x^2-1}\,dx\\
+        &= \int_{\theta=0}^{\theta=\pi/3}\tan\theta\cdot\sec\theta\tan\theta\,d\theta\\
+        &= \int_{0}^{\pi/3}\sec\theta\tan^2\theta\,d\theta
+    \end{align*}
+
+    Use $\tan^2\theta=\sec^2\theta-1$
+    \begin{align*}
+        \int_{0}^{\pi/3}\sec\theta\tan^2\theta\,d\theta
+        &= \int_{0}^{\pi/3}\sec\theta(\sec^2\theta-1)\,d\theta\\
+        &= \int_{0}^{\pi/3}(\sec^3\theta-\sec\theta)\,d\theta
+    \end{align*}
+
+    The integral of $\sec\theta$ is in the formula book.
+    To integrate $\sec^3\theta$, we use integration by parts.
+
+    Write
+    \[
+        \sec^3\theta=\sec\theta\cdot\sec^2\theta
+    \]
+
+    Choose
+    \begin{align*}
+        u &= \sec\theta & v' &= \sec^2\theta\\
+        u' &= \sec\theta\tan\theta & v &= \tan\theta
+    \end{align*}
+
+    Apply integration by parts
+    \begin{align*}
+        \int \sec^3\theta\,d\theta
+        &= \sec\theta\tan\theta-\int \tan\theta(\sec\theta\tan\theta)\,d\theta\\
+        &= \sec\theta\tan\theta-\int \sec\theta\tan^2\theta\,d\theta\\
+        &= \sec\theta\tan\theta-\int \sec\theta(\sec^2\theta-1)\,d\theta\\
+        &= \sec\theta\tan\theta-\int \sec^3\theta\,d\theta+\int \sec\theta\,d\theta
+    \end{align*}
+
+    Rearranging
+    \begin{align*}
+        2\int \sec^3\theta\,d\theta
+        &= \sec\theta\tan\theta+\int \sec\theta\,d\theta\\
+        \therefore \int \sec^3\theta\,d\theta
+        &= \frac{1}{2}\sec\theta\tan\theta+\frac{1}{2}\ln|\sec\theta+\tan\theta|+c
+    \end{align*}
+
+    Return to the definite integral
+    \begin{align*}
+        \int_{0}^{\pi/3}(\sec^3\theta-\sec\theta)\,d\theta
+        &= \left[\frac{1}{2}\sec\theta\tan\theta-\frac{1}{2}\ln|\sec\theta+\tan\theta|\right]_{0}^{\pi/3}
+    \end{align*}
+
+    Evaluate
+    \begin{align*}
+        \sec\frac{\pi}{3}=2 &\qquad \tan\frac{\pi}{3}=\sqrt{3}\\
+        \sec 0=1 &\qquad \tan 0=0
+    \end{align*}
+
+    Therefore
+    \[
+        \int_{1}^{2}\sqrt{x^2-1}\,dx
+        = \sqrt{3}-\frac{1}{2}\ln(2+\sqrt{3})
+    \]
+    \qed
+\end{solution}
+
+% ------------------------------------------------------------
+\begin{example} \emph{(hard)}
+    Let $a>0$ and $b>0$. Using a trigonometric substitution, compute
+    \[
+        \int_{0}^{\frac{b}{a}}\sqrt{a^2x^2+b^2}\,dx
+    \]
+\end{example}
+
+\begin{solution}
+    We want to get it into a form where we can spot a term like $1 \pm x^2$ or $x^2 \pm 1$.
+
+    Factor out $b^2$
+    \[
+        \sqrt{a^2x^2+b^2}=b\sqrt{1+\left(\frac{ax}{b}\right)^2}
+    \]
+
+    Using $1+\tan^2\theta=\sec^2\theta$, we set
+    \[
+        \frac{ax}{b}=\tan\theta
+    \]
+
+    We need to replace all instances of $x$ with $\theta$, including the bounds and $dx$, therefore we compute
+    \begin{align*}
+        x &= \frac{b}{a}\tan\theta\\
+        dx &= \frac{b}{a}\sec^2\theta\,d\theta\\
+        \sqrt{a^2x^2+b^2} &= b\sec\theta
+    \end{align*}
+
+    Convert the bounds
+    \begin{align*}
+        x=0 &\therefore \tan\theta=0 \therefore \theta=0\\
+        x=\frac{b}{a} &\therefore \tan\theta=1 \therefore \theta=\frac{\pi}{4}
+    \end{align*}
+
+    Substitute from left to right
+    \begin{align*}
+        \int_{0}^{\frac{b}{a}}\sqrt{a^2x^2+b^2}\,dx
+        &= \int_{0}^{\pi/4} b\sec\theta\cdot\frac{b}{a}\sec^2\theta\,d\theta\\
+        &= \frac{b^2}{a}\int_{0}^{\pi/4}\sec^3\theta\,d\theta
+    \end{align*}
+
+    Using the result derived above in Example \ref{ex:trig-subs-containing-sec3}
+    \[
+        \int \sec^3\theta\,d\theta
+        = \frac{1}{2}\sec\theta\tan\theta+\frac{1}{2}\ln|\sec\theta+\tan\theta|+c
+    \]
+
+    Therefore
+    \begin{align*}
+        \int_{0}^{\frac{b}{a}}\sqrt{a^2x^2+b^2}\,dx
+        &= \frac{b^2}{a}\left[\frac{1}{2}\sec\theta\tan\theta+\frac{1}{2}\ln|\sec\theta+\tan\theta|\right]_{0}^{\pi/4}
+    \end{align*}
+
+    Evaluate
+    \[
+        \sec\frac{\pi}{4}=\sqrt{2}
+        \qquad
+        \tan\frac{\pi}{4}=1
+    \]
+
+    Hence
+    \[
+        \int_{0}^{\frac{b}{a}}\sqrt{a^2x^2+b^2}\,dx
+        = \frac{b^2}{2a}\left(\sqrt{2}+\ln(\sqrt{2}+1)\right)
+    \]
+    \qed
+\end{solution}
+
+% ------------------------------------------------------------
+
+\subsubsection{Additional Exercises}
+\begin{example}
+    \emph{(hard)}
+
+    Calculate the indefinite integral $\int \cosec x dx$.
+
+    Rearrange your answer to be in the form found in your formula book. 
+    \[\int \cosec x dx = \ln | \cosec x + \cot x|\]
+
+    Hence deduce the indefinite integral $\int \sec x dx$.
+
+    Rearrange your answer to be in the form found in your formula book.
+    \[\int \sec x dx = \ln | \sec x + \tan x|\]
+\end{example}
+\begin{solution}
+    There is a reason that this is included in your formula book! There is no ``nice'' way of approaching this (without complex numbers).
+
+    If you were attempting this for yourself without knowing the answer, there are really three approaches:
+    \begin{enumerate}
+        \item Substitution, e.g. with $u=\sin x$
+        \item By parts with $u = \frac{1}{\sin x}$ and $v' = 1$
+        \item More rearranging before trying the above two again
+    \end{enumerate}
+
+    The first option, if you work through it gives that 
+    \[ \int \cosec x dx = \int \frac{1}{u} \frac{1}{\sqrt{1 - u^2}}du\]
+    But this integral is again very difficult, and probably requires more substitutions! This can be done, but it is good to attempt another approach if your first approach seems to be complicating the integral.
+
+    The second option, if you work through it gives that
+    \[ \int \cosec x dx = \frac{x}{\sin x} + \int  \frac{\cos x}{\sin^2 x}dx\]
+
+    Which gives us a disgusting integral to solve, which is definitely more complicated than the one we started with! That leaves us with the third option, which is to rearrange before integrating.
+
+    We will use multiple tricks to massage this into an integral we can approach, starting with the least intuitive trick.
+
+    \begin{align*}
+        \int \frac{1}{\sin x} dx &= \int \frac{\sin x }{\sin^2 x}dx \tag{multiply top and bottom by $\sin x$} \\
+         &= \int \frac{\sin x}{1 - \cos^2 x}dx \tag{using $\sin^2 x + \cos^2 x = 1$}\\
+    \end{align*}
+
+    Now let's use the substitution $u = \cos x$. Therefore $\frac{du}{dx} = -\sin x$. Pretending to rearrange this for $-du$ gives $-du = \sin x dx$.
+
+    We can substitute this into our final line above since the numerator is $\sin x dx$. 
+
+    \begin{align*}
+        \int \frac{1}{\sin x} dx &= -\int \frac{1}{1 - \cos^2 x}du \tag{using $-du = \sin x dx$}\\
+         &= -\int \frac{1}{1 - u^2}du \tag{using $u = \cos x $} \\
+         &= -\int \frac{1}{(1-u)(1+u)}du \tag{difference of two squares}
+    \end{align*}
+
+    We now use partial fractions to separate the final fraction into two easier to integrate fractions.
+
+    \begin{align*}
+        \frac{1}{(1-u)(1+u)} &= \frac{a}{1-u} + \frac{b}{1+u} \tag{set up partial fractions}\\
+         &= \frac{a(1+u) + b(1-u)}{(1-u)(1+u)} \tag{add the fractions}\\
+         &= \frac{(a + b) + (a-b)u}{(1-u)(1+u)} \tag{collecting terms}
+    \end{align*}
+
+    This gives us the following equation to solve:
+
+    \[ a(1+u) + b(1-u) = 1\]
+    Or equivalently 
+    \[ (a + b) + (a-b)u = 1\]
+    
+    There are two approaches to proceed to solve for $a$ and $b$. One is to substitute $u=1$ and $u=-1$ to cancel $a$ or $b$ in succession.
+    This gives us:
+    \begin{align*}
+        b(1- (-1)) = 1 \tag{$u = -1$}\\
+        a(1+1)= 1 \tag{$u = 1$}\\
+    \end{align*}
+    Which can be solved to find $a = b = \frac{1}{2}$.
+
+    The second approach is to compare like terms with coefficients of $u$ and constants on the left and right side of the equation.
+    \[ (a + b) + (a-b)u = 1 + 0u\]
+
+    We now compare the terms and deduce 
+    \begin{align*}
+        a + b &= 1 \\
+        a - b &= 0
+    \end{align*}
+
+    Adding the two together gives $2a = 1$ and therefore $a = \frac{1}{2}$. The second equation shows that $a = b$ therefore they are both $\frac{1}{2}$.
+
+    Returning to our integral, we can now split our denominator into two fractions.
+    
+        \begin{align*}
+        \int \frac{1}{\sin x} dx &= -\int \frac{1}{(1-u)(1+u)}du \tag{where we left off}\\
+         &= - \int\left( \frac{1}{2}\frac{1}{1-u} + \frac{1}{2}\frac{1}{1+u} \right)du \tag{substituting the partial fraction coefficients}\\
+         &= - \frac{1}{2}\left(\int \frac{1}{1-u}du + \int \frac{1}{1+u}du \right) \tag{factorising}\\
+    \end{align*}
+
+    Recall that the integral of $\frac{1}{u}$ is $\ln | u|$. Therefore by the chain rule (or by substitution of $y = 1-u$ and $z = 1+u$)
+
+    \begin{align*}
+        \int \frac{1}{\sin x} dx &= - \frac{1}{2}\left(-\ln |1-u| + \ln |1+u| \right) +c \tag{integrating}\\
+         &= - \frac{1}{2}\left( \ln \left| \frac{1+u}{1-u}\right|\right) +c \tag{recall $\ln x - \ln y = \ln \frac{x}{y}$}\\
+         &= - \frac{1}{2}\ln \left| \frac{1+\cos x}{1-\cos x}\right| +c \tag{substituting $u = \cos x$}\\
+         &= - \frac{1}{2}\ln \left| \frac{(1+\cos x)^2}{(1-\cos x)(1 + \cos x)}\right| +c \tag{multiplying top and bottom by $(1 + \cos x)$}\\
+         &= - \frac{1}{2}\ln \left| \frac{(1+\cos x)^2}{1-\cos^2 x}\right| +c \tag{multiplying denominator}\\
+         &= - \frac{1}{2}\ln \left| \frac{(1+\cos x)^2}{\sin^2 x}\right| +c \tag{using $\sin^2 x + \cos^2 x = 1$}\\
+         &= - \frac{1}{2}\ln \left| \left(\frac{1+\cos x}{\sin x}\right)^2\right| +c \tag{using $(xy)^2 = x^2y^2$}\\
+         &= - \ln \left| \frac{1+\cos x}{\sin x}\right| +c \tag{recall $a\ln x = \ln (x^a)$}\\
+         &= - \ln \left| \cosec x + \cot x \right| +c \tag{separating the fraction}
+    \end{align*}
+
+    Which is finally in the form of your formula book.
+
+    What about $\sec$? Recall that $\sin(x-\frac{\pi}{2}) = -\cos (x)$. Therefore 
+
+    \[ \int \sec x dx =  - \int \cosec (x - \frac{\pi}{2}) dx\]
+
+    Now, using the chain rule, we can observe that adding a constant to the argument of a function also adds the same constant to the argument of the derivative.
+    To see this, differentiate $f(x+a)$ using the chain rule -- you get $f'(x+a)$.
+
+    Therefore, 
+
+    \begin{align*}
+        \int \sec x dx&= - \int \cosec (x- \frac{\pi}{2}) dx \tag{using $\sec x = -\cosec (x - \frac{\pi}{2})$}\\
+         &= \ln \left| \cosec (x - \frac{\pi}{2}) + \cot(x - \frac{\pi}{2}) \right| +c \tag{using our result for $\int \cosec$}\\
+         &= \ln \left| - \sec x + \cot(x - \frac{\pi}{2}) \right| +c \tag{using our relation for $\cosec$ and $\sec$ again}\\
+         &= \ln \left| - \sec x + \frac{\cos(x - \frac{\pi}{2})}{\sin(x - \frac{\pi}{2})} \right| +c \tag{definition of $\cot$}\\
+         &= \ln \left| - \sec x + \frac{\sin x}{-\cos x } \right| +c \tag{shifting $\sin$ and $\cos$}\\
+         &= \ln \left| - \sec x - \tan x \right| +c \tag{definition of $\tan$} \\
+         &= \ln \left| \sec x + \tan x \right| +c \tag{using $|-x| = |x|$}
+    \end{align*}
+
+    Which is finally in the form of the formula book!
+
+    \qed
+\end{solution}
+
+
+\begin{example}
+    Compute the following indefinite integral, assuming that $4-x^2\geq 0$.
+
+    \[ \int \frac{1}{x^2 \sqrt{4 - x^2}}dx\]
+\end{example}
+
+\begin{solution}
+    I will approach this from the point of view of discovering what the correct approach is, if it is not obvious from the start, and ignoring that 
+    we are in the substitution section of these notes.
+
+    Firstly, it is not obvious to ``see'' an easy way to integrate it directly, so we move on to 
+    trying to rearrange it into something we can integrate.
+
+    The only way I can spot to rearrange the integral is by spotting a difference of two squares in the denominator:
+
+    \[ \int \frac{1}{x^2 \sqrt{(2-x)(2+x)}}dx\]
+
+    The issue is that this didn't lead to any additional simplifications, so it is unclear whether this helped or not.
+
+    Instead let's consider an integration by parts, which might seem like a natural way to progress.
+
+    Using LATE does not help too much as a choice of $u$, so let's just choose the left side as $u$:
+
+    \begin{align}
+        u=\frac{1}{x^2}=x^{-2} & & v=? \\
+        u' = -2x^{-3} = \frac{-2}{x^3} & & v' = \frac{1}{\sqrt{4 - x^2}}
+    \end{align}
+
+    This has two problems: one is that the $u'$ has introduced an additional power of $x$, making our life worse, and the other problem is that 
+    we still need to integrate something difficult to find $v$. This should clue us in to the idea that maybe this approach is wrong.
+
+    Next let's try integration by substitution. For example, we could try $u= x^2\sqrt{4 - x^2}$, but finding what $dx$ is will be an issue since we will have a very complicated derivative via the product rule. Again 
+    this is complicating our work. At some point we must realise that if this is an exam question, we are probably not expected to spend this much time on it.
+
+    Instead, let's try a substitution of the ``bad'' part: $u = \sqrt{4 - x^2} $ If we were to continue, we would realise that the chain rule Section \ref{sec:chain-rule} is needed for $\frac{du }{dx}$.
+
+    The other part of the integral is $x^2$, which we can rearrange for by squaring both sides and finding $x^2 = 4 - u^2$.
+
+    This would turn the integral into the following.
+
+    \[ \int \frac{1}{u(4-u^2)}\cdot (\text{whatever }dx\text{ is})\]
+
+    This is also a complicated integral, but potentially more manageable than the original. So far, this is our best option.
+
+    However, if you have recently looked at the trigonometric substitution Section \ref{sec:trig-subs}, you might recognise the $\sqrt{4 - x^2}$ as containing something that looks like $a \pm bx^2$.
+
+    \textbf{This is the correct approach.}
+
+    Let's find a trig identity which looks like $4 - x^2$, following the procedure outlined in that section.
+
+    \begin{align*}
+        \sin^2\theta + \cos^2 \theta &= 1 \\ 
+        \therefore 4\sin^2\theta + 4\cos^2 \theta &= 4 \\ 
+        \therefore 4 \sin^2 \theta &= 4 - 4\cos^2 \theta \\ 
+        \therefore 4 \cos^2 \theta &= 4 - 4 \sin^2 \theta
+    \end{align*}
+
+    This gives us two options which look like $4 - (\text{something})^2$. The point is that when we take the square root, the square on the left-hand-side will cancel and leave us with something much simpler. 
+    Let's choose the first one\footnote{Choosing the other one and working through ends up with needing to integrate $\cosec^2 \theta$, which is not in the Edexcel formula book, but is possible to continue through regardless. We choose the other approach for reasons that will become clear at the end of the example.}
+    and deduce what substitution we need.
+
+    \begin{align*}
+        4 \sin^2 \theta &= 4 - 4\cos^2 \theta \\  
+        \therefore 2 \sin \theta &= \sqrt{4 - 4\cos^2 \theta} \tag{what we want to use}\\
+         &= \sqrt{4 - x^2} \tag{what we want to replace}\\
+         \therefore x^2 &= 4\cos^2 \theta \tag{what we need to be true}\\
+         \therefore x &= 2 \cos \theta \tag{what the substitution is}\\
+         \therefore \frac{dx}{d\theta} &= -2\sin \theta \tag{for $dx$}\\
+         \therefore dx &= -2\sin \theta  d\theta \tag{pretending to rearrange for $dx$} 
+    \end{align*}
+    Now we can substitute the relevant equations from above into the integral from left to right:
+
+    \begin{align*}
+        \int \frac{1}{x^2\sqrt{4 - x^2}}dx &= \int \frac{1}{4\cos^2 \theta\sqrt{4 - x^2}}dx \tag{using $x^2 = 4\cos^2 \theta$}\\
+         &= \int \frac{1}{4\cos^2 \theta \cdot 2 \sin \theta}dx \tag{using $2 \sin \theta = \sqrt{4 - 4\cos^2 \theta}$}\\
+         &= \int \frac{1}{4\cos^2 \theta \cdot \cancel{2 \sin \theta}}(-\cancel{2\sin \theta})  d\theta  \tag{using $dx = -2\sin \theta  d\theta$}\\
+         &= -\frac{1}{4}\int \sec^2 \theta d\theta \tag{rearranging, using $\frac{1}{\cos \theta} = \sec \theta$}
+    \end{align*}
+
+    Now we could continue with integrating this, but for Edexcel A-level, it is always worth checking if a trigonometric integral is just in the formula book. The formula book indeed tells us that:
+
+    \[ \int \sec^2 kx dx  = \frac{1}{k}\tan kx + c\]
+
+    Setting $k=1$ and $x = \theta$ in the formula gives:
+
+    \begin{align*}
+        \int \frac{1}{x^2\sqrt{4 - x^2}}dx &=  -\frac{1}{4}\int \sec^2 \theta \tag{where we left off}\\
+        &= -\frac{1}{4}\tan \theta + c
+    \end{align*}
+
+    We are not done however, since we introduced $\theta$ as part of our substitution -- the question was in terms of $x$ so we should give this in terms of $x$ too.
+
+    Recall that $x = 2 \cos \theta$, and therefore $\cos \theta = \frac{1}{2}x$
+    \begin{align*}
+        \int \frac{1}{x^2\sqrt{4 - x^2}}dx &=  -\frac{1}{4}\tan \theta + c \\
+        &= -\frac{1}{4}\frac{\sin \theta   }{\cos \theta}  + c \tag{using $\tan \theta = \frac{\sin \theta   }{\cos \theta} $}\\
+        &= -\frac{1}{4}\frac{\sqrt{1 - \cos^2 \theta}}{\cos \theta}  + c \tag{using $\sin \theta = \sqrt{1 - \cos^2 \theta}$}\\
+        &= -\frac{1}{4}\frac{\sqrt{1 - {(\frac{1}{2}x)}^2}}{\frac{1}{2}x}  + c \tag{using $\cos \theta = \frac{1}{2}x$}\\
+        &= -\frac{2}{4}\frac{\sqrt{1 - {(\frac{1}{2}x)}^2}}{x}  + c \tag{multiplying top and bottom by $2$}\\
+        &= -\frac{1}{2}\frac{\sqrt{1 - {(\frac{1}{2}x)}^2}}{x}  + c \tag{simplifying fraction}\\
+        &= -\frac{1}{2}\frac{\sqrt{1 - \frac{1}{4}x^2}}{x}  + c \tag{expanding the square}\\
+        &= -\frac{1}{2}\frac{\sqrt{\frac{4}{4} - \frac{1}{4}x^2}}{x}  + c \tag{writing $1 =\frac{4}{4}$}\\
+        &= -\frac{1}{2}\frac{\sqrt{\frac{1}{4}(4 - x^2)}}{x}  + c \tag{factorising}\\
+        &= -\frac{1}{2}\frac{\sqrt{\frac{1}{4}}\sqrt{4 - x^2}}{x}  + c \tag{using $\sqrt{ab} = \sqrt{a}\sqrt{b}$}\\
+        &= -\frac{1}{2}\frac{\frac{1}{2}\sqrt{4 - x^2}}{x}  + c \tag{using $\sqrt{a/b} = \sqrt{a}/\sqrt{b}$}\\
+        &= -\frac{1}{4}\frac{\sqrt{4 - x^2}}{x}  + c \tag{multiplying top and bottom by $2$}
+    \end{align*}
+
+    And finally, we find that the integral is as follows.
+
+    \[\int \frac{1}{x^2\sqrt{4 - x^2}}dx  = -\frac{1}{4}\frac{\sqrt{4 - x^2}}{x}  + c \]
+    \qed
+\end{solution}
+
+
+\subsection{Mixed Exercises}
+These questions use a range of techniques.
+Remember that the main way to approach an integral question is as follows:
+
+\begin{enumerate}
+    \item Do we know what function has a derivative which is what we are trying to find the integral of? I.e. can we ``just see'' the answer? This can include the formula book.
+    \item Can we rearrange the integral into something we know how to integrate?
+    \item Can we use integration by parts?
+    \item Can we use a substitution?
+\end{enumerate}
+
+Where the numbering corresponds to difficulty. If you can do an earlier step you probably should.
+
+The following exercises will demonstrate this.
+
+
+\begin{example}
+    Find the following indefinite integral, where $a \neq0$ is a constant.
+
+    \[\int \frac{1}{x}\cdot x^a dx\]
+
+    What happens if $a = 0$?
+\end{example}
+\begin{solution}
+    If we skipped the stepped approach, we might get tunnel-visioned into jumping into a integration by parts. This would 
+    have us choose $u = x^a$ and $v' = \frac{1}{x}$ via LATE, and therefore $v = \ln x$, and we could continue. This unfortunately is jumping the gun 
+    and complicating our lives, when if we had followed the steps the answer would be much clearer.
+
+    Firstly, it is not directly obvious to see a function which differentiates into $\frac{1}{x}\cdot x^a$, but we \emph{can} rearrange it into something we can handle.
+
+    \begin{align*}
+        \int \frac{1}{x}\cdot x^a dx &=  \int x^{-1}\cdot x^a dx \\
+         &= \int x^{a-1}dx \tag{using $x^ax^b = x^{a+b}$}
+    \end{align*}
+    Now this one you can recognise as something we can integrate. Since we know $x^{a}$ differentiates to become $ax^{a-1}$, we 
+    can divide by $a$ to find:
+     \begin{align*}
+        \int \frac{1}{x}\cdot x^a dx &= \int x^{a-1}dx \\
+        &= \frac{1}{a}x^a + c
+    \end{align*}
+
+    Therefore, simplifying the integral first allowed us to find that 
+    \[\int \frac{1}{x}\cdot x^a dx = \frac{1}{a}x^a + c\]
+
+    Now this holds whenever $a \neq 0$, which can be seen by the right-hand-side being divided by $a$. If $a=0$, the integral becomes:
+
+    \[\int \frac{1}{x} dx = \ln |x|+ c\]
+
+    Which again is possible by first simplifying the integral before continuing. Notice that $\ln x$ only occurs when we have exactly $\frac{1}{x}$ in the integral\footnote{In general the integral needs to be of the form $\int \frac{f'(x)}{f(x)}dx = \ln |f(x)| + c$.}, 
+    otherwise we also get a power of $x$ as the integral as seen above.
+
+    This completes the question by considering the two cases separately.
+    \qed
+\end{solution}
+
+\begin{example}
+    Find 
+    \[ \int_0^9 \frac{x}{1 + \sqrt{x}}dx\]
+\end{example}
+\begin{solution}
+    This might seem to be obviously a substitution question, but I recommend to at least attempt to go through the steps above in order first.
+
+    Can we just integrate it? Well since we have a $\frac{1}{1 + \sqrt{x}}$ term in the integrand, it is useful to think of any integral that might give us this term. One you might try is 
+    $\ln(1 + \sqrt{x})$. This differentiates to give $\frac{\frac{1}{2\sqrt{x}}}{1 + \sqrt{x}}$, which isnt exactly the form we need.
+
+    Secondly, can we rearrange or simplify it? I cannot see a way to rearrange this in an obvious way.
+    
+    Next you might have tried by parts with:
+    \begin{align*}
+        u= \frac{1}{1+\sqrt{x}}&  &v= \frac{1}{2}x^2\\
+        u' = -\frac{1}{2\sqrt{x}}\frac{1}{(1+\sqrt{x})^2}&  &v' = x
+    \end{align*}
+    Where we would then need to integrate $u'v$ as per the by parts formula. This new integral is most likely more complicated than the one we started with! So we should consider another method. We need to have 
+    clarity of mind to see that we are going down the wrong path with this method for this question.
+
+
+    So we proceed with a substitution. The first thing that should jump out at you is using the substitution $u = 1 + \sqrt{x}$
+    
+    We now calculate everything in terms of $u$ that we need.
+    \begin{align*}
+        \frac{du}{dx} &= \frac{1}{2\sqrt{x}} \tag{differentiating}\\
+        dx&=2\sqrt{x}du \tag{rearranging for $dx$}\\
+        u &= 1 + \sqrt{x} \tag{our substitution}\\
+        x&= (u-1)^2 \tag{rearranging $u = 1 + \sqrt{x}$}
+    \end{align*}
+
+    Now let's substitute instance of $x$ from left to right with $u$ in our integral, making sure to remember the integral bounds.
+
+    \begin{align*}
+        \int_{0}^{9}\frac{x}{1 + \sqrt{x}}dx &= \int_{x=0}^{x=9}\frac{x}{1 + \sqrt{x}}dx \tag{reminding ourselves of $x$} \\
+         &= \int_{u=1}^{u=4}\frac{x}{1 + \sqrt{x}}dx \tag{using $u = 1 + \sqrt{x}$} \\
+         &= \int_{u=1}^{u=4}\frac{(u-1)^2}{1 + \sqrt{x}}dx \tag{using $x = (u-1)^2$} \\
+         &= \int_{u=1}^{u=4}\frac{(u-1)^2}{u}dx \tag{using $u = 1 + \sqrt{x}$} \\
+         &= \int_{u=1}^{u=4}\frac{(u-1)^2}{u}2\sqrt{x}du \tag{using $dx = 2\sqrt{x}du$} \\
+         &= \int_{u=1}^{u=4}\frac{(u-1)^2}{u}2\sqrt{(u-1)^2}du \tag{using $x = (u-1)^2$} \\
+         &= \int_{u=1}^{u=4}\frac{(u-1)^2}{u}2(u-1)du \tag{using $(a^2)^\frac{1}{2} = a$} \\
+         &= 2\int_{u=1}^{u=4}\frac{(u-1)^3}{u}du \tag{simplifying} \\
+    \end{align*}
+    Now we again ask ourselves the questions we ask ourselves whenever there is an integral.
+
+    Can we see the integral is? Due to the $\frac{1}{u}$, we might expect there to be some $\ln$ in the answer, but it is not obvious.
+
+    Then we ask: can we rearrange this into something we \emph{do} know how to integrate?\footnote{It is possible to approach this with by parts with $f=(u-1)^3$ and $g' = \frac{1}{u}$, but you would need to do by parts multiple times with the resulting integral. There are no obvious substitutions either. It is essential to be able to identify when you can ``just do'' the integral and not waste time with a more complicated method.}
+
+    Well, the only thing we can try is expanding:
+
+    \begin{align*}
+        2\int_{u=1}^{u=4}\frac{(u-1)^3}{u}du &= 2\int_{u=1}^{u=4}\frac{u^3 + 3u^2\times(-1) + 3u\times(-1)^2 + (-1)^3}{u}du \tag{using binomial expansion formula} \\
+         &=  2\int_{u=1}^{u=4}\frac{u^3 - 3u^2\times + 3u\times -1}{u}du \tag{simplifying} \\
+         &= 2\int_{u=1}^{u=4}\frac{u^3}{u}- 3 \frac{u^2}{u} + 3\frac{u}{u} - \frac{1}{u} du \tag{separating the fraction} \\
+         &= 2 \int_{u=1}^{u=4}u^2- 3 u + 3 - \frac{1}{u} du \tag{simplifying}
+    \end{align*}
+
+    Which we can actually solve by computing each of the integrals one-by-one!
+
+    \begin{align*}
+        2 \int_{u=1}^{u=4}u^2- 3 u + 3 - \frac{1}{u} du &= 2\left[ \frac{1}{3}u^3 - \frac{3}{2}u^2 + 3u - \ln |u|\right]_{u=1}^{u=4} \\ \tag{``just doing'' the integrals}
+         &= 2(\frac{1}{3}4^3 - \frac{3}{2}4^2 + 3\times4 - \ln 4)\\
+         &- 2(\frac{1}{3}1^3 - \frac{3}{2}1^2 + 3\times1 - \cancel{\ln 1}) \tag{using $\ln 1 = 0$}
+    \end{align*}
+
+    Where you could expand all of this or put it in a calculator for the answer.
+    \qed
+\end{solution}
+
+\begin{example}
+    Find 
+    \[ \int_1^{e^2} x^2 \ln x dx\]
+\end{example}
+\begin{solution}
+    It's always good to think whether you can spot the integral before starting. Since it is not clear or in the formula book, we then ask ourselves whether we can rearrange it in any sensible way.
+    Since there is no real way to rearrange this obviously, we continue with by parts or substitution.
+
+    There is an obvious calling for by parts since it is two functions multiplied together.
+
+    Using LATE, we declare that $u= \ln x$ and $v' = x^2$. Writing this in a square and filling in the missing $u'$ and $v$ via differentiation and integration gives us:
+    \begin{align*}
+        u = \ln x & & v = \frac{1}{3}x^3 \\
+        u' = \frac{1}{x}& & v' = x^2
+    \end{align*}
+
+    Recall (or derive from the product rule as in Section \ref{sec:int-parts}) the by parts formula:
+
+    \[ \int_a^b u v' dx= \left[uv\right]_a^b - \int_a^b u' v dx\]
+
+    Substituting our square into this formula gives the following:
+
+    \begin{align*}
+        \int_1^{e^2} x^3 \ln x dx &= \left[\ln x \frac{1}{3}x^3\right]_1^{e^2} - \int_1^{e^2} \frac{1}{x} \times \frac{1}{3}x^3 dx \\
+         &=  \left(\ln (e^2) \frac{1}{3}(e^2)^3 - \ln (1) \frac{1}{3}(1)^3\right) - \int_1^{e^2} \frac{1}{x} \times \frac{1}{3}x^3 dx \tag{substituting bounds}\\
+         &= \left(2\ln (e) \frac{1}{3}e^6 - \cancel{\ln (1)} \frac{1}{3}\right) - \int_1^{e^2} \frac{1}{x} \times \frac{1}{3}x^3 dx \tag{using $\ln a^b = b\ln a$ and $\ln 1 = 0$}\\
+         &= \frac{2}{3}e^6  - \int_1^{e^2} \frac{1}{x} \times \frac{1}{3}x^3 dx \tag{using $\ln e = 1$} \\
+         &=  \frac{2}{3}e^6  - \frac{1}{3} \int_1^{e^2} x^2 dx \tag{simplifying the integral} \\ 
+         &= \frac{2}{3}e^6  - \frac{1}{3} \left[\frac{1}{3} x^3\right]_1^{e^2}  \tag{evaluating the integral} \\
+         &= \frac{2}{3}e^6  - \frac{1}{3} \left(\frac{1}{3} (e^2)^3 - \frac{1}{3} 1^3\right) \tag{evaluating the bounds}   
+    \end{align*}
+
+    Which you could go on to simplify and or plug into a calculator.
+
+    \qed
+\end{solution}
+
+
+
+\begin{example}
+    Find
+    \[ \int_0^{1} 8 x^2 e^{-3x} dx\]
+
+    Then state the indefinite integral
+    \[ \int 8 x^2 e^{-3x} dx\]
+\end{example}
+\begin{solution}
+    Again we start by trying to see if we can see an answer immediately. Since the derivative of $e^{f(x)}$ has a term like $e^{f(x)}$ in it, we might try something like
+    $x^3 e^{-3x}$, which differentiates to become $3x^2 e^{-3x} - 3x^3 e^{-3x}$, where this is almost like what we want except the second term has an $x^3$ in it, ruining our fun.
+
+    Since there is no obvious way to rearrange this, and we could not integrate it directly, we try by parts. Using LATE, choose $u= 8x^2$ and $v' =e^{-3x}$.
+    
+    Let us differentiate $u$ and integrate $v'$\footnote{Observe that $e^{-3x}$ differentiates to give $-3e^{-3x}$, so we must divide by $-3$ to get the answer we want.} 
+    to complete our square:
+
+    \begin{align*}
+        u = 8x^2 & & v = -\frac{1}{3}e^{-3x} \\
+        u' = 16x & & v' = e^{-3x}
+    \end{align*}
+    
+    Recall (or derive from the product rule as in Section \ref{sec:int-parts}) the by parts formula:
+
+    \[ \int_a^b u v' dx= \left[uv\right]_a^b - \int_a^b u' v dx\]
+
+    Substituting our square into this formula gives the following:
+
+    \begin{align*}
+        \int_0^{1} 8 x^2 e^{-3x} dx &= \left[8x^2\times (-\frac{1}{3}e^{-3x})\right]_0^{1} - \int_0^{1} 16x \times (-\frac{1}{3}e^{-3x}) dx \\
+         &=  \left(8\times1^2\times (-\frac{1}{3}e^{-3\times 1}) - \cancel{8\times0^2\times (-\frac{1}{3}e^{-3\times 0})}\right) - \int_0^{1} 16x \times (-\frac{1}{3}e^{-3x}) dx \tag{substituting the integral bounds} \\
+         &=  -\frac{8}{3}e^{-3}- \int_0^{1} 16x \times (-\frac{1}{3}e^{-3x}) dx \tag{simplifying} \\
+         &= -\frac{8}{3}e^{-3} + \frac{16}{3}\int_0^{1} x  e^{-3x} dx \tag{rearranging the integral}
+    \end{align*}
+    Now how can we approach this final integral? If we ask ourselves the same questions again, we realise that we must do integration by parts again! 
+    We should not worry however, since although this integral looks similar to the one we started with, the power of $x$ has decreased which means we are making progress -- 
+    if the power decreases one more time then we will be left with just $e^{-3x}$, which we know how to integrate happily.
+
+    We continue by repeating our process of integration by parts on
+    \[
+        \int_0^1 x e^{-3x} dx.
+    \]
+
+    Using LATE again, choose $u = x$ and $v' = e^{-3x}$. As before, integrating $e^{-3x}$ gives $v = -\frac{1}{3}e^{-3x}$ and differentiating $x$ gives $u' = 1$.
+    Our square is therefore:
+
+    \begin{align*}
+        u = x & & v = -\frac{1}{3}e^{-3x} \\
+        u' = 1 & & v' = e^{-3x}
+    \end{align*}
+
+    Applying the by parts formula on $[0,1]$:
+
+    \begin{align*}
+        \int_0^1 x e^{-3x} dx &= \left[x \times \left(-\frac{1}{3}e^{-3x}\right)\right]_0^1 - \int_0^1 1 \times \left(-\frac{1}{3}e^{-3x}\right) dx \\
+        &= \left[-\frac{1}{3}x e^{-3x}\right]_0^1 + \frac{1}{3}\int_0^1 e^{-3x} dx \\
+        &= \left(-\frac{1}{3}e^{-3} - 0\right) + \frac{1}{3}\int_0^1 e^{-3x} dx \tag{evaluating the boundary term}
+    \end{align*}
+
+    Now we integrate the remaining exponential:
+
+    \begin{align*}
+        \int_0^1 e^{-3x} dx &= \left[-\frac{1}{3}e^{-3x}\right]_0^1 \\
+        &= -\frac{1}{3}e^{-3} + \frac{1}{3}
+    \end{align*}
+
+    Substituting this back in, we get:
+
+    \begin{align*}
+        \int_0^1 x e^{-3x} dx &= -\frac{1}{3}e^{-3} + \frac{1}{3}\left(-\frac{1}{3}e^{-3} + \frac{1}{3}\right) \\
+        &= -\frac{1}{3}e^{-3} - \frac{1}{9}e^{-3} + \frac{1}{9} \\
+        &= -\frac{4}{9}e^{-3} + \frac{1}{9}
+    \end{align*}
+
+    Now recall that our original integral was:
+
+    \[
+        \int_0^{1} 8 x^2 e^{-3x} dx = -\frac{8}{3}e^{-3} + \frac{16}{3}\int_0^{1} x  e^{-3x} dx
+    \]
+
+    Substituting our result for $\int_0^1 x e^{-3x} dx$:
+
+    \begin{align*}
+        \int_0^{1} 8 x^2 e^{-3x} dx &= -\frac{8}{3}e^{-3} + \frac{16}{3}\left(-\frac{4}{9}e^{-3} + \frac{1}{9}\right) \\
+        &= -\frac{8}{3}e^{-3} - \frac{64}{27}e^{-3} + \frac{16}{27} \\
+        &= -\frac{72}{27}e^{-3} - \frac{64}{27}e^{-3} + \frac{16}{27} \tag{writing $\frac{8}{3} = \frac{72}{27}$} \\
+        &= \frac{16}{27} - \frac{136}{27}e^{-3}
+    \end{align*}
+
+    You could leave your answer as
+    \[
+        \int_0^{1} 8 x^2 e^{-3x} dx = \frac{16}{27} - \frac{136}{27}e^{-3}
+    \]
+    or factor it slightly as
+    \[
+        \int_0^{1} 8 x^2 e^{-3x} dx = \frac{8}{27}\left(2 - 17e^{-3}\right)
+    \]
+    or simply plug this into a calculator for a decimal approximation.
+
+    What if we wanted to know the indefinite integral of $8 x^2 e^{-3x} $? The only real difference between definite and indefinite integral is whether you write the square brackets or not.
+    To convert from a definite integral to an indefinite integral, you can work up until the square brackets part, and then remove the square brackets and add $c$.
+
+    For example, we can do some chasing around to find:
+
+    \begin{align*}
+        \int 8 x^2 e^{-3x} dx &= 8x^2\times (-\frac{1}{3}e^{-3x}) + \frac{16}{3}\int x  e^{-3x} dx \tag{reusing work up until square brackets} \\
+         &= 8x^2\times (-\frac{1}{3}e^{-3x}) + \frac{16}{3} \left( x \times \left(-\frac{1}{3}e^{-3x}\right) + \frac{1}{3}\int e^{-3x} dx\right) \\
+         &=   8x^2\times (-\frac{1}{3}e^{-3x}) + \frac{16}{3} \left( x \times \left(-\frac{1}{3}e^{-3x}\right) + \frac{1}{3}\left(-\frac{1}{3}e^{-3x}\right)\right) + c
+    \end{align*}
+    Where $c$ is a constant.
+
+    If you really want to, you could differentiate this to verify the result.
+    \qed
+\end{solution}
+
+\begin{example}
+    Let $a$ be a positive number. Using $x = a \sin^2 \theta$, find
+    \[ \int_0^{a} x^{\frac{1}{2}} \sqrt{a - x} dx\]
+    Give your answer in terms of $a$.
+\end{example}
+\begin{solution}
+    As usual, we first ask whether we can ``see'' an obvious answer which differentiates into the term inside the integral. Because of the square roots and the $a - x$ term, this does not look straightforward, so we follow the hint and use a substitution
+
+    Let
+    \[
+        x = a \sin^2 \theta
+    \]
+
+    Since $a > 0$, we can work out everything we need in terms of $\theta$
+
+    \begin{align*}
+        \sqrt{x} &= \sqrt{a \sin^2 \theta} = \sqrt{a}\sin \theta \tag{since $\sin \theta \ge 0$ on $[0,\tfrac{\pi}{2}]$} \\
+        a - x &= a - a \sin^2 \theta = a(1 - \sin^2 \theta) = a \cos^2 \theta \tag{using $\sin^2 \theta + \cos^2 \theta = 1$} \\
+        \sqrt{a - x} &= \sqrt{a \cos^2 \theta} = \sqrt{a}\cos \theta \\
+        \frac{dx}{d\theta} &= a \cdot 2\sin \theta \cos \theta = a \sin 2\theta \tag{using $\sin 2\theta = 2\sin \theta \cos \theta$} \\
+        \therefore \ dx &= a \sin 2\theta \, d\theta
+    \end{align*}
+
+    We also need to change the integral bounds
+
+    \begin{align*}
+        x = 0 &\therefore a \sin^2 \theta = 0 \therefore \sin^2 \theta = 0 \therefore \theta = 0 \\
+        x = a &\therefore a \sin^2 \theta = a \therefore \sin^2 \theta = 1 \therefore \theta = \frac{\pi}{2}
+    \end{align*}
+
+    Now we substitute everything into the integral, step by step, from left to right
+
+    \begin{align*}
+        \int_0^{a} x^{\frac{1}{2}} \sqrt{a - x} \, dx 
+        &= \int_{x=0}^{x=a} \sqrt{x} \sqrt{a - x} \, dx \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \sqrt{x} \sqrt{a - x} \, dx \tag{changing to $\theta$ bounds} \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \left(\sqrt{a}\sin \theta\right) \left(\sqrt{a}\cos \theta\right) \left(a \sin 2\theta \right) d\theta \tag{substituting $\sqrt{x}$, $\sqrt{a-x}$, and $dx$} \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} a \sin \theta \cos \theta \cdot a \sin 2\theta \, d\theta \tag{since $\sqrt{a}\sqrt{a} = a$} \\
+        &= a^2 \int_{\theta=0}^{\theta=\frac{\pi}{2}} \sin \theta \cos \theta \sin 2\theta \, d\theta
+    \end{align*}
+
+    Now we simplify the integrand using a double angle formula again. Recall
+
+    \[
+        \sin 2\theta = 2\sin \theta \cos \theta
+    \]
+
+    Therefore
+
+    \begin{align*}
+        \sin \theta \cos \theta \sin 2\theta &= \sin \theta \cos \theta \cdot 2\sin \theta \cos \theta \\
+        &= 2\sin^2 \theta \cos^2 \theta \\
+        &= \frac{1}{2}\left(2\sin \theta \cos \theta\right)^2 \\
+        &= \frac{1}{2} \sin^2 2\theta
+    \end{align*}
+
+    Substituting this back into our integral gives
+
+    \begin{align*}
+        \int_0^{a} x^{\frac{1}{2}} \sqrt{a - x} \, dx 
+        &= a^2 \int_{\theta=0}^{\theta=\frac{\pi}{2}} \sin \theta \cos \theta \sin 2\theta \, d\theta \\
+        &= a^2 \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{2} \sin^2 2\theta \, d\theta \\
+        &= \frac{a^2}{2} \int_{\theta=0}^{\theta=\frac{\pi}{2}} \sin^2 2\theta \, d\theta
+    \end{align*}
+
+    To integrate $\sin^2 2\theta$, we use the standard identities
+    \begin{align*}
+        \cos 2u &= \cos^2 u - \sin^2 u    \\
+        \sin^2 u + \cos^2 u &= 1
+    \end{align*}
+
+    Which can be combined to deduce 
+
+    \[
+        \sin^2 u = \frac{1}{2}(1 - \cos 2u)
+    \]
+
+    Here $u = 2\theta$, so
+
+    \[
+        \sin^2 2\theta = \frac{1}{2}\left(1 - \cos 4\theta\right)
+    \]
+
+    Substituting this into our integral
+
+    \begin{align*}
+        \frac{a^2}{2} \int_{\theta=0}^{\theta=\frac{\pi}{2}} \sin^2 2\theta \, d\theta
+        &= \frac{a^2}{2} \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{2}\left(1 - \cos 4\theta\right) d\theta \\
+        &= \frac{a^2}{4} \int_{\theta=0}^{\theta=\frac{\pi}{2}} \left(1 - \cos 4\theta\right) d\theta
+    \end{align*}
+
+    Now we can integrate term by term
+
+    \begin{align*}
+        \frac{a^2}{4} \int_{\theta=0}^{\theta=\frac{\pi}{2}} \left(1 - \cos 4\theta\right) d\theta
+        &= \frac{a^2}{4} \left[ \theta - \frac{1}{4}\sin 4\theta \right]_{\theta=0}^{\theta=\frac{\pi}{2}} \tag{integrating $1$ and $\cos 4\theta$} \\
+        &= \frac{a^2}{4} \left( \frac{\pi}{2} - \frac{1}{4}\sin 4\cdot\frac{\pi}{2} - \left(0 - \frac{1}{4}\sin 0\right) \right) \tag{substituting the bounds} \\
+        &= \frac{a^2}{4} \left( \frac{\pi}{2} - \frac{1}{4}\sin 2\pi + \frac{1}{4}\sin 0 \right) \\
+        &= \frac{a^2}{4} \cdot \frac{\pi}{2} \tag{since $\sin 2\pi = 0$ and $\sin 0 = 0$} \\
+        &= \frac{\pi a^2}{8}
+    \end{align*}
+
+    Therefore
+    \[
+        \int_0^{a} x^{\frac{1}{2}} \sqrt{a - x} \, dx = \frac{\pi a^2}{8}
+    \]
+
+    \qed
+\end{solution}
+
+\begin{example}
+    Find
+    \[ \int_0^{\frac{\pi^2}{4}} x  \sin \sqrt{x} dx\]
+\end{example}
+\begin{solution}
+    As usual, we first ask: can we ``just see'' an obvious answer which differentiates into the term inside the integral?  
+    Because of the $\sin \sqrt{x}$ term, this is not obvious, and it does not match anything in the formula book directly either.
+
+    Next, we ask whether we can rearrange this into something simpler. Again, nothing jumps out.
+
+    However, the $\sqrt{x}$ inside the sine is a strong hint to try a substitution to simplify the integrand.  
+    In particular, if we set the square root equal to a new variable, the inside of the sine becomes much simpler.
+
+    Let us define
+    \[
+        z = \sqrt{x}
+    \]
+    We now want to rewrite everything in terms of $z$. Rearranging this gives
+    \[
+        x = z^2
+    \]
+    Differentiating both sides with respect to $x$ gives
+    \[
+        \frac{dz}{dx} = \frac{1}{2\sqrt{x}}
+    \]
+    Now (abusing notation slightly)\footnote{This is the usual informal way to think about differentials; it can be made rigorous, but that is beyond our scope here.} we ``multiply'' both sides by $dx$ to get
+    \[
+        dz = \frac{1}{2\sqrt{x}} \, dx
+    \]
+    Substituting $\sqrt{x} = z$ into this, we obtain
+    \[
+        dz = \frac{1}{2z} \, dx \quad \therefore \quad dx = 2z \, dz
+    \]
+
+    Let us collect the key relations:
+    \begin{align*}
+        z &= \sqrt{x} \\
+        x &= z^2 \\
+        dx &= 2z \, dz
+    \end{align*}
+
+    We also need to update the integral bounds. When $x = 0$,
+    \[
+        z = \sqrt{0} = 0
+    \]
+    and when $x = \dfrac{\pi^2}{4}$
+    \[
+        z = \sqrt{\frac{\pi^2}{4}} = \frac{\pi}{2}
+    \]
+
+    Now we carefully substitute everything from left to right so that the integral becomes entirely in terms of $z$:
+    \begin{align*}
+        \int_0^{\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx
+            &= \int_{x=0}^{x=\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx \\
+            &= \int_{z=0}^{z=\frac{\pi}{2}} x \sin \sqrt{x} \, dx \tag{using $z = \sqrt{x}$ for the bounds} \\
+            &= \int_{z=0}^{z=\frac{\pi}{2}} z^2 \sin z \, dx \tag{using $x = z^2$ and $\sqrt{x} = z$} \\
+            &= \int_{z=0}^{z=\frac{\pi}{2}} z^2 \sin z \cdot 2z \, dz \tag{using $dx = 2z \, dz$} \\
+            &= 2 \int_{z=0}^{z=\frac{\pi}{2}} z^3 \sin z \, dz
+    \end{align*}
+
+    So the original integral has now become
+    \[
+        \int_0^{\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx
+        = 2 \int_0^{\frac{\pi}{2}} z^3 \sin z \, dz
+    \]
+
+    The substitution has done its job: the awkward $\sqrt{x}$ has disappeared, and we are left with a polynomial times a trig function, 
+    which is a classic situation for integration by parts (see Section \ref{sec:int-parts}).
+
+    Let us define
+    \[
+        J = \int_0^{\frac{\pi}{2}} z^3 \sin z \, dz
+    \]
+    so that our original integral is
+    \[
+        \int_0^{\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx = 2J
+    \]
+
+    We now tackle $J$ using integration by parts, and we will need to do this repeatedly, noticing that each time the power of $z$ goes down by $1$, 
+    so we are making progress.
+
+    \medskip
+    \noindent\textbf{First integration by parts}
+
+    Following LATE, we treat $z^3$ as algebra and $\sin z$ as trig, and choose
+    \[
+        u = z^3, \qquad v' = \sin z
+    \]
+    Differentiating and integrating gives:
+    \begin{align*}
+        u &= z^3            & v &= -\cos z \\
+        u' &= 3z^2          & v' &= \sin z
+    \end{align*}
+    (since $( -\cos z )' = \sin z$).
+
+    Recall the by-parts formula for definite integrals:
+    \[
+        \int_a^b u v' \, dz = \big[uv\big]_a^b - \int_a^b u' v \, dz
+    \]
+
+    Substituting our choices in, we obtain
+    \begin{align*}
+        J &= \int_0^{\frac{\pi}{2}} z^3 \sin z \, dz \\
+          &= \left[ z^3 \cdot (-\cos z) \right]_0^{\frac{\pi}{2}} - \int_0^{\frac{\pi}{2}} 3z^2 \cdot (-\cos z) \, dz \\
+          &= \left[ -z^3 \cos z \right]_0^{\frac{\pi}{2}} + 3 \int_0^{\frac{\pi}{2}} z^2 \cos z \, dz \tag{rearranging the integral}
+    \end{align*}
+
+    The integral bound term on the left simplifies nicely: since $\cos\left(\frac{\pi}{2}\right) = 0$ and $\cos(0)=1$,
+    \[
+        \left[ -z^3 \cos z \right]_0^{\frac{\pi}{2}} = \left(-\left(\frac{\pi}{2}\right)^3 \cdot 0\right) - \left(-0^3 \cdot 1\right) = 0.
+    \]
+    So
+    \[
+        J = 3 \int_0^{\frac{\pi}{2}} z^2 \cos z \, dz
+    \]
+    Let us call the new integral
+    \[
+        K = \int_0^{\frac{\pi}{2}} z^2 \cos z \, dz
+    \]
+    so that $J = 3K$.
+
+    \medskip
+    \noindent\textbf{Second integration by parts}
+
+    We now compute $K$ by integration by parts again. This time, we choose
+    \[
+        u = z^2, \qquad v' = \cos z
+    \]
+    Differentiating and integrating:
+    \begin{align*}
+        u &= z^2       & v &= \sin z \\
+        u' &= 2z       & v' &= \cos z
+    \end{align*}
+    (since $(\sin z)' = \cos z$).
+
+    By the same formula,
+    \begin{align*}
+        K &= \int_0^{\frac{\pi}{2}} z^2 \cos z \, dz \\
+          &= \left[ z^2 \sin z \right]_0^{\frac{\pi}{2}} - \int_0^{\frac{\pi}{2}} 2z \sin z \, dz
+    \end{align*}
+
+    Let us evaluate the boundary term:
+    \[
+        \left[ z^2 \sin z \right]_0^{\frac{\pi}{2}}
+        = \left(\left(\frac{\pi}{2}\right)^2 \sin\left(\frac{\pi}{2}\right)\right) - (0^2 \sin 0)
+        = \frac{\pi^2}{4} \cdot 1 - 0
+        = \frac{\pi^2}{4}
+    \]
+
+    So we obtain
+    \[
+        K = \frac{\pi^2}{4} - 2 \int_0^{\frac{\pi}{2}} z \sin z \, dz
+    \]
+
+    Let us define
+    \[
+        L = \int_0^{\frac{\pi}{2}} z \sin z \, dz
+    \]
+    so that $K = \dfrac{\pi^2}{4} - 2L$.
+
+    \medskip
+    \noindent\textbf{Third integration by parts}
+
+    The integral $L$ is simpler but still a product, so we perform integration by parts one more time.  
+    Take
+    \[
+        u = z, \qquad v' = \sin z
+    \]
+    Then
+    \begin{align*}
+        u &= z          & v &= -\cos z \\
+        u' &= 1         & v' &= \sin z
+    \end{align*}
+    (again, since $( -\cos z)' = \sin z$).
+
+    Applying the formula:
+    \begin{align*}
+        L &= \int_0^{\frac{\pi}{2}} z \sin z \, dz \\
+          &= \left[ z \cdot (-\cos z) \right]_0^{\frac{\pi}{2}} - \int_0^{\frac{\pi}{2}} 1 \cdot (-\cos z) \, dz \\
+          &= \left[ -z \cos z \right]_0^{\frac{\pi}{2}} + \int_0^{\frac{\pi}{2}} \cos z \, dz
+    \end{align*}
+
+    Evaluate each part:
+    \[
+        \left[ -z \cos z \right]_0^{\frac{\pi}{2}}
+        = \left(-\frac{\pi}{2} \cos\left(\frac{\pi}{2}\right)\right) - \left(-0 \cdot \cos 0\right)
+        = -\frac{\pi}{2} \cdot 0 - 0
+        = 0
+    \]
+    and
+    \[
+        \int_0^{\frac{\pi}{2}} \cos z \, dz = [\sin z]_0^{\frac{\pi}{2}} = \sin\left(\frac{\pi}{2}\right) - \sin(0) = 1 - 0 = 1
+    \]
+
+    Hence
+    \[
+        L = 0 + 1 = 1
+    \]
+
+    \medskip
+    \noindent\textbf{Putting it all back together}
+
+    We found:
+    \[
+        K = \frac{\pi^2}{4} - 2L = \frac{\pi^2}{4} - 2 \cdot 1 = \frac{\pi^2}{4} - 2
+    \]
+    Then
+    \[
+        J = 3K = 3\left(\frac{\pi^2}{4} - 2\right) = \frac{3\pi^2}{4} - 6
+    \]
+    Finally, recall that the original integral is
+    \[
+        \int_0^{\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx = 2J
+    \]
+    so
+    \begin{align*}
+        \int_0^{\frac{\pi^2}{4}} x \sin \sqrt{x} \, dx
+            &= 2 \left( \frac{3\pi^2}{4} - 6 \right) \\
+            &= \frac{3\pi^2}{2} - 12
+    \end{align*}
+
+    Which finishes the question.
+    \qed
+\end{solution}
+
+
+\begin{example}
+    Compute the following integral
+    \[
+        \int_{0}^{1} \frac{2x}{\sqrt{1 - x^4}} \, dx
+    \]
+    Then state the indefinite integral of $\dfrac{2x}{\sqrt{1 - x^4}}$.
+\end{example}
+
+\begin{solution}
+    As usual, we first ask whether we can ``see'' an obvious answer which differentiates into the term inside the integral
+
+    \[
+        \frac{2x}{\sqrt{1 - x^4}}
+    \]
+
+    There is a $\sqrt{1 - x^4}$ in the denominator, and the numerator is $2x$. This looks like something that might appear from the chain rule, but it is not in a form we recognise directly
+
+    Next we ask if integration by parts would help. If we tried by parts, there is no obvious way to choose $u$ and $v'$ so that the resulting integral is simpler. For example, if we chose
+    \[
+        u = 2x, \quad v' = \frac{1}{\sqrt{1 - x^4}}
+    \]
+    then we would need to find an expression for $v$ by integrating $\dfrac{1}{\sqrt{1 - x^4}}$, which is \emph{harder} than the question we started with. So integration by parts is not a good choice here
+
+    This suggests we should try substitution. The $x^4$ inside the square root comes from $(x^2)^2$, and the numerator has a factor of $2x$. This suggests using
+
+    \[
+        u = x^2
+    \]
+
+    We now work out everything we need in terms of $u$
+
+    \begin{align*}
+        u &= x^2 \\
+        \frac{du}{dx} &= 2x \tag{differentiating} \\
+        du &= 2x \, dx \\
+        \therefore \ 2x \, dx &= du
+    \end{align*}
+
+    We also change the bounds from $x$ to $u$
+
+    \begin{align*}
+        x = 0 &\therefore u = 0^2 = 0 \\
+        x = 1 &\therefore u = 1^2 = 1
+    \end{align*}
+
+    Now we substitute, step by step, from left to right
+
+    \begin{align*}
+        \int_{0}^{1} \frac{2x}{\sqrt{1 - x^4}} \, dx 
+        &= \int_{x=0}^{x=1} \frac{2x}{\sqrt{1 - x^4}} \, dx \\
+        &= \int_{u=0}^{u=1} \frac{2x}{\sqrt{1 - (x^2)^2}} \, dx \tag{using $u = x^2$} \\
+        &= \int_{u=0}^{u=1} \frac{2x}{\sqrt{1 - u^2}} \, dx \tag{substituting $x^2 = u$ inside the square root} \\
+        &= \int_{u=0}^{u=1} \frac{1}{\sqrt{1 - u^2}} \, du \tag{using $2x \, dx = du$}
+    \end{align*}
+
+    Now our integral is
+
+    \[
+        \int_{0}^{1} \frac{1}{\sqrt{1 - u^2}} \, du
+    \]
+
+    This is a standard form which you might recognise from the formula book if you have looked at the further maths section as the derivative of $\sin^{-1} u$. 
+    Without access to this knowledge, we can still proceed using a second substitution. The integrand has the form $\dfrac{1}{\sqrt{1 - u^2}}$, which suggests a trigonometric substitution. 
+    One way to reason through this is to recall that $1 - \sin^2 x = \cos^2 x$, therefore using $u = \sin \theta$ will result in some simplification here.
+
+    We choose
+
+    \[
+        u = \sin \theta
+    \]
+
+    Then we work out everything we need in terms of $\theta$
+
+    \begin{align*}
+        u &= \sin \theta \\
+        \frac{du}{d\theta} &= \cos \theta \tag{differentiating} \\
+        du &= \cos \theta \, d\theta \\
+        1 - u^2 &= 1 - \sin^2 \theta = \cos^2 \theta \tag{using $\sin^2 \theta + \cos^2 \theta = 1$} \\
+        \sqrt{1 - u^2} &= \sqrt{\cos^2 \theta} = \cos \theta \tag{on $0 \leq \theta \leq \frac{\pi}{2}$, $\cos \theta \geq 0$}
+    \end{align*}
+
+    We also convert the bounds from $u$ to $\theta$
+
+    \begin{align*}
+        u = 0 &\therefore \sin \theta = 0 \therefore \theta = 0 \\
+        u = 1 &\therefore \sin \theta = 1 \therefore \theta = \frac{\pi}{2}
+    \end{align*}
+
+    Now we substitute everything into the integral, again from left to right
+
+    \begin{align*}
+        \int_{u=0}^{u=1} \frac{1}{\sqrt{1 - u^2}} \, du
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{\sqrt{1 - u^2}} \, du \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{\sqrt{1 - \sin^2 \theta}} \, du \tag{using $u = \sin \theta$} \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{\cos \theta} \, du \tag{using $\sqrt{1 - \sin^2 \theta} = \cos \theta$} \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} \frac{1}{\cos \theta} \cdot \cos \theta \, d\theta \tag{using $du = \cos \theta \, d\theta$} \\
+        &= \int_{\theta=0}^{\theta=\frac{\pi}{2}} 1 \, d\theta \tag{simplifying}
+    \end{align*}
+
+    This is now very simple to integrate
+
+    \begin{align*}
+        \int_{\theta=0}^{\theta=\frac{\pi}{2}} 1 \, d\theta
+        &= \left[ \theta \right]_{\theta=0}^{\theta=\frac{\pi}{2}} \\
+        &= \frac{\pi}{2} - 0 \\
+        &= \frac{\pi}{2}
+    \end{align*}
+
+    Therefore
+
+    \[
+        \int_{0}^{1} \frac{2x}{\sqrt{1 - x^4}} \, dx = \frac{\pi}{2}
+    \]
+
+    Now we state the indefinite integral. Looking back at our first substitution, we had
+
+    \[
+        \int \frac{2x}{\sqrt{1 - x^4}} \, dx = \int \frac{1}{\sqrt{1 - u^2}} \, du = \int 1 \, d\theta = \theta + c
+    \]
+
+    Unravelling, we use that $u = \sin \theta$ to write that $\theta = \sin^{-1}u$, and substitute into the above to find that
+
+    \[
+        \int \frac{2x}{\sqrt{1 - x^4}}  \, dx = \sin^{-1} u + c
+    \]
+
+    Now we substitute back $u = x^2$
+
+    \[
+        \int \frac{2x}{\sqrt{1 - x^4}} \, dx = \sin^{-1}(x^2) + c
+    \]
+
+    You can check this by differentiating $\sin^{-1}(x^2)$ (e.g. using the formula book in the further maths section) and confirming that you get $\dfrac{2x}{\sqrt{1 - x^4}}$
+
+    \qed
+\end{solution}
+
+\begin{example}
+    Compute the following indefinite integral.
+
+    \[ \int x e^{x^2} dx\]
+\end{example}
+\begin{solution}
+    If you are rushing, you might immediately try to jump in with integration by parts or substitution.
+    Integration by parts would lead you to needing to integrate $e^{x^2}$, which you might try a substitution of 
+    $u = x^2$ to try to simplify, but you find that $dx = \frac{1}{2x}du$, and your integral ends up becoming even more complicated.
+
+    Instead -- slowing down -- we can try to ``just integrate'' it.
+
+    Since we know that (by the chain rule Section \ref{sec:chain-rule}) differentiating an exponential gives the same exponential times something, we know our integral needs to 
+    have $e^{x^2}$ as one of the terms to get something that differentiates to give $x e^{x^2}$.
+
+    Let's try differentiating $e^{x^2}$ and see if it is close to $x e^{x^2}$. We can do this by using the chain rule, see Section \ref{sec:chain-rule}.
+
+    \begin{align*}
+        (e^{f(x)})' &= f'(x)e^{f(x)} \tag{using the chain rule}\\
+         &= 2x e^{x^2} \tag{using $f(x) = x^2$}
+    \end{align*}
+
+    This is close to our desired $x e^{x^2}$, so we can divide both sides by $2$ to get
+
+    \[ (\frac{1}{2}e^{x^2})' = x e^{x^2}\]
+
+    This gives us a function that differentiates to give the function inside the integral, which is exactly what we are looking for.
+
+    Therefore, the indefinite integral of $x e^{x^2}$ is, using $f(x) = x^2$,
+
+    \[ \int x e^{x^2}dx = \frac{1}{2}e^{x^2} + c\]
+
+    Where $c$ is a constant.
+    \qed
+\end{solution}
+
+\begin{example}
+    Compute the following indefinite integral.
+
+    \[ \int \frac{5x}{1+2x^2} dx\]
+\end{example}
+\begin{solution}
+    If you are rushing, you might immediately try to jump in with integration by parts or substitution. Alternatively, one might try to factorise 
+    the denominator and use partial fractions. The most likely successful approach of those is substitution, but it would lead to a lengthy computation.
+
+    Instead -- slowing down -- we can try to ``just integrate'' it.
+
+    Since we know that (by the chain rule Section \ref{sec:chain-rule}) differentiating $\ln(f(x))$ gives something times $\frac{1}{f(x)}$, we might guess our integral needs to 
+    have $\ln(1+2x^2)$ as one of the terms to get something that differentiates to give $\frac{5x}{1+2x^2}$.
+
+    Let's try differentiating $\ln(1+2x^2)$ and see if it is close to $\frac{5x}{1+2x^2}$. We can do this by using the chain rule, see Section \ref{sec:chain-rule}.
+
+    \begin{align*}
+        (\ln(f(x)))' &= \frac{f'(x)}{f(x)} \tag{using the chain rule}\\
+         &= \frac{4x}{1+2x^2} \tag{using $f(x) = 1+2x^2$}
+    \end{align*}
+
+    This is close to our desired $\frac{5x}{1+2x^2}$, except we have a factor of $4$ instead of the $5$ that we want. 
+    We can times both sides by $\frac{5}{4}$ to convert our $4$ to a $5$ and find that 
+
+    \[ (\frac{5}{4}\ln(1+2x^2))' = \frac{5x}{1+2x^2}\]
+
+    This gives us a function that differentiates to give the function inside the integral, which is exactly what we are looking for.
+
+    Therefore, the indefinite integral of $\frac{5x}{1+2x^2}$ is, using $f(x) = 1+2x^2$,
+
+    \[ \int \frac{5x}{1+2x^2} dx = \frac{5}{4}\ln(1+2x^2) + c\]
+    
+    Where $c$ is a constant.
+    \qed
+\end{solution}
+
+

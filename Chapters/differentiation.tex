@@ -1,0 +1,746 @@
+\section{Differentiation}
+
+Why? Differentiation is the study of rates of change. For example, if you were to model how an epidemic moves through a population, you might want to know how quickly are people infected before and after a vaccination has been introduced. ``How quickly'' implies a rate of change, and therefore it would be useful to 
+set up a framework where we can find the rate of change of enough functions where we can model even extremely complicated situations.
+
+We have the concept of differentiation from first principles. This is where the definition of ``rate of change'' is used to explicitly calculate a derivative. 
+This involves something called a limit, and is very tedious and difficult to do in even slightly complex scenarios.
+
+Instead, we have come up with a great framework, where we have a set of standard functions,
+
+\[ ax, \; x^n, \; \sin x, \; \cos x, \; e^x, \; \ln x\]
+
+Which are varied enough that we can combine them to make any function we could want.
+
+By ``combine'' we mean three main things:
+
+\begin{enumerate}
+    \item Adding or subtracting functions, e.g. $ax - e^x$
+    \item Multiplying or dividing functions, e.g. $\frac{x \sin x}{\ln x}$
+    \item Composing functions as in Definition \ref{def:f-composition}, e.g. $\sin(x^3)$
+\end{enumerate}
+
+It turns out this is enough to (approximate) \emph{any} function!
+
+As such, we would like to be able to study the rate of change of these combinations of standard functions. This is done in three ways too:
+
+\begin{enumerate}
+    \item For adding or subtracting, we can use that you can differentiate each additive term separately, and add together the answers
+    \item For multiplying or dividing, we can use the product rule
+    \item For composition of functions, we can use the chain rule
+\end{enumerate}
+
+And combining these three methods allows us to differentiate anything we could want.
+
+\subsection{First Principles} \label{sec:first-principles}
+The derivative of a function is the slope of the function at a point. You can approximate the slope of a function by 
+calculating the difference in $x$ values and the difference in $y$ values between two points, and divide the difference in $y$ 
+by the difference in $x$. This is the formula for the slope of a straight line you find in GCSE.
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.75]{derivative}
+    \caption{Slope between two points on a function}
+    \label{fig:derivative-first-princ}
+\end{figure}
+
+The slope of the red line in Figure \ref{fig:derivative-first-princ} is therefore:
+\[ \frac{f(a+h) - f(a)}{(a+ h) - a} = \frac{f(a+h) - f(a)}{h}\]
+
+This approximates the slope of the function $f(x)$ at the point $a$, but not very well. We can make it better by 
+moving the second point closer and closer to the first, by making $h$ become smaller and smaller.
+
+Taking this to the limit, where $h$ is sent all the way to zero, gives us the derivative of $f$ at $a$, denoted $f'(a)$:
+
+\[ f'(a) = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} \]
+
+This is taking the derivative of $f$ from first principles.
+
+\begin{example}
+    Let $f(x) = x^2$. Using first principles, find the derivative of $f$.
+\end{example}
+\begin{solution}
+    Let's substitute $x^2$ into the definition of the derivative.
+
+    \begin{align*}
+        f'(a) &= \lim_{h \rightarrow 0} \frac{(a+h)^2 - a^2}{h} \tag{substituting into the formula}\\
+         &= \lim_{h \rightarrow 0} \frac{\cancel{a^2} + 2ah + h^2 - \cancel{a^2}}{h}  \tag{expanding numerator} \\
+         &= \lim_{h \rightarrow 0} \frac{\cancel{h}(2a + h)}{\cancel{h}}  \tag{factorise $h$ from numerator} \\
+         &= \lim_{h \rightarrow 0} 2a + h  \tag{cancel $h$ from top and bottom} \\ 
+        &= 2a \tag{now set $h=0$}
+    \end{align*}
+
+    Since this is true at every $a$, we can write 
+    $f'(x) = 2x$
+    \qed
+\end{solution}
+
+Because the derivative of a function is the slope of a function, what happens to constants when you differentiate them?
+
+If we plot $f(x) = c$, where $c$ is a constant, we get the graph in Figure \ref{fig:constant-function}.
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.75]{straight_line}
+    \caption{A constant function}
+    \label{fig:constant-function}
+\end{figure}
+
+What is the slope of this graph? Well, the difference in $y$ between any two points is $0$ because they are always at the same height.
+Therefore the difference in $y$ divided by the difference in $x$ is always $0$ since the numerator is always $0$.
+
+Therefore if $f(x) = c$ is a constant function, then $f'(x) = 0$.
+
+What about more complex differentiation by substitution?
+
+\begin{example}
+
+    From first principles, find the derivative of $\cos x$.
+    
+    You may assume the following.
+    \[ \lim_{h\rightarrow 0}\frac{\cos h-1}{h}=0\]
+    \[ \lim_{h\rightarrow 0}\frac{\sin h}{h}=1\]
+    \[ \cos(x+y) = \cos x \cos y - \sin x \sin y\]
+    \[ \lim(a+b) = \lim(a) + \lim(b)\]
+    You may also assume that if $f(x)$ is a function of only $x$, and $g(h)$ is a function of only $h$, then 
+    \[ \lim_{h \rightarrow 0} \left(f(x)g(h)\right) = f(x)\lim_{h \rightarrow 0} g(h) \]
+
+    Then deduce the derivative of $\sin x$.
+\end{example}
+\begin{solution}
+    Let's substitute into the first principles formula.
+
+    \begin{align*}
+         &\lim_{h\rightarrow 0}  \frac{\cos(x+h) - \cos(x)}{h} \tag{definition of derivative}\\
+        =&\lim_{h\rightarrow 0}  \frac{\cos x \cos h - \sin x \sin h - \cos x}{h} \tag{using the third hint}\\
+        =& \lim_{h\rightarrow 0}  \left(\frac{\cos x \cos h - \cos x}{h} - \frac{ \sin x \sin h }{h} \right) \tag{separate the fraction}\\
+        =& \cos x  \lim_{h\rightarrow 0}  \left(\frac{\cos h - 1}{h} \right) - \sin x  \lim_{h\rightarrow 0}  \left(\frac{\sin h}{h}\right) \tag{fourth and fifth hint}\\
+        =& \cos x \times 0 - \sin x \times 1 \tag{first and second hint} \\
+        =& -\sin x
+    \end{align*}
+
+    Therefore the derivative of $\cos(x)$ is $-\sin(x)$.
+
+    To deduce the derivative of $\sin(x)$, first recall that $\sin(x-\frac{\pi}{2})=-\cos(x)$ and $\cos\left(x-\frac{\pi}{2}\right) = \sin x$. Therefore, using the chain rule with $y = x-\frac{\pi}{2}$ (or by using first principles on $f(x+a)$ for some constant $a$),
+
+    \begin{align*}
+        \sin'(x) &= \cos'(x-\frac{\pi}{2}) \tag{using $\cos(x-\frac{\pi}{2})=\sin(x)$} \\
+         &= -\sin (x- \frac{\pi}{2}) \tag{using the chain rule} \\
+         &= - (-\cos (x)) \tag{using $\sin(x-\frac{\pi}{2})=-\cos(x)$} \\
+         &= \cos (x)
+    \end{align*}
+    Therefore the derivative of $\sin(x)$ is $\cos(x)$.
+    \qed
+\end{solution}
+To prove the limit of trigonometry identities used as hints, you can use the taylor expansion of $\sin$ and $\cos$ -- try it!
+
+
+
+\subsection{Product rule}
+The Product Rule tells us that if we have two functions $u = u(x)$ and $v = v(x)$, then 
+\[ (uv)' = uv' + u'v \]
+
+\begin{example}
+    Find the derivative of the function $x \sin(x)$.
+\end{example}
+\begin{solution}
+    Let $u = x$ and $v = \sin(x)$. So $u' = 1$ and $v' = \cos(x)$. Then by the product rule,
+    \[ (x\sin(x))' = x \cos (x) + 1 \cdot \sin (x) \]
+    \qed
+\end{solution}
+
+\begin{example}
+    Find the derivative of the function $\cos x \ln x + x \sin x$.
+\end{example}
+\begin{solution}
+    Let's write this as $f(x) + g(x)$, where $f(x) = \cos x \ln x$ and $g(x) = x \sin x$.
+
+    Then since we can differentiate each additive term separately and add the results, we want to know $f'(x)$ and $g'(x)$.
+
+    For $f(x)$, we can let $u= \cos x$ and $v = \ln x$ so that $u' = -\sin x$ and $v' = \frac{1}{x}$. Then by the product rule,
+
+    \begin{align*}
+        (uv)' &= uv' + u'v \\
+         &= \cos x \cdot \frac{1}{x} + (-\sin x) \cdot \ln x \\
+         &= \frac{\cos x}{x} - \ln x \sin x
+    \end{align*}
+
+    Which gives that $f'(x) = \frac{\cos x}{x} - \ln x \sin x$. For $g'(x)$, we can reuse the work from the previous question:
+    \[(x\sin(x))' = x \cos (x) + 1 \cdot \sin (x) \]
+
+    Therefore 
+    \begin{align*}
+        (f(x) + g(x))' &= f'(x) + g'(x) \\
+         &= \frac{\cos x}{x} - \ln x \sin x + x \cos (x) + 1 \cdot \sin (x) 
+    \end{align*}
+
+    Which completes the question.
+    \qed
+\end{solution}
+
+
+\subsection{Implicit Differentiation}
+
+When you are taking the derivative of a function with respect to $x$, you are actually applying a function $\frac{d}{dx}$ to both sides of the equation:
+
+\[y = f(x)\]
+\[\frac{dy}{dx} = \frac{d}{dx}(f(x))\]
+
+The notation on the right hand side is what you are used to doing when you differentiate an equation -- you apply all of your differentiation rules to wherever you see an $x$.
+
+If you had a more complex equality such as 
+
+\[ y + xy = x^2\]
+
+You can still differentiate this by differentiating \emph{both sides}, and applying any differentiation rules (product rule, chain rule, etc.) necessary.
+
+\begin{align*}
+    \frac{d}{dx}(y + xy) &= \frac{d}{dx}(x^2) \tag{differentiating both sides}\\
+    \frac{dy}{dx} + \frac{d}{dx}(xy) &= 2x \tag{expanding LHS and evaluating RHS}\\
+    \frac{dy}{dx} + x\frac{d}{dx}(y) + y\frac{d}{dx}(x)&= 2x \tag{product rule}\\
+    \frac{dy}{dx} + x\frac{dy}{dx} + y&= 2x \tag{using $\frac{dx}{dx} = 1$}
+\end{align*}
+In this way, our equation \emph{implicitly} contains $\frac{dy}{dx}$, but we would need to solve for it. If we are asked to find the value of $\frac{dy}{dx}$ at a single point, e.g. at $x=1$, $y=\frac{1}{2}$, we can substitute it into our final equation:
+
+\[ \frac{dy }{dx } + 1 \frac{dy }{dx} + \frac{1}{2} = 2\]
+
+We can rearrange this to find that, at $x=1$, $y=\frac{1}{2}$, the gradient $\frac{dy}{dx}$ is 
+\[\frac{dy}{dx} = 1- \frac{1}{4} = \frac{3}{4}\]
+
+Remember that this gradient is specifically at the point we substituted in! The gradient at any point would need to be calculated by solving 
+\[\frac{dy}{dx} + x\frac{dy}{dx} + y= 2x  \]
+by rearranging for $\frac{dy }{dx}$.
+
+\begin{example}
+    Find the gradient of the normal to the curve defined by the equation 
+    \[ 2x - 2y^2 + 4x^2y = 4x^2 + 8\]
+    at the point $x = 5$, $y = 1$.
+\end{example}
+\begin{solution}
+    To approach this question, we can first recall that the normal is the negative reciprocal of the gradient. Therefore, if we find $\frac{dy }{dx}$ at the point 
+    $x = 5$, $y = 1$, we can simply take the negative reciprocal of it to find the gradient of the normal.
+
+    Hence, let us find the derivative implicitly by taking the derivative of both sides.
+
+    \begin{align*}
+        \frac{d}{dx}(2x - 2y^2 + 4x^2y) &= \frac{d}{dx}(4x^2 + 8) \\
+         2 - 4y \frac{dy }{dx} + 8xy + 4x^2 \frac{dy }{dx} &= 8x \tag{using the chain and product rule}
+    \end{align*}
+
+    Hence now we can find $\frac{dy }{dx}$ at $x = 5$, $y = 1$ by substituting $x = 5$, $y = 1$ into the above equation and rearranging.
+
+    \begin{align*}
+         2 - 4 \frac{dy }{dx} + 8\times 5 + 4 \times 5^2 \frac{dy }{dx} &= 8\times 5 \tag{substituting $x = 5$, $y = 1$}\\ 
+         2 - 4\frac{dy }{dx}  + 100\frac{dy }{dx}  &= 0 \tag{simplifying}\\
+         \frac{dy }{dx} &= -\frac{2}{96} = - \frac{1}{48} \tag{rearranging}
+    \end{align*}
+
+    Hence, at $x = 5$, $y = 1$, the gradient is $- \frac{1}{48}$, which means that the normal has gradient $48$.
+
+    We could find the equation for the normal at this point by using the equation for a line with slope $48$ that passes through a point $x = 5$, $y = 1$.
+    \qed
+\end{solution}
+
+
+\subsection{The Chain Rule} \label{sec:chain-rule}
+The chain rule is an essential tool for differentiating, and allows you to differentiate any function as long as you can write it in terms of functions you know how to differentiate (sometimes you might need the product rule too).
+
+It goes as follows. 
+\begin{theorem} \emph{(The Chain Rule)}
+
+    If $y = g(u)$ for some function $g$, and $u = f(x)$ for some function $f$, then $y$ can be written as a function of $x$ via 
+    \[y = g(f(x))\]
+    And we have that 
+    \[ \frac{dy}{dx} = \frac{dy}{du} \frac{du}{dx}\]
+\end{theorem}
+
+For more details on function compositions, see Definition \ref{def:f-composition}.
+
+What this means is that we can differentiate any composition of the following standard functions:
+
+$ax$, $x^n$, $\sin x$, $\cos x$, $e^x$, $\ln x$.
+
+The easiest way to remember the chain rule is by pretending that they are actual fractions, and then seeing that the right-hand side would cancel to give the 
+left-hand side in the equation.
+
+This is the easiest to see with some examples.
+
+\begin{example}
+    Using the chain rule, differentiate $(2x)^2$, using $u = 2x$.
+\end{example}
+\begin{solution}
+    Obviously, we could write this as $4x^2$ and use our knowledge of differentiation to solve. This is not what the question is asking.
+
+    Let's write $y = (2x)^2$, $u = 2x$ so that $y = u^2$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= 2u \tag{using the derivative of $u^2$} \\
+        \frac{du}{dx} &= 2 \tag{using the derivative of $2x$}
+    \end{align*}
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= 2u \times 2 \\
+         &= 4u \\
+         &= 8x \tag{using $u = 2x$}
+    \end{align*}
+
+    Which gives us our answer.
+    \qed
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $(\ln x)^2$.
+\end{example}
+\begin{solution}
+    The question is: if we were to replace any part of $(\ln x)^2$ with $u$, how can we turn it into one of the functions that we know how to differentiate:
+    
+    $au$, $u^n$, $\sin u$, $\cos u$, $e^u$, $\ln u$?
+
+    Let's write $y = (\ln x)^2$, $u = \ln x$ so that $y = u^2$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= 2u \tag{using the derivative of $u^2$} \\
+        \frac{du}{dx} &= \frac{1}{x} \tag{using the derivative of $\ln x$}
+    \end{align*}
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= \frac{2u}{x} \tag{substituting our workings} \\
+         &= \frac{2\ln x}{x} \tag{using $u = \ln x$}
+    \end{align*}
+
+    Which gives us our answer.
+    \qed
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $e^{2\sin x}$.
+\end{example}
+\begin{solution}
+    The question is: if we were to replace any part of $e^{2\sin x}$ with $u$, how can we turn it into one of the functions that we know how to differentiate:
+    
+    $au$, $u^n$, $\sin u$, $\cos u$, $e^u$, $\ln u$?
+
+    Let's write $y = e^{2\sin x}$, $u = 2\sin x$ so that $y = e^u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= e^u \tag{using the derivative of $e^u$} \\
+        \frac{du}{dx} &= 2\cos x \tag{using the derivative of $2\sin x$}
+    \end{align*}
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= e^u \times 2\cos x  \tag{substituting our workings} \\
+         &= 2e^{2\sin x}\cos x \tag{using $u = 2\sin x$}
+    \end{align*}
+
+    Which gives us our answer.
+    \qed
+\end{solution}
+
+\begin{example} \emph{(Hard)}
+
+    Using the chain rule, differentiate $\sin(\cos(\ln x))$.
+\end{example}
+\begin{solution}
+    The question is: if we were to replace any part of $\sin(\cos(\ln x))$ with $u$, how can we turn it into one of the functions that we know how to differentiate:
+    
+    $au$, $u^n$, $\sin u$, $\cos u$, $e^u$, $\ln u$?
+
+    Let's write $y=\sin(\cos(\ln x))$, $u = \cos(\ln x)$ so that $y = \sin u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$. We can find the first:
+    \begin{align*}
+        \frac{dy}{du} &= \cos u \tag{using the derivative of $\sin u$} \\
+        \frac{du}{dx} &=  (\cos(\ln x))' \tag{leave for later}
+    \end{align*}
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &=  \cos u (\cos(\ln x))'  \tag{substituting our workings} \\
+         &= \cos (\cos(\ln x)) (\cos(\ln x))' \tag{using $u = \cos(\ln x)$}
+    \end{align*}
+
+    Which almost gives us our answer, except we still need to differentiate $\cos(\ln x)$. To do this, we can use the chain rule again!
+    
+    I will a new symbol $v$ for book-keeping: write $u = \cos(\ln x)$, $v = \ln x$ so that $u = \cos v$.
+    
+    The chain rule will then be 
+    \[ \frac{du}{dx} = \frac{du}{dv} \frac{dv}{dx}\]
+
+    We need the derivative of $u$ with respect to $v$ and the derivative of $v$ with respect to $x$.
+    \begin{align*}
+        \frac{du}{dv} &= -\sin v \tag{using the derivative of $\cos v$} \\
+        \frac{dv}{dx} &=  \frac{1}{x} \tag{using the derivative of $\ln x$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{du}{dx} &= \frac{du}{dv} \frac{dv}{dx} \\
+         &=  -\sin v \times \frac{1}{x}  \tag{substituting our workings} \\
+         &= -\frac{\sin (\ln x)}{x} \tag{using $v = \ln x$}
+    \end{align*}
+
+    This gives us the derivative of $z = \cos(\ln x)$ with respect to $x$
+    \[
+    \frac{du}{dx} = -\frac{\sin (\ln x)}{x}
+    \]
+    so
+    \[
+    (\cos(\ln x))' = -\frac{\sin (\ln x)}{x}
+    \]
+
+    Which we can substitute into our workings for the $\frac{dy}{dx}$:
+
+    \begin{align*}
+        \frac{dy}{dx} &= \cos (\cos(\ln x)) (\cos(\ln x))' \tag{from before}\\
+         &= \cos (\cos(\ln x))  \times -\frac{\sin (\ln x)}{x} \\ 
+          &= - \frac{\sin (\ln x)\cos (\cos(\ln x))}{x}
+    \end{align*}
+
+    Which gives us our funny looking answer. Note that if we have $n$ function compositions, we will need $n$ chain rules.
+    \qed
+\end{solution}
+
+Note that in the above, we worked through finding 
+
+\[ \frac{dy}{dx} = \frac{dy}{du}\frac{du}{dx}\]
+
+But since we did not know how to work with the final term, we then did the chain rule again to find 
+
+\[ \frac{du}{dx} = \frac{du}{dv}\frac{dv}{dx}\]
+
+Substituting this in gives 
+
+\[ \frac{dy}{dx} = \frac{dy}{du}\frac{du}{dv}\frac{dv}{dx}\]
+
+Which then gives us a hint about how the chain rule generalises. If we were to pretend that these were genuine fractions, 
+the right-hand side would cancel to give the left-hand side. This is true in general, that we can keep inserting additional multiples of derivatives 
+as long as they ``cancel'' if you consider them as actual fractions.
+
+Therefore, we can use the chain rule to compute the derivative of any composition of functions that we know how to differentiate.
+
+What this means in practise is that we can use a combination of the chain rule and the product rule to differentiate any composition and multiple of the following functions:
+
+$ax$, $x^n$, $\sin x$, $\cos x$, $e^x$, $\ln x$.
+
+\subsubsection{Generalising Standard Derivatives} \label{sec:standard-derivatives-chain-rule}
+
+We can now use our knowledge of standard derivatives to get generalised results almost for free.
+
+In this section, we will use that $f(x)$ is a function of $x$.
+
+\begin{example}
+    Using the chain rule, differentiate $(f(x))^n$ with respect to $x$. Give your answer in terms of $f(x)$ and $f'(x)$, where $n$ is a real number.
+\end{example}
+\begin{solution}
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let's write $y = (f(x))^n$, $u = f(x)$ so that $y = u^n$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= nu^{n-1} \tag{using the derivative of $u^n$} \\
+        \frac{du}{dx} &= f'(x) \tag{in terms of $f'(x)$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= nu^{n-1} \times f'(x)  \tag{substituting our workings} \\
+         &= nf(x)^{n-1}f'(x) \tag{using $u = f(x)$}
+    \end{align*}
+
+    Which gives us our answer.
+    \qed
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $e^{f(x)}$ with respect to $x$. Give your answer in terms of $f(x)$ and $f'(x)$.
+\end{example}
+\begin{solution}
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let's write $y = e^{f(x)}$, $u = f(x)$ so that $y = e^u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= e^u \tag{using the derivative of $e^u$} \\
+        \frac{du}{dx} &= f'(x) \tag{in terms of $f'(x)$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= e^u \times f'(x)  \tag{substituting our workings} \\
+         &= f'(x)e^{f(x)} \tag{using $u = f(x)$}
+    \end{align*}
+
+    Which gives us our answer.
+    \qed
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $\ln (f(x))$ with respect to $x$. Give your answer in terms of $f(x)$ and $f'(x)$.
+\end{example}
+\begin{solution}
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let's write $y = \ln (f(x))$, $u = f(x)$ so that $y = \ln u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= \frac{1}{u} \tag{using the derivative of $\ln u$} \\
+        \frac{du}{dx} &= f'(x) \tag{in terms of $f'(x)$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &= \frac{1}{u} \times f'(x)  \tag{substituting our workings} \\
+         &= \frac{f'(x)}{f(x)} \tag{using $u = f(x)$}
+    \end{align*}
+
+    Which gives us our answer.
+    \qed
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $\sin(f(x))$ with respect to $x$. Give your answer in terms of $f(x)$ and $f'(x)$.
+\end{example}
+\begin{solution}
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let's write $y = \sin(f(x))$, $u = f(x)$ so that $y = \sin u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= \cos u \tag{using the derivative of $\sin u$} \\
+        \frac{du}{dx} &= f'(x) \tag{in terms of $f'(x)$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &=  \cos u \times f'(x)  \tag{substituting our workings} \\
+         &= f'(x) \cos (f(x)) \tag{using $u = f(x)$}
+    \end{align*}
+
+    Which gives us our answer.
+    \qed
+\end{solution}
+
+\begin{example}
+    Using the chain rule, differentiate $\cos(f(x))$ with respect to $x$. Give your answer in terms of $f(x)$ and $f'(x)$.
+\end{example}
+\begin{solution}
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let's write $y = \cos(f(x))$, $u = f(x)$ so that $y = \cos u$.
+
+    We need the derivative of $y$ with respect to $u$ and the derivative of $u$ with respect to $x$.
+    \begin{align*}
+        \frac{dy}{du} &= -\sin u \tag{using the derivative of $\cos u$} \\
+        \frac{du}{dx} &= f'(x) \tag{in terms of $f'(x)$}
+    \end{align*}
+
+    Therefore, using the chain rule, we have that 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du} \frac{du}{dx} \\
+         &=  -\sin u \times f'(x)  \tag{substituting our workings} \\
+         &= -f'(x) \sin (f(x)) \tag{using $u = f(x)$}
+    \end{align*}
+
+    Which gives us our answer.
+    \qed
+\end{solution}
+
+\subsection{Mixed Exercises}
+\begin{example}
+    Differentiate $\sin(x)\cos(\sin(x))$
+\end{example}
+\begin{solution}
+    Let's first define two functions $f(x) = \sin(x)$ and $g(x) = \cos(\sin(x))$ so that the thing we are trying to differentiate becomes
+    \[ \sin(x)\cos(\sin(x)) = f(x) \cdot g(x)\]
+
+    Then we can use the product rule:
+
+    \[(f(x)\cdot g(x))' = f'(x)g(x) + f(x)g'(x)\]
+
+    Now we can find $f'(x)$, since this is just the derivative of $f(x) = \sin(x)$, which is $\cos(x)$, but 
+    what about the derivative of $g(x) = \cos(\sin(x))$?
+
+    For this we need the chain rule.
+
+    How can we define $u$ so that $g(x)$ becomes something we know how to differentiate? If we set $u = \sin(x)$, and write $y = g(x)$, then 
+    $y = \cos u$. The chain rule then gives us that 
+
+    \[ \frac{dy }{dx} = \frac{dy }{du}\frac{du}{dx}\]
+
+    Since $u = \sin(x)$, we find that $\frac{du }{dx} = \cos x$, and since $y = \cos u$, we find that $\frac{dy}{du} = -\sin u$.
+
+    Substituting this in gives 
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy }{du}\frac{du}{dx} \\
+         &= -\sin u \cos x \\
+         &= -\sin (\sin(x)) \cos x \tag{using $u = \sin(x)$}
+    \end{align*}
+
+    But this was all to find what $g'(x)$, i.e. the derivative of $\cos(\sin(x))$, which we have found to be 
+    \[ -\sin (\sin(x)) \cos x \]
+
+    Now we can substitute this into our product rule, recalling that $f(x) = \sin(x)$ and $g(x) = \cos(\sin(x))$, and $f'(x) = \cos x$ to find:
+
+    \begin{align*}
+        (f(x)\cdot g(x))' &= f'(x)g(x) + f(x)g'(x) \\
+         &=  \cos x g(x) + f(x) g'(x) \tag{substituting $f'(x)$} \\
+         &= \cos x \cos(\sin(x)) + f(x) g'(x) \tag{substituting $g(x)$} \\
+         &= \cos x \cos(\sin(x)) + \sin(x) g'(x) \tag{substituting $f(x)$} \\
+         &= \cos x \cos(\sin(x)) + \sin(x)\cdot(-\sin (\sin(x)) \cos x) \tag{substituting $g'(x)$} \\
+         &= \cos x \cos(\sin(x)) + -\sin (\sin(x)) \cos x \sin x
+    \end{align*}
+
+    Therefore, we have found the derivative 
+    \[ (\sin(x)\cos(\sin(x)))' = \cos x \cos(\sin(x)) + -\sin (\sin(x)) \cos x \sin x\]
+    \qed
+\end{solution}
+
+\begin{example}
+    Consider $e^{2\sin x} + \cos (x^2)$. First find the derivative, and then find the derivative of the derivative.
+\end{example}
+\begin{solution}
+    Since we know that you can differentiate each additive term separately and then add them together, we can consider them one by one.
+
+    Let $f(x) = e^{2\sin x} $ and $g(x) = \cos (x^2)$ so that we are trying to differentiate 
+    \[f(x) + g(x) = e^{2\sin x} + \cos (x^2)\]
+
+    Let's start with $f(x)$. 
+
+    The question we ask ourselves is: if we could replace any part of the function with $u$, can we turn it into one of our standard functions?
+
+    Let $y =  e^{2\sin x}$, $u = 2\sin x$ so that $y = e^u$.
+    
+    Then we can compute our derivatives:
+    \begin{align*}
+        \frac{du}{dx} &= 2\cos x \\
+        \frac{dy}{du} &= e^u
+    \end{align*}
+
+    So that, by the chain rule,
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du}\frac{du}{dx} \\ 
+         &= e^u \cdot 2\cos x \tag{substituting}\\
+         &= e^{2\sin x} \cdot 2\cos x \tag{using $u = 2\sin x$}
+    \end{align*}
+
+    Therefore 
+    \[ f'(x) = 2\cos x  e^{2\sin x} \]
+
+    For $g(x)$:
+
+    Let $y =  \cos (x^2)$, $u = x^2$ so that $y = \cos u$.
+    
+    Then we can compute our derivatives:
+    \begin{align*}
+        \frac{du}{dx} &= 2x \\
+        \frac{dy}{du} &= -\sin u
+    \end{align*}
+
+    So that, by the chain rule,
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{du}\frac{du}{dx} \\ 
+         &= -\sin u \cdot 2x \tag{substituting}\\
+         &= -\sin(x^2) \cdot 2x \tag{using $u = x^2$}
+    \end{align*}
+
+    Therefore 
+    \[ g'(x) = -2x \sin(x^2)\]
+
+    Which gives us our derivative:
+
+    \[(e^{2\sin x} + \cos (x^2))' = f'(x) + g'(x) = 2\cos x  e^{2\sin x} -2x \sin(x^2)\]
+
+    This completes the first part of the question. We are then asked to differentiate this function again.
+
+    Let's again split it into two cases based on the additive terms:
+
+    \[2\cos x  e^{2\sin x}\]
+
+    and 
+
+    \[-2x \sin(x^2)\]
+
+    Now for the purposes of this solution, we will only walk through the second term. The first is left as an exercise.
+
+    Since $-2x \sin(x^2)$ is a multiple of two terms, we need to use the product rule.
+    Let $u= -2x$ and $v = \sin (x^2)$. Then $u' = -2$, and $v'$ must be calculated via the chain rule.
+
+    Let's use the chain rule with $y = \sin(x^2)$, $w = x^2$ so that $y = \sin w$. We need the derivatives:
+    \begin{align*}
+        \frac{dw}{dx} &= 2x \\ 
+        \frac{dy}{dw} &= \cos w
+    \end{align*}
+    
+    Then the chain rule tells us that
+
+    \begin{align*}
+        \frac{dy}{dx} &= \frac{dy}{dw} \frac{dw}{dx} \\
+         &= \cos w \cdot 2x \tag{substituting}\\
+         &= \cos (x^2) \cdot 2x
+    \end{align*}
+
+    Therefore $v' = 2x\cos (x^2) $.
+
+    Then the product rule tells us that
+
+    \begin{align*}
+        (uv)' &= uv' + u'v \\
+         &= -2x \cdot 2x\cos (x^2) -2 \cdot \sin (x^2)
+    \end{align*}
+
+    And therefore, we have found that 
+
+    \[ (-2x \sin(x^2))' = -4x^2 \cos (x^2) -2  \sin (x^2)\]
+
+    A similar process can be used to find 
+    \[(2\cos x  e^{2\sin x})' = 4\cos^2 x e^{2\sin x} - 2 \sin x e^{2\sin x}\]
+
+    Therefore, the derivative we are looking for is:
+    
+    \begin{align*}
+    (2\cos x  e^{2\sin x} -2x \sin(x^2))' =& 4\cos^2 x e^{2\sin x} - 2 \sin x e^{2\sin x} \\
+     &-4x^2 \cos (x^2) -2  \sin (x^2)
+    \end{align*}
+
+    Which finishes the question, finding the second derivative of $e^{2\sin x} + \cos (x^2)$.
+    \qed
+\end{solution}
+
+
+
+
+
+
+

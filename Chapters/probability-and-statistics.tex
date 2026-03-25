@@ -1,0 +1,793 @@
+\section{Probability and Statistics}
+
+\subsection{Averages}
+Let $x_1,\dots, x_n$ be numeric recorded data values.
+
+\begin{definition} The mean (commonly referred to as average) of $x_1,\dots, x_n$ is:
+\[\overline{x} = \frac{x_1 + \dots + x_n}{n}= \frac{\Sigma_{i=1}^nx_i}{n}\]
+\end{definition}
+
+Note that 
+
+\[\overline{x}= \frac{1}{n}x_1 + \dots + \frac{1}{n}x_n\]
+
+A weighted average is an average which in which some of the data is given higher or lower priority. More rigorously, if we have weights $w_1, \dots, w_n$ where each $w_i$ is between $0$ and $1$, and $w_1 + \dots + w_n = 1$, Then
+
+\begin{definition} A weighted average of $x_1, \dots, x_n$ using weights $w_1, \dots, w_n$ is defined as:
+\[\overline{x} = w_1x_1 + \dots + w_nx_n= \Sigma_{i=1}^nw_ix_i\]
+\end{definition}
+Note that the mean can be viewed as a weighted average with each weight being $\frac{1}{n}$. 
+
+What weights should we choose? 
+
+An important use-case of weighted averages is the ``correct'' way to take averages of averages (or percentages). If we \textbf{have} two \textbf{averages already} $\overline{x}$ and $\overline{y}$, and the \textbf{number of records (frequency) used to compute those averages}, $n$ and $m$, as in
+\[\overline{x} =  \frac{x_1 + \dots + x_n}{n}\]
+\[\overline{y} =  \frac{y_1 + \dots + y_m}{m}\]
+Then we can compute the average of both via the formula for a weighted average of averages:
+    \[ \overline{z} = \frac{n\overline{x}+m\overline{y}}{n+m}\]
+Where $\overline{z}$ is the average for the row-level numeric data values for $x$ and $y$ combined (union).
+
+Note that this is the same as
+
+\[\overline{z}= \frac{n}{n+m}\overline{x}+ \frac{m}{n+m}\overline{y}\]
+
+Where you can notice that $\frac{n}{n+m}\times100$ and $\frac{m}{n+m}\times100$ are the percentages of the total number of records!
+
+Why this formula? We know that 
+\[ \frac{n\overline{x}+m\overline{y}}{n+m} =  \frac{\cancel{n}\frac{x_1 + \dots + x_n}{\cancel{n}}+\cancel{m}\frac{y_1 + \dots + y_m}{\cancel{m}}}{n+m} = \frac{x_1 + \dots + x_n + y_1 + \dots + y_m}{n+m} \]
+
+Which is exactly the formula for the average of the combined data field of $x$ and $y$! Therefore, this is the correct way to take averages of averages. 
+
+This is \textbf{not} equal to 
+\[\text{naive average} = \frac{\overline{x}+ \overline{y}}{2}\]
+
+Note that similar logic can be applied for when you have more than two averages.
+\subsection{Distributions} \label{sec:distributions}
+A probability distribution is a function which satisfies two things:
+\begin{enumerate}
+    \item The area underneath the function is equal to $1$.
+    \item The function is always non-negative.
+\end{enumerate}
+
+Then we can interpret the function in a probabilistic sense in the following way. The area between two points is how `likely' that sampling a random variable with that probability distribution results in a value from that range.
+
+For example, the normal distribution has this property, where the integral of the entire distribution is $1$, and it is always positive.
+
+\subsubsection{Normal Distribution} \label{sec:normal-distribution}
+
+The normal distribution is a probability distribution characterised by two numbers: the mean $\mu$ and the variance $\sigma^2$. 
+Note that the variance is denoted with a square to remind us that taking the (positive) square root gives us the standard deviation $\sigma$.
+It is denoted $N(\mu,\sigma^2)$.
+
+The normal distribution has the shape of a bell curve around the mean, which can be interpreted as in 
+Section \ref{sec:distributions} that the majority of samples will occur around the mean, and that the further away you get from 
+the mean, the less likely a sample is to come from that area. This can be seen visually by which parts of the bell curve has more area underneath, and therefore has a higher likelihood of occurring.
+
+For example, let's say that human adult weights can be modelled as a normal distribution. 
+We sketch it as a bell curve, symmetric around $75$ as in Figure \ref{fig:normal_distribution_weight}.
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.75]{normal_distribution_weight}
+    \caption{A sketch of the normal distribution where $\mu=75$, $\sigma=30$}
+    \label{fig:normal_distribution_weight}
+\end{figure}
+
+Since it is symmetric, we know that the probability that a random sample $X$ is $75kg$ or below is $0.5$ -- this can be denoted as 
+\[ P(X\leq75) = 0.5\]
+In fact, it is always true for normal distributions that 
+\[P(X \leq \mu) = 0.5\]
+
+This is because $P(X\leq\mu) = P(X\geq \mu)$, and $P(X\leq\mu) + P(X\geq \mu) = 1$, therefore \[P(X\geq \mu) = 1 - P(X\leq\mu)\] Substituting back into the first 
+equation gives that  $P(X\leq\mu)= 1 - P(X\leq\mu)$, which can be solved to find $P(X\leq\mu)=0.5$.
+
+Moreover, due to symmetries and summing to $1$, we can figure out some other fun things:
+\begin{align*}
+P(45\leq X \leq 105) &= 1 - (P(X<45) + P(X>105)) \tag{the full area is $1$}\\ 
+&= 1 - 2P(X<45) \tag{symmetry around the mean}    
+\end{align*}
+All of the above are using symmetry around the mean! Again, this is true for any normal distribution -- you can use symmetries to convert 
+to other regions of the bell curve:
+
+\begin{exercise}
+
+Consider the normal distribution $N(\mu,\sigma^2)$. Using symmetry and the area being $1$, show the following equalities:
+
+\[P(X\leq a) = P(X\geq 2\mu - a) = 1 - P(X>a) = 1-P(X>2\mu-a)\]
+Have a think if you can reason your way through any of the above! Hint: what is the midpoint of $a$ and $2\mu - a$? What do these equalities become when $\mu = 0$ and $\sigma = 1$?
+
+\end{exercise}
+
+In your exam cheat sheet, you get told a lot of values for probabilties of the form $P(X > a)$, where $X$ comes from a specific normal distribution called the 
+standard normal distribution.
+\begin{definition}
+    The \emph{standard normal distribution} is a normal distribution with $\mu=0$ and $\sigma^2 = 1$, denoted $N(0,1)$.
+\end{definition}
+
+Using symmetries and the area being $1$, you can always rearrange any probability question to be of the form $P(X<a)$. Then you can look up the nearest 
+value from the cheat sheet to use for your probability. 
+
+The problem is that often you are not given a normal distribution which has this mean and variance, so how can you use this cheat sheet?
+
+It turns out that transforming $X$ by shifting and rescaling gives us a new normal distribution with the mean shifted and the standard deviation rescaled. 
+This can be understood intuitively if you understand that, for a normal distribution, the mean represents the centre of the distribution, and the standard deviation represents the spread of the 
+distribution. 
+It turns out that $68\%$ of random samples will occur within one standard deviation of the mean, 
+$95\%$ of random samples will occur within two standard deviations of the mean, and
+$99.7\%$ of random samples will occur within three standard deviations of the mean. 
+This gives a visual interpretation of the mean being the middle and the standard deviation being the width.
+
+So our goal is to think 
+of a way to transform $X$ so that the mean is shifted to become $0$ and the standard deviation is scaled to be $1$. 
+A little bit of thought would lead us to the formula 
+\[Z = \frac{X-\mu}{\sigma}\]
+Which will shift the mean $\mu$ to $0$ (you can substitute $X=\mu$ to see this), and will make the entire thing ``thinner'' by a factor of $\sigma$. 
+
+It can be proven that this transformation indeed converts $N(\mu,\sigma^2)$ to the standard normal distribution $N(0,1)$. 
+So the process in a normal distribution question is:
+\begin{enumerate}
+    \item Identify if it is a normal distribution question. 
+    \item Convert the normal distribution to a standard normal distribution by $Z = \frac{X-\mu}{\sigma}$.
+    \item Use symmetries and that the area is $1$ to rearrange the probability to one that can be found in the lookup sheet.
+\end{enumerate}
+
+For point $1$, we can use a little heuristic to figure out if we are dealing with a normal distribution. 
+\begin{enumerate}
+    \item Does the question deal with \emph{continuous} data? As in, the gaps between points can be infinitely small. For example, the weight of a person or a moment in time is continuous, but the value a die can take cannot be $4.5$ -- this is a discrete value set. The normal distribution has to be continuous.
+    \item Does the question give you or mention the mean and variance or standard deviation?
+\end{enumerate} 
+If the answer to both of those is yes, you are probably going to use a normal distribution. If no, you'll need to use something else! Usually a question spells it out for you.
+
+Often times, the question asks you about the mean of the normal distribution, and in particular, how you might model the mean itself.
+
+Given a set of samples $x_1, \dots, x_n$, we can find the sample mean via:
+
+\[ \frac{x_1 + \dots + x_n}{n} \]
+
+If we consider a set of $n$ random variables, $X_1, \dots, X_n$, where each are independently distributed with the same normal distribution $N(\mu, \sigma^2)$, 
+we can ask ourselves what would the distribution of the mean of those random variables look like:
+
+\[ \overline{X} = \frac{X_1 + \dots + X_n}{n}\]
+
+It turns out that this can be considered itself a random variable having a normal distribution with the same mean, but a rescaled variance $\overline{X} \sim N(\mu, (\sigma/\sqrt{n})^2)$.
+
+Why this is true requires a few facts out of scope, one being that the sum of scaled normal distributions is itself a normal distribution, combined with some facts about how the mean and variance behave under summing and scaling.\footnote{Precisely, we can use Expectation Algebra (see formula book) to realise that $E(\sum X/n) = 1/n\sum E(X) = E(X)$ and $\operatorname{Var}(\sum X/n) = 1/n^2 \sum \operatorname{Var}(X) = 1/n \operatorname{Var}(X)$, which we can combine with the assumption that a linear combination of normal distributions is itself normal to get the result.}.
+
+One more intuitive way to think about this is that the mean of the mean should itself be the mean with enough points, but the standard deviation of a mean should be smaller since the more points we have the closer to the mean we expect to be, and the mean is bringing those points with it. The additional points help to cancel out any extremes.
+
+\subsubsection{Binomial Distribution} \label{sec:binomial-distribution}
+
+The binomial distribution is a useful probability distribution, which gives a probability of a given number of successes in a fixed number of trials. This means we know the number of times something has been repeated, and know that in each case only two outcomes are possible.
+    
+It is to be used when there is a fixed number of trials, $n$, each with one of two outcomes (success or failure), and we want to count how many successes occur. We also need the probability of success to be constant and for the trials to be independent (not influence the next trial).
+
+Examples of typical question wordings may include ``out of $50$ customers\ldots'' ``in a sample of $20$ items\ldots'' ``each component is defective with a probability of $0.05$\ldots''
+
+In the formula book, you can find statistical tables of values for the probability that the number of successes, $X$ is less than or equal to $x$ with the probability of a success being $p$ and the number of trials being $n$.
+
+We denote a random variable which is distributed with a binomial distribution as $X \sim B(n,p)$.
+
+\begin{example}
+    A chair factory produces a defective chair with a probability of $5\%$.
+    Using the formula book, what is the probability there are no more than $1$ defective chairs in a batch of $50$ chairs, to four significant figures?
+\end{example}
+\begin{solution}
+    Let's model this with a ``success'' being a defective chair, so that we want the number of successes to be $1$ or less.
+
+    Our random variable is thus modelled as $X \sim B(50, 0.05)$. To use the formula book, we must notice that it gives us a list of values for $P(X\leq x)$, thus since we want $1$ or less defective chairs, we are interested in 
+
+    \[ P(X\leq 1) = 0.2794\]
+
+    Where we read from the $0.05$ column.
+
+    Therefore the probability that there are no more than $1$ defective chairs in a batch of $50$ is $28.94\%$
+    \qed
+\end{solution}
+
+In fact, the probability of exactly $x$ successes is given in the formula book:
+
+\[ P(X=x) = \binom{n}{x}p^x(1-p)^{n-x}\]
+
+So the previous question could be worked out directly as 
+
+\[ P(X\leq1) = P(X=0) + P(X=1)\]
+
+\subsection{Approximating the Binomial Distribution with a Normal Distribution}\label{sec:binomial-as-normal}
+
+It turns out that the binomial distribution looks more and more like a bell curve when you increase $n$\footnote{See the Central Limit Theorem for further reading}.
+
+When $n$ is large enough, we can approximate the binomial distribution from Section \ref{sec:binomial-distribution} with a normal distribution from Section \ref{sec:normal-distribution}.
+
+Why would we want to do this? The statistical tables only go up to $n=50$, and therefore if $n$ is much larger, it would be very difficult to compute for example 
+
+\[ P(X\leq 500) = P(X=0) + P(X=1) + \dots + P(X=500)\]
+
+Instead, we can use that we have a statistical table for the standard normal distribution.
+
+The normal distribution requires both the mean $\mu$ and the variance $\sigma^2$, not to be confused with the standard deviation $\sigma$. The only possible reasonable choices of mean and variance to approximate a binomial distribution 
+are the mean and variance of the binomial distribution itself. These can be found via the formula for mean and variance, but are handily given in the formula book too:
+
+\begin{enumerate}
+    \item For a binomial distribution $B(n,p)$, the mean is $\mu = np$
+    \item For a binomial distribution $B(n,p)$, the variance is $\sigma^2 = np(1-p)$
+\end{enumerate}
+
+Therefore the standard deviation is $\sigma = \sqrt{np(1-p)}$
+
+This gives us our approach for tackling a question where we have a binomial distribution with very large $n$ and want to answer it by approximating it with a normal distribution:
+
+\begin{enumerate}
+    \item Write the binomial distribution 
+    \item Approximate it with a normal distribution $\mu = np$, $\sigma^2 = np(1-p)$: $N(np,np(1-p))$ 
+    \item Convert it to the standard normal distribution with $Z = \frac{X - \mu}{\sigma}$, remembering that $\sigma = \sqrt{np(1-p)}$
+    \item Look up the result from the table
+    \item Convert back to $X$ if needed
+\end{enumerate}
+
+\begin{example}
+    Our breakfast cereal factory has a $50\%$ chance of producing a chocolate ball or a non-chocolate ball for the cereal, independently. 
+
+    We want to know if we look at $10000$ balls, what is the greatest number of chocolate balls that could occur where it is still in the lowest $10\%$ of possible outcomes?
+
+    As in find $x$ so that $P(X\leq x)=0.1$ where $X$ is the number of chocolate balls\footnote{We are trying to find the width of the one-sided tail which contains $10\%$ of the lower outcomes of chocolate balls, related to hypothesis testing.}, choosing your distribution appropriately. You may approximate your answer using a normal distribution if justified appropriately.
+\end{example}
+\begin{solution}
+    Firstly, since we have two independent outcomes and a fixed number of trials, a binomial distribution $X\sim B(10000,0.5)$ is appropriate, where $X$ is the number of chocolate balls.
+
+    Then we want to find $x$ so that $P(X\leq x) = P(X<x-1) = 0.1$
+    Since $n$ is large, we may use a normal distribution as approximation.
+
+    We will use $\mu = np$, $\sigma^2 = np(1-p)$ so that $X \sim N(np,np(1-p))$.
+
+    \[\mu = np = 5000\]
+    \[\sigma^2 = np(1-p) = 5000(0.5) = 2500\]
+
+    Therefore we can approximate $X \sim N(5000,2500)$
+
+    We want to convert this to $N(0,1)$, which can be done with the formula $Z = \frac{X - \mu}{\sigma}$. Therefore 
+
+    \[Z = \frac{X - 5000}{\sqrt{2500}} = \frac{X - 5000}{50}\]
+
+    Now, using symmetries of the standard normal distribution see Section \ref{sec:normal-distribution}, we know that $P(Z<z) = P(Z>-z)$.
+
+    Therefore, we are interested in when $P(Z>-z)=0.1$, which we can find from the formula book is $1.2816$.
+
+    This gives us that $z = -1.2816$. We wish to match this to our original scalings, which we can achieve by undo-ing our conversion to the standard normal distribution:
+
+    \begin{align*}
+        P(X<x-1) &= 0.1 \\
+        \therefore P(Z<\frac{x-1 - \mu}{\sigma}) &= 0.1 \\
+        \text{and since }P(Z<z)=0.1 &\text{ has answer }z= -1.2816\\
+        \frac{x-1 - \mu}{\sigma} &= -1.2816 \\
+        \therefore \frac{x-1 - 5000}{50} &= -1.2816\\ 
+        \therefore -1.2816\cdot50 &= x - 5001 \\
+        \therefore x &= 5001 -1.2816\cdot50\\
+        \therefore x &\approx 4935.42.
+    \end{align*}
+
+    Since $x$ must be an integer and we want the greatest integer with $P(X\le x)\approx 0.1$, we take
+    \[
+    x = 4935.
+    \]
+
+    \qed
+\end{solution}
+
+\subsection{Hypothesis Testing}
+
+The goal of hypothesis testing is to decide whether the data provides enough evidence to doubt a particular claim about a population.
+
+More precisely:
+
+We start with a claim, collect sample data, and then would like to check how wrong we were with our claim -- 
+we assess whether the sample is inconsistent with that claim, to some level of significance.
+
+Since we are dealing with probabilities, we cannot fully disprove (or prove) anything, rather only find that it is exceedingly unlikely to be true given what we've seen, like if we claimed $80\%$ of people had sentient hair, but only experienced people without sentient hair. 
+After a while of seeing no sentience in hair, we would like to find a way to reassess our original beliefs. Conversely, if we somehow started spotting people with sentient hair every second person, we could never be certain that our claim is true, but only get more certain that other claims are false.
+
+To do this, we will have two hypotheses, the original baseline hypothesis that we assume to be true, called the \emph{null hypothesis}, and the \emph{alternative hypothesis}, which is usually ``not the null hypothesis'' or some directional version of not (like more than or less than).
+
+The null hypothesis is denoted $H_0$ and the alternative hypothesis is denoted $H_1$. In our hair sentience example, the null hypothesis would be that $50\%$ of people have sentient hair, and we are doubting this so the alternative hypothesis might be that less than $50\%$ of people have sentient hair.
+
+To \emph{test the validity of the null hypothesis, we calculate the probability of the observed data occurring (or more extreme than the observed data), assuming that $H_0$ is true.}\footnote{This is a conditional probability, and is normally denoted $P(\text{observed data (or more extreme) } \vert \; H_0 \text{ is true})$}
+
+The way to think about how this helps us is to realise this is the same as asking ``if we rank all possible outcomes from most to least likely given our null hypothesis, what percentile of least likely things happening does the observed data lie in?''
+Then if our observation is in the e.g. bottom $1\%$ of least likely outcomes if the null hypothesis was true, we should start to doubt it.
+
+The key thing that makes this all feasible to compute in an exam question is that the null hypothesis will allow you to either calculate the probabilities directly or look them up using the statistical tables in the formula book.
+
+Remember that you have tables for the following:
+
+\begin{enumerate}
+    \item Binomial Cumulative Distribution Function
+    \item Percentage Points of The Normal Distribution 
+    \item Poisson Cumulative Distribution Function
+    \item Percentage Points of the $\chi^2$ Distribution
+    \item Critical Values for Correlation Coefficients
+\end{enumerate}
+
+Not all of these are required for A-level hypothesis testing, but they appear in the formula book.
+
+It is useful to know when to use each of the distributions above.
+
+\begin{enumerate}
+    \item Binomial Distribution 
+     
+    Gives a probability of a given number of successes in a fixed number of trials.
+    
+    To be used when there is a fixed number of trials, $n$, each with one of two outcomes (success or failure), and we want to count how many successes occur. We also need the probability of success to be constant and for the trials to be independent (not influence the next trial).
+
+    Examples of typical question wordings may include ``out of $50$ customers\ldots'' ``in a sample of $20$ items\ldots'' ``each component is defective with a probability of $0.05$\ldots'' ``test whether the proportion has changed\ldots''
+
+    \item Poisson Distribution\footnote{Currently not mentioned in the syllabus for hypothesis testing, but left here for completeness.}  
+    
+    Gives the probability of a given number of events occurring in a fixed interval of time or space.
+
+    To be used when we are counting how many events occur in a fixed time period or region, and events occur randomly and independently at a constant average rate. There is no fixed number of trials; instead, we are modelling a rate of occurrence.
+
+    Examples of typical question wordings may include ``an average of $3$ calls per minute\ldots'' ``defects occur at a rate of $0.4$ per metre\ldots'' ``customers arrive at a rate of\ldots'' ``test whether the rate has changed\ldots''
+
+    \item Normal Distribution  
+    
+    Gives probabilities for values of a continuous variable, or for the sampling distribution of a mean.
+
+    To be used when data are stated to be normally distributed, or when testing a population mean using a sample mean (particularly when a standard deviation is given). It is used when we are standardising values to find a $Z$-score.
+
+    Examples of typical question wordings may include ``heights are normally distributed\ldots'' ``the mean lifetime is $500$ hours\ldots'' ``a sample of size $36$ has mean\ldots'' ``test whether the mean has increased\ldots''
+
+    % \item $\chi^2$ Distribution  
+    
+    % Gives critical values for comparing observed and expected frequencies.
+
+    % To be used when we are comparing observed frequencies with expected frequencies to assess whether data fit a stated distribution. It is used for goodness-of-fit tests involving categorical data.
+
+    % Examples of typical question wordings may include ``test whether the data follow a Poisson distribution\ldots'' ``test whether the dice is fair\ldots'' ``compare observed and expected frequencies\ldots'' ``goodness of fit\ldots''
+
+    \item Correlation Coefficients  
+    
+    Gives critical values for testing whether there is evidence of correlation between two variables.
+
+    To be used when we have paired quantitative data and have calculated a product moment correlation coefficient $r$, and we wish to test whether there is evidence of positive or negative linear correlation in the population.
+
+    Examples of typical question wordings may include ``test whether there is evidence of correlation\ldots'' ``test whether there is negative correlation\ldots'' ``a scatter diagram suggests\ldots'' ``calculate the product moment correlation coefficient\ldots''
+    \end{enumerate}
+
+The template we will follow is roughly:
+
+\begin{enumerate}
+    \item Figure out the distribution needed.
+    \item State the hypotheses clearly. 
+    \item State the significance level.
+    \item Determine the test statistic (Normal / Correlation) or find the critical region (Binomial).
+    \item Compare the observed value with the critical value (or compute the $p$-value).
+    \item State a conclusion in context.
+\end{enumerate}
+
+For the alternative hypothesis, for the purposes of the exam, we can choose either not equal, less than, or greater than, depending of the wording of the question. 
+E.g. if we wanted to check that the number of chocolate balls is not $50\%$ in our chocolate ball cereal warehouse, we could have our alternative hypothesis of the probability being not equal to $50\%$, 
+whereas if we wanted to check that the number of chocolate balls is more than expected, we would use the alternative hypothesis of the probability being more than $50\%$.
+
+An alternative hypothesis which looks like $H_1:\;p\neq a$ is called a two-tailed test, whereas an alternative hypothesis which looks like $H_1:\;p>a$ or $H_1:\; p<a$ is called a one-tailed test. 
+The two-tailed test has this name since it can be split into two regions on either side of the null value, e.g. $p<a$ and $p>a$, which when combined account for all of $p\neq a$. In practise, a two-tailed test involves calculating probabilities for both tails separately. Note that we have just used $p$ as a notational example.
+
+We choose (usually are told) a \emph{level of significance}, which amounts to ``assuming $H_0$ is true, how extreme of a result do we want to choose as too unexpected before we doubt it?'' 
+More rigoroously, it is the maximum probability (in the case of one tail) we are allowing for an event to occur in the extreme of our null hypothesis. For a two-tailed tests, we consider it as two one-tailed tests with half the allowed maximum probability.
+
+What about critical regions? The critical region is the set of possible observations in which we would have evidence to reject the null hypothesis, i.e. a value which lies within our one or two-tailed region which would give us reason to doubt our null hypothesis for some level of significance.
+
+In the case of the binomial distribution (and Poisson if it were examined, or any discrete distribution for that matter), since we cannot have a decimal number of successes, the critical region does not perfectly line up with the percentages we have set as the maximum allowed percentage for a tail via the level of significance. 
+For example, if we have a one-tailed test and a level of significance of $2.5\%$, we might find that the probability of being in our tail is  $2.4\%$, if the next value jumps up to e.g. $3.7\%$. This means that the actual maximum probability we are allowing to be in our critical region is $2.4 \%$ in this case, rather than $2.5 \%$. 
+We call the actual percentage likelihood of being in the critical region the \emph{actual level of significance}. In the case of two tails, we would sum the one-tailed probabilities of being in the critical region.
+
+For the level of significance, we normally require to be strictly within the tail, as in for a one-tailed test with a level of significance of $2.5\%$ for a binomial distribution, we only accept a critical region which has a probability less than $2.5 \%$, not equal to. This should be clarified by any exam question, however.
+
+Another way to assess how extreme a result is under the null hypothesis is via the \emph{$p$-value}.
+
+The $p$-value is the probability, assuming $H_0$ is true, of obtaining a result at least as extreme as the one observed. In other words, it tells us how surprising our observation would be if the null hypothesis were correct. We can then compare the $p$-value with the level of significance, and if the $p$-value is less than the level of significance, then we reject the null hypothesis. It is equivalent to checking the critical region, except we are comparing the actual probabilities instead of the values.
+
+\begin{example}
+    A supervisor at the chocolate ball cereal warehouse wants to ensure that there are an equal percentage of chocolate balls to non-chocolate balls in our chocolate ball cereal.
+
+    During production, the balls are mixed together in bulk randomly and then portioned into a cereal box. We can consider the probability each ball is chocolate as independent.
+    
+    The supervisor randomly samples $50$ cereal balls from a box of cereal, and wants to know what the critical region is for a two-tailed test with a significance level of $1\%$. The probability of being within the critical region should be less than $1\%$, with each tail being less than $0.5\%$
+
+    Stating your hypotheses clearly, conduct an appropriate hypothesis test, stating clearly the critical region and the actual level of significance.
+
+    If the supervisor finds that there are $16$ chocolate balls in his sample, what should his conclusion be?
+\end{example}
+
+\begin{solution}
+    Since we have independent events, a probability of ``success'' of $0.5$ since there should be an equal percentage of chocolate to non-chocolate balls, we are using a fixed number of events, and we want to count the number of successes, 
+    we should use a binomial distribution $X \sim B(50,0.5)$, where $X$ is the number of chocolate balls. We want to test if the probability $p$ really is $0.5$, therefore since we are using a two-tailed test, our hypothesis are as follows:
+
+    \begin{align*}
+        H_0 : \; p=0.5 \tag{null hypothesis}\\
+        H_1: \; p\neq0.5 \tag{alternative hypothesis}
+    \end{align*}
+
+    To find the critical region for a significance level of $1\%$, we consider the two tails separately, which each have a maximum percentage of $0.5\%$.
+
+    Therefore we are interested in the values $x$ and $y$ such that 
+
+    \begin{align*}
+        P(X\leq x)&<0.005 \\
+        P(X\geq y)&<0.005
+    \end{align*}
+    
+    Then together, our critical region would be $X\leq x$ or $X \geq y$.
+
+    Start with $x$:
+
+    Using the formula book for $P(X\leq x)$ for $B(50,p)$, in the column corresponding to $p=0.5$, we find that 
+
+    \begin{align*}
+        P(X\leq 15) &=  0.0033 \\
+        P(X \leq 16) &= 0.0077
+    \end{align*}
+
+    Therefore, since each tail must have a probability less than $0.005$, we choose $x=15$ as our first (left) part of the critical region, with a probability of $ 0.0033$.
+
+    Now for $y$:
+    We must first convert this to the form of less than:
+
+    \begin{align*}
+        P(X\ge y) &< 0.005\\
+        \therefore 1-P(X< y) &< 0.005\\
+        \therefore 1-P(X\le y-1) &< 0.005\\
+        \therefore P(X\le y-1) &> 0.995
+    \end{align*}
+
+    So let's find the value where the probability exceeds $0.995$:
+
+    \begin{align*}
+        P(X\leq 33) &=  0.9923 \\
+        P(X \leq 34) &= 0.9967
+    \end{align*}
+
+    Thus $y-1=34$, making $y=35$. One way to think about this, even though it seems like we have overshot the actual answer from the table, is that the table tells us specifically the `$\leq$' region, and we want to find the `$>$' region, which is from one more than the `$\leq$' region.
+
+    Therefore, since each tail must have a probability less than $0.005$, we found the point at which the probability becomes more than $0.995$, and therefore we have found that the second (right) part of the critical region is $y=35$, with a probability of $1-0.9967 = 0.0033$.
+
+    That makes our critical region $X\leq 15$ or $X\geq 35$, with an actual level of significance of the sum of the individual probabilities: 
+    \[0.0033+ 0.0033 = 0.0066 = 0.66\%\]
+
+    This completes the first part of the question. Now if the supervisor found that in his sample there were $16$ chocolate balls, this is (just about) not within the critical region of $X\leq 15$ or $X\geq 35$, and therefore this sample does not provide enough evidence to reject the null hypothesis, at this level of significance.
+
+    I.e. there is not enough evidence to suggest that the percentage of chocolate balls produced by the factory differs from $50\%$, to this level of significance.
+    \qed
+\end{solution}
+
+\begin{example}
+    A consumer of the previous chocolate ball cereal warehouse suspects that the chocolate ball cereal warehouse is stingy with their chocolate balls, which are claimed to be an equal chance of having chocolate or non-chocolate balls.
+
+    This consumer takes a sample of $50$ balls from their cereal box, and counts the chocolate balls, finding there to be $16$.
+
+    Using an appropriate one-tailed test with a significance level of $1\%$, what should the consumer's conclusion be? The probability of the tail should be less than $1\%$.
+
+    Stating your hypotheses clearly, conduct an appropriate hypothesis test, stating clearly the critical region and the actual level of significance.
+
+    Then comment on the comparison to the conclusion from the previous question.
+\end{example}
+\begin{solution}
+    We can use the same setup for the most part from the previous question: $X$ the number of chocolate balls, $X \sim B(50,0.5)$ assumed, $H_0\;p=0.5$, but since the consumer is doing a single tailed test, wanting to know whether they are stingy, the alternative hypothesis is instead 
+    \[ H_1\;p<0.5 \]
+
+    Therefore, since the probability of the tail must be less than $0.01$, we use the formula book for $P(X\leq x)$ for $B(50,p)$, in the column corresponding to $p=0.5$, to find that 
+    
+    \begin{align*}
+        P(X \leq 16) &= 0.0077 \\
+        P(X \leq 17) &= 0.0164
+    \end{align*}
+
+    We therefore find that the critical region is $X\leq 16$, with an actual significance level of $0.0077$
+
+    This completes the first part of the question.
+
+    For the consumer's observation, they found $16$ chocolate balls in their sample of $50$ from the cereal, which is within the critical region.
+
+    Therefore there is evidence to reject the null hypothesis, i.e. there is evidence to suggest that the percentage of chocolate balls produced by the factory is less than $50\%$, to this level of significance.
+
+    Commenting on the previous example, we found that the amount of tails alone can change the conclusion; the supervisor found nothing to be wrong whereas the consumer found they were stingier than claimed.
+    \qed
+\end{solution}
+
+
+\begin{example}
+    The chocolate ball cereal warehouse claims that the mean mass of each chocolate ball is $5.40$ g. 
+    Past records suggest that the masses of chocolate balls are normally distributed with standard deviation $0.68$ g.
+
+    A consumer suspects that the mean mass of the chocolate balls has changed.
+
+    A random sample of $52$ chocolate balls is taken and found to have mean mass $5.72$ g.
+
+    Using a $5\%$ level of significance, conduct an appropriate hypothesis test to assess the consumer’s claim.
+
+    Stating your hypotheses clearly, conduct an appropriate hypothesis test, stating clearly the critical region
+
+    Find the $p$-value for this test and interpret it in context.
+
+\end{example}
+
+ \begin{solution}
+    Firstly, let's model the mass of the chocolate ball as $X$, so that $X \sim N(5.4,0.68^2)$
+
+    Since we are taking a sample of $52$ chocolate balls and using the sample mean, we instead model the sample mean $\overline{X}$:
+
+    \[
+    \overline{X}\sim N\!\left(5.4,\frac{0.68^2}{52}\right)
+    \]
+
+    See Section \ref{sec:normal-distribution}.
+
+    Then our hypothesis should be around $\mu$ itself:
+
+    \begin{align*}
+        H_0 :\; \mu &= 5.4 \\
+        H_1 :\; \mu &\neq 5.4
+    \end{align*}
+
+    We are then interested in the two-tailed test, finding the values $x$, $y$ such that 
+    $P(\overline{X}< x)= 0.025$ and $P(\overline{X}>y)=0.025$, using that we have a $5\%$ significance.
+
+    To compute these values, we want to use the formula book, which tells us values related to the standard normal distribution, so we transform:
+
+    \[
+    Z = \frac{\overline{X} - 5.4}{0.68/\sqrt{52}}
+    \]
+
+    Then $Z\sim N(0,1)$. Since the formula book tells us values for $P(Z>z)$, we can use symmetries to know that $P(Z<z) = P(Z>-z)$. We continue, reading from the formula book:
+
+    \begin{align*} 
+        P(Z>z) &= 0.025 \\
+        \therefore z &= 1.9600
+    \end{align*}
+
+    Now let's work out what this means for our two cases:
+
+    Starting with $y$:
+
+    \begin{align*}
+        P(\overline{X}>y)&=0.025 \\
+        \therefore P\!\left(Z> \frac{y - 5.4}{0.68/\sqrt{52}}\right) &= 0.025 \\
+        \therefore \frac{y - 5.4}{0.68/\sqrt{52}} &= 1.9600 \\
+        \therefore y - 5.4 &= 1.9600\left(\frac{0.68}{\sqrt{52}}\right) \\
+        \therefore y - 5.4 &\approx 0.1849 \\
+        \therefore y &\approx 5.5849
+    \end{align*}
+
+    Continuing with $x$:
+
+    \begin{align*}
+        P(\overline{X}<x)&=0.025 \\
+        \therefore P\!\left(Z< \frac{x - 5.4}{0.68/\sqrt{52}}\right) &= 0.025 \\
+        \therefore P\!\left(Z> -\frac{x - 5.4}{0.68/\sqrt{52}}\right) &= 0.025 \\
+        \therefore -\frac{x - 5.4}{0.68/\sqrt{52}} &= 1.9600 \\
+        \therefore x - 5.4 &= -1.9600\left(\frac{0.68}{\sqrt{52}}\right) \\
+        \therefore x - 5.4 &\approx -0.1849 \\
+        \therefore x &\approx 5.2151
+    \end{align*}
+
+    Therefore the critical region for $\overline{X}$ is
+    \[
+    \overline{X}<5.215 \quad \text{or} \quad \overline{X}>5.585.
+    \]
+
+    Now compare the observed value with this critical region.  
+    The sample mean mass is $5.72$ g, which lies in the critical region since
+    \[
+    5.72>5.585.
+    \]
+
+    Therefore we reject $H_0$.  
+    There is sufficient evidence at the $5\%$ level to suggest that the mean mass of chocolate balls differs from $5.4$ g.
+
+    We now find the $p$-value using the standard normal tables.
+
+    \begin{align*}
+    Z &= \frac{5.72-5.4}{0.68/\sqrt{52}} \\
+    &\approx 3.39
+    \end{align*}
+
+    From the formula book,
+    \[
+    P(Z>3.2905)=0.0005.
+    \]
+
+    Since $3.39>3.2905$, the probability in one tail must be smaller:
+    \[
+    P(Z>3.39)<0.0005.
+    \]
+
+    As this is a two-tailed test,
+    \[
+    p\text{-value} = 2P(Z>3.39) < 2(0.0005)=0.001.
+    \]
+
+    Hence the $p$-value is less than $0.001$, which is far smaller than $0.05$, giving very strong evidence against $H_0$.
+    \qed
+
+\end{solution}
+
+\begin{example}
+A cereal factory is investigating whether increasing the number of chocolate balls in each serving improves customer satisfaction.
+
+Marc selects a random sample of $12$ customers. Each customer is given a bowl of cereal and then asked to rate their happiness on a scale from $1$ to $10$.
+
+For each customer he records:
+\begin{itemize}
+\item $x$: the number of chocolate balls in their serving
+\item $y$: their happiness rating
+\end{itemize}
+
+The results are shown in the table below.
+
+\begin{center}
+\begin{tabular}{c|cccccccccccc}
+$x$ & 8 & 10 & 12 & 6 & 14 & 9 & 11 & 7 & 13 & 15 & 5 & 16 \\
+\hline
+$y$ & 4 & 6 & 7 & 3 & 8 & 5 & 6 & 4 & 8 & 9 & 2 & 9
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+
+\item Use your calculator to find the product moment correlation coefficient between $x$ and $y$ for this data.
+
+\item Test whether or not there is evidence of a positive correlation between the number of chocolate balls in a serving and the happiness rating.
+
+You should:
+\begin{itemize}
+\item state your hypotheses clearly
+\item use a $5\%$ level of significance
+\item state your conclusion in context.
+\end{itemize}
+
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+
+We are given paired data $(x,y)$, so we use the product moment correlation coefficient.
+
+From the formula book:
+
+\[
+S_{xx} = \sum x_i^2 - \frac{(\sum x_i)^2}{n},
+\quad
+S_{yy} = \sum y_i^2 - \frac{(\sum y_i)^2}{n},
+\quad
+S_{xy} = \sum x_i y_i - \frac{(\sum x_i)(\sum y_i)}{n}
+\]
+
+and
+
+\[
+r = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}.
+\]
+
+Here $n=12$.
+
+Using a calculator to obtain the required totals:
+
+\[
+\sum x = 126,
+\quad
+\sum y = 71,
+\quad
+\sum x^2 = 1466,
+\quad
+\sum y^2 = 481,
+\quad
+\sum xy = 838.
+\]
+
+\begin{align*}
+S_{xx}
+&= \sum x^2 - \frac{(\sum x)^2}{n}
+= 1466 - \frac{126^2}{12}
+= 1466 - 1323
+= 143,\\[6pt]
+S_{yy}
+&= \sum y^2 - \frac{(\sum y)^2}{n}
+= 481 - \frac{71^2}{12}
+= 481 - 420.0833
+\approx 60.9167,\\[6pt]
+S_{xy}
+&= \sum xy - \frac{(\sum x)(\sum y)}{n}
+= 838 - \frac{(126)(71)}{12}
+= 838 - 745.5
+= 92.5.
+\end{align*}
+
+Therefore,
+\[
+r=\frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}
+=
+\frac{92.5}{\sqrt{(143)(60.9167)}}
+\approx 0.991.
+\]
+
+We now test for positive correlation.
+
+\begin{align*}
+H_0:\; \rho &= 0 \\
+H_1:\; \rho &> 0
+\end{align*}
+
+From the formula book table of critical values for correlation coefficients,  
+for $n=12$ at the $5\%$ level (one-tailed), the critical value is
+
+\[
+r = 0.4973.
+\]
+
+Since
+
+\[
+0.991 > 0.4973,
+\]
+
+we reject $H_0$.
+
+There is evidence at the $5\%$ level of a positive correlation between the number of chocolate balls in a serving and the happiness rating.
+
+\qed
+
+\end{solution}
+
+\subsubsection{Additional Exercises}
+
+\begin{example}
+    After spotting many people with orange hair, James believes that the percentage of orange haired people has increased to $75\%$ in recent times.
+
+    To support his claim, James randomly selects $50$ people and finds that $29$ of them have orange hair. You may assume that the selections are independent.
+
+    This is less than his expected amount, making him doubt his claim.
+
+    Using an appropriate one-tailed test with a significance level of $1\%$, conduct an appropriate hypothesis test. The probability of the tail should be less than $1\%$.
+
+    Stating your hypotheses clearly, conduct an appropriate hypothesis test, stating clearly the critical region and the actual level of significance.
+\end{example}
+
+\begin{solution}
+    Let's model the number of non-orange haired people, so that the null hypothesis is that $25\%$ of people have non-orange hair. This is to allow us to use the formula book, which has values between $p=0.05$ and $p=0.5$.
+
+    If $X$ is the number of non-orange haired people, we will model $X \sim B(50,0.25)$, and our hypothesis are that either James is right or the number of non-orange haired people have increased, letting p be the probability a person has non-orange hair:
+
+    \begin{align*}
+        H_0: \; &p=0.25 \\
+        H_1: \; &p>0.25
+    \end{align*}
+
+    The critical region is the set of values that are in the $1\%$ most extreme tail of non-orange haired people under $H_0$, therefore we wish to find $x$ so that $P(X\geq x)<0.01$.
+
+    We convert to $\leq$ for the formula book:
+
+    \begin{align*}
+        P(X\geq x) &<0.01 \\
+        \therefore 1 - P(X<x) &< 0.01 \\
+        \therefore 1 - P(X\leq x-1) &< 0.01 \\
+        \therefore 1-0.01 &< P(X\leq x-1)\\
+        \therefore 0.99 &< P(X\leq x-1)
+    \end{align*}
+
+    From the formula book, the first value which exceeds $0.99$ is:
+
+    \[P(X\leq20) = 0.9937\]
+
+    Therefore we find that 
+
+    \[x-1 = 20\]
+
+    Which gives us our critical region of $X\geq21$. This makes the actual level of significance $P(X\geq 21)=1- 0.9937 = 0.0063$.
+    
+    Recall that $X$ was the number of non-orange haired people.
+
+    James found that $29$ out of his $50$ people had orange hair, meaning that $21$ people had non-orange hair. Since this is within the critical region, there is evidence to reject the the null hypothesis that $75\%$ of people have orange hair, in favour of there less than $75 \%$ of people have orange hair, to this level of significance.
+    \qed
+\end{solution}
+
+
+
+

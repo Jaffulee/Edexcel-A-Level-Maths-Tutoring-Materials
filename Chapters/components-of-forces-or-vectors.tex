@@ -1,0 +1,708 @@
+\section{Components of Forces or Vectors} \label{sec:components-of-forces-or-vectors}
+
+It is useful to revisit what $\sin$ and $\cos$ are.
+
+Let's draw a circle with radius $r$ on an $x$, $y$ axis, and label a point $\vec{a} = \begin{bmatrix} a \\ b \end{bmatrix}$ on the circle. 
+Note that the equation for a circle of radius $r$ is $x^2 + y^2 = r^2$.
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.75]{Circle}
+    \caption{A labelled circle}
+    \label{fig:circle}
+\end{figure}
+
+Then $a = r \cos \theta$ and $b = r \sin \theta$ -- you might remember this from GCSE via SOH-CAH-TOA. 
+If we interpret $r$ as the magnitude of a force pointed in the direction of $\vec{a}$, we can interpret this setup as ``$a$ is the component of the force in the $x$ direction, and $b$ is the component of the force in the $y$ direction.''
+
+\textbf{We always consider our force as the hypotenuse of the triangle when using these trigonometry rules.} From Pythagoras, we get that $r^2 = a^2 + b^2$, which is the same as our circle equation!
+
+And because we can write $a$ and $b$ in terms of the magnitude $r$ and the angle $\theta$, we can write:
+\[ 
+\vec{a} = \begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix}
+    r \cos \theta \\ 
+    r \sin \theta
+\end{bmatrix}
+\]
+Which explains what we mean when we talk about components -- given the angle and magnitude of a force from an axis, we can figure out how much of that force is in the direction of each axis.
+
+In other words, if you are a $2$-dimensional person standing at the origin $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, 
+and a force of magnitude $r$ is pushing you in the direction of $\vec{a}$ (i.e. at an angle of $\theta$ from the $x$-axis), 
+we can write that the amount the force is pushing you to the right (the $x$-direction) is $r \cos \theta$ and the amount the force is pushing you up (the $y$-direction) is $r \sin \theta$.
+
+
+\newpage
+\begin{figure}[H]
+    \centering
+    \incfig[0.75]{force_circle}
+    \caption{A labelled circle interpreted as forces}
+    \label{fig:circle-as-force}
+\end{figure}
+
+Now what happens when we have a physics problem which involve inclines? Well, depending on which direction we care about, we can turn our head and think about it like the circles above!
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.5]{block_incline_basic}
+    \caption{A block on an incline}
+    \label{fig:block-incline-basic}
+\end{figure}
+
+In this type of question where a force (e.g. friction $Fr$) is pointing up or down the slope, and another force (e.g. due to gravity) is pointing in another direction, 
+we often care about the direction of the plane that the block is on. We can ``turn our head'' like this:
+
+\newpage
+\begin{figure}[H]
+    \centering
+    \incfig[0.5]{block_incline_basic_rotated}
+    \caption{A block on an incline, with your head turned}
+    \label{fig:block-incline-basic-rotated}
+\end{figure}
+
+Then to find, for example, the amount of force in the direction of going down the inclined plane, we apply our knowledge of $\sin$ or $\cos$ to this problem! 
+Remembering to \textbf{make the force itself the hypotenuse}, we can draw our triangle:
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.5]{block_incline_basic_triangle}
+    \caption{A block on an incline, with a triangle}
+    \label{fig:block-incline-basic-triangle}
+\end{figure}
+
+The force in the direction of going down the slope would therefore be:
+
+\[ F = \textcolor{red}{mg \cos \theta} - Fr\]
+
+We took away $Fr$ because it is going in the opposite direction to down the slope.
+
+But here we conveniently have $\theta$! If we were only given $\phi$, the angle of the incline, we need to do some geometry.
+
+\newpage
+\begin{exercise}
+Show using geometry that, in the slope problem above, $\theta = \frac{\pi}{2} - \phi$ in radians ($90$ degrees minus $\phi$). Hint: look at the diagram below. Why have I labelled the purple $\phi$ there?
+\end{exercise}
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.5]{block_incline_basic_rotated_triangle}
+    \caption{A block on an incline, with a triangle, with your head turned}
+    \label{fig:block-incline-basic-rotated-triangle}
+\end{figure}
+
+Now using the above and $\sin$ and $\cos$ rules, we know that:
+
+\begin{align*}
+    \cos(\theta) &= \cos(\frac{\pi}{2} - \phi) \\
+     &= \cos(\phi - \frac{\pi}{2} ) \\
+     &= \sin(\phi)
+\end{align*}
+
+This gives us an alternative formula (actually, three alternative formulae), which is secretly the same formula for the amount of force pointing down the slope in terms of the incline of the slope $\phi$:
+
+\[ F = mg \sin (\phi) - Fr\]
+
+But despite using $\sin$ here, we got to this point by using all of our component ideas by drawing the triangle!
+
+\textbf{The point is: figure out the direction you care about draw the triangle you want, and then use $\sin$ or $\cos$ depending on where your force is pointing, and the direction of the force is always considered the hypotenuse when using trig rules.}
+
+
+\subsection{Additional Exercises}
+\begin{exercise}
+    \begin{figure}[H]
+    \centering
+    \incfig[0.5]{block_incline_rope}
+    \caption{A block on an incline, pulled by a rope}
+    \label{fig:block-incline-rope}
+    \end{figure}
+    A small box of mass $3$ kg moves on a rough plane which is inclined 
+    at an angle of $20^\circ$ to the horizontal. The box is pulled up a line 
+    of greatest slope of the plane using a rope which is attached 
+    to the box. The rope makes an angle of $30^\circ$ with the plane, as shown in figure \ref{fig:block-incline-rope}. 
+    The rope lies in the vertical plane which contains a line of greatest slope of the plane. 
+    The coefficient of friction between the box and the plane is $0.2$. The tension in the rope is $25$ N.
+
+    The box is modelled as a particle, the rope is modelled as a light inextensible string and 
+    air resistance is ignored.
+
+    Using the model, find the acceleration of the box.
+\end{exercise}
+
+\begin{solution}
+    
+First write the relevant equations: $F = ma$, $F_{max} = \mu R$. 
+Then draw a diagram with the forces labelled, and with the triangles drawn using geometric rules 
+as in Figure \ref{fig:block-incline-rope-annotated}.
+\begin{figure}[H]
+    \centering
+    \incfig[0.75]{block_incline_rope_annotated}
+    \caption{A block on an incline, pulled by a rope, annotated}
+    \label{fig:block-incline-rope-annotated}
+\end{figure}
+
+There are four forces:
+\begin{enumerate}
+    \item Friction $F_{max}$, pointing down the slope.
+    \item Gravity, pointing downwards.
+    \item Tension $T$, pointing in the direction of the rope being pulled. 
+    \item The resultant normal force $R$ from the plane the block is on, causing it to not sink into the plane.
+\end{enumerate}
+
+To find the acceleration up the slope, we need the total force going up the slope.
+
+For this, we find the components of each of the forces using the labelled diagram and the appropriate use of $\sin$ and $\cos$, 
+e.g. via SOH-CAH-TOA.
+
+Reminder: the original force direction is always considered the hypotenuse.
+
+To find $R$, we need all forces that act in the direction of perpendicular to the slope. We can then find $R$ by writing 
+down the necessary equation that all the forces in that direction must sum to zero -- the block is in equilibrium in the direction 
+of the normal to the plane. We have some component of tension $T$ from the rope 
+pointing in that direction, gravity is pointing down, away from $R$, 
+giving gravity a negative sign.
+\[ R + T(\nwarrow) - F_{gravity}(\searrow)  = 0 \]
+And therefore
+\[ R = F_{gravity}(\searrow) - T(\nwarrow)\]
+Let's first find the component of the resultant force of gravity pointing in the direction perpendicular to the slope:
+\[ F_{gravity}(\searrow) = mg \sin (70^\circ)\]
+Now find the component of tension pointing in the direction perpendicular to the slope 
+\[ T(\nwarrow) = 25 \cos(60^\circ)\]
+
+Then 
+\[R = mg \sin (70^\circ)  - 25 \cos(60^\circ) \]
+
+So 
+\[F_{max} = 0.2 R = 0.2  (mg \sin (70^\circ)  - 25 \cos(60^\circ) )\]
+
+Now we have found the friction force, we need to also find the remaining two forces which contribute in the direction of the slope, 
+gravity and tension.
+
+For gravity, we can find it's component going up the slope via 
+\[F_{gravity}(\swarrow) = mg\cos(70^\circ)\]
+
+Note this is pointing down the slope because the arrow is closer to being down the slope (acute angle) than going up the slope (obtuse angle).
+
+For tension, we can again find it's component going up the slope via 
+
+\[T(\nearrow) = 25 \cos (30^\circ)\]
+
+Then, cobining it all together, we can find the total force up the slope is:
+
+\begin{align*}
+ F &= T(\nearrow) &-& F_{gravity}(\swarrow) &-& F_{max} \\
+ &= 25 \cos (30^\circ) &-&  mg\cos(70^\circ) &-&  0.2  (mg \sin (70^\circ)  - 25 \cos(60^\circ))
+ \end{align*}
+
+ We take away forces going in the opposite direction because they act against our ``positive'' direction, up the slope.
+
+Then we can compute acceleration by rearranging $F = ma$ to $a = F/m$, which gives us that the acceleration of 
+the block up the slope is 
+\[a = \frac{25 \cos (30^\circ) -  mg\cos(70^\circ) -  0.2  (mg \sin (70^\circ)  - 25 \cos(60^\circ))}{m} \; ms^{-2}\]
+
+If you are confused about the correct signs of each of them, look at the force diagram again. We want to take the tension direction up the slope 
+as positive, and the gravity and friction directions to work against the rope down the slope as negative.
+\qed
+\end{solution}
+
+\subsection{Friction and $R$}
+Friction is found via the formula $F_{max} = \mu R$ where $F_{max}$ is the magnitude of force friction applies opposing the movement of the object
+(the direction it is acting in the most), 
+$\mu$ is the coefficient of friction, and $R$ is the normal reaction force due to the block being in equilibrium in the direction normal to the plane, 
+i.e. the force pointing perpendicular to the surface the block is on which is preventing the block from sinking into the ground. For example, see Figure \ref{fig:block-incline-rope-annotated}.
+
+You can reason your way to $R$ needing to exist by considering the following. When any object is in equilibrium in a direction (not moving or in constant speed), the forces applied to it 
+in that direction must overall become zero. If you had a block on a horizontally flat plane with gravity being the only force on the block, we would have the force downwards 
+not be balanced by upward force, resulting in it accelerating downwards due to $F = ma$. Explicitly, $a = F/m$, and because in this thought experiment we have only one force (gravity) acting downwards 
+and a non-zero mass, $a$ must be a positive number. Therefore, if our block is not falling through the plane, there \emph{must} be an additional force being applied to it so that $F = 0$ in the direction 
+perpendicular to the plane.
+
+In fact, most physics problems can be reduced to just looking at the equation $F=ma$ in a smart way, using that the forces in certain directions must be $0$, etc.
+
+To find $R$, we calculate the magnitude of force in that direction the same way we always calculate forces in a direction: we find each force 
+that is acting on the object, and find the component of each force in the same direction of $R$ via trigonometry, where we are considering the direction of $R$ to be our positive direction.
+We then use the fact that the block is not falling through the plane to know that $F=0$ in the direction perpendicular to the plane. Then we can rearrange the resulting equation for $R$.
+
+Note that this construction will always result in $R$ being equal the components of all the forces pointed in it's opposite direction.
+
+Note also that most of the time we compute $R$ to calculate $F_{max}$. If a question does not include friction, we often do not need to compute $R$.
+
+In summary, \textbf{$R$ is the additional force which acts on the block to prevent it from sinking into the plane it is on, and can be calculated because therefore $F=0$ in the perpendicular direction to the plane.}
+
+A keen-eyed reader would notice this is mostly an application of Newton's Third Law.
+
+Let's see some examples for calculating $R$, independently from the context of friction.
+
+\begin{example}
+    A $5kg$ block is on a $20^\circ$ degree inclined plane, and an angry man does not want the block to slide onto his property. To counteract this, he blows on the block 
+    with a force of $10N$  
+    at an angle of $30^\circ$ to the inclined plane, above the inclined plane, in an attempt to blow the block away.
+
+    What is the magnitude of $R$, the normal reaction force to the inclined plane? 
+
+    \begin{figure}[H]
+        \centering
+        \incfig[0.75]{block-on-plane-man}
+        \caption{A block on an incline, being blown away by an angry man}
+        \label{fig:block-on-plane-man}
+    \end{figure}
+\end{example}
+
+\begin{solution}
+    First draw a diagram with the forces labelled, and with the triangles drawn using geometric rules, Figure \ref{fig:block-on-plane-man-annotated}.
+
+        \begin{figure}[H]
+        \centering
+        \incfig[0.75]{block-on-plane-man-annotated}
+        \caption{A block on an incline, being blown away by an angry man, annotated}
+        \label{fig:block-on-plane-man-annotated}
+    \end{figure}
+    There are three forces:
+    \begin{enumerate}
+        \item The man blowing, pointing in the direction of $30^\circ$ to the slope. We will call this force $B$.
+        \item Gravity, pointing downwards.
+        \item The normal reaction force $R$ of the plane on the block, preventing the block from falling through the plane.
+        \item (Ignored) Friction, which we are ignoring in our calculation of $R$, and it was not mentioned in this question anyway!
+    \end{enumerate}
+
+    To find $R$, we need to find the component of each force going in the direction of $R$, and then use the fact that $F=0$ in the direction perpendicular to the plane since 
+    the block is not falling through the plane. We are taking the direction of $R$ to be our positive direction. 
+    This means that since the man blowing and gravity are both more away from $R$ than toward it, we are going to take care to include negative signs.
+
+    \[ R -F_{gravity}(\swarrow) - B(\swarrow) = 0\]
+
+    Therefore 
+
+    \[ R = F_{gravity}(\swarrow) + B(\swarrow) \]
+
+    Using our labelled force diagram, we can calculate:
+    \begin{align*}
+    F_{gravity}(\swarrow) &=  5g \cos 20^\circ \\
+    B(\swarrow) &= 10 \sin 30^\circ 
+    \end{align*}
+
+    Therefore, $R = 5g \cos 20^\circ + 10 \sin 30^\circ $.
+    \qed
+\end{solution}
+
+\begin{example}
+    A $5kg$ block is on a $20^\circ$ degree inclined plane, and an angrier mole-man does not want the block near his property. To counteract this, he blows on the block 
+    with a force of $10N$  
+    at an angle of $30^\circ$ to the inclined plane, below the inclined plane (he is a mole-man that can blow through the ground), in an attempt to blow the block away.
+
+    What is the magnitude of $R$, the normal reaction force to the inclined plane? 
+
+    \begin{figure}[H]
+        \centering
+        \incfig[0.75]{block-on-plane-moleman}
+        \caption{A block on an incline, being blown away by an angry mole-man}
+        \label{fig:block-on-plane-moleman}
+    \end{figure}
+\end{example}
+
+\begin{solution}
+    First draw a diagram with the forces labelled, and with the triangles drawn using geometric rules, Figure \ref{fig:block-on-plane-moleman-annotated}.
+
+        \begin{figure}[H]
+        \centering
+        \incfig[0.75]{block-on-plane-moleman-annotated}
+        \caption{A block on an incline, being blown away by an angry mole-man, annotated}
+        \label{fig:block-on-plane-moleman-annotated}
+    \end{figure}
+    There are three forces:
+    \begin{enumerate}
+        \item The mole-man blowing, pointing in the direction of $30^\circ$ to the slope from below. We will call this force $B$.
+        \item Gravity, pointing downwards.
+        \item The normal reaction force $R$ of the plane on the block, preventing the block from falling through the plane.
+        \item (Ignored) Friction, which we are ignoring in our calculation of $R$, and it was not mentioned in this question anyway!
+    \end{enumerate}
+    To find $R$, we need to find the component of each force going in the direction of $R$, and then use the fact that $F=0$ in the direction perpendicular to the plane since 
+    the block is not falling through the plane. We are taking the direction of $R$ to be our positive direction. 
+    This means that since gravity is both more away from $R$ than towards it, and since the mole-man blowing is more in the direction of $R$ than away from it, we are going to take care to include negative signs where appropriate.
+
+    \[ R -F_{gravity}(\swarrow) + B(\nearrow) = 0\]
+
+    Therefore 
+
+    \[R = F_{gravity}(\swarrow) - B(\nearrow)\]
+
+    Using our labelled force diagram, we can calculate:
+    \begin{align*}
+    F_{gravity}(\swarrow) &=  5g \cos 20^\circ \\
+    B(\nearrow) &= 10 \sin 30^\circ 
+    \end{align*}
+
+    Therefore, $R = 5g \cos 20^\circ - 10 \sin 30^\circ $.
+    \qed
+\end{solution}
+
+
+\begin{example}
+    A $10kg$ block is on a rough flat plane, and a force $P$ is applied to the block at an angle of $45^\circ$ to the plane. The coefficient of friction is $0.1$. 
+    Given that the block is accelerating along the plane at a rate of $0.3ms^{-2}$ and moving in the direction of acceleration, What is $P$?
+\end{example}
+\begin{solution}
+    First draw a diagram with the forces labelled, and with the triangles drawn using geometric rules, Figure \ref{fig:block-on-plane-unknown-force}.
+
+    \begin{figure}[H]
+    \centering
+    \incfig[0.75]{block-on-plane-unknown-force}
+    \caption{A block on a plane, with an unknown force}
+    \label{fig:block-on-plane-unknown-force}
+    \end{figure}
+
+    Write the relevant equations $F=ma$ and $F_{max} = \mu R$.
+
+    There are four forces:
+    \begin{enumerate}
+        \item The unknown force $P$, at an angle of $45\circ$ to the horizontal.
+        \item Gravity, pointing downwards.
+        \item The normal reaction force $R$ of the plane on the block, preventing the block from falling through the plane.
+        \item Friction, pointing away from the direction of movement.    
+    \end{enumerate}
+
+    We will calculate the force $F$ in the direction of the block moving (to the right in our diagram).
+
+    \[F = P(\rightarrow) - F_{max}\]
+
+
+    To find $R$, we need to find the component of each force going in the direction of $R$, and then use the fact that $F=0$ in the direction perpendicular to the plane since 
+    the block is not falling through the plane. We are taking the direction of $R$ to be our positive direction. 
+    This means that since gravity is both more away from $R$ than towards it, and since $P$ is more in the direction of $R$ than away from it, we are going to take care to include negative signs where appropriate.
+
+    \[ R -F_{gravity} + P(\uparrow) = 0\]
+
+    Therefore 
+
+    \[R = F_{gravity} - P(\uparrow)\]
+
+    Using our labelled force diagram, we can calculate:
+    \begin{align*}
+    F_{gravity} &=  10g \\
+    P(\uparrow) &= P\sin 45^\circ 
+    \end{align*}
+
+    Therefore,  because gravity is pointing more away from $R$ than towards it, and we have chosen $R$ to be our positive direction,
+    \[R = 10g - P\sin 45^\circ  \]
+    
+    Hence, using $F_{max} = \mu R$, we have found that 
+
+    \[ F_{max} = 0.1 (10g - P\sin 45^\circ )\]
+
+    Then, use the fact that 
+
+    \[P(\rightarrow) = P \cos 45^\circ\]
+
+    Which lets us write
+    
+    \[ F = P \cos 45^\circ - 0.1 (10g - P\sin 45^\circ )\]
+
+    Using that $a = 0.3$, and that $a = F/m$, we have that 
+
+    \[ 0.3 = \frac{P \cos 45^\circ - 0.1 (10g - P\sin 45^\circ )}{10}\]
+
+    \begin{align*}
+        0.3 &= -\frac{1}{10}g + \frac{P}{10}\cos45^\circ + \frac{P}{100} \sin 45^\circ \tag{expanding} \\
+        &= -\frac{1}{10}g + P(\frac{1}{10}\cos45^\circ + \frac{1}{100} \sin 45^\circ) \tag{collecting $P$ terms}
+    \end{align*}
+
+    We can rearrange for $P$ 
+
+    \begin{align*}
+        0.3 + \frac{1}{10}g &=  P(\frac{1}{10}\cos45^\circ + \frac{1}{100} \sin 45^\circ)  \\
+        \frac{0.3 + \frac{1}{10}g }{\frac{1}{10}\cos45^\circ + \frac{1}{100} \sin 45^\circ} &= P
+    \end{align*}
+    
+    and calculate that $P = 16.5$, rounded to $1$ decimal place.
+    \qed
+\end{solution}
+
+\subsection{Moments}
+Moment about a point is \emph{Perpendicular Force} times \emph{Perpendicular Distance} to the point, and acts rotationally to the point, in the orientation that the perpendicular force is pointing towards. 
+You can choose which point to look at as your base point (or pivot)! If you are careful the maths will always work out.
+
+\[ \text{Moment of force} = \text{Perpendicular force}\times \text{Distance from the base point}\] 
+
+\emph{As with all force questions, you need to account for all of the forces!}
+
+Why would you choose one point as your base point over another? Looking at the equation, we have that any forces at the point itself gives zero contribution to the moment of force at that point. This is 
+because the distance is $0$, and the right-hand side of the equation cancels. This can be used to cancel unknown forces, or to remove a point that has many forces acting on it from giving us a headache.
+
+As with other force equations, you \emph{choose} which direction is your positive direction. Except with moments, you choose which \emph{orientation} your positive direction is -- clockwise or anticlockwise -- around your base point or pivot. See Figure \ref{fig:moment_seesaw_unbalanced}.
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.6]{moment_seesaw}
+    \caption{Two happy friends on a see-saw}
+    \label{fig:moment_seesaw}
+\end{figure}
+
+As long as you \emph{make sure clockwise and counter-clockwise have opposite signs} -- just like how we make sure ``up'' and ``down'' have opposite signs in the usual force questions -- everything will work out!
+
+Our approach will be the following:
+
+\begin{enumerate}
+    \item Draw and label all the forces affecting the object in question, giving them unknown variables if necessary.
+    \item Label all the distances to the forces.
+    \item Resolve forces to be perpendicular to the moment if necessary.
+    \item Choose a base point smartly to remove unknown variables.
+    \item Choose a positive direction and use equilibriums (my favourite) to get force equations and eliminate unknowns.
+    \item Repeat using equilibriums until you get your answer.
+\end{enumerate}
+
+What do we mean by equilibriums? Just like with force questions before, if our object is not accelerating (or moving) in a direction then the total force in that direction must be zero.
+Similarly, if our object is not \emph{rotating}, then the \emph{total moment force around a pivot must be zero}. 
+
+Pretty much all A-level physics questions become $F=0$ in a smart way.
+
+Ignoring everything above, let's start with an example where we do not have an equilibrium.
+
+\begin{example}
+    Consider a weightless rod of length $10m$, with a pivot half way along the rod. One happy $60kg$ person is sat $2m$ from the end of the rod. What is the total moment force on the rod around the pivot?
+    See Figure \ref{fig:moment_seesaw_unbalanced}.
+    \begin{figure}[H]
+    \centering
+    \incfig[0.6]{moment_seesaw_unbalanced}
+    \caption{One happy friend on a see-saw}
+    \label{fig:moment_seesaw_unbalanced}
+    \end{figure}
+\end{example}
+
+\begin{solution}
+    To begin with, let's draw and label \emph{all} the forces affecting the rod. Since the rod is weightless, the only force is from the person. 
+    We need to verify we are looking at the perpendicular component of the force to the rod, which we are. Therefore there are no additional forces to label or compute.
+
+    For the distances, we can see in that the distance from the half-way point at $5m$ in and the person is $3m$, labelled in Figure \ref{fig:moment_seesaw_unbalanced_labelled}.
+    \begin{figure}[H]
+    \centering
+    \incfig[0.6]{moment_seesaw_unbalanced_labelled}
+    \caption{One happy friend on a see-saw, labelled}
+    \label{fig:moment_seesaw_unbalanced_labelled}
+    \end{figure}
+
+    For lack of a better choice, we can choose clockwise to be our positive direction. 
+    Since there are no other pieces of information to use, we can caculate that our total moment force $M$ around the pivot is
+    \[ M = 3 \times 60g = 180g \]
+
+    In this case, there is an unbalanced amount of force, meaning this see-saw would start rotating.
+    \qed
+\end{solution}
+
+
+\begin{example}
+    Consider a uniform horizontal $4kg$ rod of length $5m$, with a pivot $2m$ from the left side, and a with a block on the left side of the rod. The rod is in equilibrium. What is the weight of the block?
+    See Figure \ref{fig:moment_uneven_seesaw_labelled}. For convenience, I will mark the additional calculated forces and distances in red.
+\end{example}
+\begin{solution}
+
+    Let's choose our base point to be at the pivot.
+
+    To begin with, let's draw and label \emph{all} the forces affecting the rod. 
+    The rod is uniform, meaning it's weight is acting from the centre. The centre is half way into the rod, which is $5m$. Therefore force due to gravity is acting downwards 
+    as $4g$ Newtons.
+
+    If we label the mass of the block as $x$, we can write that the force due to gravity at the block is $xg$ Newtons. There are no other (relevant) forces acting on the rod -- we will revisit this.
+
+    The distances between the centre of the rod and the pivot, and between the pivot and the block can be calculated from taking the difference of $2$ and half of $5$.
+
+    We need to verify we are looking at the perpendicular component of the forces to the rod, which we are.
+
+    \begin{figure}[H]
+    \centering
+    \incfig[0.6]{moment_uneven_seesaw_labelled}
+    \caption{A block on an uneven see-saw, labelled}
+    \label{fig:moment_uneven_seesaw_labelled}
+    \end{figure}
+
+    We can choose clockwise to be our positive direction. 
+    We are told the rod is in equilibrium. Therefore all of the moments of force around the pivot (or from any other base point) must cancel.
+    \[ F(\circlearrowright) - F(\circlearrowleft) = 0\]
+    Let's calculate the moment of force going clockwise, which we will label $F(\circlearrowright)$. The only force acting in this direction is $4g$, and therefore by the moment equation, the moment of force due to the rod from the pivot is
+
+    \[ F(\circlearrowright) = 0.5 \times 4g \]
+
+    Similarly for the counterclockwise moment of force on the pivot due to the block is the following.
+
+    \[F(\circlearrowleft) = 2 \times xg\]
+
+    Since there are no other pieces of information to use, we can substitute into our equilibrium equation:
+
+    \begin{align*}
+        0 &=  F(\circlearrowright) - F(\circlearrowleft) \\
+         &= 0.5 \times 4g - 2 \times xg
+    \end{align*}
+
+    Therefore 
+    \[ 0 = 0.5 \times 4g - 2 \times xg\]
+    Which we can rearrange for $x$:
+
+    \begin{align*}
+        0 &= 0.5 \times 4g - 2 \times xg \\
+        0 &= 2 - 2x \tag{canceling $g$} \\
+        0 &= 1 - x \tag{dividing by $2$} \\
+        x &= 1 \tag{rearranging for $x$}
+    \end{align*}
+    Therefore, the block is $1kg$.
+    \qed
+\end{solution}
+
+Why did we choose our base point as the pivot? We chose this to cancel any forces at the pivot itself. Because the rod is in equilibrium vertically too, we know there must be a reaction force from the pivot onto the block $R$ which prevents 
+the rod from falling into the pivot. Since we do not know what $R$ is, we chose our base point to be at the pivot itself, cancelling $R$ in our moment equation! If we chose another point, we would need to include $R$ acting upwards from the pivot!
+
+The point: choose the point of rotation smartly: the forces at the point itself can be ignored!
+
+\begin{example}
+    Consider a uniform horizontal $20kg$ rod of length $7m$, held in equilibrium by two ropes at right angles to the rod as in Figure \ref{fig:moment_two_rods}. Find the tension in both ropes.
+    \begin{figure}[H]
+    \centering
+    \incfig[0.75]{moment_two_rods}
+    \caption{A rod with two ropes attached}
+    \label{fig:moment_two_rods}
+    \end{figure}
+
+\end{example}
+\begin{solution}
+
+    To begin with, let's draw and label \emph{all} the forces affecting the rod. 
+    The rod is uniform, meaning it's weight is acting from the centre. The centre is half way into the rod, which is $3.5m$. Therefore force due to gravity is acting downwards 
+    as $20g$ Newtons.
+
+    The other forces are tension in the ropes, pointing upwards. We can label them with $T_A$ and $T_C$. There are no other forces acting on the rod in this system.
+    See Figure \ref{fig:moment_two_rods_labelled}.
+
+    \begin{figure}[H]
+    \centering
+    \incfig[0.75]{moment_two_rods_labelled}
+    \caption{A rod with two ropes attached, labelled}
+    \label{fig:moment_two_rods_labelled}
+    \end{figure}
+
+    We need to verify we are looking at the perpendicular component of the forces to the rod, which we are.
+
+    Since there are two unknowns, a smart choice of base point is at either $A$ or $C$. We will continue as setting $C$ to be our base point, cancelling $T_C$ from our equations.
+
+    We can choose clockwise to be our positive direction. 
+
+    We are told the rod is in equilibrium. Therefore all of the moments of force around the pivot (or from any other base point) must cancel.
+    \[ F(\circlearrowright) - F(\circlearrowleft) = 0\]
+
+    Let's calculate the moment of force going clockwise, which we will label $F(\circlearrowright)$. The only force acting in this direction is $T_A$, and therefore by the moment equation, the moment of force due to $T_A$ on $C$ is
+
+    \[ F(\circlearrowright) = 5 \times T_A \]
+
+    Similarly for the counterclockwise moment of force on the pivot due to the gravity is the following.
+
+    \[F(\circlearrowleft) = 1.5 \times 20g\]
+
+    Since there are no other pieces of information to use, we can substitute into our equilibrium equation:
+
+    \begin{align*}
+        0 &=  F(\circlearrowright) - F(\circlearrowleft) \\
+         &= 5 \times T_A - 1.5 \times 20g
+    \end{align*}
+
+    Which we can rearrange for $T_A$:
+
+    \begin{align*}
+        0 &= 5 \times T_A - 1.5 \times 20g \\
+        1.5 \times 20g &= 5 T_A \\
+        \frac{30g}{5} &= T_A \\
+        T_A &= 6g
+    \end{align*}
+    
+    Now we have found $T_A$, we still need to find $T_C$. There are a few approaches. My favourite is to use another kind of equilibrium: since the rod is not rising or falling, the vertical forces must total to zero.
+    Therefore, we can write:
+    \[T_A + T_C = 20g\]
+    And rearrange 
+    \begin{align*}
+        T_C &= 20g - T_A \\
+        T_C &= 20g - 6g \tag{substituting $T_A$}\\
+        T_C &= 14g
+    \end{align*}
+
+    Alternatively, we could write the moment equation from $C$, and repeat the rearranging from above:
+    \[ 5T_C - 3.5 \times 20g = 0\]
+
+    Or even you could set the base point as somewhere entirely different and substitute $T_A$ and rearrange. For example, setting the base point to be at $B$ gives the following equation:
+
+    \[2T_C - 3.5\times 20g + 7T_A = 0\]
+
+    Each of the three approaches result in the correct answer, so choosing the simplest approach is best. I like the vertical equilibrium option, but the moment at $C$ is perfectly acceptable -- just dont do the third option of the moment at $B$!
+    \qed
+\end{solution}
+
+Summary: look at \emph{all} equilibriums! $F=0$ in that direction.
+
+So far we have only seen questions where the forces are nicely already perpendicular. Let's see what happens when they are not.
+
+
+\begin{example}
+    A $4m$ $20kg$ uniform ladder is resting in equilibrium against a smooth wall at an angle of $60^\circ$ to the horizontal. The base of the ladder $A$ is on a rough floor and is at the point of slipping, with the coefficient of friction being $0.4$. 
+    An $80kg$ man is at a point $C$ on the ladder. What is the length $AC$? See Figure \ref{fig:man_on_ladder}.
+    \begin{figure}[H]
+    \centering
+    \incfig[0.75]{moment_man_on_ladder}
+    \caption{A man on a ladder}
+    \label{fig:man_on_ladder}
+    \end{figure}
+
+\end{example}
+\begin{solution}
+
+    To begin with, let's draw and label \emph{all} the forces affecting the rod. 
+
+    The rod is uniform, meaning it's weight is acting from the centre. The centre is half way into the rod, which is $2m$. Therefore force due to gravity on the ladder is acting downwards 
+    as $20g$ Newtons. There is another force due to gravity on the man, acting downwards as $80g$ Newtons at point $C$.
+
+    Since the ladder is slipping at the base, friction $F_{max}$ is acting towards the wall, opposing the slipping away from the wall.
+
+    The other forces are resultant forces due to the contact between the ladder and the floor and wall. These forces must exist since we know the ladder is not 
+    falling into the floor or the wall, and they act perpendicular to the floor and wall each. We will label the floor resultant force $R$ and the wall resultant force $S$.
+
+    See Figure \ref{fig:man_on_ladder_labelled}.
+
+    \begin{figure}[H]
+    \centering
+    \incfig[0.75]{moment_man_on_ladder_labelled}
+    \caption{A man on a ladder, labelled}
+    \label{fig:man_on_ladder_labelled}
+    \end{figure}
+
+    We need to verify we are looking at the perpendicular component of the forces to the rod, which we are not (!). To rectify this, we will need to do some geometry with $60^\circ$. 
+    This was covered in Section \ref{sec:components-of-forces-or-vectors} to recap. Here I will simply write the correct usage of $\sin$ or $\cos$, and leave it to the reader to verify.
+
+    Before starting with moment equations, we can gather information using equilibrium equations.
+
+    Since the ladder is in equilibrium horizontally, the horizontal forces must total zero. Choosing $S$ to be our positive direction, we find that 
+
+    \[S-F_{max} = 0\]
+    Therefore
+    \[S = F_{max}\]
+
+    Vertically, choosing $R$ to be our positive direction, we find 
+
+    \[ R - 20g - 80g = 0\]
+
+    Therefore
+    \[R = 100g\]
+
+    Using $F_{max} = \mu R$, we can find that 
+
+    \begin{align*}
+        F_{max} &= 0.4 R \tag{$\mu = 0.4$} \\
+        F_{max} &= 0.4 \times 100g \tag{$R = 100g$} \\
+        S &= 0.4 \times 100g \tag{$S = F_{max}$}
+    \end{align*}
+
+    Now we have deduced as much as possible using equilibria, we can tackle the moments part of the problem. Let us set our base point at $A$ to not deal with both $F_{max}$ and $R$. We are free to do this since there are no more unknown forces in the system to account for.
+    Let's label the distance $AC$ as $x$ for convenience.
+
+    We can choose clockwise to be our positive direction. The clockwise force is from $S$ and the counterclockwise forces are from $80g$ and $20g$, but they are not pointing perpendicular to the ladder.
+    Resolving the forces in the perpendicular direction to the ladder, and using that the total moment of force must be zero, working from left to write, we find
+
+    \[ 4 S \sin60^\circ - 80gx \cos 60^\circ - 2 \times 20g \cos 60^\circ = 0\]
+
+    Which is our equilibrium moment equation from $A$.
+
+    We can then finish the question by substituting what $S$ is from above, and rearranging for $x$, left as an exercise.
+    \qed
+\end{solution}
+
