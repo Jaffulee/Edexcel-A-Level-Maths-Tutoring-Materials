@@ -155,6 +155,90 @@ Why this is true requires a few facts out of scope, one being that the sum of sc
 
 One more intuitive way to think about this is that the mean of the mean should itself be the mean with enough points, but the standard deviation of a mean should be smaller since the more points we have the closer to the mean we expect to be, and the mean is bringing those points with it. The additional points help to cancel out any extremes.
 
+\begin{example}
+    A baby's weight at birth can be modelled as a normal distribution with mean $3.5kg$ and standard deviation $0.5$. 
+
+    Your sibling tells you that a healthy range of baby weights is between $3.37kg$ and $3.76kg$.
+
+    You are given the following values for $P(Z>z)$ where $Z$ is a standard normal distribution:
+    \[
+    \begin{array}{c c}
+    p & z \\
+    0.5000 & 0.0000 \\
+    0.4000 & 0.2533 \\
+    0.3000 & 0.5244
+    \end{array}
+    \]
+
+    Using the closest values from the above table, find the probability that the weight of the baby is between $3.37kg$ and $3.76kg$.
+\end{example}
+
+\begin{solution}
+    We are only told values for $P(Z>z)$ where $Z$ is a standard normal distribution. So we will need to do two things.
+
+    \begin{enumerate}
+        \item Convert to a standard normal distribution 
+        \item Use symmetries to write our region in terms of $P(Z>z)$ for some $z$
+    \end{enumerate}
+
+    Firstly, let $X \sim N(3.5, 0.5^2)$ be the random variable representing the weight of the baby. We can convert to a standard normal distribution by using the formula $Z = \frac{X-\mu}{\sigma}$, which gives us 
+    $Z = \frac{X-3.5}{0.5}$.
+
+    We are interested in the region $3.37 \leq X \leq 3.76$. We can rearrange this to be in terms of $Z$ by substituting $X = 0.5Z + 3.5$ (the rearrangement of the previous formula) to get
+    \[
+    3.37 \leq 0.5Z + 3.5 \leq 3.76
+    \]
+    Which can be rearranged to find 
+    \[ \frac{3.37 - 3.5}{0.5} \leq Z \leq \frac{3.76 - 3.5}{0.5} \]
+
+    This can be simplified to
+
+    \[ -0.26 \leq Z \leq 0.52 \]
+
+    This is not in the form of $P(Z>z)$, but we can use symmetries to find that $P(Z>0.26) = P(Z<-0.26)$ and $P(Z>0.52) = 1 - P(Z<0.52)$.
+
+    The region we want is found by $P(Z>-0.26) - P(Z>0.52)$, which is converted to $1 - P(Z>0.26) - P(Z>0.52)$.
+
+    The closest values we have from the table are P(Z>0.2533) and P(Z>0.5244), which we can use to find that the probability of the baby weight being between $3.37kg$ and $3.76kg$ is approximately 
+    \[ (1- P(Z>0.2533)) - P(Z>0.5244) = (1-0.4000) - 0.3000 = 0.3000 \]
+
+    This finishes the question.
+    \qed
+\end{solution}
+
+For the standard normal distribution, the following geometrical techniques are essential:
+
+\begin{enumerate}
+    \item Reflecting about the mean at $0$ corresponds to putting a minus sign in front of the value $z$.
+    \item Choosing which side of a value to find the area under corresponds to finding the probability $p$ or $1-p$ for the other side.
+\end{enumerate}
+
+\subsubsection{Why do we care about the standard normal distribution?}
+
+This requires a little bit of background. Using the symmetries of the normal distribution covered in Section \ref{sec:normal-distribution}, having the mean be $0$ is very useful since reflecting amounts to putting a minus sign in front of the value.
+Therefore, it is simpler to work with a normal distribution whose mean is $0$. 
+
+Secretly, the function which describes a normal distribution is
+
+\[ \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]
+
+And since we know that the area under the curve between two points represents the probability of our normally distributed random variable being observed between those two points, this means that:
+
+\[ P(a \leq X \leq b) = \int_a^b \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \, dx \]
+
+The correct approach to an integral like this is to cry. The second best approach is to use a numerical method. It turns out that this is impossible to solve using techniques in A-Level\footnote{More precisely, there is no analytical solution to this integral.}, 
+and you would need to approach this using numerical methods such as the trapezium rule (see Section \ref{sec:traprule}).
+
+In a real-world setting, this might take a long time. Thus collectively, we agreed to use the standard normal distribution so that we could pre-compute a bunch of probability values for various regions, and store them in a large table.
+
+Then to find the probability of a normally distributed random variable, you can find the answer by converting it to a standard normal distribution and then look up the value from the table.
+
+Due to symmetries, the table only needs to contain values of $P(Z>z)$ for $z\geq 0$, since we can use symmetries to find any other region.
+
+Nowadays, even handheld calculators have the ability to compute the probability of a normal distribution (secretly using a numerical method like the trapezium rule), but since the exam cannot assume you have such a device, we still need to use the standard normal distribution.
+
+This means for the exam, it is best practise to convert to the standard normal distribution, and only then use your calculator if you have one. Otherwise, you must use the lookup table provided in the formula booklet.
+
 \subsubsection{Binomial Distribution} \label{sec:binomial-distribution}
 
 The binomial distribution is a useful probability distribution, which gives a probability of a given number of successes in a fixed number of trials. This means we know the number of times something has been repeated, and know that in each case only two outcomes are possible.

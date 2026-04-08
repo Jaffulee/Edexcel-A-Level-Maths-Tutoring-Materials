@@ -105,7 +105,7 @@ But despite using $\sin$ here, we got to this point by using all of our componen
 
 \textbf{The point is: figure out the direction you care about draw the triangle you want, and then use $\sin$ or $\cos$ depending on where your force is pointing, and the direction of the force is always considered the hypotenuse when using trig rules.}
 
-\begin{example}
+\begin{example} \label{ex:block-on-plane-no-forces}
     A block of mass $20kg$ is on a smooth slope of incline $20^\circ$, as in Figure \ref{fig:block-on-plane-no-forces}
     \begin{figure}[H]
         \centering
@@ -339,6 +339,33 @@ If you are confused about the correct signs of each of them, look at the force d
 as positive, and the gravity and friction directions to work against the rope down the slope as negative.
 \qed
 \end{solution}
+
+\subsection{The reusable approach to mechanics questions}
+As long as we are consistent with what direction our forces are relative to the direction we chose, the maths works out. The key thing is to be sure what direction the component of the force you are looking at faces, like we did 
+in Exercise \ref{ex:block-on-plane-no-forces} with gravity pointing more away from $R$ than towards it.
+
+Most physics questions become exactly the following pattern:
+\begin{itemize}
+    \item Find which direction(s) we have an equilibrium
+    \item Decide a positive direction for that direction
+    \item Resolve your forces relative to that positive direction
+    \item Write your force equation, usually $F(\text{in some direction}) = 0$
+\end{itemize}
+
+
+The exception is when we have a non-equal force being applied, e.g. when there is acceleration. The only difference is that the total force is no longer equal to $0$, or the acceleration is not equal to zero. Then you can use
+\[
+F = ma
+\]
+to find that
+\[
+a = \frac{F}{m},
+\]
+and use
+\[
+\frac{F(\text{in some direction})}{m} = a
+\]
+instead of $F(\text{in some direction}) = 0$. Still, the approach is the same.
 
 \subsection{Friction and $R$}
 Friction is found via the formula $F_{max} = \mu R$ where $F_{max}$ is the magnitude of force friction applies opposing the movement of the object
