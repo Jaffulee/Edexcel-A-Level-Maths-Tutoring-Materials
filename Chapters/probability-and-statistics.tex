@@ -192,6 +192,57 @@ So the previous question could be worked out directly as
 
 \[ P(X\leq1) = P(X=0) + P(X=1)\]
 
+\begin{exercise}
+    Analysis shows that $30\%$ of the time, a randomly chosen cereal ball from a cereal manafacturer is chocolate. A box of cereal contains $100$ cereal balls. Using an appropriate choice of distribtution, what is the probability of getting exactly $30$ chocolate balls in the cereal box?
+
+    Instead, what is the probability of getting between $29$ and $31$ chocolate balls in this sample, inclusive? Then state the probability of getting a number of chocolate balls not between $29$ and $31$ inclusive.
+
+    Finally, if you are told that the probability of getting less than $29$ chocolate balls is $0.37678$, what is the probability of getting more than $31$ chocolate balls in your cereal? You may assume that they use the same model as you.
+\end{exercise}
+\begin{solution}
+    Since we have a fixed probability of success (a ball being chocolate), a fixed number of trials, can assume independence of trials, and we are interested in the number of successes, 
+    a reasonable choice of distribution is a binomial distribution. We can model the number of chocolate balls as $X$, where $X \sim B(100,0.3)$.
+
+    Then we can use the formula to find $P(X=30)$, which is 
+    \[P(X=30) = \binom{100}{30} (0.3)^{30} (0.7)^{70} \approx 0.08678\].
+
+    This number might be smaller than you expected! Considering that $30\%$ of the time a ball is chocolate, you should expect to find on average around $30$ chocolate balls in a sample of $100$.
+
+    Continuing, we have that
+
+    \begin{align*}
+        P(29\leq X \leq 31) &= P(X=29) + P(X=30) + P(X=31) \\
+         &= \binom{100}{29} (0.3)^{29} (0.7)^{71} + \binom{100}{30} (0.3)^{30} (0.7)^{70} + \binom{100}{31} (0.3)^{31} (0.7)^{69}\\
+            &\approx 	0.08556 + 0.08678 + 0.08398 \\
+            &\approx 0.25632
+    \end{align*}
+
+    This is accounts for a quarter of all possibilities, which might be more than expected considering the previous number.
+
+    We were also asked the probability of being outside this range:
+
+    \begin{align*}
+        P(X<29 \text{ or } X>31) &= 1 - P(\text{not } (X<29 \text{ or } X>31)) \tag{the full area is $1$}\\
+        &= 1 - P(29\leq X \leq 31) \\
+        &\approx 1 - 0.25632 \\
+        &\approx 0.74368
+    \end{align*}
+
+    For the final part of the question, we are given that $P(X<29) = 0.37678$. We can use this to find $P(X>31)$ by using the fact that $P(X<29 \text{ or } X>31) = P(X<29) + P(X>31)$, since these two events are mutually exclusive (cannot happen at the same time).
+
+    \begin{align*}
+        P(X>31) &= P(X<29 \text{ or } X>31) - P(X<29) \\
+        &\approx 0.74368 - 0.37678 \\
+        &\approx 0.3669
+    \end{align*}
+    This finishes the question.
+    \qed
+\end{solution}
+
+The previous question highlights the importance of viewing things geometrically, and deducing how to split the region we want into different chunks we care about.
+
+
+
 \subsection{Approximating the Binomial Distribution with a Normal Distribution}\label{sec:binomial-as-normal}
 
 It turns out that the binomial distribution looks more and more like a bell curve when you increase $n$\footnote{See the Central Limit Theorem for further reading}.

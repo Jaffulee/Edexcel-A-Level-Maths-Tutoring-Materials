@@ -105,7 +105,144 @@ But despite using $\sin$ here, we got to this point by using all of our componen
 
 \textbf{The point is: figure out the direction you care about draw the triangle you want, and then use $\sin$ or $\cos$ depending on where your force is pointing, and the direction of the force is always considered the hypotenuse when using trig rules.}
 
+\begin{example}
+    A block of mass $20kg$ is on a smooth slope of incline $20^\circ$, as in Figure \ref{fig:block-on-plane-no-forces}
+    \begin{figure}[H]
+        \centering
+        \incfig[0.7]{block-on-plane-no-forces}
+        \caption{A block on an incline}
+        \label{fig:block-on-plane-no-forces}
+    \end{figure}
+    \begin{enumerate}
+        \item What forces are acting on the block? Draw a labelled diagram of the forces.
+        \item How fast is the block accelerating down the slope?
+        \item If you introduce a new force acting on the block pointing up the slope, how much force would need to be applied to stop the block from accelerating down the slope?
+        \item How would you introduce friction? What coefficient of friction would require the block to not accelerate down the slope if no other forces are applied?
+    \end{enumerate}
+\end{example}
+\begin{solution}
+    \begin{enumerate}
 
+        \item 
+        Since the block is not falling through the plane, there must be a force $R$ perpendicular to the plane acting on the block to balance the force of gravity pushing into the plane. The force due to gravity is $mg$ pointing downwards.
+        Therefore we get the diagram Figure \ref{fig:block-on-plane-no-forces-labelled}. From the analysis above, we know that the angle between the perpendicular and the force due to gravity is $20^\circ$.
+
+        \begin{figure}[H]
+            \centering
+            \incfig[0.7]{block-on-plane-no-forces-labelled}
+            \caption{A block on an incline, labelled}
+            \label{fig:block-on-plane-no-forces-labelled}
+        \end{figure}
+
+        What is $R$? To find $R$, we must find the component of gravity in the axis perpendicular to $R$. 
+        Then we can use trigonometry to find the magnitude of the component of gravity in the direction of the perpendicular to the plane is $mg \cos 20^\circ$.
+
+        Since the block is not falling through the plane, we know that the total forces perpendicular to the plane must sum to $0$. Since gravity is pointing more into the plane than out of the plane, we know it must have the opposite sign to $R$ itself.
+
+        Let's choose our positive direction as in the direction of $R$. Then we have that:
+
+        \begin{align*}
+            \text{sum of forces in direction perpendicular to plane} &= 0 \\
+            \therefore R - mg \cos 20^\circ &= 0\\
+            \therefore R &= mg \cos 20^\circ
+        \end{align*}
+
+        What would have happened if we chose the opposite direction as our positive direction? Then we would have $R$ is negative and the force due to gravity in the axis perpendicular to the plane is positive:
+        \begin{align*}
+            \text{sum of forces in direction perpendicular to plane} &= 0 \\
+            \therefore -R + mg \cos 20^\circ &= 0\\
+            \therefore R &= mg \cos 20^\circ
+        \end{align*}
+        We get the same answer, as expected, because we are consistent with our choice of positive direction.
+
+        Using $m = 20$ and $g = 9.8$, we have that $R = 20 \times 9.8 \times \cos 20^\circ$.
+
+        \item 
+        For the acceleration down the slope, we must find the component of all forces going down the slope.
+        Using trigonometry, we know that the component of gravity in the axis of the slope is $mg \sin 20^\circ$. 
+        Let's choose our positive direction as going down the slope. 
+        Since gravity is pointing more down the slope than up the slope, then our component of gravity in the axis of the slope has a positive sign.
+
+        For demonstration purposes, we will also resolve the force $R$ in the direction of the slope. In this case, we have the component of $R$ in the axis of the slope is $R \cos 90^\circ$, but this is $zero$ since $\cos 90^\circ=0$. 
+        This is actually true in general; forces do not contribute to the perpendicular direction they act in.
+
+        Therefore, the total force down the slope is $mg \sin 20^\circ$ ($+0$ if you also resolved $R$).
+        Using $F = ma$ we can rearrange to find $a = \frac{F}{m}$, we have that the acceleration down the slope is 
+        \begin{align*}
+            a &= \frac{F}{m} \\
+            &= \frac{mg \sin 20^\circ}{m} \\
+            &= g \sin 20^\circ \\
+            &= 9.8 \sin 20^\circ
+            \end{align*}
+        Therefore, $a =  9.8 \sin 20^\circ \text{ ms}^{-2}$.
+        \item
+        We are now asked to introduce a new force $F$ pointing up the slope.We can see the additional force sketched in Figure \ref{fig:block-on-plane-no-forces-labelled-F}, which is the force we would need to apply up the slope to stop the block from accelerating down the slope.
+        \begin{figure}[H]
+            \centering
+            \incfig[0.7]{block-on-plane-no-forces-labelled-F}
+            \caption{A block on an incline, labelled with additional force}
+            \label{fig:block-on-plane-no-forces-labelled-F}
+        \end{figure}
+
+        We are asked to stop the block from accelerating down the slope, which means we want the total force down the slope to be $0$.
+
+        Using the previous question, we found that the force down the slope (without $F$) is $mg \sin 20^\circ$. Keeping with the same positive direction as pointing down the slope, since $F$ is pointing up the slope, it is working against the force down the slope, so we need to take it away from the force down the slope to get the total force.
+
+        \[ \text{sum of forces in direction of the slope} = mg \sin 20^\circ - F\]
+
+        To stop the block accelerating, we need this total to be $0$:
+
+        \[ mg \sin 20^\circ - F = 0 \]
+
+        Which we can rearrange to find \[ F = mg \sin 20^\circ \]
+
+        \item 
+        We are now asked to introduce friction. Recall that the force of friction is given by $F_{max} = \mu R$ where $\mu$ is the coefficient of friction and $R$ is the normal reaction force we calculated in the first part.
+
+        Ignoring $F$ from the previous part, we now have that the total force down the slope is 
+        \begin{align*}
+            \text{sum of forces in direction of the slope} &= mg \sin 20^\circ - F_{max} \\
+            &= mg \sin 20^\circ - \mu R\\
+            &= mg \sin 20^\circ - \mu mg \cos 20^\circ
+        \end{align*}
+        To stop the block accelerating, we need this total to be $0$:
+        \begin{align*}
+            mg \sin 20^\circ - \mu mg \cos 20^\circ &= 0 \\
+            \therefore \mu mg \cos 20^\circ &= mg \sin 20^\circ \\
+            \therefore \mu &= \frac{mg \sin 20^\circ}{mg \cos 20^\circ} = \tan 20^\circ
+        \end{align*}
+    \end{enumerate}
+    \qed
+\end{solution}
+
+It is important to choose a positive direction and stick to it when resolving forces, and use the nearest direction to determine what sign a force has compared to your chosen positive direction.
+
+The final part of the previous question is interesting since we found that the coefficient of friction required to stop the block from accelerating down the slope only uses the slope's angle. In fact, it is possible to show that the coefficient of friction required to stop the block from accelerating down the slope is $\tan \phi$ for any slope of incline $\phi$.
+
+\begin{example}
+    A block of mass $m$ is on a rough slope of incline $\phi$. What coefficient of friction $\mu$ would be required to stop the block from accelerating down the slope if no other forces are applied?
+
+    What happens if the slope is $0$ degrees? What happens near to $90$ degrees?
+\end{example}
+\begin{solution}
+    We can use the same analysis as in the previous question, but leaving $m$ and $\phi$ as unknowns. 
+
+    Resolving in the direction of the slope, using down the slope as our positive direction we find that we must have that:
+
+    \begin{align*}
+        0 &= mg \sin \phi - \mu mg \cos \phi \\
+        \therefore \mu mg \cos \phi &= mg \sin \phi \\
+        \therefore \mu &= \frac{mg \sin \phi}{mg \cos \phi} = \tan \phi
+    \end{align*}
+
+    Therefore the coefficient of friction required to stop the block from accelerating down the slope is $\tan \phi$.
+
+    If the slope is $0$ degrees, then $\tan 0^\circ = 0$, so we would need a coefficient of friction of $0$ to stop the block from accelerating down the slope. This makes sense since if the slope is flat, there is no force down the slope, so we do not need any friction to stop the block from accelerating.
+
+    If the slope is near to $90$ degrees, then $\tan \phi$ shoots off to infinity, so we would need a very large coefficient of friction to stop the block from accelerating down the slope. This also makes sense since if the slope is nearly vertical, there is a large force down the slope, so we would need a large amount of friction to stop the block from accelerating.
+    
+    \qed
+\end{solution}
 \subsection{Additional Exercises}
 \begin{exercise}
     \begin{figure}[H]
