@@ -41,7 +41,7 @@ And use that $s(0) = s_0$ to find:
     s(0) &= s_0 \\
     &= \frac{1}{2}a \cdot 0^2 + u \cdot 0 + c_2 \\
     \therefore c_2 &= s_0 \\
-    \therefore s(t) &= \frac{1}{2}at^2 + ut + s_0
+    \therefore s(t) &= \frac{1}{2}at^2 + ut + s_0 \\
     \therefore s(t) - s_0 = ut + \frac{1}{2}at^2
 \end{align*}
 
@@ -66,7 +66,7 @@ If we assume $a \neq 0$, we can rearrange the first equation to get $t = \frac{v
     s(t) - s_0 &= \frac{t(u + v)}{2} \\
     &= \frac{\frac{v - u}{a}(u + v)}{2} \\
     &= \frac{(v - u)(u + v)}{2a} \\
-    &= \frac{v^2 - u^2}{2a}
+    &= \frac{v^2 - u^2}{2a} \\
     \therefore v^2&= u^2 + 2a(s - s_0)
 \end{align*}
 
@@ -97,11 +97,11 @@ This is because each equation has $4$ of the variables $s$, $u$, $v$, $a$, and $
 The only place you might get tripped up is forgetting that $s$ is relative to the starting point, in the case where you are not starting from $s_0 = 0$.
 
 \begin{example}
-A particle starts from rest and moves with constant acceleration $a$ for $t$ seconds, covering a distance of $5$ metres. 
+A particle starts from rest and moves with constant acceleration $a$ for $t$ seconds, covering a displacement of $s$ metres. 
 
 Find an equation for the final velocity $v$ of the particle in terms of $s$ and $t$, assuming $t \neq 0$.
 
-You are told the particle reaches a final velocity of $2$ m/s. Find what time $t$ is at the time of reaching the final velocity, and then deduce what the acceleration $a$ is.
+You are told that the particle covers $5$ metres before reaching a final velocity of $2$ m/s. Find what time $t$ is at the time of reaching the final velocity, and then deduce what the acceleration $a$ is.
 
 \end{example}
 \begin{solution}
@@ -179,7 +179,7 @@ u = 6,\quad v = 10,\quad s = 32,\quad a = 1,\quad t = 4
 \end{solution}
 
 \begin{example}
-A particle moves with constant acceleration $a$, changing its velocity from $2$ m/s to $14$ m/s in $6$ seconds, while travelling a distance $s$.
+A particle moves with constant acceleration $a$, changing its velocity from $u$ m/s to $14$ m/s in $6$ seconds, while travelling a distance $s$.
 
 Find an equation for the displacement $s$ in terms of $u$.
 
@@ -253,7 +253,7 @@ s = 44 \text{ metres}
 \end{solution}
 
 \begin{example}
-    A particle at rest which has a mass of $2$kg has a force applied to it of $4$N. 
+    A particle at rest which has a mass of $2$ kg has a force applied to it of $4$ N. 
 
     What is the acceleration of the particle?
 
@@ -284,7 +284,7 @@ v = 2t \text{ m/s}
 \end{solution}
 
 \begin{example}
-    A particle has a mass of $2$kg and has been moving at a constant speed of $3$ m/s. At time $t=0$ seconds, a force of $4t$N is applied opposing the motion.
+    A particle has a mass of $2$ kg and has been moving at a constant speed of $3$ m/s. At time $t=0$ seconds, a force of $4t$ N is applied opposing the motion.
 
     What is the acceleration of the particle in terms of time $t$?
 
@@ -293,7 +293,7 @@ v = 2t \text{ m/s}
     At what time $t$ does the particle come to rest?
 \end{example}
 \begin{solution}
-Let's set our positive direction to be in the direction of the initial motion.Using Newton's second law, we have:
+Let's set our positive direction to be in the direction of the initial motion. Using Newton's second law, we have:
 \begin{align*}
     F &= ma \\
     -4t &= 2a \\
@@ -327,37 +327,37 @@ The particle comes to rest when $v(t) = 0$, so we can solve the equation:
 
 
 \begin{example}
-    A star is being consumed by a black hole at a large distance. The star is losing mass, and is described by $M/t$ kg where $M$ is the initial mass of the star. The black hole is exerting a force of $100t^2$ N on the star, and the star is accelerating towards the black hole.
+    A star is being consumed by a black hole at a large distance. The star is losing mass, and its mass is described by $\frac{M}{t+1}$ kg at time $t$ seconds, where $M$ is the initial mass of the star. The black hole is exerting a force of $100t^2$ N on the star, and the star is accelerating towards the black hole.
 
-    Modelling the star as a particle, find an equation for the acceleration $a$ of the star in terms of time $t$.
+    Modelling the star as a particle, find an equation for the acceleration $a$ of the star in terms of time $t$ and initial mass $M$.
 
-    Assuming the star starts from rest, find an equation for the velocity $v$ of the star in terms of time $t$.
+    Assuming the star starts from rest, find an equation for the velocity $v$ of the star in terms of time $t$ and initial mass $M$.
 \end{example}
 
 \begin{solution}
-Using Newton's second law, we have:
+Let's choose the direction towards the black hole as positive. Using Newton's second law, we have:
 \begin{align*}
     F &= ma \\
-    100t^2 &= \frac{M}{t}a \\
-    a &= \frac{100t^2 \cdot t}{M} \\
-    a &= \frac{100t^3}{M} \text{ m/s}^2
+    100t^2 &= \frac{M}{t+1}a \\
+    a &= \frac{100t^2(t+1)}{M} \\
+    a &= \frac{100t^3 + 100t^2}{M} \text{ m/s}^2
 \end{align*}
 
 Since the star starts from rest, the initial velocity $u = 0$. Using the definition of acceleration:
 \begin{align*}
     v(t) &= \int a(t) \, dt + c \\
-    &= \int\frac{100t^3}{M} \, dt + c \\
-     &= \frac{100t^4}{4M} + c \\
-     &= \frac{25t^4}{M} + c
+    &= \int\frac{100t^3 + 100t^2}{M} \, dt + c \\
+     &= \frac{100t^4}{4M} + \frac{100t^3}{3M} + c \\
+     &= \frac{25t^4}{M} + \frac{100t^3}{3M} + c
 \end{align*}
 Since $v(0) = 0$, we have 
 \begin{align*}
-    0 &= \frac{25 \cdot 0^4}{M} + c \\
+    0 &= \frac{25 \cdot 0^4}{M} + \frac{100 \cdot 0^3}{3M} + c \\
     \therefore c &= 0
 \end{align*}
 Therefore:
 \begin{align*}
-    v(t) &= \frac{25t^4}{M}
+    v(t) &= \frac{25t^4}{M} + \frac{100t^3}{3M}
 \end{align*}
 \qed
 
