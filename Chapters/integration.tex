@@ -43,11 +43,11 @@ Which regains $f'$.
 \end{solution}
 
 A \emph{definite integral} is one where we evaluate at two points, and can be defined as the area under a function $f$ between those two points\footnote{In fact, it is a signed area since if a function is negative, the integral is also negative.}. 
-In practise, we compute this by the following:
+In practice, we compute this by the following:
 
 \[ \int_{a}^{b} f dx = \left[\int f dx\right]_{x=a}^{x=b}\]
 
-Where the notation on the RHS means that we calculate the indefinite integral at $b$ and remove it from the indefinite integral at $a$. Recall that 
+Where the notation on the RHS means that we calculate the indefinite integral at $b$ and subtract the indefinite integral at $a$. Recall that 
 the indefinite integral always has a constant added $c$. If we take two evaluations of the indefinite integral, the $c$ will cancel. For example, let's use 
 the example of when we are integrating a derivative.
 
@@ -380,7 +380,7 @@ This has been very abstract, so let's see some examples.
     \begin{align*}
         \int_{y=1}^{y=2} y^3 dy &= \left[ \frac{1}{4}y^4 \right]_{y=1}^{y=2} \\
          &= \frac{1}{4} \left( 2^4 - 1^4 \right) \\
-         &= \frac{16}{4}
+         &= \frac{15}{4}
     \end{align*}
 
     The indefinite integral can be written as just \emph{the-bit-in-the-square-brackets-plus-$c$}:
@@ -545,8 +545,8 @@ This has been very abstract, so let's see some examples.
     Now we can integrate this in $y$ as usual.
     \begin{align*}
          \int_{y=\cos(\pi/4)}^{y=1} \frac{1}{y} dy &= \left[ \ln(y) \right]_{y=\cos(\pi/4)}^{y=1} \\
-         &=  \left(  \ln(\cos(\pi/4)) - \ln(1) \right) \\
-         &=  \ln(\cos(\pi/4)) 
+         &=  \left( \ln(1) - \ln(\cos(\pi/4)) \right) \\
+         &=  -\ln(\cos(\pi/4)) 
     \end{align*}
 
     The indefinite integral can be written as just \emph{the-bit-in-the-square-brackets-plus-$c$}, but since we swapped the integral bounds, we need to include a minus sign:
@@ -1452,7 +1452,7 @@ The following exercises will demonstrate this.
         x&= (u-1)^2 \tag{rearranging $u = 1 + \sqrt{x}$}
     \end{align*}
 
-    Now let's substitute instance of $x$ from left to right with $u$ in our integral, making sure to remember the integral bounds.
+    Now let's substitute each instance of $x$ from left to right with $u$ in our integral, making sure to remember the integral bounds.
 
     \begin{align*}
         \int_{0}^{9}\frac{x}{1 + \sqrt{x}}dx &= \int_{x=0}^{x=9}\frac{x}{1 + \sqrt{x}}dx \tag{reminding ourselves of $x$} \\
@@ -1466,7 +1466,7 @@ The following exercises will demonstrate this.
     \end{align*}
     Now we again ask ourselves the questions we ask ourselves whenever there is an integral.
 
-    Can we see the integral is? Due to the $\frac{1}{u}$, we might expect there to be some $\ln$ in the answer, but it is not obvious.
+    Can we see what the integral is? Due to the $\frac{1}{u}$, we might expect there to be some $\ln$ in the answer, but it is not obvious.
 
     Then we ask: can we rearrange this into something we \emph{do} know how to integrate?\footnote{It is possible to approach this with by parts with $f=(u-1)^3$ and $g' = \frac{1}{u}$, but you would need to do by parts multiple times with the resulting integral. There are no obvious substitutions either. It is essential to be able to identify when you can ``just do'' the integral and not waste time with a more complicated method.}
 
@@ -1474,7 +1474,7 @@ The following exercises will demonstrate this.
 
     \begin{align*}
         2\int_{u=1}^{u=4}\frac{(u-1)^3}{u}du &= 2\int_{u=1}^{u=4}\frac{u^3 + 3u^2\times(-1) + 3u\times(-1)^2 + (-1)^3}{u}du \tag{using binomial expansion formula} \\
-         &=  2\int_{u=1}^{u=4}\frac{u^3 - 3u^2\times + 3u\times -1}{u}du \tag{simplifying} \\
+         &=  2\int_{u=1}^{u=4}\frac{u^3 - 3u^2 + 3u -1}{u}du \tag{simplifying} \\
          &= 2\int_{u=1}^{u=4}\frac{u^3}{u}- 3 \frac{u^2}{u} + 3\frac{u}{u} - \frac{1}{u} du \tag{separating the fraction} \\
          &= 2 \int_{u=1}^{u=4}u^2- 3 u + 3 - \frac{1}{u} du \tag{simplifying}
     \end{align*}
@@ -2175,7 +2175,7 @@ The following exercises will demonstrate this.
     \end{align*}
 
     This is close to our desired $\frac{5x}{1+2x^2}$, except we have a factor of $4$ instead of the $5$ that we want. 
-    We can times both sides by $\frac{5}{4}$ to convert our $4$ to a $5$ and find that 
+    We can multiply both sides by $\frac{5}{4}$ to convert our $4$ to a $5$ and find that 
 
     \[ (\frac{5}{4}\ln(1+2x^2))' = \frac{5x}{1+2x^2}\]
 

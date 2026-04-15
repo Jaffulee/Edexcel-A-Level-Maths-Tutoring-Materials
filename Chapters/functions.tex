@@ -123,7 +123,7 @@ This can keep going! If we have three functions $f$, $g$, $h$, then $fgh(x) = f(
 
     Similarly, 
     \[ fh(x) = f(h(x)) = \frac{1}{2}\textcolor{red}{h(x)}^2 \]
-    Subsituting $h(x)$ into this equation gives
+    Substituting $h(x)$ into this equation gives
     \[ fh(x) = \frac{1}{2}(\cos(x) + \sin(x))^2 \]
 
     Then we can calculate:
@@ -403,7 +403,7 @@ The domain of a function is the set of all input values for a function, and the 
 For example, consider the following function.
 \[ f(x) = \frac{1}{x^2}\]
 
-This function defined everywhere except for $x=0$, where we would be dividing by $0$. Therefore its (maximal) domain is every number except for $0$. 
+This function is defined everywhere except for $x=0$, where we would be dividing by $0$. Therefore its (maximal) domain is every number except for $0$. 
 On this domain, we can see that it is always positive since the denominator is always positive, and it gets closer to $0$ as $x$ gets larger (or more negative). 
 We can also observe that as $x$ gets close to $0$, the function outputs larger and larger numbers. Because of this, you might realise\footnote{You can prove this by setting $f(x) = a$ where $a>0$, and showing you can solve for $x$.} 
 that it can reach every number more than $0$. Therefore, we have found the domain and range of $f(x)$.
@@ -414,7 +414,7 @@ The domain is $x<0$ or $x>0$, and the range is $0 < f(x)$.
     Consider $f(x) = 2x$, for $-2\leq x < 1$. Find the range for this function, making sure to only allow the $x$ range in the question.
 \end{example}
 \begin{solution}
-    We know that this function is a straight line that is increasing, so therefore the range has to between whatever the leftmost point and the rightmost point is. The place to be careful is that 
+    We know that this function is a straight line that is increasing, so therefore the range has to be between whatever the leftmost point and the rightmost point is. The place to be careful is that 
     we are told that $-2\leq x < 1$, therefore it does not quite reach the rightmost point.
      
     We can find the range therefore by plugging in:
@@ -471,7 +471,7 @@ observe that this is the same as reflecting all parts below the $x$ axis to be a
 Now what might $f(|x|)$ look like instead? Since we know that the modulus function makes negative numbers positive, we care about when $x$ is negative or positive.
 
 Since $x$ is on the $x$ axis (of course it is!), we know whether it is negative or positive based on whether it is to the left or the right of the $y$ axis. 
-When it is on the right of the $y$ axis, $x$ is positive and therefore $f(|x|)$ is unchanged. When it is on the left of the $x$ axis, the $x$ point that we plug into $f(x)$ is shifted to be 
+When it is on the right of the $y$ axis, $x$ is positive and therefore $f(|x|)$ is unchanged. When it is on the left of the $y$ axis, the $x$ point that we plug into $f(x)$ is shifted to be 
 the positive $x$ point. This means that the $y$ position of $f(|x|)$ is given by whatever the $y$ position is by going an equal amount to the right of the $y$ axis than you are on the left of it. 
 This is the same as simply reflecting the right side of the $y$ axis to the left side. This is shown in Figure \ref{fig:modx-function-for-modulus}.
 
@@ -494,7 +494,7 @@ This works inside-out in order:
 
 Now we can sketch each one in order, since each step individually we have done above. For example, we can 
 start with $f(|x|)$, which we sketched in Figure \ref{fig:modx-function-for-modulus}. From here, the next step is to take the modulus.
-From our discussion leading up to Figure \ref{fig:mod-function-for-modulus}, we know that this amounts to reflecting everything below the $y$ axis to above the $y$ axis.
+From our discussion leading up to Figure \ref{fig:mod-function-for-modulus}, we know that this amounts to reflecting everything below the $x$ axis to above the $x$ axis.
 We will do the same thing, but to $f(|x|)$. This is sketched in Figure \ref{fig:modmodx-function-for-modulus}.
 
 \begin{figure}[H]
@@ -504,7 +504,7 @@ We will do the same thing, but to $f(|x|)$. This is sketched in Figure \ref{fig:
     \label{fig:modmodx-function-for-modulus}
 \end{figure}
 
-And for the last step, we can take the minus sign of the red line sketched for  $|f(|x|)|$. This reflect every number about the $x$ axis. This gives us Figure \ref{fig:minusmodmodx-function-for-modulus}.
+And for the last step, we can take the minus sign of the red line sketched for  $|f(|x|)|$. This reflects every number about the $x$ axis. This gives us Figure \ref{fig:minusmodmodx-function-for-modulus}.
 \begin{figure}[H]
     \centering
     \incfig[0.75]{minusmodmodx function for modulus}
@@ -517,12 +517,12 @@ The final result would have been hard to spot directly from Figure \ref{fig:func
 We are often interested in how the range of a function is affected by the modulus.
 
 \begin{example}
-    Given that $f(x)$ has range $-16 < f(x) \leq 5$ and reaches every point inbetween, what range does $|f(x)|$ have?
+    Given that $f(x)$ has range $-16 < f(x) \leq 5$ and reaches every point in between, what range does $|f(x)|$ have?
 \end{example}
 \begin{solution}
     Since the range means that the $y$ values are between $-16$ and $5$ (but not equal to $-16$ in this case), and we know the 
     modulus turns negative values into positive values, we therefore know that $-16$ will transform into $16$. Since this is more than $5$, this is the new top-end of the range. 
-    For the lower end, we are told that $f$ reaches every point inbetween. Therefore the lowest point the modulus can reach is $0$.
+    For the lower end, we are told that $f$ reaches every point in between. Therefore the lowest point the modulus can reach is $0$.
 
     This gives us the range $0 \leq |f(x)| < 16$, since the original function did not quite reach $-16$, the modulus can't reach $16$ either. This completes the question.
     \qed
@@ -537,7 +537,7 @@ $-16$ is ``further negative'' than $5$ is positive, the new upper end of the ran
     \begin{enumerate}
         \item What is the range of $f(x)$?
         \item What is the range of $|f(x)|$?
-        \item What is the range of $f(|x|)$ if we are given that $f$ is not defined for inputs not between $-2$ and $-1$? What is the range if we allowed $-2 \leq x \leq 1$ for $f(|x|) = 2|x| - 1$?\footnote{The difference here is whether we impose that $f$ itself is only defined on inputs between $-2$ and $1$, or if we consider $f(|x|)$ on all inputs between $-2$ and $1$, which actually implies that we are allowed to use $f$ between the points $0$ and $2$, since we are taking the modulus first before plugging into $f$. This is an important clarification since $2$ is outside our original allowed range of $x$ values.}
+        \item What is the range of $f(|x|)$ if we are given that $f$ is only defined for inputs between $-2$ and $1$? What is the range if we allowed $-2 \leq x \leq 1$ for $f(|x|) = 2|x| - 1$?\footnote{The difference here is whether we impose that $f$ itself is only defined on inputs between $-2$ and $1$, or if we consider $f(|x|)$ on all inputs between $-2$ and $1$, which actually implies that we are allowed to use $f$ between the points $0$ and $2$, since we are taking the modulus first before plugging into $f$. This is an important clarification since $2$ is outside our original allowed range of $x$ values.}
     \end{enumerate}
 \end{example}
 
@@ -545,7 +545,7 @@ $-16$ is ``further negative'' than $5$ is positive, the new upper end of the ran
 
     \begin{enumerate}
         \item 
-    We know that this function is a straight line that is increasing, so therefore the range has to between whatever the leftmost point and the rightmost point is. The place to be careful is that 
+    We know that this function is a straight line that is increasing, so therefore the range has to be between whatever the leftmost point and the rightmost point is. The place to be careful is that 
     we are told that $-2\leq x \leq 1$.
      
     We can find the range therefore by plugging in:
@@ -555,7 +555,7 @@ $-16$ is ``further negative'' than $5$ is positive, the new upper end of the ran
         f(1) &= 2\times(1) -1= 2 -1 = 1
     \end{align*}
 
-    Therefore, when $-2\leq x < 1$, we have that $-5 \leq f(x) \leq 1$ is the range. This completes the first part of the question.
+    Therefore, when $-2\leq x \leq 1$, we have that $-5 \leq f(x) \leq 1$ is the range. This completes the first part of the question.
         \item
     For this part, it is useful to sketch the graph, Figure \ref{fig:line-for-modulus}
 
@@ -580,19 +580,19 @@ $-16$ is ``further negative'' than $5$ is positive, the new upper end of the ran
     \label{fig:modxline-for-modulus}
     \end{figure}
     
-    Notice that this the function cuts off on the left side. This is because we are only allowed to use $f(x)$ when $x$ is between $-2$ and $1$ from the question. But if $x$ is less than $-1$, then $|x|$ is more than $1$, which is not allowed to be input into the function.
+    Notice that the function cuts off on the left side. This is because we are only allowed to use $f(x)$ when $x$ is between $-2$ and $1$ from the question. But if $x$ is less than $-1$, then $|x|$ is more than $1$, which is not allowed to be input into the function.
     
     From here we can see that the new minimum of the function is where the old function intersected the $y$ axis, at $x=0$, and the new maximum is the maximum of the right side of $f(x)$, which in this case is at $x=1$ or $x=-1$.
 
     At $x=0$, 
     \[f(|0|) = 2\times 0 - 1 = -1\] 
-    This gives the minimum as $-1$. at $x=1$, 
+    This gives the minimum as $-1$. At $x=1$, 
     \[ f(|1|) = 2 \times 1 - 1 = 1\]
 
-    This gives us the range $-1 \leq |f(x)| \leq 1$, which completes this part of the question.
+    This gives us the range $-1 \leq f(|x|) \leq 1$, which completes this part of the question.
     
     If we allow $-2 \leq x \leq 1$ as in the second half of this question, the red line would extend backwards to $x=-2$, where $f(|x|) = 2 \times |-2| - 1 = 3$, and therefore the 
-    range in this case is $-1 \leq |f(x)| \leq 3$.
+    range in this case is $-1 \leq f(|x|) \leq 3$.
     
     This completes the full question.
 \end{enumerate}

@@ -1,5 +1,5 @@
 \section{Parametric Equations}
-Parametric equations are when you are given multiple equations which use shared variables, and are to be calculated from the shared variables.
+Parametric equations are when you are given multiple equations which use shared variables, and are calculated from the shared variables.
 
 Commonly in exams this will be given in a form where you have $x$ and $y$ in terms of $t$ separately.
 
@@ -8,8 +8,8 @@ Commonly in exams this will be given in a form where you have $x$ and $y$ in ter
     y &= g(t)
 \end{align*}
 
-You will be normally asked to find $y$ in terms of $x$. 
-From here, there are a two main approaches:
+You will normally be asked to find $y$ in terms of $x$. 
+From here, there are two main approaches:
 \begin{enumerate}
     \item Rearrange one of the equations for $t$ and substitute this into the other equation to eliminate $t$. This is sometimes not possible!
     \item Rearrange one of the equations so that it is in terms of the other equation, and then substitute the variable $x$ or $y$ in directly.
@@ -23,7 +23,7 @@ We will see both approaches below.
         x &= 2t + 1 \\
         y &= 4t - 5 + \frac{3}{t}, \; t\neq 0
     \end{align*}
-    Let $x \neq1$. Then show that the curve satisfied by the above equations can be written as:
+    Let $x \neq 1$. Then show that the curve described by the above equations can be written as:
 
     \[ y = \frac{ax^2 + bx + c}{x-1}\]
 
@@ -52,10 +52,10 @@ We will see both approaches below.
          &= \frac{2(x-1)(x-1) - 5(x-1) + 6}{(x-1)} \tag{putting over one denominator}\\
          &= \frac{2(x^2-2x+1) - 5x+5 + 6}{(x-1)} \tag{expanding brackets}\\
          &= \frac{2x^2-4x+2 - 5x+11}{(x-1)} \tag{expanding brackets}\\
-         &= \frac{2x^2-9x+3}{(x-1)} \tag{simplifying}
+         &= \frac{2x^2-9x+13}{(x-1)} \tag{simplifying}
     \end{align*}
-    Which finishes the question, finding $a=2$, $b=-9$, and $c=3$ so that 
-    \[y = \frac{ax^2 + bx + c}{x-1} = \frac{2x^2+(-9)x+3}{(x-1)} \]
+    Which finishes the question, finding $a=2$, $b=-9$, and $c=13$ so that 
+    \[y = \frac{ax^2 + bx + c}{x-1} = \frac{2x^2+(-9)x+13}{(x-1)} \]
 
     \qed
 \end{solution}
@@ -66,7 +66,7 @@ We will see both approaches below.
         x &= \frac{1}{t} +5t\\
         y &= \frac{1}{t^2} + 10 + 25t^2, \; t\neq 0
     \end{align*}
-    Show that the curve satisfied by the above equations can be written as:
+    Show that the curve described by the above equations can be written as:
 
     \[ y = f(x)\]
 
@@ -130,13 +130,13 @@ We will see both approaches below.
 
     Where $0\leq t < \frac{\pi}{2}$.
 
-    Show that the curve satisfied by the above equations can be written as:
+    Show that the curve described by the above equations can be written as:
 
     \[ y = f(x) \]
 
     Where $f(x)$ is a function of $x$ to be found.
 
-    Comment on whether the the final function is the same as the curve for all $x$.
+    Comment on whether the final function is the same as the curve for all $x$.
 \end{example}
 
 \begin{solution}
@@ -190,7 +190,7 @@ The next question makes use of small angle approximations, covered in Section \r
         x &= \cos(t^2) + 1 \\ 
         y &= \frac{1}{t^4} + t^8
     \end{align*}
-    Using small angle approximations, show that the curve satisfied by the above equations can be written as:
+    Using small angle approximations, show that the curve described by the above equations can be written as:
 
     \[ y \approx f(x) \]
     Where $f(x)$ is a function of $x$ to be found. Comment on what portion of the curve is valid for this approximation.
@@ -252,64 +252,64 @@ The next question makes use of small angle approximations, covered in Section \r
 \begin{solution}
     Firstly we can rearrange $x$ in terms of $t$:
     \begin{align*}
-        x &= \frac{1}{t} - 1 \\
-        x +1 &= \frac{1}{t} \\
-        t(x+1) &= 1 \\
-        t &= \frac{1}{x+1} \tag{as long as $x\neq -1$}
+        x &= \frac{1}{t} + 1 \\
+        x -1 &= \frac{1}{t} \\
+        t(x-1) &= 1 \\
+        t &= \frac{1}{x-1} \tag{as long as $x\neq 1$}
     \end{align*}
     Then we can substitute $t$ into $y$ to find:
     \begin{align*}
-     y &= \cos\left(\frac{1}{x+1} \right) 
+     y &= \cos\left(\frac{1}{x-1} \right) 
     \end{align*}
 
-    Which finds that $a=1$ and $b=1$ so that 
-    \[ y = \cos\left(\frac{1}{ax + b}\right)= \cos\left(\frac{1}{x+1}\right)\]
+    Which finds that $a=1$ and $b=-1$ so that 
+    \[ y = \cos\left(\frac{1}{ax + b}\right)= \cos\left(\frac{1}{x-1}\right)\]
 
     Now to differentiate $y$ in terms of $x$, we must use the chain rule. We can ask our question of: \emph{if we could replace any part with $u$, how can we turn it into a function we know how to differentiate?}
 
     Note that we know how to differentiate $\cos u$, so we write:
 
     \begin{align*}
-        y &= \cos\left(\frac{1}{x+1}\right) \\
+        y &= \cos\left(\frac{1}{x-1}\right) \\
         y &= \cos u \tag{what we want} \\
-        u &= \frac{1}{x+1} \tag{to get what we want}
+        u &= \frac{1}{x-1} \tag{to get what we want}
     \end{align*}
 
     Now remind ourselves of the chain rule Section \ref{sec:chain-rule}, e.g. by pretending that the $du$ cancel:
     \[ \frac{dy}{dx} = \frac{dy }{du}\frac{du }{dx}\]
-    And therefore we can differentiate the equations to find the right hand side of the above:
+    And therefore we can differentiate the equations to find the right-hand side of the above:
     \[ \frac{dy }{du} = -\sin u\]
-    But what about differentiating $ u = \frac{1}{x+1}$? For this, we can do another chain rule! After asking ourselves the same question, we proceed with:
+    But what about differentiating $ u = \frac{1}{x-1}$? For this, we can do another chain rule! After asking ourselves the same question, we proceed with:
 
     \begin{align*}
-        u &= \frac{1}{x+1}\\
+        u &= \frac{1}{x-1}\\
         u &= \frac{1}{v} \tag{what we want}\\
-        v &= x + 1 \tag{to get what we want}
+        v &= x - 1 \tag{to get what we want}
     \end{align*}
 
     And the chain rule in this case would be:
     \[ \frac{du}{dx} = \frac{du }{dv}\frac{dv }{dx}\]
 
-    We can differentiate each equation to get the right hand side of the above:
+    We can differentiate each equation to get the right-hand side of the above:
     \begin{align*}
         \frac{du }{dv} &= -\frac{1}{v^2} \tag{writing $\frac{1}{v} = v^{-1}$}\\
         \frac{dv }{dx} &= 1 \\
         \therefore \frac{du}{dx} &= -\frac{1}{v^2} \tag{using the chain rule}\\
-        &= -\frac{1 }{(x+1)^2} \tag{using $v = x+1$}
+        &= -\frac{1 }{(x-1)^2} \tag{using $v = x-1$}
     \end{align*}
     Therefore, reminding ourselves, we have found:
 
     \begin{align*}
-        \frac{du}{dx} &= -\frac{1 }{(x+1)^2} \\
+        \frac{du}{dx} &= -\frac{1 }{(x-1)^2} \\
         \frac{dy }{du} &= -\sin u \tag{from above}\\
-        \therefore \frac{dy }{dx} &= -\sin u (-\frac{1 }{(x+1)^2}) \tag{using the chain rule}\\
-        &= \frac{\sin u }{(x+1)^2} \\
-        &= \frac{\sin \left( \frac{1}{x+1}\right)}{(x+1)^2} \tag{using $u =  \frac{1}{x+1}$}
+        \therefore \frac{dy }{dx} &= -\sin u (-\frac{1 }{(x-1)^2}) \tag{using the chain rule}\\
+        &= \frac{\sin u }{(x-1)^2} \\
+        &= \frac{\sin \left( \frac{1}{x-1}\right)}{(x-1)^2} \tag{using $u =  \frac{1}{x-1}$}
     \end{align*}
 
-    Therefore, if $y = \cos\left(\frac{1}{x+1}\right)$, then 
+    Therefore, if $y = \cos\left(\frac{1}{x-1}\right)$, then 
 
-    \[\frac{dy }{dx} = \frac{\sin \left( \frac{1}{x+1}\right)}{(x+1)^2}\]
+    \[\frac{dy }{dx} = \frac{\sin \left( \frac{1}{x-1}\right)}{(x-1)^2}\]
 
     This completes the question.
 

@@ -11,7 +11,7 @@ Note that
 
 \[\overline{x}= \frac{1}{n}x_1 + \dots + \frac{1}{n}x_n\]
 
-A weighted average is an average which in which some of the data is given higher or lower priority. More rigorously, if we have weights $w_1, \dots, w_n$ where each $w_i$ is between $0$ and $1$, and $w_1 + \dots + w_n = 1$, Then
+A weighted average is an average in which some of the data is given higher or lower priority. More rigorously, if we have weights $w_1, \dots, w_n$ where each $w_i$ is between $0$ and $1$, and $w_1 + \dots + w_n = 1$, then
 
 \begin{definition} A weighted average of $x_1, \dots, x_n$ using weights $w_1, \dots, w_n$ is defined as:
 \[\overline{x} = w_1x_1 + \dots + w_nx_n= \Sigma_{i=1}^nw_ix_i\]
@@ -61,7 +61,7 @@ It is denoted $N(\mu,\sigma^2)$.
 
 The normal distribution has the shape of a bell curve around the mean, which can be interpreted as in 
 Section \ref{sec:distributions} that the majority of samples will occur around the mean, and that the further away you get from 
-the mean, the less likely a sample is to come from that area. This can be seen visually by which parts of the bell curve has more area underneath, and therefore has a higher likelihood of occurring.
+the mean, the less likely a sample is to come from that area. This can be seen visually by which parts of the bell curve have more area underneath, and therefore have a higher likelihood of occurring.
 
 For example, let's say that human adult weights can be modelled as a normal distribution. 
 We sketch it as a bell curve, symmetric around $75$ as in Figure \ref{fig:normal_distribution_weight}.
@@ -73,7 +73,7 @@ We sketch it as a bell curve, symmetric around $75$ as in Figure \ref{fig:normal
     \label{fig:normal_distribution_weight}
 \end{figure}
 
-Since it is symmetric, we know that the probability that a random sample $X$ is $75kg$ or below is $0.5$ -- this can be denoted as 
+Since it is symmetric, we know that the probability that a random sample $X$ is $75$ kg or below is $0.5$ -- this can be denoted as 
 \[ P(X\leq75) = 0.5\]
 In fact, it is always true for normal distributions that 
 \[P(X \leq \mu) = 0.5\]
@@ -93,12 +93,12 @@ to other regions of the bell curve:
 
 Consider the normal distribution $N(\mu,\sigma^2)$. Using symmetry and the area being $1$, show the following equalities:
 
-\[P(X\leq a) = P(X\geq 2\mu - a) = 1 - P(X>a) = 1-P(X>2\mu-a)\]
+\[P(X\leq a) = P(X\geq 2\mu - a) = 1 - P(X>a) = 1-P(X<2\mu-a)\]
 Have a think if you can reason your way through any of the above! Hint: what is the midpoint of $a$ and $2\mu - a$? What do these equalities become when $\mu = 0$ and $\sigma = 1$?
 
 \end{exercise}
 
-In your exam cheat sheet, you get told a lot of values for probabilties of the form $P(X > a)$, where $X$ comes from a specific normal distribution called the 
+In your exam cheat sheet, you get told a lot of values for probabilities of the form $P(X > a)$, where $X$ comes from a specific normal distribution called the 
 standard normal distribution.
 \begin{definition}
     The \emph{standard normal distribution} is a normal distribution with $\mu=0$ and $\sigma^2 = 1$, denoted $N(0,1)$.
@@ -138,13 +138,13 @@ For point $1$, we can use a little heuristic to figure out if we are dealing wit
 \end{enumerate} 
 If the answer to both of those is yes, you are probably going to use a normal distribution. If no, you'll need to use something else! Usually a question spells it out for you.
 
-Often times, the question asks you about the mean of the normal distribution, and in particular, how you might model the mean itself.
+Often, the question asks you about the mean of the normal distribution, and in particular, how you might model the mean itself.
 
 Given a set of samples $x_1, \dots, x_n$, we can find the sample mean via:
 
 \[ \frac{x_1 + \dots + x_n}{n} \]
 
-If we consider a set of $n$ random variables, $X_1, \dots, X_n$, where each are independently distributed with the same normal distribution $N(\mu, \sigma^2)$, 
+If we consider a set of $n$ random variables, $X_1, \dots, X_n$, where each is independently distributed with the same normal distribution $N(\mu, \sigma^2)$, 
 we can ask ourselves what would the distribution of the mean of those random variables look like:
 
 \[ \overline{X} = \frac{X_1 + \dots + X_n}{n}\]
@@ -156,9 +156,9 @@ Why this is true requires a few facts out of scope, one being that the sum of sc
 One more intuitive way to think about this is that the mean of the mean should itself be the mean with enough points, but the standard deviation of a mean should be smaller since the more points we have the closer to the mean we expect to be, and the mean is bringing those points with it. The additional points help to cancel out any extremes.
 
 \begin{example}
-    A baby's weight at birth can be modelled as a normal distribution with mean $3.5kg$ and standard deviation $0.5$. 
+    A baby's weight at birth can be modelled as a normal distribution with mean $3.5$ kg and standard deviation $0.5$ kg. 
 
-    Your sibling tells you that a healthy range of baby weights is between $3.37kg$ and $3.76kg$.
+    Your sibling tells you that a healthy range of baby weights is between $3.37$ kg and $3.76$ kg.
 
     You are given the following values for $P(Z>z)$ where $Z$ is a standard normal distribution:
     \[
@@ -170,7 +170,7 @@ One more intuitive way to think about this is that the mean of the mean should i
     \end{array}
     \]
 
-    Using the closest values from the above table, find the probability that the weight of the baby is between $3.37kg$ and $3.76kg$.
+    Using the closest values from the above table, find the probability that the weight of the baby is between $3.37$ kg and $3.76$ kg.
 \end{example}
 
 \begin{solution}
@@ -199,7 +199,7 @@ One more intuitive way to think about this is that the mean of the mean should i
 
     The region we want is found by $P(Z>-0.26) - P(Z>0.52)$, which is converted to $1 - P(Z>0.26) - P(Z>0.52)$.
 
-    The closest values we have from the table are P(Z>0.2533) and P(Z>0.5244), which we can use to find that the probability of the baby weight being between $3.37kg$ and $3.76kg$ is approximately 
+    The closest values we have from the table are $P(Z>0.2533)$ and $P(Z>0.5244)$, which we can use to find that the probability of the baby weight being between $3.37$ kg and $3.76$ kg is approximately 
     \[ (1- P(Z>0.2533)) - P(Z>0.5244) = (1-0.4000) - 0.3000 = 0.3000 \]
 
     This finishes the question.
@@ -237,7 +237,7 @@ Due to symmetries, the table only needs to contain values of $P(Z>z)$ for $z\geq
 
 Nowadays, even handheld calculators have the ability to compute the probability of a normal distribution (secretly using a numerical method like the trapezium rule), but since the exam cannot assume you have such a device, we still need to use the standard normal distribution.
 
-This means for the exam, it is best practise to convert to the standard normal distribution, and only then use your calculator if you have one. Otherwise, you must use the lookup table provided in the formula booklet.
+This means for the exam, it is best practice to convert to the standard normal distribution, and only then use your calculator if you have one. Otherwise, you must use the lookup table provided in the formula booklet.
 
 \subsubsection{Binomial Distribution} \label{sec:binomial-distribution}
 
@@ -253,7 +253,7 @@ We denote a random variable which is distributed with a binomial distribution as
 
 \begin{example}
     A chair factory produces a defective chair with a probability of $5\%$.
-    Using the formula book, what is the probability there are no more than $1$ defective chairs in a batch of $50$ chairs, to four significant figures?
+    Using the formula book, what is the probability there is no more than $1$ defective chair in a batch of $50$ chairs, to four significant figures?
 \end{example}
 \begin{solution}
     Let's model this with a ``success'' being a defective chair, so that we want the number of successes to be $1$ or less.
@@ -264,7 +264,7 @@ We denote a random variable which is distributed with a binomial distribution as
 
     Where we read from the $0.05$ column.
 
-    Therefore the probability that there are no more than $1$ defective chairs in a batch of $50$ is $28.94\%$
+    Therefore the probability that there is no more than $1$ defective chair in a batch of $50$ is $28.94\%$
     \qed
 \end{solution}
 
@@ -277,7 +277,7 @@ So the previous question could be worked out directly as
 \[ P(X\leq1) = P(X=0) + P(X=1)\]
 
 \begin{exercise}
-    Analysis shows that $30\%$ of the time, a randomly chosen cereal ball from a cereal manafacturer is chocolate. A box of cereal contains $100$ cereal balls. Using an appropriate choice of distribtution, what is the probability of getting exactly $30$ chocolate balls in the cereal box?
+    Analysis shows that $30\%$ of the time, a randomly chosen cereal ball from a cereal manufacturer is chocolate. A box of cereal contains $100$ cereal balls. Using an appropriate choice of distribution, what is the probability of getting exactly $30$ chocolate balls in the cereal box?
 
     Instead, what is the probability of getting between $29$ and $31$ chocolate balls in this sample, inclusive? Then state the probability of getting a number of chocolate balls not between $29$ and $31$ inclusive.
 
@@ -301,7 +301,7 @@ So the previous question could be worked out directly as
             &\approx 0.25632
     \end{align*}
 
-    This is accounts for a quarter of all possibilities, which might be more than expected considering the previous number.
+    This accounts for a quarter of all possibilities, which might be more than expected considering the previous number.
 
     We were also asked the probability of being outside this range:
 
@@ -503,10 +503,10 @@ E.g. if we wanted to check that the number of chocolate balls is not $50\%$ in o
 whereas if we wanted to check that the number of chocolate balls is more than expected, we would use the alternative hypothesis of the probability being more than $50\%$.
 
 An alternative hypothesis which looks like $H_1:\;p\neq a$ is called a two-tailed test, whereas an alternative hypothesis which looks like $H_1:\;p>a$ or $H_1:\; p<a$ is called a one-tailed test. 
-The two-tailed test has this name since it can be split into two regions on either side of the null value, e.g. $p<a$ and $p>a$, which when combined account for all of $p\neq a$. In practise, a two-tailed test involves calculating probabilities for both tails separately. Note that we have just used $p$ as a notational example.
+The two-tailed test has this name since it can be split into two regions on either side of the null value, e.g. $p<a$ and $p>a$, which when combined account for all of $p\neq a$. In practice, a two-tailed test involves calculating probabilities for both tails separately. Note that we have just used $p$ as a notational example.
 
 We choose (usually are told) a \emph{level of significance}, which amounts to ``assuming $H_0$ is true, how extreme of a result do we want to choose as too unexpected before we doubt it?'' 
-More rigoroously, it is the maximum probability (in the case of one tail) we are allowing for an event to occur in the extreme of our null hypothesis. For a two-tailed tests, we consider it as two one-tailed tests with half the allowed maximum probability.
+More rigorously, it is the maximum probability (in the case of one tail) we are allowing for an event to occur in the extreme of our null hypothesis. For a two-tailed test, we consider it as two one-tailed tests with half the allowed maximum probability.
 
 What about critical regions? The critical region is the set of possible observations in which we would have evidence to reject the null hypothesis, i.e. a value which lies within our one or two-tailed region which would give us reason to doubt our null hypothesis for some level of significance.
 
@@ -534,7 +534,7 @@ The $p$-value is the probability, assuming $H_0$ is true, of obtaining a result 
 
 \begin{solution}
     Since we have independent events, a probability of ``success'' of $0.5$ since there should be an equal percentage of chocolate to non-chocolate balls, we are using a fixed number of events, and we want to count the number of successes, 
-    we should use a binomial distribution $X \sim B(50,0.5)$, where $X$ is the number of chocolate balls. We want to test if the probability $p$ really is $0.5$, therefore since we are using a two-tailed test, our hypothesis are as follows:
+    we should use a binomial distribution $X \sim B(50,0.5)$, where $X$ is the number of chocolate balls. We want to test if the probability $p$ really is $0.5$, therefore since we are using a two-tailed test, our hypotheses are as follows:
 
     \begin{align*}
         H_0 : \; p=0.5 \tag{null hypothesis}\\
@@ -636,7 +636,7 @@ The $p$-value is the probability, assuming $H_0$ is true, of obtaining a result 
 
     A random sample of $52$ chocolate balls is taken and found to have mean mass $5.72$ g.
 
-    Using a $5\%$ level of significance, conduct an appropriate hypothesis test to assess the consumer’s claim.
+    Using a $5\%$ level of significance, conduct an appropriate hypothesis test to assess the consumer's claim.
 
     Stating your hypotheses clearly, conduct an appropriate hypothesis test, stating clearly the critical region
 
@@ -874,7 +874,7 @@ There is evidence at the $5\%$ level of a positive correlation between the numbe
 \subsubsection{Additional Exercises}
 
 \begin{example}
-    After spotting many people with orange hair, James believes that the percentage of orange haired people has increased to $75\%$ in recent times.
+    After spotting many people with orange hair, James believes that the percentage of orange-haired people has increased to $75\%$ in recent times.
 
     To support his claim, James randomly selects $50$ people and finds that $29$ of them have orange hair. You may assume that the selections are independent.
 
@@ -886,16 +886,16 @@ There is evidence at the $5\%$ level of a positive correlation between the numbe
 \end{example}
 
 \begin{solution}
-    Let's model the number of non-orange haired people, so that the null hypothesis is that $25\%$ of people have non-orange hair. This is to allow us to use the formula book, which has values between $p=0.05$ and $p=0.5$.
+    Let's model the number of non-orange-haired people, so that the null hypothesis is that $25\%$ of people have non-orange hair. This is to allow us to use the formula book, which has values between $p=0.05$ and $p=0.5$.
 
-    If $X$ is the number of non-orange haired people, we will model $X \sim B(50,0.25)$, and our hypothesis are that either James is right or the number of non-orange haired people have increased, letting p be the probability a person has non-orange hair:
+    If $X$ is the number of non-orange-haired people, we will model $X \sim B(50,0.25)$, and our hypotheses are that either James is right or the number of non-orange-haired people has increased, letting $p$ be the probability a person has non-orange hair:
 
     \begin{align*}
         H_0: \; &p=0.25 \\
         H_1: \; &p>0.25
     \end{align*}
 
-    The critical region is the set of values that are in the $1\%$ most extreme tail of non-orange haired people under $H_0$, therefore we wish to find $x$ so that $P(X\geq x)<0.01$.
+    The critical region is the set of values that are in the $1\%$ most extreme tail of non-orange-haired people under $H_0$, therefore we wish to find $x$ so that $P(X\geq x)<0.01$.
 
     We convert to $\leq$ for the formula book:
 
@@ -917,9 +917,9 @@ There is evidence at the $5\%$ level of a positive correlation between the numbe
 
     Which gives us our critical region of $X\geq21$. This makes the actual level of significance $P(X\geq 21)=1- 0.9937 = 0.0063$.
     
-    Recall that $X$ was the number of non-orange haired people.
+    Recall that $X$ was the number of non-orange-haired people.
 
-    James found that $29$ out of his $50$ people had orange hair, meaning that $21$ people had non-orange hair. Since this is within the critical region, there is evidence to reject the the null hypothesis that $75\%$ of people have orange hair, in favour of there less than $75 \%$ of people have orange hair, to this level of significance.
+    James found that $29$ out of his $50$ people had orange hair, meaning that $21$ people had non-orange hair. Since this is within the critical region, there is evidence to reject the null hypothesis that $75\%$ of people have orange hair, in favour of there being less than $75\%$ of people having orange hair, to this level of significance.
     \qed
 \end{solution}
 

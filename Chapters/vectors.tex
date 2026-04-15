@@ -9,7 +9,7 @@ Vectors are written as a column of numbers, where each number corresponds to mov
 
 This allows us to visualise moving in a vector as moving each axis individually.
 
-To get the overall length of the vector, we can now ask ourself how can we find the length of the line formed by drawing the shape formed by going in each axis' direction as instructed to by the vector.
+To get the overall length of the vector, we can now ask ourselves how we can find the length of the line formed by drawing the shape formed by going in each axis' direction as instructed by the vector.
 
 \[
 \begin{tikzpicture}[scale=1.1, >=Latex]
@@ -93,7 +93,7 @@ And some geometry (think about why this is true by splitting into two different 
     \vert \vec{v} \vert = \sqrt{\sqrt{a^2 + b^2}^2 + c^2} = \sqrt{a^2 + b^2 + c^2}
 \end{align*}
 
-This gives us the equations for lengths of one and two-dimensional vectors as the square root of the sum of squares of the components! This should now be clear that it is the same as Pythagoras.
+This gives us the equations for lengths of two and three-dimensional vectors as the square root of the sum of squares of the components! This should now be clear that it is the same as Pythagoras.
 
 To continue the discussion about imagining vectors as a path you can follow from a starting point to an end point, let's imagine we have two vectors $\vec{x}$ and $\vec{y}$. 
 We are an ant that starts at the origin and can only move using these vectors. We choose to do the following:
@@ -233,11 +233,11 @@ This gives us exactly what the arrow between the origin and the end point would 
 
     \begin{enumerate}
         \item Through town: $\vec{CA} = -\vec{OC} + \vec{OA}$
-        \item Reversing the original route: $\vec{CA} = -\vec{BC} - \vec{BA}$
-        \item Whatever this route is: $\vec{CA} = -\vec{OC} + \vec{OB} - \vec{BA}$
+        \item Reversing the original route: $\vec{CA} = -\vec{BC} - \vec{AB}$
+        \item Whatever this route is: $\vec{CA} = -\vec{OC} + \vec{OB} + \vec{BA}$
         \item \dots
     \end{enumerate}
-    In fact, the right hand side will be idential for all of these options! Let's calculate the first two:
+    In fact, the right-hand side will be identical for all of these options! Let's calculate the first two:
 
     \begin{align*}
         \vec{CA} &= -\vec{OC} + \vec{OA} \\
@@ -245,7 +245,7 @@ This gives us exactly what the arrow between the origin and the end point would 
         &= \begin{pmatrix}-3\\5\end{pmatrix}
     \end{align*}
     \begin{align*}
-        \vec{CA} &= -\vec{BC} - \vec{BA} \\
+        \vec{CA} &= -\vec{BC} - \vec{AB} \\
         &= -\begin{pmatrix}1\\-4\end{pmatrix} - \begin{pmatrix}2\\-1\end{pmatrix} \\
         &= \begin{pmatrix}-3\\5\end{pmatrix}
     \end{align*}
@@ -261,7 +261,7 @@ This gives us exactly what the arrow between the origin and the end point would 
 
 \begin{example}
     You are given a cuboid with one corner at the origin with the remaining vertices marked $A$ through $G$, 
-    $N$ is at the midpoint of $D$ and $E$, $M$ is at the midpoint of $B$ and $G$ as in the diagram below.
+    $N$ is at the midpoint of $D$ and $E$, and $M$ is at the midpoint of $B$ and $G$ as in the diagram below.
 
     \[
 \tdplotsetmaincoords{70}{40}
@@ -338,7 +338,7 @@ This gives us exactly what the arrow between the origin and the end point would 
 
     We know the vector $\vec{OD}$, and we also know $\vec{BO}=-\vec{OB}$ since it is in the opposite direction with the same length.
 
-    Now consider $\vec{BM}$. Since it is half way along $\vec{BG}$, we know that 
+    Now consider $\vec{BM}$. Since it is halfway along $\vec{BG}$, we know that 
 
     \[ \vec{BM} = \frac{1}{2} \vec{BG}\]
 
@@ -348,7 +348,7 @@ This gives us exactly what the arrow between the origin and the end point would 
     Therefore 
     \[ \vec{MB} = \begin{pmatrix}0\\-3/2\\0\end{pmatrix}\]
 
-    Similarly, since $\vec{DN}$ is half way along $\vec{DE}$, we can calculate 
+    Similarly, since $\vec{DN}$ is halfway along $\vec{DE}$, we can calculate 
 
     \begin{align*}
         \vec{DN} &= \frac{1}{2} \vec{DE} \\

@@ -157,7 +157,7 @@ Note that since we are counting from $x_0$ to $x_n$, we actually have $(n+1)$ po
      &= 3^2 \\
      &= 9
     \end{align*} 
-    Comparing it with the trapezium rule, we were only out by $0.5$ -- the trapezium rule with $4$ equally spaced segments got $9.5$ as the integral whereas the actual answer was $9$. Pretty close!
+    Comparing it with the trapezium rule, we were only out by $0.5$ -- the trapezium rule with $3$ equally spaced segments got $9.5$ as the integral whereas the actual answer was $9$. Pretty close!
     \qed
 \end{solution}
 
@@ -166,7 +166,7 @@ In fact, you can usually anticipate whether the trapezium rule will over or unde
 by looking at the section which does not overlap between the trapeziums and the function itself, look at Figure \ref{fig:shaded-function-with-trapz} again to see which parts the trapeziums include more area than the function, and which parts the trapeziums include less area than the function. Notice the patterns in the overlap when the function is curving in the same direction.
 
 \begin{example}
-    You are given the following grid for of values for a function.
+    You are given the following grid of values for a function.
 
         \begin{center}
     \begin{tabular}{c|cccc}
@@ -211,7 +211,7 @@ by looking at the section which does not overlap between the trapeziums and the 
     
     The actual ``trapezium'' we are computing for the first trapezium is:
 
-    \[ \frac{h(-1 + 5)}{2}\]
+    \[ \frac{h(-1 + 4)}{2}\]
 
     This makes it unclear whether the area in this case is less than or more than the actual function, at least for the geometrical approach we have been using, but it turns out the trapezium rule still underestimates the true integral in this case too, as long as the curve's derivative is decreasing\footnote{If we instead think of the straight line segment itself between $x_0$ and $x_1$ as a function, say $L(x)$, it follows due to the decreasing derivative that $f(x)\geq L(x)$ on this interval, and the ``trapezium area'' we have been using is given as $\int_{x_0}^{x_1}L(x)dx$. It then follows that $\int_{x_0}^{x_1}f(x)dx \geq\int_{x_0}^{x_1}L(x)dx$, which shows that the trapezium rule still undershoots the true value in this case.}.
     \qed
@@ -261,12 +261,12 @@ Firstly, we want to find the gradient of our function $f$ at an initial point $x
 Then given this gradient, we want to find the equation of the straight line which has this gradient, and passes through the point $f(x_0)$, which is exactly the properties we want from 
 the tangent to a curve! It needs to ``touch'' the curve and have the slope the curve has at that point.
 
-We can write a general straight line as $y = mx + c$, where $m$ is the gradient, and $c$ is the $y$ intersect. But we know that at $x_0$, our tangent line passes through $f(x_0)$ with gradient $m=f'(x_0)$.
+We can write a general straight line as $y = mx + c$, where $m$ is the gradient, and $c$ is the $y$ intercept. But we know that at $x_0$, our tangent line passes through $f(x_0)$ with gradient $m=f'(x_0)$.
 
 We can write this tangent observation as an equation:
 
 \begin{align*}
-    y &= f'(x) x +c \tag{our general equation for a straight line}\\
+    y &= f'(x_0) x +c \tag{our equation for the tangent line}\\
     \therefore f(x_0) &= f'(x_0)x_0 + c \tag{using our observations above}\\
     \therefore c &= f(x_0) - f'(x_0)x_0 \tag{rearranging}\\
     \therefore y &= f'(x_0)x + f(x_0) - f'(x_0)x_0 \tag{subbing into original equation}
@@ -281,7 +281,7 @@ To find this, we simply need to set $y=0$ and solve for $x$:
     \therefore x &= x_0 - \frac{f(x_0)}{f'(x_0)} 
 \end{align*}
 
-We can convert this into an interative process by considering the point on the left side to be the ``next'' point, and then run through the same process again but swapping $x_0$ with the next point. This gives the 
+We can convert this into an iterative process by considering the point on the left side to be the ``next'' point, and then run through the same process again but swapping $x_0$ with the next point. This gives the 
 \textbf{Newton-Raphson Iteration for solving $f(x)=0$:}
 
 \[ x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\]
@@ -319,7 +319,7 @@ Also notice that, since this method assumes that our function ``looks like'' a s
          &= \frac{7}{8}
     \end{align*}
 
-    For the second iteration, we use that $x_1 = 6/7$ to find:
+    For the second iteration, we use that $x_1 = 7/8$ to find:
     \begin{align*}
         x_2 &= x_1 - \frac{f(x_1)}{f'(x_1)} \\
             &= \frac{7}{8} - 

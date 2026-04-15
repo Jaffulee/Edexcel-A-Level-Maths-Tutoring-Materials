@@ -4,13 +4,13 @@ There are many kinds of series and sequences, but we care about two of them: \em
 In general, a sequence is an ordered list of numbers, and a series is a sum of a sequence.
 \subsection{Arithmetic Series}
 
-An arithmetic sequence is one in which the distance between consecutive points are the same:
+An arithmetic sequence is one in which the distance between consecutive points is the same:
 
     \begin{center}
     \begin{tabular}{c|ccccc}
     $i$      & 1 & 2 & 3 & 4 & \dots\\
     \hline
-    $x_i$ & -6 & 1 & 8 & 16 & \dots
+    $x_i$ & -6 & 1 & 8 & 15 & \dots
     \end{tabular}
     \end{center}
 In the above, each term has a gap of $7$, which can be worked out by calculating $x_n - x_{n-1}$, and verifying that it is $7$ in each case.
@@ -18,7 +18,7 @@ In the above, each term has a gap of $7$, which can be worked out by calculating
 What if we wanted to add the terms together? What if we wanted to find a formula for the arithmetic series? 
 
 A general arithmetic series with $n$ terms looks like the following:
-\[ a + (a+d) + (a + 2d) + \dots + (a + (n-1)d)\]
+\[ S = a + (a+d) + (a + 2d) + \dots + (a + (n-1)d)\]
 
 Here $a$ is the first term, and $d$ is the distance between consecutive terms.
 
@@ -78,7 +78,7 @@ And dividing gives us the formula for an arithmetic series of $n$ terms, startin
 
 \subsection{Geometric Series}
 
-A geometric sequence is one in which the ratio between consecutive points are the same:
+A geometric sequence is one in which the ratio between consecutive points is the same:
 
     \begin{center}
     \begin{tabular}{c|ccccc}
@@ -91,7 +91,7 @@ In the above, each term is $1/2$ of the previous, which can be worked out by cal
 
 What if we wanted to add the terms together? What if we wanted to find a formula for the geometric series? 
 
-A general arithmetic series with $n$ terms looks like the following:
+A general geometric series with $n$ terms looks like the following:
 \[ a + ra + r^2a + \dots + r^{n-2}a + r^{n-1}a\]
 
 Here $a$ is the first term, and $r$ is the ratio between consecutive terms.
@@ -105,7 +105,7 @@ Here comes another fun trick, if we write the sum multiplied by $r$:
 
 \[ rS =  ra + r^2a + r^3a + \dots + r^{n-1}a + r^na\]
 
-Why would we do this? It turns out that subtracting to two simplifies our lives greatly:
+Why would we do this? It turns out that subtracting the two simplifies our lives greatly:
 
 \begin{align*}
     S - rS =& a &+& \cancel{ra} &+& \cancel{r^2a} &+& \dots  &+& \cancel{r^{n-1}a} & &\\
