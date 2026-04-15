@@ -1,0 +1,419 @@
+%% This is file `elsarticle-template-1-num.tex',
+%%
+%% Copyright 2009 Elsevier Ltd
+%%
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+
+\documentclass[a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ mathrsfs }
+\usepackage{ dsfont }
+\usepackage{tikz-cd}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{float}
+\usepackage{lineno}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\newtheorem{name}{Printed output}
+\newtheorem{mydef}{Definition}
+\newtheoremstyle{break}%
+  {}%
+  {}%
+  {}%
+  {}%
+  {\bfseries}%
+  {.}%
+  {\newline}%
+  {}
+
+\theoremstyle{plain}
+\newtheorem{question}{Question}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{note*}{Note}
+\newtheorem*{claim}{Claim}
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem*{solution}{Solution}
+\newtheorem{exercise}{Exercise}
+
+\numberwithin{equation}{subsection}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}%
+    \import{./Figures/}{#2.pdf_tex}%
+}
+\newcommand{\hodge}{{*}}
+\newcommand{\tang}{\operatorname{\textbf{\textup{t}}}}
+\newcommand{\norm}{\operatorname{\textbf{\textup{n}}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bP}{\mathbb{bP}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+
+\usepackage{comment}
+\newcommand{\bmv}{\bm{v}}
+\newcommand{\bmu}{\bm{u}}
+\newcommand{\bmw}{\bm{w}}
+\newcommand{\bmx}{\bm{x}}
+
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cJ}{\mathcal{J}}
+
+\newcommand{\frp}{\mathfrak{p}}
+\newcommand{\frq}{\mathfrak{q}}
+\newcommand{\frm}{\mathfrak{m}}
+\newcommand{\frP}{\mathfrak{P}}
+
+\newcommand{\msF}{\mathscr{F}}
+\newcommand{\msA}{\mathscr{A}}
+\newcommand{\msM}{\mathscr{M}}
+\newcommand{\msE}{\mathscr{E}}
+\newcommand{\msU}{\mathscr{U}}
+\newcommand{\msB}{\mathscr{B}}
+\newcommand{\msD}{\mathscr{D}}
+\newcommand{\msL}{\mathscr{L}}
+\newcommand{\msS}{\mathscr{S}}
+\newcommand{\msG}{\mathscr{G}}
+\newcommand{\msT}{\mathscr{T}}
+\newcommand{\msC}{\mathscr{C}}
+\newcommand{\msH}{\mathscr{H}}
+\newcommand{\msO}{\mathscr{O}}
+\newcommand{\msJ}{\mathscr{J}}
+\newcommand{\msP}{\mathscr{P}}
+
+\newcommand{\vect}[1]{\underline{\textbf{#1}}}
+\newcommand{\llangle}{\left\langle}
+\newcommand{\rrangle}{\right\rangle}
+\newcommand{\llbrace}{\left\lbrace}
+\newcommand{\rrbrace}{\right\rbrace}
+\newcommand{\setof}[1]{\left\lbrace #1 \right\rbrace}
+
+\newcommand{\cFA}{\cF(\cA)}
+\newcommand{\sigmaA}{\sigma(\cA)}
+\newcommand{\del}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand{\innerproductb}[2]{\llangle\bm{#1},\bm{#2}\rrangle}
+\newcommand{\innerproduct}[2]{\llangle{#1},{#2}\rrangle}
+
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\Span}{\operatorname{Span}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\sh}{\operatorname{sh}}
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Mor}{\operatorname{Mor}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\res}{\operatorname{res}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand*{\sheafhom}{\mathcal{H}\kern -.5pt \it{ om}}
+\newcommand*{\sheafspec}{\mathcal{S}\kern -.5pt \it{ pec}}
+\newcommand*{\sheafproj}{{\mathcal{P}\kern -.5pt \it{ roj}}}
+\newcommand{\Div}{\operatorname{div}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Qcoh}{\operatorname{Qcoh}}
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\Op}{\operatorname{Op}}
+\newcommand{\WF}{\operatorname{WF}}
+\newcommand{\Char}{\operatorname{Char}}
+\newcommand{\Ell}{\operatorname{Ell}}
+\newcommand{\RE}{\operatorname{Re}}
+\newcommand{\IM}{\operatorname{Im}}
+\newcommand{\cosec}{\operatorname{cosec}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+\begin{document}
+
+\title{\textbf{Problem Sheet: Functions 1 Solution}}
+\author{\textbf{Jeffrey Thompson}}
+\maketitle
+
+\begin{exercise}
+Let $f$ be a function defined by
+\[
+    f(x) = \frac{3x+2}{7}.
+\]
+\begin{enumerate}
+    \item Find $ff(x)$, and write your answer in the form
+    \[
+        ff(x) = \frac{ax+b}{49}
+    \]
+    where $a,b$ are numbers.
+    \item Find $f^{-1}(x)$, and write your answer in the form
+    \[
+        f^{-1}(x) = \frac{ax+b}{3}
+    \]
+    where $a,b$ are numbers.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+
+\begin{enumerate}
+    \item First write
+    \[
+        f(x) = \frac{3x+2}{7}.
+    \]
+    Then
+    \[
+        ff(x) = f(f(x)) = \frac{3f(x)+2}{7}.
+    \]
+    Substituting $f(x)$ in gives
+    \[
+        ff(x) = \frac{3\frac{3x+2}{7}+2}{7}.
+    \]
+    Multiply by $\frac{7}{7}$ to remove the inner denominator:
+    \begin{align*}
+        ff(x)
+        &= \frac{7}{7}\times\frac{3\frac{3x+2}{7}+2}{7}\\
+        &= \frac{3\times\cancel{7}\times\frac{3x+2}{\cancel{7}}+14}{49}\\
+        &= \frac{9x+6+14}{49}\\
+        &= \frac{9x+20}{49}.
+    \end{align*}
+    Hence
+    \[
+        ff(x) = \frac{9x+20}{49}
+    \]
+    and so $a=9$, $b=20$.
+
+    \item Write
+    \[
+        y = \frac{3x+2}{7}.
+    \]
+    Rearranging for $x$:
+    \begin{align*}
+        7y &= 3x+2\\
+        7y-2 &= 3x\\
+        x &= \frac{7y-2}{3}.
+    \end{align*}
+    Therefore
+    \[
+        f^{-1}(x) = \frac{7x-2}{3}.
+    \]
+    Hence $a=7$, $b=-2$.
+\end{enumerate}
+\qed
+\end{solution}
+
+% ------------------------------------------------------------
+
+\begin{exercise}
+Let $f$ be a function defined by
+\[
+    f(x) = \frac{3x+2}{6x}, \qquad x \neq 0.
+\]
+\begin{enumerate}
+    \item Find $ff(x)$, simplifying your answer into the form
+    \[
+        ff(x) = \frac{ax+b}{cx+d}
+    \]
+    where $a,b,c,d$ are numbers.
+    \item State where $ff(x)$ is defined.
+    \item Find $f^{-1}(x)$ in the form
+    \[
+        f^{-1}(x) = \frac{1}{ax+b}
+    \]
+    where $a,b$ are numbers.
+    \item State where $f^{-1}(x)$ is defined.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+
+\begin{enumerate}
+    \item First write
+    \[
+        f(x) = \frac{3x+2}{6x}, \qquad x \neq 0.
+    \]
+    Then
+    \[
+        ff(x) = f(f(x)) = \frac{3f(x)+2}{6f(x)}.
+    \]
+    Substituting gives
+    \[
+        ff(x) = \frac{3\frac{3x+2}{6x}+2}{6\frac{3x+2}{6x}}.
+    \]
+    Multiply by $\frac{6x}{6x}$:
+    \begin{align*}
+        ff(x)
+        &= \frac{6x}{6x}\times \frac{3\frac{3x+2}{6x}+2}{6\frac{3x+2}{6x}}\\
+        &= \frac{3\times\cancel{6x}\times\frac{3x+2}{\cancel{6x}}+12x}{6\times\cancel{6x}\times\frac{3x+2}{\cancel{6x}}}\\
+        &= \frac{9x+6+12x}{18x+12}\\
+        &= \frac{21x+6}{18x+12}\\
+        &= \frac{7x+2}{6x+4}.
+    \end{align*}
+    Hence
+    \[
+        ff(x) = \frac{7x+2}{6x+4}
+    \]
+    so $a=7$, $b=2$, $c=6$, $d=4$.
+
+    \item We need
+    \[
+        6x+4 \neq 0
+    \]
+    so
+    \[
+        x \neq -\frac{2}{3}.
+    \]
+    But we also need $x \neq 0$ from the original function. There is one more thing to check: since $ff(x)=f(f(x))$, we also need
+    \[
+        f(x) \neq 0.
+    \]
+    That would mean
+    \[
+        \frac{3x+2}{6x} = 0,
+    \]
+    but this has no solution, since a fraction is only $0$ when its numerator is $0$, and $3x+2=0$ would give $x=-\frac{2}{3}$, which we have already excluded from the denominator of $ff(x)$.
+    Therefore $ff(x)$ is defined whenever
+    \[
+        x \neq 0, \qquad x \neq -\frac{2}{3}.
+    \]
+
+    \item Write
+    \[
+        y = \frac{3x+2}{6x}.
+    \]
+    Rearranging for $x$:
+    \begin{align*}
+        6xy &= 3x+2\\
+        6xy-3x &= 2\\
+        x(6y-3) &= 2\\
+        x &= \frac{2}{6y-3}\\
+        &= \frac{1}{3y-\frac{3}{2}}.
+    \end{align*}
+    Therefore
+    \[
+        f^{-1}(x) = \frac{1}{3x-\frac{3}{2}}.
+    \]
+    Hence $a=3$, $b=-\frac{3}{2}$.
+
+    \item We need
+    \[
+        3x-\frac{3}{2} \neq 0
+    \]
+    and therefore
+    \[
+        x \neq \frac{1}{2}.
+    \]
+\end{enumerate}
+\qed
+\end{solution}
+
+% ------------------------------------------------------------
+
+\begin{exercise}
+Let $f$ and $g$ be functions defined by
+\[
+    f(x) = \sin(x) + \cos(2x)
+\]
+\[
+    g(x) = \frac{x-1}{2}.
+\]
+\begin{enumerate}
+    \item Find $fg(x)$, simplifying your answer.
+    \item Let $h(x) = \frac{3x+2}{7}$ and $k(x) = \frac{7x-2}{3}$. By computing $hk(x)$, verify that $k$ is the inverse of $h$.
+\end{enumerate}
+\end{exercise}
+
+\begin{solution}
+
+\begin{enumerate}
+    \item First write
+    \[
+        f(x) = \sin(x) + \cos(2x), \qquad g(x) = \frac{x-1}{2}.
+    \]
+    Then
+    \[
+        fg(x) = f(g(x)) = \sin(g(x)) + \cos(2g(x)).
+    \]
+    Substituting $g(x)$ gives
+    \begin{align*}
+        fg(x)
+        &= \sin\left(\frac{x-1}{2}\right) + \cos\left(2\times\frac{x-1}{2}\right)\\
+        &= \sin\left(\frac{x-1}{2}\right) + \cos(x-1).
+    \end{align*}
+
+    \item First write
+    \[
+        h(x) = \frac{3x+2}{7}, \qquad k(x) = \frac{7x-2}{3}.
+    \]
+    Then
+    \begin{align*}
+        h(k(x))
+        &= \frac{3k(x)+2}{7}\\
+        &= \frac{3\frac{7x-2}{3}+2}{7}\\
+        &= \frac{\cancel{3}\frac{7x-2}{\cancel{3}}+2}{7}\\
+        &= \frac{7x-2+2}{7}\\
+        &= \frac{7x}{7}\\
+        &= x.
+    \end{align*}
+    This already shows the key inverse relation. For completeness, we can also check the other composition:
+    \begin{align*}
+        k(h(x))
+        &= \frac{7h(x)-2}{3}\\
+        &= \frac{7\left(\frac{3x+2}{7}\right)-2}{3}\\
+        &= \frac{3x+2-2}{3}\\
+        &= \frac{3x}{3}\\
+        &= x.
+    \end{align*}
+    Therefore both $h(k(x))=x$ and $k(h(x))=x$, which verifies that $k$ is the inverse of $h$.
+\end{enumerate}
+\qed
+\end{solution}
+
+\end{document}

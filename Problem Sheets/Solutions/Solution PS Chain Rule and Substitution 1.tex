@@ -426,7 +426,7 @@ Evaluate the following indefinite integrals.
 \begin{exercise}
 For each integral below, state a suitable substitution before evaluating the indefinite integral.
 \begin{enumerate}
-    \item $\displaystyle \int \ln(5x)\,dx$
+    \item $\displaystyle \int \frac{5}{5x+2}\,dx$
     \item $\displaystyle \int e^{-20x}\,dx$
     \item $\displaystyle \int \sin(16x)\,dx$
     \item $\displaystyle \int \cos(2x)\,dx$
@@ -436,21 +436,20 @@ For each integral below, state a suitable substitution before evaluating the ind
 \begin{solution}
 
 \begin{enumerate}
-    \item Integrating $\int \ln(5x)\,dx$
+    \item Integrating $\displaystyle \int \frac{5}{5x+2}\,dx$
 
     We use the substitution
     \[
-        u = 5x
+        u = 5x+2
     \]
-    so that $du = 5\,dx$ and $dx = \frac{1}{5}du$.
+    so that $du = 5\,dx$.
 
     Then
     \begin{align*}
-        \int \ln(5x)\,dx
-        &= \frac{1}{5}\int \ln u\,du\\
-        &= \frac{1}{5}(u\ln u - u) + c\\
-        &= \frac{1}{5}(5x\ln(5x) - 5x) + c\\
-        &= x\ln(5x) - x + c
+        \int \frac{5}{5x+2}\,dx
+        &= \int \frac{1}{u}\,du\\
+        &= \ln|u| + c\\
+        &= \ln|5x+2| + c
     \end{align*}
 
     \item Integrating $\int e^{-20x}\,dx$

@@ -1,0 +1,443 @@
+%% This is file `elsarticle-template-1-num.tex',
+%%
+%% Copyright 2009 Elsevier Ltd
+%%
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+
+\documentclass[a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{ mathrsfs }
+\usepackage{ dsfont }
+\usepackage{tikz-cd}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{float}
+\usepackage{lineno}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\newtheorem{name}{Printed output}
+\newtheorem{mydef}{Definition}
+\newtheoremstyle{break}%
+  {}%
+  {}%
+  {}%
+  {}%
+  {\bfseries}%
+  {.}%
+  {\newline}%
+  {}
+
+\theoremstyle{plain}
+\newtheorem{question}{Question}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{note*}{Note}
+\newtheorem*{claim}{Claim}
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem*{solution}{Solution}
+\newtheorem{exercise}{Exercise}
+
+\numberwithin{equation}{subsection}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}%
+    \import{./Figures/}{#2.pdf_tex}%
+}
+\newcommand{\hodge}{{*}}
+\newcommand{\tang}{\operatorname{\textbf{\textup{t}}}}
+\newcommand{\norm}{\operatorname{\textbf{\textup{n}}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bP}{\mathbb{bP}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+
+\usepackage{comment}
+\newcommand{\bmv}{\bm{v}}
+\newcommand{\bmu}{\bm{u}}
+\newcommand{\bmw}{\bm{w}}
+\newcommand{\bmx}{\bm{x}}
+
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cJ}{\mathcal{J}}
+
+\newcommand{\frp}{\mathfrak{p}}
+\newcommand{\frq}{\mathfrak{q}}
+\newcommand{\frm}{\mathfrak{m}}
+\newcommand{\frP}{\mathfrak{P}}
+
+\newcommand{\msF}{\mathscr{F}}
+\newcommand{\msA}{\mathscr{A}}
+\newcommand{\msM}{\mathscr{M}}
+\newcommand{\msE}{\mathscr{E}}
+\newcommand{\msU}{\mathscr{U}}
+\newcommand{\msB}{\mathscr{B}}
+\newcommand{\msD}{\mathscr{D}}
+\newcommand{\msL}{\mathscr{L}}
+\newcommand{\msS}{\mathscr{S}}
+\newcommand{\msG}{\mathscr{G}}
+\newcommand{\msT}{\mathscr{T}}
+\newcommand{\msC}{\mathscr{C}}
+\newcommand{\msH}{\mathscr{H}}
+\newcommand{\msO}{\mathscr{O}}
+\newcommand{\msJ}{\mathscr{J}}
+\newcommand{\msP}{\mathscr{P}}
+
+\newcommand{\vect}[1]{\underline{\textbf{#1}}}
+\newcommand{\llangle}{\left\langle}
+\newcommand{\rrangle}{\right\rangle}
+\newcommand{\llbrace}{\left\lbrace}
+\newcommand{\rrbrace}{\right\rbrace}
+\newcommand{\setof}[1]{\left\lbrace #1 \right\rbrace}
+
+\newcommand{\cFA}{\cF(\cA)}
+\newcommand{\sigmaA}{\sigma(\cA)}
+\newcommand{\del}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand{\innerproductb}[2]{\llangle\bm{#1},\bm{#2}\rrangle}
+\newcommand{\innerproduct}[2]{\llangle{#1},{#2}\rrangle}
+
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\Span}{\operatorname{Span}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\sh}{\operatorname{sh}}
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Mor}{\operatorname{Mor}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\res}{\operatorname{res}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand*{\sheafhom}{\mathcal{H}\kern -.5pt \it{ om}}
+\newcommand*{\sheafspec}{\mathcal{S}\kern -.5pt \it{ pec}}
+\newcommand*{\sheafproj}{{\mathcal{P}\kern -.5pt \it{ roj}}}
+\newcommand{\Div}{\operatorname{div}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Qcoh}{\operatorname{Qcoh}}
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\Op}{\operatorname{Op}}
+\newcommand{\WF}{\operatorname{WF}}
+\newcommand{\Char}{\operatorname{Char}}
+\newcommand{\Ell}{\operatorname{Ell}}
+\newcommand{\RE}{\operatorname{Re}}
+\newcommand{\IM}{\operatorname{Im}}
+\newcommand{\cosec}{\operatorname{cosec}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+\begin{document}
+
+\title{\textbf{Problem Sheet: Trig Substitutions 1 Solution}}
+\author{\textbf{Jeffrey Thompson}}
+\maketitle
+
+\begin{exercise}
+Using a trigonometric substitution, find the indefinite integral
+\[
+    \int \sqrt{1 - 4x^2} \, dx
+\]
+Then state the interval of $x$ values where this substitution is valid.
+\end{exercise}
+
+\begin{solution}
+
+The identities that look like $1-4x^2$ are
+\[
+    1-\sin^2\theta=\cos^2\theta, \qquad 1-\cos^2\theta=\sin^2\theta
+\]
+so we use a scaled version of the first and let
+\[
+    2x = \sin \theta
+\]
+with
+\[
+    -\frac{\pi}{2} \leq \theta \leq \frac{\pi}{2}.
+\]
+This is a convenient choice because then $\cos\theta \geq 0$.
+
+Therefore
+\[
+    x = \frac{1}{2}\sin \theta
+\]
+and
+\[
+    \frac{dx}{d\theta} = \frac{1}{2}\cos \theta
+\]
+so
+\[
+    dx = \frac{1}{2}\cos \theta \, d\theta.
+\]
+
+Now substitute from left to right:
+\begin{align*}
+    \int \sqrt{1 - 4x^2} \, dx
+    &= \int \sqrt{1 - \sin^2 \theta} \, dx \tag{using $2x = \sin \theta$}\\
+    &= \int \sqrt{\cos^2 \theta}\cdot \frac{1}{2}\cos \theta \, d\theta \tag{using $dx = \frac{1}{2}\cos \theta\,d\theta$}\\
+    &= \frac{1}{2}\int \cos^2 \theta \, d\theta
+\end{align*}
+
+Here we used that
+\[
+    \sqrt{\cos^2\theta} = \cos\theta,
+\]
+which is valid on our chosen interval because $\cos\theta \geq 0$ there.
+
+Now use
+\[
+    \cos^2 \theta = \frac{1+\cos 2\theta}{2}
+\]
+to find
+\begin{align*}
+    \frac{1}{2}\int \cos^2 \theta \, d\theta
+    &= \frac{1}{2}\int \frac{1+\cos 2\theta}{2}\,d\theta\\
+    &= \frac{1}{4}\int 1\,d\theta + \frac{1}{4}\int \cos 2\theta\,d\theta\\
+    &= \frac{1}{4}\theta + \frac{1}{8}\sin 2\theta + c
+\end{align*}
+
+Now return to $x$. Since $2x = \sin \theta$, we have
+\[
+    \theta = \sin^{-1}(2x)
+\]
+and also
+\[
+    \sin 2\theta = 2\sin \theta \cos \theta.
+\]
+Therefore
+\begin{align*}
+    \frac{1}{4}\theta + \frac{1}{8}\sin 2\theta + c
+    &= \frac{1}{4}\theta + \frac{1}{8}\left(2\sin \theta \cos \theta\right) + c\\
+    &= \frac{1}{4}\theta + \frac{1}{4}\sin \theta \cos \theta + c\\
+    &= \frac{1}{4}\theta + \frac{1}{4}(2x)\sqrt{1-\sin^2\theta} + c\\
+    &= \frac{1}{4}\theta + \frac{1}{2}x\sqrt{1-4x^2} + c\\
+    &= \frac{1}{4}\sin^{-1}(2x) + \frac{1}{2}x\sqrt{1-4x^2} + c
+\end{align*}
+
+Hence
+\[
+    \int \sqrt{1 - 4x^2} \, dx
+    = \frac{1}{2}x\sqrt{1-4x^2} + \frac{1}{4}\sin^{-1}(2x) + c
+\]
+
+When using this substitution, we are working in the range
+\[
+    -1 \leq 2x \leq 1
+\]
+which gives
+\[
+    -\frac{1}{2} \leq x \leq \frac{1}{2}.
+\]
+This is also exactly the range where the square root term $\sqrt{1-4x^2}$ is defined.
+
+\qed
+\end{solution}
+
+% ------------------------------------------------------------
+
+\begin{exercise}
+Using a trigonometric substitution, compute
+\[
+    \int_{\frac{1}{2}}^{1}\frac{1}{x\sqrt{1-x^2}}\,dx.
+\]
+\end{exercise}
+
+\begin{solution}
+
+Since the integrand contains $\sqrt{1-x^2}$, we use
+\[
+    x = \cos \theta.
+\]
+Since the bounds satisfy $\frac{1}{2}\leq x \leq 1$, we take
+\[
+    0 \leq \theta \leq \frac{\pi}{2},
+\]
+so that both $\cos\theta \geq 0$ and $\sin\theta \geq 0$.
+
+Then
+\begin{align*}
+    x &= \cos \theta\\
+    dx &= -\sin \theta\,d\theta\\
+    \sqrt{1-x^2} &= \sqrt{1-\cos^2\theta} = \sin \theta
+\end{align*}
+where the final step is valid because $\sin \theta \geq 0$ on the interval we use.
+
+Now convert the bounds:
+\begin{align*}
+    x = \frac{1}{2} &\therefore \cos \theta = \frac{1}{2} \therefore \theta = \frac{\pi}{3}\\
+    x = 1 &\therefore \cos \theta = 1 \therefore \theta = 0
+\end{align*}
+
+Substitute from left to right:
+\begin{align*}
+    \int_{\frac{1}{2}}^{1}\frac{1}{x\sqrt{1-x^2}}\,dx
+    &= \int_{x=\frac{1}{2}}^{x=1}\frac{1}{x\sqrt{1-x^2}}\,dx\\
+    &= \int_{\theta=\frac{\pi}{3}}^{\theta=0}\frac{1}{\cos\theta\sqrt{1-\cos^2\theta}}(-\sin\theta)\,d\theta\\
+    &= \int_{\theta=\frac{\pi}{3}}^{\theta=0}\frac{-\sin\theta}{\cos\theta\sin\theta}\,d\theta\\
+    &= \int_{\theta=\frac{\pi}{3}}^{\theta=0}-\sec\theta\,d\theta\\
+    &= \int_{0}^{\frac{\pi}{3}}\sec\theta\,d\theta
+\end{align*}
+
+Now use the formula book:
+\[
+    \int \sec\theta\,d\theta = \ln|\sec\theta + \tan\theta| + c
+\]
+Therefore
+\begin{align*}
+    \int_{0}^{\frac{\pi}{3}}\sec\theta\,d\theta
+    &= \left[\ln|\sec\theta + \tan\theta|\right]_{\theta=0}^{\theta=\frac{\pi}{3}}\\
+    &= \ln\left(\sec\frac{\pi}{3} + \tan\frac{\pi}{3}\right) - \ln(\sec 0 + \tan 0)
+\end{align*}
+
+Evaluate the trig values:
+\[
+    \sec\frac{\pi}{3} = 2, \qquad \tan\frac{\pi}{3} = \sqrt{3}, \qquad \sec 0 = 1, \qquad \tan 0 = 0.
+\]
+So
+\begin{align*}
+    \int_{\frac{1}{2}}^{1}\frac{1}{x\sqrt{1-x^2}}\,dx
+    &= \ln(2+\sqrt{3}) - \ln(1)\\
+    &= \ln(2+\sqrt{3})
+\end{align*}
+
+\qed
+\end{solution}
+
+% ------------------------------------------------------------
+
+\begin{exercise}
+Compute the following indefinite integral, assuming that $4-x^2\geq 0$ and $x\neq0$.
+
+\[
+    \int \frac{1}{x^2 \sqrt{4 - x^2}}dx
+\]
+\end{exercise}
+
+\begin{solution}
+
+We look for a trig identity that matches $4-x^2$. Since
+\begin{align*}
+    \sin^2\theta + \cos^2\theta &= 1\\
+    4\sin^2\theta + 4\cos^2\theta &= 4\\
+    4\sin^2\theta &= 4 - 4\cos^2\theta
+\end{align*}
+we choose
+\[
+    x = 2\cos\theta.
+\]
+We take
+\[
+    0 \leq \theta \leq \pi
+\]
+so that $\sin\theta \geq 0$, which will make the square root step below valid.
+
+Then
+\begin{align*}
+    x^2 &= 4\cos^2\theta\\
+    \sqrt{4-x^2} &= \sqrt{4-4\cos^2\theta} = 2\sin\theta\\
+    \frac{dx}{d\theta} &= -2\sin\theta\\
+    dx &= -2\sin\theta\,d\theta
+\end{align*}
+
+Now substitute from left to right:
+\begin{align*}
+    \int \frac{1}{x^2 \sqrt{4 - x^2}}dx
+    &= \int \frac{1}{4\cos^2\theta\sqrt{4-x^2}}dx \tag{using $x^2 = 4\cos^2\theta$}\\
+    &= \int \frac{1}{4\cos^2\theta \cdot 2\sin\theta}dx \tag{using $\sqrt{4-x^2} = 2\sin\theta$}\\
+    &= \int \frac{1}{4\cos^2\theta \cdot \cancel{2\sin\theta}}(-\cancel{2\sin\theta})\,d\theta \tag{using $dx = -2\sin\theta\,d\theta$}\\
+    &= -\frac{1}{4}\int \sec^2\theta\,d\theta
+\end{align*}
+
+Using the formula book,
+\[
+    \int \sec^2\theta\,d\theta = \tan\theta + c
+\]
+so
+\[
+    \int \frac{1}{x^2 \sqrt{4 - x^2}}dx = -\frac{1}{4}\tan\theta + c.
+\]
+
+Now write everything back in terms of $x$. Since $x = 2\cos\theta$, we have
+\[
+    \cos\theta = \frac{x}{2}
+\]
+and therefore
+\begin{align*}
+    \tan\theta
+    &= \frac{\sin\theta}{\cos\theta}\\
+    &= \frac{\sqrt{1-\cos^2\theta}}{\cos\theta}\\
+    &= \frac{\sqrt{1-\left(\frac{x}{2}\right)^2}}{\frac{x}{2}}\\
+    &= \frac{\sqrt{\frac{4-x^2}{4}}}{\frac{x}{2}}\\
+    &= \frac{\frac{1}{2}\sqrt{4-x^2}}{\frac{x}{2}}\\
+    &= \frac{\sqrt{4-x^2}}{x}
+\end{align*}
+
+Hence
+\[
+    \int \frac{1}{x^2 \sqrt{4 - x^2}}dx
+    = -\frac{1}{4}\cdot \frac{\sqrt{4-x^2}}{x} + c
+\]
+that is,
+\[
+    \int \frac{1}{x^2 \sqrt{4 - x^2}}dx
+    = -\frac{\sqrt{4-x^2}}{4x} + c.
+\]
+
+Since the original integrand contains $x^2$ in the denominator, we also require
+\[
+    x \neq 0.
+\]
+
+\qed
+\end{solution}
+
+\end{document}

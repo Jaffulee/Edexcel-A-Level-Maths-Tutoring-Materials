@@ -7,18 +7,6 @@
 
 \documentclass[a4paper]{article}
 
-%% Use the option review to obtain double line spacing
-%% \documentclass[preprint,review,12pt]{elsarticle}
-
-%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
-%% for a journal layout:
-%% \documentclass[final,1p,times]{elsarticle}
-%% \documentclass[final,1p,times,twocolumn]{elsarticle}
-%% \documentclass[final,3p,times]{elsarticle}
-%% \documentclass[final,3p,times,twocolumn]{elsarticle}
-%% \documentclass[final,5p,times]{elsarticle}
-%% \documentclass[final,5p,times,twocolumn]{elsarticle}
-
 %% The graphicx package provides the includegraphics command.
 \usepackage{graphicx}
 \usepackage{import}
@@ -35,89 +23,49 @@
 \usepackage{tikz-cd}
 \usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 \usepackage{float}
-%% The lineno packages adds line numbers. Start line numbering with
-%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
-%% for the whole article with \linenumbers after \end{frontmatter}.
 \usepackage{lineno}
 \usepackage{hyperref}
 \usepackage{enumitem}
-%% natbib.sty is loaded by default. However, natbib options can be
-%% provided with \biboptions{...} command. Following options are
-%% valid:
-
-%%   round  -  round parentheses are used (default)
-%%   square -  square brackets are used   [option]
-%%   curly  -  curly braces are used      {option}
-%%   angle  -  angle brackets are used    <option>
-%%   semicolon  -  multiple citations separated by semi-colon
-%%   colon  - same as semicolon, an earlier confusion
-%%   comma  -  separated by comma
-%%   numbers-  selects numerical citations
-%%   super  -  numerical citations as superscripts
-%%   sort   -  sorts multiple citations according to order in ref. list
-%%   sort&compress   -  like sort, but also compresses numerical citations
-%%   compress - compresses without sorting
-%%
-%% \biboptions{comma,round}
-
-% \biboptions{}
 
 \newtheorem{name}{Printed output}
 \newtheorem{mydef}{Definition}
 \newtheoremstyle{break}% name
-  {}%         Space above, empty = `usual value'
-  {}%         Space below
-  {}%         Body font
-  {}%         Indent amount (empty = no indent, \parindent = para indent)
-  {\bfseries}% Thm head font
-  {.}%        Punctuation after thm head
-  {\newline}% Space after thm head: \newline = linebreak
-  {}%         Thm head spec
+  {}%
+  {}%
+  {}%
+  {}%
+  {\bfseries}%
+  {.}%
+  {\newline}%
+  {}
 
-\theoremstyle{plain} %italics
+\theoremstyle{plain}
 \newtheorem{question}{Question}
 
 \newtheorem{theorem}{Theorem}[section]
-%\numberwithin{theorem}{subsection}
-
 \newtheorem*{lemma*}{Lemma}
 \newtheorem{lemma}[theorem]{Lemma}
-%\numberwithin{lemma}{subsection}
-
 \newtheorem{corollary}[theorem]{Corollary}
-%\numberwithin{corollary}{subsection}
-
 \newtheorem{proposition}[theorem]{Proposition}
-%\numberwithin{proposition}{subsection}
 
-\theoremstyle{definition} %non italics
-
+\theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
-%\numberwithin{definition}{subsection}
-
 \newtheorem*{note*}{Note}
-
 \newtheorem*{claim}{Claim}
-
 \newtheorem*{remark}{Remark}
-
 \newtheorem{example}{Example}
-% \numberwithin{example}{subsection}
-
 \newtheorem*{solution}{Solution}
-
 \newtheorem{exercise}{Exercise}
 
 \numberwithin{equation}{subsection}
 
-\newcommand{\incfig}[2][1]{%   % #1 = scale (default 1), #2 = filename
+\newcommand{\incfig}[2][1]{%
     \def\svgwidth{#1\columnwidth}%
     \import{./Figures/}{#2.pdf_tex}%
 }
 \newcommand{\hodge}{{*}}
 \newcommand{\tang}{\operatorname{\textbf{\textup{t}}}}
 \newcommand{\norm}{\operatorname{\textbf{\textup{n}}}}
-%mathbb short cut
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\bP}{\mathbb{bP}}
 \newcommand{\N}{\mathbb{N}}
@@ -133,13 +81,11 @@
 \newcommand{\D}{\mathbb{D}}
 
 \usepackage{comment}
-%bm short cut
 \newcommand{\bmv}{\bm{v}}
 \newcommand{\bmu}{\bm{u}}
 \newcommand{\bmw}{\bm{w}}
 \newcommand{\bmx}{\bm{x}}
 
-%mathcal shortcut
 \newcommand{\cF}{\mathcal{F}}
 \newcommand{\cA}{\mathcal{A}}
 \newcommand{\cM}{\mathcal{M}}
@@ -155,13 +101,11 @@
 \newcommand{\cO}{\mathcal{O}}
 \newcommand{\cJ}{\mathcal{J}}
 
-%mathfraktur shortcut
 \newcommand{\frp}{\mathfrak{p}}
 \newcommand{\frq}{\mathfrak{q}}
 \newcommand{\frm}{\mathfrak{m}}
 \newcommand{\frP}{\mathfrak{P}}
 
-%mathscr shortcut
 \newcommand{\msF}{\mathscr{F}}
 \newcommand{\msA}{\mathscr{A}}
 \newcommand{\msM}{\mathscr{M}}
@@ -179,8 +123,6 @@
 \newcommand{\msJ}{\mathscr{J}}
 \newcommand{\msP}{\mathscr{P}}
 
-
-%set notation shortcut
 \newcommand{\vect}[1]{\underline{\textbf{#1}}}
 \newcommand{\llangle}{\left\langle}
 \newcommand{\rrangle}{\right\rangle}
@@ -188,11 +130,9 @@
 \newcommand{\rrbrace}{\right\rbrace}
 \newcommand{\setof}[1]{\left\lbrace #1 \right\rbrace}
 
-
 \newcommand{\cFA}{\cF(\cA)}
 \newcommand{\sigmaA}{\sigma(\cA)}
 \newcommand{\del}[2]{\frac{\partial #1}{\partial #2}}
-
 
 \newcommand{\innerproductb}[2]{\llangle\bm{#1},\bm{#2}\rrangle}
 \newcommand{\innerproduct}[2]{\llangle{#1},{#2}\rrangle}
@@ -235,68 +175,35 @@
 \newcommand{\IM}{\operatorname{Im}}
 \newcommand{\cosec}{\operatorname{cosec}}
 
-\setlength{\parindent}{0pt}    % no indentation
-\setlength{\parskip}{1em}      % add vertical space between paragraphs
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
 
 \begin{document}
 
-%% Title, authors and addresses
-
-\title{\textbf{Problem Sheet: Chain Rule and Substitutions 1}}
-
-%% use the tnoteref command within \title for footnotes;
-%% use the tnotetext command for the associated footnote;
-%% use the fnref command within \author or \address for footnotes;
-%% use the fntext command for the associated footnote;
-%% use the corref command within \author for corresponding author footnotes;
-%% use the cortext command for the associated footnote;
-%% use the ead command for the email address,
-%% and the form \ead[url] for the home page:
-%%
-%% \title{Title\tnoteref{label1}}
-%% \tnotetext[label1]{}
-%% \author{Name\corref{cor1}\fnref{label2}}
-%% \ead{email address}
-%% \ead[url]{home page}
-%% \fntext[label2]{}
-%% \cortext[cor1]{}
-%% \address{Address\fnref{label3}}
-%% \fntext[label3]{}
-
-
-%% use optional labels to link authors explicitly to addresses:
-%% \author[label1,label2]{<author name>}
-%% \address[label1]{<address>}
-%% \address[label2]{<address>}
-
+\title{\textbf{Problem Sheet: Chain Rule and Substitutions 2}}
 \author{\textbf{Jeffrey Thompson}}
 \maketitle
 
 \begin{exercise}
 Differentiate the following functions.
 \begin{enumerate}
-    \item $\ln(5x)$
-    \item $e^{-20x^2}$
-    \item $\sin(16x^3)$
-    \item $\cos\!\left(\frac{2}{x}\right)$
+    \item $\sin(\cos(3x))$
+    \item $e^{2\sin(4x)}$
+    \item $\cos(\ln(5x))$
+    \item $(\ln(2x))^3$
 \end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-Evaluate the following indefinite integrals.
-\begin{enumerate}
-    \item $\displaystyle \int \sin^2 x \, dx$
-    \item $\displaystyle \int \cos^2 x \, dx$
-\end{enumerate}
+Let $f(x)=e^{3\sin x} + \sin(x^2)$. Find $f'(x)$ and $f''(x)$.
 \end{exercise}
 
 \begin{exercise}
 For each integral below, state a suitable substitution before evaluating the indefinite integral.
 \begin{enumerate}
-    \item $\displaystyle \int \frac{5}{5x+2}\,dx$
-    \item $\displaystyle \int e^{-20x}\,dx$
-    \item $\displaystyle \int \sin(16x)\,dx$
-    \item $\displaystyle \int \cos(2x)\,dx$
+    \item $\displaystyle \int x e^{x^2}\,dx$
+    \item $\displaystyle \int \frac{4x}{1+2x^2}\,dx$
+    \item $\displaystyle \int 6x\sqrt{1-3x^2}\,dx$
 \end{enumerate}
 \end{exercise}
 
