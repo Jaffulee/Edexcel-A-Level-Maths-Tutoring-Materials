@@ -1,0 +1,364 @@
+\section{Kinematics}\label{sec:kinematics}
+
+\subsection{Displacement, Velocity, and Acceleration}\label{sec:displacement_velocity_acceleration}
+
+I will avoid using SUVAT equations immediately, since they hide a lot of the fundamentals.
+
+We can relate displacement, velocity, and acceleration as functions of time $t$ via integration and differentiation. This is by recalling that 
+velocity is the rate of change of displacement, and acceleration is the rate of change of velocity, so we can write:
+
+\begin{align*}
+    v(t) &= \frac{ds}{dt} \\
+    a(t) &= \frac{dv}{dt} = \frac{d^2s}{dt^2}
+\end{align*}
+
+And you can go the `other way' via integration:
+\begin{align*}
+    v(t) &= \int a(t) dt + c_1 \\
+    s(t) &= \int v(t) dt + c_2
+\end{align*}
+
+Where we can find the constants of integration $c_1$ and $c_2$ if we know some initial conditions, e.g. the starting velocity and the starting position.
+
+Let's say we have a particle moving with \textbf{constant acceleration} $a$, with an initial velocity $u$ and initial displacement $s_0$. 
+
+We can start with the acceleration and integrate\footnote{It is essential to understand that this integral relies on $a$ being constant in $t$.} to find:
+\[ v(t) = \int a dt + c  = at + c_1\]
+And use that $v(0) = u$ to find:
+\begin{align*}
+    v(0) &= u \\
+    &=  a \cdot 0 + c_1  \\
+    \therefore c_1 &= u\\
+    \therefore v(t) &= at + u
+\end{align*}
+
+
+Now we can integrate again to find the displacement:
+\[ s(t) = \int v(t) dt + c_2 = \int (at + u) dt + c_2 = \frac{1}{2}at^2 + ut + c_2 \]
+
+And use that $s(0) = s_0$ to find:
+\begin{align*}
+    s(0) &= s_0 \\
+    &= \frac{1}{2}a \cdot 0^2 + u \cdot 0 + c_2 \\
+    \therefore c_2 &= s_0 \\
+    \therefore s(t) &= \frac{1}{2}at^2 + ut + s_0
+    \therefore s(t) - s_0 = ut + \frac{1}{2}at^2
+\end{align*}
+
+We can write this in terms of $v$ instead of $u$ by substituting the first equation $v = at + u$ to get:
+\begin{align*}
+    s(t) - s_0 &= ut + \frac{1}{2}at^2 \\
+    &= (v - at)t + \frac{1}{2}at^2 \\
+    &= vt - at^2 + \frac{1}{2}at^2 \\
+    &= vt - \frac{1}{2}at^2
+\end{align*}
+
+Now we can notice that the last two equations have a similar term $\pm \frac{1}{2}at^2$, so we can add them together to get:
+\begin{align*}
+    2(s(t) - s_0) &= ut + vt  + \cancel{\frac{1}{2}at^2 - \frac{1}{2}at^2}\\
+    2(s(t) - s_0) &= t(u + v) \\
+    \therefore s(t) - s_0 &= \frac{t(u + v)}{2}
+\end{align*}
+
+All of the last equations contain $t$ so it would be useful to eliminate $t$\footnote{The neatest way to do this is via chain rule and writing $a = \frac{dv}{dt} = \frac{dv}{ds} \cdot \frac{ds}{dt} = v \frac{dv}{ds}$, but we can also do it via substitution, which I suspect students will find simpler to understand.}. 
+If we assume $a \neq 0$, we can rearrange the first equation to get $t = \frac{v - u}{a}$, and substitute this into the last equation to get:
+\begin{align*}
+    s(t) - s_0 &= \frac{t(u + v)}{2} \\
+    &= \frac{\frac{v - u}{a}(u + v)}{2} \\
+    &= \frac{(v - u)(u + v)}{2a} \\
+    &= \frac{v^2 - u^2}{2a}
+    \therefore v^2&= u^2 + 2a(s - s_0)
+\end{align*}
+
+These combine to give us our SUVAT equations from the formula book, explaining motion in a straight line with constant acceleration $a$, with initial velocity $u$, initial displacement $s_0$, and displacement $s(t)$ and velocity $v(t)$ at time $t$:
+
+\begin{align*}
+    v(t) &= u + at \\
+    s(t) - s_0 &= ut + \frac{1}{2}at^2 \\
+    s(t) - s_0 &= v(t)t - \frac{1}{2}at^2 \\
+    s(t) - s_0 &= \frac{t(u + v(t))}{2} \\
+    v(t)^2&= u^2 + 2a(s(t) - s_0)
+\end{align*}
+
+In particular, if $s_0 = 0$\footnote{This highlights that the SUVAT equations describe displacement from the starting position, rather than absolute position relative to a fixed origin.}, i.e. we are measuring relative to the starting point, and we set $v$ as our final velocity and $s$ as our displacement (ignoring the time variable), then we get the SUVAT equations from the formula booklet:
+\begin{align*}
+    v &= u + at \\
+    s &= ut + \frac{1}{2}at^2 \\
+    s &= vt - \frac{1}{2}at^2 \\
+    s &= \frac{t(u + v)}{2} \\
+    v^2&= u^2 + 2as
+\end{align*}
+
+I highly recommend understanding where the equations come from, especially relating to differentiating and integrating acceleration, velocity, and displacement, rather than just blindly using the equations.
+
+Despite this, the equations can still speed up calculations, since they always allow you to find the missing variable without needing to do any differentiation or integration. 
+This is because each equation has $4$ of the variables $s$, $u$, $v$, $a$, and $t$, so if you know any $3$ of these variables, you can find the missing variable by using the appropriate SUVAT equation.
+
+The only place you might get tripped up is forgetting that $s$ is relative to the starting point, in the case where you are not starting from $s_0 = 0$.
+
+\begin{example}
+A particle starts from rest and moves with constant acceleration $a$ for $t$ seconds, covering a distance of $5$ metres. 
+
+Find an equation for the final velocity $v$ of the particle in terms of $s$ and $t$, assuming $t \neq 0$.
+
+You are told the particle reaches a final velocity of $2$ m/s. Find what time $t$ is at the time of reaching the final velocity, and then deduce what the acceleration $a$ is.
+
+\end{example}
+\begin{solution}
+Since the particle starts from rest, we have $u = 0$. We are asked to find an equation for $v$ in terms of $s$ and $t$ and we know what $u$ is, so let's look for a SUVAT equation which has $v$, $s$, $t$, and $u$. The only equation which has all of these variables is the fourth equation, so we can rearrange this to get:
+\begin{align*}
+    s &= \frac{t(u + v)}{2} \\
+    2s &= t(u + v) \\
+    2s &= t(0 + v) \\
+    2s &= tv \\
+    \therefore v &= \frac{2s}{t} \text{ m/s}
+\end{align*}
+We are told that $v = 2$ m/s after the object has covered $5$ metres, so we can substitute this into the equation we just found to get:
+\begin{align*}
+    2 &= \frac{2 \cdot 5}{t} \\
+    t &= 5 \text{ seconds}
+\end{align*}
+Now we can use the first SUVAT equation to find $a$:
+\begin{align*}
+    v &= u + at \\
+    2 &= 0 + a \cdot 5 \\
+    a &= \frac{2}{5} \text{ m/s}^2
+\end{align*}
+\qed 
+\end{solution}
+
+\begin{example}
+A particle starts with velocity $6$ m/s and moves with constant acceleration $a$, covering a distance of $32$ metres before reaching a velocity $v$.
+
+Find an equation for the acceleration $a$ in terms of $v$.
+
+You are told the particle reaches a final velocity of $10$ m/s. Find the acceleration $a$, and then deduce the time $t$ taken.
+
+\end{example}
+\begin{solution}
+We know that $u = 6$ and $s = 32$. We are asked to find an equation for $a$ in terms of $v$, so we look for a SUVAT equation involving $a$, $v$, $u$, and $s$. The only equation with these variables is:
+\begin{align*}
+    v^2 &= u^2 + 2as
+\end{align*}
+Rearranging this to make $a$ the subject gives:
+\begin{align*}
+    v^2 &= u^2 + 2as \\
+    v^2 - u^2 &= 2as \\
+    a &= \frac{v^2 - u^2}{2s}
+\end{align*}
+Substituting $u = 6$ and $s = 32$, we get:
+\begin{align*}
+    a &= \frac{v^2 - 6^2}{2 \cdot 32} \\
+    &= \frac{v^2 - 36}{64}
+\end{align*}
+So the required equation is:
+\[
+a = \frac{v^2 - 36}{64} \text{ m/s}^2
+\]
+
+We are told that $v = 10$ m/s, so:
+\begin{align*}
+    a &= \frac{10^2 - 36}{64} \\
+    &= \frac{100 - 36}{64} \\
+    &= \frac{64}{64} \\
+    &= 1 \text{ m/s}^2
+\end{align*}
+
+Now we use the first SUVAT equation to find the time:
+\begin{align*}
+    v &= u + at \\
+    10 &= 6 + 1 \cdot t \\
+    t &= 4 \text{ seconds}
+\end{align*}
+
+Hence the five variables are:
+\[
+u = 6,\quad v = 10,\quad s = 32,\quad a = 1,\quad t = 4
+\]
+\qed
+\end{solution}
+
+\begin{example}
+A particle moves with constant acceleration $a$, changing its velocity from $2$ m/s to $14$ m/s in $6$ seconds, while travelling a distance $s$.
+
+Find an equation for the displacement $s$ in terms of $u$.
+
+You are told that the initial velocity is $2$ m/s. Find the displacement $s$, and then deduce the acceleration $a$.
+
+\end{example}
+\begin{solution}
+We know that $v = 14$ and $t = 6$. We are asked to find an equation for $s$ in terms of $u$, so we look for a SUVAT equation involving $s$, $u$, $v$, and $t$. The only equation with these variables is:
+\begin{align*}
+    s &= \frac{t(u + v)}{2}
+\end{align*}
+Substituting $v = 14$ and $t = 6$, we get:
+\begin{align*}
+    s &= \frac{6(u + 14)}{2} \\
+    &= 3(u + 14)
+\end{align*}
+So the required equation is:
+\[
+s = 3(u + 14) \text{ metres}
+\]
+
+We are told that $u = 2$ m/s, so:
+\begin{align*}
+    s &= 3(2 + 14) \\
+    &= 3 \cdot 16 \\
+    &= 48 \text{ metres}
+\end{align*}
+
+Now we use the first SUVAT equation to find the acceleration:
+\begin{align*}
+    v &= u + at \\
+    14 &= 2 + a \cdot 6 \\
+    12 &= 6a \\
+    a &= 2 \text{ m/s}^2
+\end{align*}
+
+Hence the five variables are:
+\[
+u = 2,\quad v = 14,\quad t = 6,\quad s = 48,\quad a = 2
+\]
+\qed
+\end{solution}
+
+\begin{example}
+A particle starts at position $s_0 = 4$ metres with initial velocity $u = 3$ m/s and moves with constant acceleration $a = 2$ m/s$^2$ for $t$ seconds, reaching position $s$.
+
+Find the position $s$ after $5$ seconds.
+
+\end{example}
+\begin{solution}
+Since the particle does not start at the origin, we must be careful to use the SUVAT equation for displacement relative to the starting position:
+\begin{align*}
+    s - s_0 &= ut + \frac{1}{2}at^2
+\end{align*}
+We are given:
+\[
+s_0 = 4,\quad u = 3,\quad a = 2,\quad t = 5
+\]
+So substituting into the equation gives:
+\begin{align*}
+    s - 4 &= 3 \cdot 5 + \frac{1}{2}\cdot 2 \cdot 5^2 \\
+    s - 4 &= 15 + 25 \\
+    s - 4 &= 40 \\
+    s &= 44
+\end{align*}
+Therefore the position of the particle after $5$ seconds is:
+\[
+s = 44 \text{ metres}
+\]
+\qed
+\end{solution}
+
+\begin{example}
+    A particle at rest which has a mass of $2$kg has a force applied to it of $4$N. 
+
+    What is the acceleration of the particle?
+
+    Deduce an equation for the velocity $v$ of the particle in terms of time $t$.
+\end{example}
+\begin{solution}
+We know that the force $F$ and mass $m$ are related to acceleration $a$ by Newton's second law:
+\begin{align*}
+    F &= ma
+\end{align*}
+Substituting $F = 4$ N and $m = 2$ kg, we get:
+\begin{align*}
+    4 &= 2a \\
+    a &= 2 \text{ m/s}^2
+\end{align*}
+
+Since the particle starts from rest, the initial velocity $u = 0$. Using the first SUVAT equation:
+\begin{align*}
+    v &= u + at \\
+    v &= 0 + 2t \\
+    v &= 2t
+\end{align*}
+So the velocity of the particle in terms of time $t$ is:
+\[
+v = 2t \text{ m/s}
+\]
+\qed
+\end{solution}
+
+\begin{example}
+    A particle has a mass of $2$kg and has been moving at a constant speed of $3$ m/s. At time $t=0$ seconds, a force of $4t$N is applied opposing the motion.
+
+    What is the acceleration of the particle in terms of time $t$?
+
+    Deduce an equation for the velocity $v$ of the particle in terms of time $t$.
+
+    At what time $t$ does the particle come to rest?
+\end{example}
+\begin{solution}
+Let's set our positive direction to be in the direction of the initial motion.Using Newton's second law, we have:
+\begin{align*}
+    F &= ma \\
+    -4t &= 2a \\
+    a &= -2t \text{ m/s}^2
+\end{align*}
+Since the particle is moving at a constant speed of $3$ m/s before the force is applied, we have $u = 3$. 
+
+Now the question is trying to trick us; we do not have constant acceleration here. Instead we must remember where the equations came from:
+
+\[ v(t) = \int a(t) \, dt + c\]
+
+Substituting $a(t) = -2t$ gives:
+\begin{align*}
+    v(t) &= \int -2t \, dt + c \\
+    &= -t^2 + c
+\end{align*}
+Since the initial velocity is $u = 3$ m/s, we have $v(0) = 3$, so $c = 3$. Therefore:
+\begin{align*}
+    v(t) &= -t^2 + 3
+\end{align*}
+
+The particle comes to rest when $v(t) = 0$, so we can solve the equation:
+\begin{align*}
+    0 &= -t^2 + 3 \\
+    t^2 &= 3 \\
+    t &= \sqrt{3} \text{ seconds}
+\end{align*}
+
+\qed
+\end{solution}
+
+
+\begin{example}
+    A star is being consumed by a black hole at a large distance. The star is losing mass, and is described by $M/t$ kg where $M$ is the initial mass of the star. The black hole is exerting a force of $100t^2$ N on the star, and the star is accelerating towards the black hole.
+
+    Modelling the star as a particle, find an equation for the acceleration $a$ of the star in terms of time $t$.
+
+    Assuming the star starts from rest, find an equation for the velocity $v$ of the star in terms of time $t$.
+\end{example}
+
+\begin{solution}
+Using Newton's second law, we have:
+\begin{align*}
+    F &= ma \\
+    100t^2 &= \frac{M}{t}a \\
+    a &= \frac{100t^2 \cdot t}{M} \\
+    a &= \frac{100t^3}{M} \text{ m/s}^2
+\end{align*}
+
+Since the star starts from rest, the initial velocity $u = 0$. Using the definition of acceleration:
+\begin{align*}
+    v(t) &= \int a(t) \, dt + c \\
+    &= \int\frac{100t^3}{M} \, dt + c \\
+     &= \frac{100t^4}{4M} + c \\
+     &= \frac{25t^4}{M} + c
+\end{align*}
+Since $v(0) = 0$, we have 
+\begin{align*}
+    0 &= \frac{25 \cdot 0^4}{M} + c \\
+    \therefore c &= 0
+\end{align*}
+Therefore:
+\begin{align*}
+    v(t) &= \frac{25t^4}{M}
+\end{align*}
+\qed
+
+\end{solution}
