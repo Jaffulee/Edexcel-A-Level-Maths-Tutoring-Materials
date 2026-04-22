@@ -321,6 +321,7 @@ The particle comes to rest when $v(t) = 0$, so we can solve the equation:
     t^2 &= 3 \\
     t &= \sqrt{3} \text{ seconds}
 \end{align*}
+We used the positive root since the force was applied at $t=0$ seconds and the particle comes to rest at a later time, so $t$ must be positive.
 
 \qed
 \end{solution}
@@ -328,6 +329,8 @@ The particle comes to rest when $v(t) = 0$, so we can solve the equation:
 
 \begin{example}
     A star is being consumed by a black hole at a large distance. The star is losing mass, and its mass is described by $\frac{M}{t+1}$ kg at time $t$ seconds, where $M$ is the initial mass of the star. The black hole is exerting a force of $100t^2$ N on the star, and the star is accelerating towards the black hole.
+
+    Assume for this question that, despite the changing mass, the motion may be modelled using $F = m(t)a(t)$\footnote{More generally, Newton's second law is $\mathbf{F}_{\mathrm{ext}} = \frac{d\mathbf{p}}{dt}$, where $\mathbf{p} = m\mathbf{v}$ is the momentum. When the mass is constant, this reduces to $\mathbf{F}_{\mathrm{ext}} = m\mathbf{a}$. For systems with changing mass, extra care is needed, so in this question we explicitly assume that the simpler form $F = m(t)a(t)$ may be used.}.
 
     Modelling the star as a particle, find an equation for the acceleration $a$ of the star in terms of time $t$ and initial mass $M$.
 
@@ -361,4 +364,367 @@ Therefore:
 \end{align*}
 \qed
 
+\end{solution}
+
+\subsection{Additional Exercises}\label{sec:kinematics_additional_exercises}
+
+Sometimes the motion is not obviously in a straight line, so we need to be careful to apply the SUVAT equations in the correct direction. This often involves finding components of forces or velocities, as in Section \ref{sec:components-of-forces-or-vectors}, and applying SUVAT in each component separately.
+
+\begin{example}
+A cannon fires a $10$ kg cannonball with initial speed $20$ m/s at an angle of $20^\circ$ above the horizontal from a point $50$ metres above the ground.
+
+Model the cannonball as a particle. Ignore air resistance, and assume that after firing, the only force acting on the cannonball is gravity.
+
+Find the time taken for the cannonball to hit the ground.
+
+Hence find how far from the cannon the ball lands horizontally.
+
+Finally, state what the actual distance from the cannon to the landing point is. Hint: use Pythagoras' theorem.
+
+\end{example}
+
+\begin{solution}
+We resolve the initial velocity into horizontal and vertical components.
+
+The horizontal component is:
+\[
+u_x = 20\cos(20^\circ)
+\]
+
+The vertical component is:
+\[
+u_y = 20\sin(20^\circ)
+\]
+
+Since gravity acts vertically downward, the vertical acceleration is:
+\[
+a_y = -9.8 \text{ m/s}^2
+\]
+
+Let the ground be at height $y = 0$, and let the cannon fire from height $y_0 = 50$ metres.
+
+Using the SUVAT equation for vertical displacement relative to the starting point,
+\begin{align*}
+    y - y_0 &= u_y t + \frac{1}{2}a_y t^2
+\end{align*}
+we get
+\begin{align*}
+    0 - 50 &= (20\sin 20^\circ)t + \frac{1}{2}(-9.8)t^2 \\
+    -50 &= 20\sin(20^\circ)t - 4.9t^2
+\end{align*}
+
+Rearranging gives:
+\begin{align*}
+    4.9t^2 - 20\sin(20^\circ)t - 50 &= 0
+\end{align*}
+
+Using the quadratic formula,
+\begin{align*}
+    t &= \frac{20\sin(20^\circ) \pm \sqrt{(20\sin(20^\circ))^2 - 4(4.9)(-50)}}{2(4.9)}
+\end{align*}
+
+Now,
+\[
+20\sin(20^\circ) \approx 6.84
+\]
+so
+\begin{align*}
+    t &= \frac{6.84 \pm \sqrt{6.84^2 + 980}}{9.8} \\
+    &= \frac{6.84 \pm \sqrt{1026.79}}{9.8} \\
+    &= \frac{6.84 \pm 32.04}{9.8}
+\end{align*}
+
+This gives two solutions:
+\begin{align*}
+    t &\approx \frac{6.84 + 32.04}{9.8} = 3.97 \\
+    t &\approx \frac{6.84 - 32.04}{9.8} = -2.57
+\end{align*}
+
+Since time cannot be negative in this context, we reject the negative solution. Therefore the cannonball hits the ground after
+\[
+t \approx 3.97 \text{ seconds}
+\]
+
+Now we find how far the ball travels horizontally in this time.
+
+Since there is no horizontal acceleration, the horizontal motion has constant velocity:
+\[
+x = u_xt
+\]
+So
+\begin{align*}
+    x &= 20\cos(20^\circ)\times 3.97
+\end{align*}
+
+Now,
+\[
+20\cos(20^\circ) \approx 18.79
+\]
+so
+\begin{align*}
+    x &\approx 18.79 \times 3.97 \\
+      &\approx 74.6
+\end{align*}
+
+Therefore the cannonball lands
+\[
+74.6 \text{ metres}
+\]
+from the cannon horizontally.
+
+To find the actual distance, we use that the vertical distance travelled is $50$ metres along with the horizontal distance $74.6$ metres. This forms a right angled triangle so we can use Pythagoras' theorem to find the actual distance $d$ from the cannon:
+\[
+d = \sqrt{74.6^2 + 50^2} \approx 89.8 \text{ metres}
+\]
+
+
+\qed
+\end{solution}
+
+\begin{example}
+A cannon fires a $10$ kg cannonball with initial speed $20$ m/s at an angle of $\theta$ to the horizontal from ground level.
+
+Model the cannonball as a particle. Ignore air resistance, and assume that after firing, the only force acting on the cannonball is gravity.
+
+Find, in terms of $\theta$, the time taken for the cannonball to hit the ground.
+
+Hence find, in terms of $\theta$, how far from the cannon the ball lands horizontally.
+
+Finally, find the value of $\theta$ which maximises this horizontal distance.
+
+\textit{Hint: Differentiate.}
+\end{example}
+
+\begin{solution}
+We resolve the initial velocity into horizontal and vertical components.
+
+The horizontal component is:
+\[
+u_x = 20\cos\theta
+\]
+
+The vertical component is:
+\[
+u_y = 20\sin\theta
+\]
+
+Since the cannonball is fired from the ground and lands back on the ground, its initial and final vertical positions are both $0$.
+
+The vertical acceleration is
+\[
+a_y = -9.8 \text{ m/s}^2
+\]
+
+Using the SUVAT equation for vertical displacement,
+\begin{align*}
+    s &= ut + \frac{1}{2}at^2
+\end{align*}
+we get
+\begin{align*}
+    0 &= (20\sin\theta)t + \frac{1}{2}(-9.8)t^2 \\
+    0 &= 20\sin\theta \, t - 4.9t^2
+\end{align*}
+
+Factorising gives:
+\begin{align*}
+    0 &= t(20\sin\theta - 4.9t)
+\end{align*}
+
+So either
+\[
+t=0
+\]
+or
+\[
+20\sin\theta - 4.9t = 0
+\]
+
+The solution $t=0$ corresponds to the instant the cannonball is fired, so the time taken to hit the ground is:
+\begin{align*}
+    t &= \frac{20\sin\theta}{4.9} \\
+      &= \frac{200\sin\theta}{49}
+\end{align*}
+
+Therefore the time of flight is
+\[
+{t = \frac{200\sin\theta}{49}\text{ seconds}}
+\]
+
+Now we find the horizontal distance travelled.
+
+Since there is no horizontal acceleration, horizontal motion has constant velocity:
+\[
+x = u_xt
+\]
+
+So
+\begin{align*}
+    x &= (20\cos\theta)\left(\frac{200\sin\theta}{49}\right) \\
+      &= \frac{4000\sin\theta\cos\theta}{49}
+\end{align*}
+
+Using the identity
+\[
+\sin(2\theta)=2\sin\theta\cos\theta
+\]
+we can write this as
+\begin{align*}
+    x &= \frac{2000}{49}\sin(2\theta)
+\end{align*}
+
+Therefore the horizontal distance travelled is
+\[
+{x = \frac{4000\sin\theta\cos\theta}{49} = \frac{2000}{49}\sin(2\theta)\text{ metres}}
+\]
+
+To maximise this distance, we differentiate with respect to $\theta$\footnote{Strictly speaking, differentiation assumes $\theta$ is measured in radians. The final maximising angle is still $45^\circ$.}. Since
+\[
+x = \frac{2000}{49}\sin(2\theta),
+\]
+we have
+\begin{align*}
+    \frac{dx}{d\theta} &= \frac{2000}{49}\cdot 2\cos(2\theta) \\
+                       &= \frac{4000}{49}\cos(2\theta)
+\end{align*}
+
+For a maximum, we set
+\begin{align*}
+    \frac{dx}{d\theta} &= 0 \\
+    \cos(2\theta) &= 0
+\end{align*}
+
+So
+\[
+2\theta = \frac{\pi}{2}
+\]
+and hence
+\[
+\theta = \frac{\pi}{4} = 45^\circ
+\]
+
+Therefore the value of $\theta$ which maximises the horizontal distance is
+\[
+{45^\circ}
+\]
+
+\qed
+\end{solution}
+
+\begin{example}
+A tortoise and a hare move along the same straight track.
+
+At time $t=0$, the tortoise is $10$ metres ahead of the hare and is moving at a constant speed of $3$ m/s.
+
+At the same instant, the hare is moving in the same direction with speed $10$ m/s and constant deceleration $2$ m/s$^2$.
+
+Show that the tortoise and the hare meet twice after $t=0$.
+
+Find the distance travelled by the tortoise between the two meeting points.
+
+\end{example}
+
+\begin{solution}
+Let the hare's starting point be taken as the origin.
+
+We first find an equation for the position of the tortoise.
+
+At time $t=0$, the tortoise is already $10$ metres ahead of the hare, so its initial position is
+\[
+s_0 = 10
+\]
+It is moving at constant speed $3$ m/s, so:
+\[
+u = 3, \qquad a = 0
+\]
+
+Since we know the initial position, initial velocity, acceleration, and time, the most useful SUVAT equation is:
+\begin{align*}
+    s - s_0 &= ut + \frac{1}{2}at^2
+\end{align*}
+
+Substituting in the values for the tortoise gives:
+\begin{align*}
+    s_T - 10 &= 3t + \frac{1}{2}(0)t^2 \\
+    s_T &= 10 + 3t
+\end{align*}
+
+Now we find an equation for the position of the hare.
+
+At time $t=0$, the hare is at the origin, so:
+\[
+s_0 = 0
+\]
+Its initial speed is $10$ m/s and its acceleration is
+\[
+a = -2 \text{ m/s}^2
+\]
+since it is decelerating.
+
+Again using
+\begin{align*}
+    s - s_0 &= ut + \frac{1}{2}at^2
+\end{align*}
+we get:
+\begin{align*}
+    s_H - 0 &= 10t + \frac{1}{2}(-2)t^2 \\
+    s_H &= 10t - t^2
+\end{align*}
+
+The tortoise and hare meet when they have the same position, so we set
+\begin{align*}
+    s_T &= s_H
+\end{align*}
+Hence:
+\begin{align*}
+    10 + 3t &= 10t - t^2
+\end{align*}
+
+Rearranging gives:
+\begin{align*}
+    t^2 - 7t + 10 &= 0
+\end{align*}
+
+Factorising:
+\begin{align*}
+    (t-2)(t-5) &= 0
+\end{align*}
+
+So:
+\[
+t=2 \qquad \text{or} \qquad t=5
+\]
+
+Both values are positive, so the tortoise and the hare meet twice after $t=0$.
+
+Now we find the distance travelled by the tortoise between the two meeting points.
+
+We know that the tortoise's position is
+\[
+s_T = 10 + 3t
+\]
+
+At the first meeting point, when $t=2$:
+\begin{align*}
+    s_T &= 10 + 3(2) \\
+        &= 16
+\end{align*}
+
+At the second meeting point, when $t=5$:
+\begin{align*}
+    s_T &= 10 + 3(5) \\
+        &= 25
+\end{align*}
+
+So the distance travelled by the tortoise between the two meeting points is:
+\begin{align*}
+    25 - 16 &= 9
+\end{align*}
+
+Therefore the tortoise travels
+\[
+9 \text{ metres}
+\]
+between the two meeting points.
+
+\qed
 \end{solution}
