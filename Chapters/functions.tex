@@ -428,6 +428,64 @@ The domain is $x<0$ or $x>0$, and the range is $0 < f(x)$.
     \qed
 \end{solution}
 
+A lot of calculators can plot functions, and you can use this to help build intuition with what values the function can be, but is not sufficient for an exam. For the exam, you really need to check a few things. 
+On a domain, the function's minimum and maximum values come from\footnote{More precisely, the function might not reach the minimum or maximum value, but just approach it arbitrarily closely, which is a distinction we will not worry about for these A-level notes.} one of the following special cases:
+
+\begin{enumerate}
+    \item The endpoints of the domain (if they exist)
+    \item The points where the function has a turning point (the derivative is $0$ and it is flat at that point), or a sharp point in the case of a non-smooth function
+    \item At any point where you would be dividing by $0$ (or any other undefined point)
+\end{enumerate}
+
+This means that to find the range given a domain, the best approach is to:
+
+\begin{enumerate}
+    \item First plot the function on your calculator to know roughly where the range is, making note if the minimum or maximum is at one of the above special points
+    \item Calculate the value of the function at each of the special points (or if the function gets infinitely big at those points). This requires differentiating to find the turning points, and potentially showing that the turning point is a minimum or a maximum\footnote{You can do this by checking the sign of the second derivative, or by checking the value at each turning point and then deducing that it is the overall minimum or maximum by exhaustion.} 
+    \item Write the range based on the above calculations, which you have double checked using the plot in the first step. This can help you a lot when writing exactly the order of each part
+\end{enumerate}
+
+\begin{example}
+    Find the range of $f(x) = x^2 + 2x + 1$ for the domain $-1.5 \leq x \leq 1$.
+\end{example}
+\begin{solution}
+    If you plot this on a calculator, you would see that the minimum is at the turning point, and the maximum is at the far right of the domain. This is not enough for an exam, so let's calculate the special points and write the answer.
+
+    First calculate the function at the endpoints of the domain:
+
+    \[f(1) = 1^2 + 2(1) + 1 = 4\]
+    \[f(-1.5) = (-1.5)^2 + 2(-1.5) + 1 = 0.25\]
+
+    Next, find the turning point by differentiating:
+    \[f'(x) = 2x + 2\]
+    Set the derivative to zero to find the turning point:
+    \[2x + 2 = 0 \therefore x = -1\]
+    Calculate the function value at the turning point:
+    \[f(-1) = (-1)^2 + 2(-1) + 1 = 0\]
+
+    Therefore, the range of the function is $0 \leq f(x) \leq 4$.
+    \qed
+\end{solution}
+
+\begin{example}
+    Find the range of $f(x) = \frac{1}{x+1}$ for $-1 < x \leq 1$.
+\end{example}
+\begin{solution}
+    If you plot this on a calculator, you would see that the function gets infinitely big as $x$ gets close to $-1$, and the minimum is at the far right of the domain. This is not enough for an exam, so let's calculate the special points and write the answer.
+
+    First calculate the function at the endpoints of the domain:
+
+    \[f(1) = \frac{1}{1+1} = \frac{1}{2}\]
+    If we were to try to plug in $-1$, we would be dividing by zero, which is undefined. In fact, in this case it gets larger and larger as we get closer to $-1$\footnote{You can convince yourself of this since $\frac{1}{\left(\frac{1}{2}\right)} = 2$ and  $\frac{1}{\left(\frac{1}{4}\right)} = 4$, and if we keep making the denominator smaller, this value keeps increasing.}.
+    Therefore, the function gets infinitely big as $x$ gets close to $-1$.
+
+    There are no turning points in this function, which you could check by differentiating and trying to set it to zero.
+
+    Therefore, the range of the function is $\frac{1}{2} \leq f(x) < \infty$, or just $f(x) \geq \frac{1}{2}$.
+    \qed
+\end{solution}
+
+
 \subsubsection{The Modulus Function}
 The modulus function is defined in two cases:
 
